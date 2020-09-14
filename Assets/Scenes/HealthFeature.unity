@@ -536,6 +536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 0
   currentHealth: 0
+  canvas: {fileID: 845458087}
   heartStorage: {fileID: 1239554133}
   emptyHeart: {fileID: 4119967270801098288, guid: 76790d3bd2f1f3b4b93abf9b2169eb23,
     type: 3}
