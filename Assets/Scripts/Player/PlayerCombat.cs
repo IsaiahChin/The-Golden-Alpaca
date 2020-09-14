@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-    public Animator animator;
+    //public Animator animator;
 
     //Ranged attack stats
     public RangedWeapon ranged;
@@ -25,13 +25,13 @@ public class PlayerCombat : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 //Melee attack
-                animator.SetTrigger("Attack");
+                //animator.SetTrigger("Attack");
                 melee.Attack();
                 nextAttackTime = Time.time + 1f / meleeAttackRate;
             } else if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 //Ranged attack
-                animator.SetTrigger("Attack");
+                //animator.SetTrigger("Attack");
                 ranged.Attack();
                 nextAttackTime = Time.time + 1f / shootAttackRate;
             }
