@@ -13,16 +13,8 @@ public class RangedWeapon : MonoBehaviour
 	//Attack stats
     public float speed = 50f;
 
-	public Camera cam=Camera.main;
-
-
-    public void Update()
-    {
-        cam.sc
-    }
     public void Attack()
 	{
-		cam.scr
 		//Instatiate a bullet object
 		GameObject ball = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 		//Get the rigidbody of the bullet object
