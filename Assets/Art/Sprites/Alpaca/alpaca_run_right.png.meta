@@ -1,28 +1,25 @@
 fileFormatVersion: 2
-guid: bab3ca1a6dc070c498957b9fb2b35ee9
+guid: 7949cb7b9c668f246b548900a6bf2e40
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7074124952420009344
-    second: alpaca_idle_0
+      213: -6468039328224461817
+    second: alpaca_run_right_0
   - first:
-      213: 7282150761807121083
-    second: alpaca_idle_1
+      213: -5083488561520627066
+    second: alpaca_run_right_1
   - first:
-      213: 810442135040522022
-    second: alpaca_idle_2
+      213: -3175530815251004787
+    second: alpaca_run_right_2
   - first:
-      213: 6644875135687783025
-    second: alpaca_idle_3
+      213: -4271649448195648452
+    second: alpaca_run_right_3
   - first:
-      213: -5997669991305169824
-    second: alpaca_idle_4
+      213: -769564641525981224
+    second: alpaca_run_right_4
   - first:
-      213: -5873438638995793573
-    second: alpaca_idle_5
-  - first:
-      213: -6630445619325204559
-    second: alpaca_idle_6
+      213: 1260095577192316079
+    second: alpaca_run_right_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -108,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: alpaca_idle_0
+      name: alpaca_run_right_0
       rect:
         serializedVersion: 2
         x: 0
@@ -116,20 +113,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 08a374a06d8a3dd90800000000000000
-      internalID: -7074124952420009344
+      spriteID: 70cbce70088ec36a0800000000000000
+      internalID: -6468039328224461817
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: alpaca_idle_1
+      name: alpaca_run_right_1
       rect:
         serializedVersion: 2
         x: 32
@@ -137,20 +134,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bba8a5e09856f0560800000000000000
-      internalID: 7282150761807121083
+      spriteID: 6823dc63612d379b0800000000000000
+      internalID: -5083488561520627066
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: alpaca_idle_2
+      name: alpaca_run_right_2
       rect:
         serializedVersion: 2
         x: 64
@@ -158,20 +155,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6277912f3d44f3b00800000000000000
-      internalID: 810442135040522022
+      spriteID: d8248a75c8f3ee3d0800000000000000
+      internalID: -3175530815251004787
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: alpaca_idle_3
+      name: alpaca_run_right_3
       rect:
         serializedVersion: 2
         x: 96
@@ -179,20 +176,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 172fe77dab6573c50800000000000000
-      internalID: 6644875135687783025
+      spriteID: c341e43857d08b4c0800000000000000
+      internalID: -4271649448195648452
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: alpaca_idle_4
+      name: alpaca_run_right_4
       rect:
         serializedVersion: 2
         x: 128
@@ -200,20 +197,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0643c308beef3cca0800000000000000
-      internalID: -5997669991305169824
+      spriteID: 8df942e2905f155f0800000000000000
+      internalID: -769564641525981224
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: alpaca_idle_5
+      name: alpaca_run_right_5
       rect:
         serializedVersion: 2
         x: 160
@@ -221,35 +218,14 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b591a983daa5d7ea0800000000000000
-      internalID: -5873438638995793573
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: alpaca_idle_6
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1b7839db6dcebf3a0800000000000000
-      internalID: -6630445619325204559
+      spriteID: facb69d4042cc7110800000000000000
+      internalID: 1260095577192316079
       vertices: []
       indices: 
       edges: []
@@ -257,7 +233,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 7931be7901ec5c54e9389a7d1dff8552
+    spriteID: 3aa45c4728508234fb29f50f1b70c442
     internalID: 0
     vertices: []
     indices: 

@@ -1,25 +1,28 @@
 fileFormatVersion: 2
-guid: 7949cb7b9c668f246b548900a6bf2e40
+guid: e46648b4bbc03ac408cf51ebc54c6f33
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6468039328224461817
-    second: alpaca_run_0
+      213: 7275081859334325086
+    second: bushMimic_attack_left_0
   - first:
-      213: -5083488561520627066
-    second: alpaca_run_1
+      213: -7876373546043515896
+    second: bushMimic_attack_left_1
   - first:
-      213: -3175530815251004787
-    second: alpaca_run_2
+      213: -2465539551413714946
+    second: bushMimic_attack_left_2
   - first:
-      213: -4271649448195648452
-    second: alpaca_run_3
+      213: -7777321511823734689
+    second: bushMimic_attack_left_3
   - first:
-      213: -769564641525981224
-    second: alpaca_run_4
+      213: 7607641449246825575
+    second: bushMimic_attack_left_4
   - first:
-      213: 1260095577192316079
-    second: alpaca_run_5
+      213: 5829402754640180254
+    second: bushMimic_attack_left_5
+  - first:
+      213: -3401898564637710089
+    second: bushMimic_attack_left_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -105,7 +108,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: alpaca_run_0
+      name: bushMimic_attack_left_0
       rect:
         serializedVersion: 2
         x: 0
@@ -113,20 +116,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70cbce70088ec36a0800000000000000
-      internalID: -6468039328224461817
+      spriteID: e53c281f76846f460800000000000000
+      internalID: 7275081859334325086
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: alpaca_run_1
+      name: bushMimic_attack_left_1
       rect:
         serializedVersion: 2
         x: 32
@@ -134,20 +137,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6823dc63612d379b0800000000000000
-      internalID: -5083488561520627066
+      spriteID: 80cdacd9dff71b290800000000000000
+      internalID: -7876373546043515896
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: alpaca_run_2
+      name: bushMimic_attack_left_2
       rect:
         serializedVersion: 2
         x: 64
@@ -155,20 +158,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8248a75c8f3ee3d0800000000000000
-      internalID: -3175530815251004787
+      spriteID: eff3f4a47d4a8cdd0800000000000000
+      internalID: -2465539551413714946
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: alpaca_run_3
+      name: bushMimic_attack_left_3
       rect:
         serializedVersion: 2
         x: 96
@@ -176,20 +179,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c341e43857d08b4c0800000000000000
-      internalID: -4271649448195648452
+      spriteID: f580ebf7a47611490800000000000000
+      internalID: -7777321511823734689
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: alpaca_run_4
+      name: bushMimic_attack_left_4
       rect:
         serializedVersion: 2
         x: 128
@@ -197,20 +200,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8df942e2905f155f0800000000000000
-      internalID: -769564641525981224
+      spriteID: 76c15e05795c39960800000000000000
+      internalID: 7607641449246825575
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: alpaca_run_5
+      name: bushMimic_attack_left_5
       rect:
         serializedVersion: 2
         x: 160
@@ -218,14 +221,35 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: facb69d4042cc7110800000000000000
-      internalID: 1260095577192316079
+      spriteID: e14f20b7be236e050800000000000000
+      internalID: 5829402754640180254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bushMimic_attack_left_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f8abdc87470ac0d0800000000000000
+      internalID: -3401898564637710089
       vertices: []
       indices: 
       edges: []
@@ -233,7 +257,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 3aa45c4728508234fb29f50f1b70c442
+    spriteID: d9702b89680316a4599c2780de95dfd7
     internalID: 0
     vertices: []
     indices: 
