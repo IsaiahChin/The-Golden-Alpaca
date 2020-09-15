@@ -150,9 +150,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 832625bf2c978f044b9f43214e11c4be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 30, y: 30}
+  size: {x: 40, y: 40}
   roomCount: 100
-  roomMaxSize: {x: 6, y: 6}
+  roomMaxSize: {x: 10, y: 10}
+  roomMinSize: {x: 3, y: 3}
   cubePrefab: {fileID: 1677702235491058087, guid: 6108aee5515ea3645a1aa762f2d84e67,
     type: 3}
   redMaterial: {fileID: 2100000, guid: 149e4c64ea557234baf854205c8a3694, type: 2}
@@ -340,7 +341,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1174381455}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 15, y: 30, z: 15}
+  m_LocalPosition: {x: 15, y: 50, z: 15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
