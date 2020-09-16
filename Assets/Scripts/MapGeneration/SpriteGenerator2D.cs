@@ -219,7 +219,7 @@ public class SpriteGenerator2D : MonoBehaviour
     void PlaceCube(Vector2Int location, Vector2Int size, Material material)
     {
         GameObject go = Instantiate(spritePrefab, new Vector3(location.x, 0, location.y), Quaternion.identity);
-        go.GetComponent<Transform>().localScale = new Vector3(size.x, 1, size.y);
+        go.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
         go.GetComponent<Transform>().rotation = Quaternion.Euler(90, 0, 0);
         go.GetComponent<SpriteRenderer>().material = material;
     }

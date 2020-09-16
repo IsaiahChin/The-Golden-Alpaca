@@ -154,7 +154,7 @@ MonoBehaviour:
   roomCount: 100
   roomMaxSize: {x: 10, y: 10}
   roomMinSize: {x: 3, y: 3}
-  cubePrefab: {fileID: 7977006537340900227, guid: a4e4f64ee6ec455498d104765c0a7011,
+  cubePrefab: {fileID: 1677702235491058087, guid: 6108aee5515ea3645a1aa762f2d84e67,
     type: 3}
   redMaterial: {fileID: 2100000, guid: 149e4c64ea557234baf854205c8a3694, type: 2}
   blueMaterial: {fileID: 2100000, guid: df7b71d6190d6cb4bbe9edfff6296bac, type: 2}
