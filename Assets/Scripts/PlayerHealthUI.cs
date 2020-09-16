@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Image = UnityEngine.UI.Image;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealthUI : MonoBehaviour
 {
     [Header("Health Stats")]
     public float maxHealth;

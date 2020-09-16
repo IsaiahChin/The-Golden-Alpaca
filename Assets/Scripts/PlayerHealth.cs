@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
     private Animator animator;
@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public float health;
 
     private GameObject heartStorage;
-    private PlayerHealth playerHealthScript;
+    private PlayerHealthUI playerHealthScript;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
 
         heartStorage = GameObject.Find("Heart Storage");
-        playerHealthScript = heartStorage.GetComponent<PlayerHealth>();
+        playerHealthScript = heartStorage.GetComponent<PlayerHealthUI>();
         health = playerHealthScript.maxHealth;
     }
 
