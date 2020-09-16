@@ -11,9 +11,12 @@ GameObject:
   - component: {fileID: 2220989578710989836}
   - component: {fileID: 2220989578710989838}
   - component: {fileID: 2220989578710989837}
+  - component: {fileID: 6759737086799080053}
+  - component: {fileID: 5034581988889199238}
+  - component: {fileID: 7685214624592044833}
   m_Layer: 9
   m_Name: Alpaca
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 774eaa81e17c0d843a9fc5aa7a64ac76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxspeed: 10
+  maxspeed: 5
 --- !u!54 &2220989578710989837
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -64,6 +67,56 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6759737086799080053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2220989578710989827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2038cb1cca0720443926bab73fe65476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ranged: {fileID: 7685214624592044833}
+  shootAttackRate: 2
+  melee: {fileID: 5034581988889199238}
+  meleeAttackRate: 2
+--- !u!114 &5034581988889199238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2220989578710989827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 442375018895f4440b10bd71475d69e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPoint: {fileID: 7235985058294303484}
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  attackRange: 0.5
+  meleeAttackDamage: 40
+--- !u!114 &7685214624592044833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2220989578710989827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 500e96fa14a39144b9edf6b451a833a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 6706578177715918311, guid: c2e47922b9868d04ba80af46a8ca8c34,
+    type: 3}
+  firePoint: {fileID: 7235985058294303484}
+  speed: 10
 --- !u!1 &2220989579881165567
 GameObject:
   m_ObjectHideFlags: 0
