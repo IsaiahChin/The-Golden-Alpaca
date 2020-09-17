@@ -223,7 +223,8 @@ public class SpriteGenerator2D : MonoBehaviour
     {
         GameObject go = Instantiate(NextSprite(), SpriteLocationFix(size, location), Quaternion.identity);
         go.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
-        go.GetComponent<Transform>().rotation = Quaternion.Euler(90, 0, 0);
+        //Rotate sprite to be flat, then a random 90 degree rotation on the ground.
+        go.GetComponent<Transform>().rotation = Quaternion.Euler(90, random.Next(0, 4) * 90, 0);
         go.GetComponent<SpriteRenderer>().material = material;
     }
 
