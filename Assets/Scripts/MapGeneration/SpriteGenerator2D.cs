@@ -218,7 +218,7 @@ public class SpriteGenerator2D : MonoBehaviour
 
     void PlaceCube(Vector2Int location, Vector2Int size, Material material)
     {
-        GameObject go = Instantiate(spritePrefab, new Vector3(location.x, 0, location.y), Quaternion.identity);
+        GameObject go = Instantiate(spritePrefab, SpriteLocationFix(size, location), Quaternion.identity);
         go.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
         go.GetComponent<Transform>().rotation = Quaternion.Euler(90, 0, 0);
         go.GetComponent<SpriteRenderer>().material = material;
@@ -232,5 +232,14 @@ public class SpriteGenerator2D : MonoBehaviour
     void PlaceHallway(Vector2Int location)
     {
         PlaceCube(location, new Vector2Int(1, 1), blueMaterial);
+    }
+
+    //Method created to place sprites in the correct location, since sprite position is based on centre.
+    Vector3 SpriteLocationFix(Vector2Int spriteSize, Vector2Int spriteLocation)
+    {
+        float spriteLocationX = spriteLocation.x + (spriteSize.x / 2.0f);
+        float spriteLocationY = spriteLocation.y + (spriteSize.y / 2.0f);
+
+        return new Vector3(spriteLocationX, 0, spriteLocationY);
     }
 }
