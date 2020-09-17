@@ -35,10 +35,12 @@ public class SpriteGenerator2D : MonoBehaviour
     int roomCount;
     [SerializeField]
     Vector2Int roomMaxSize;
+    //Created to make a minimum room size.
     [SerializeField]
     Vector2Int roomMinSize = new Vector2Int(1, 1);
+    //Modified to use a selection of different floor tiles.
     [SerializeField]
-    GameObject spritePrefab;
+    GameObject[] spritePrefab;
     [SerializeField]
     Material redMaterial;
     [SerializeField]
@@ -217,9 +219,9 @@ public class SpriteGenerator2D : MonoBehaviour
     }
 
     //Modified to work with sprites instead of cubes.
-    void PlaceCube(Vector2Int location, Vector2Int size, Material material)
+    void PlaceFloorSprite(Vector2Int location, Vector2Int size, Material material)
     {
-        GameObject go = Instantiate(spritePrefab, SpriteLocationFix(size, location), Quaternion.identity);
+        GameObject go = Instantiate(NextSprite(), SpriteLocationFix(size, location), Quaternion.identity);
         go.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
         go.GetComponent<Transform>().rotation = Quaternion.Euler(90, 0, 0);
         go.GetComponent<SpriteRenderer>().material = material;
@@ -233,14 +235,14 @@ public class SpriteGenerator2D : MonoBehaviour
             for (int j = 0; j < size.y; j++)
             {
                 Vector2Int nextSpriteLocation = new Vector2Int(location.x + i, location.y + j);
-                PlaceCube(nextSpriteLocation, new Vector2Int(1, 1), redMaterial);
+                PlaceFloorSprite(nextSpriteLocation, new Vector2Int(1, 1), redMaterial);
             }
         }
     }
 
     void PlaceHallway(Vector2Int location)
     {
-        PlaceCube(location, new Vector2Int(1, 1), blueMaterial);
+        PlaceFloorSprite(location, new Vector2Int(1, 1), blueMaterial);
     }
 
     //Method created to place sprites in the correct location, since sprite position is based on centre.
@@ -250,5 +252,11 @@ public class SpriteGenerator2D : MonoBehaviour
         float spriteLocationY = spriteLocation.y + (spriteSize.y / 2.0f);
 
         return new Vector3(spriteLocationX, 0, spriteLocationY);
+    }
+
+    //Method to choose a randomly selected sprite from the available prefabs.
+    GameObject NextSprite()
+    {
+        return spritePrefab[random.Next(0, spritePrefab.Length)];
     }
 }

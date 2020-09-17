@@ -154,8 +154,11 @@ MonoBehaviour:
   roomCount: 100
   roomMaxSize: {x: 10, y: 10}
   roomMinSize: {x: 3, y: 3}
-  spritePrefab: {fileID: 7977006537340900227, guid: a4e4f64ee6ec455498d104765c0a7011,
-    type: 3}
+  spritePrefab:
+  - {fileID: 7977006537340900227, guid: a4e4f64ee6ec455498d104765c0a7011, type: 3}
+  - {fileID: 1651923538560382547, guid: 4e6a8b2a26a391a40a18aadd31845547, type: 3}
+  - {fileID: 4068667680124895519, guid: f08c3621b332e03499043461cbf70ac8, type: 3}
+  - {fileID: 601962152097659205, guid: 8ac3649eba83a32419b6388954d4e88e, type: 3}
   redMaterial: {fileID: 2100000, guid: 149e4c64ea557234baf854205c8a3694, type: 2}
   blueMaterial: {fileID: 2100000, guid: df7b71d6190d6cb4bbe9edfff6296bac, type: 2}
 --- !u!4 &78370887
