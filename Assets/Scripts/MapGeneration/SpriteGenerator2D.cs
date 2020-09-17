@@ -216,6 +216,7 @@ public class SpriteGenerator2D : MonoBehaviour
         }
     }
 
+    //Modified to work with sprites instead of cubes.
     void PlaceCube(Vector2Int location, Vector2Int size, Material material)
     {
         GameObject go = Instantiate(spritePrefab, SpriteLocationFix(size, location), Quaternion.identity);
@@ -224,9 +225,17 @@ public class SpriteGenerator2D : MonoBehaviour
         go.GetComponent<SpriteRenderer>().material = material;
     }
 
+    //Modified to place a sprite on each unit of a room.
     void PlaceRoom(Vector2Int location, Vector2Int size)
     {
-        PlaceCube(location, size, redMaterial);
+        for (int i = 0; i < size.x; i++)
+        {
+            for (int j = 0; j < size.y; j++)
+            {
+                Vector2Int nextSpriteLocation = new Vector2Int(location.x + i, location.y + j);
+                PlaceCube(nextSpriteLocation, new Vector2Int(1, 1), redMaterial);
+            }
+        }
     }
 
     void PlaceHallway(Vector2Int location)
