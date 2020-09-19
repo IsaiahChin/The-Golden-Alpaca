@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * [OUTDATED]: This class has been merged with the Player class as of 19/09/20
+ * 
+ */
 public class PlayerHealth : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;

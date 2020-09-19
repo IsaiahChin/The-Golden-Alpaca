@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     private PlayerMovement movement;            // Holds new input direction from user to move to
     private PlayerHealthUI playerHealthScript;  // Links health UI to player
 
+    // Player attributes
     [SerializeField]
     private float health, maxSpeed;
 
@@ -39,17 +40,40 @@ public class Player : MonoBehaviour
     {
         // Get player input for new direction, and store it
         newPosition = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        //Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, 0, 0.1f));
 
-        // Change boolean in player animator depending on movement speed
-        if (newPosition.x != 0.0f || newPosition.z != 0.0f)
+
+        // Change booleans in player animator depending on movement speed
+        if (newPosition.x != 0.0f || newPosition.z != 0.0f) // Check if player is moving
         {
             animator.SetBool("isMoving", true);
+            //Debug.Log("Mouse: " + mousePos);
+            //Debug.Log("Alpaca: " + transform.position);
+
+            /**
+             * Note: No check for x == 0.0f because we want to retain 
+             * the previous "Right" or "Left" state when moving only up or down
+            **/
+            if (newPosition.x > 0.0f) // Check if moving to the right
+            //if (mousePos.x > transform.position.x) // Check if moving to the right
+            {
+                //TODO: Change on mouse x position
+                animator.SetBool("Right", true);
+                animator.SetBool("Left", false);
+            }
+            else if (newPosition.x < 0.0f) //Check if moving to the left
+            //else if (mousePos.x < transform.position.x) //Check if moving to the left
+            {
+                animator.SetBool("Left", true);
+                animator.SetBool("Right", false);
+            }
         }
         else
         {
             animator.SetBool("isMoving", false);
         }
 
+        // Update health + check for dead player
         health = playerHealthScript.currentHealth;
         if (health <= 0.0f)
         {
@@ -57,15 +81,6 @@ public class Player : MonoBehaviour
             rigidBody.velocity = new Vector3(0, 0, 0); // Stop player movement
             animator.enabled = false; // Stop animator from playing
             this.enabled = false; // Remove player controls 
-        }
-
-        if (Input.mousePosition.x >= transform.position.x)
-        {
-
-        }
-        else
-        {
-
         }
     }
 
