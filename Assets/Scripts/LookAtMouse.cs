@@ -9,11 +9,7 @@ public class LookAtMouse : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Vector3 mouse = Input.mousePosition;
-        //Debug.Log("Thing" + Input.mousePosition);
-        //Vector3 clickPosition = cam.ScreenToWorldPoint(new Vector3(mouse.x,mouse.y,player.transform.position.y));
         Vector3 clickPosition = -Vector3.one;
-
 
         Plane plane = new Plane(Vector3.up, 0f);
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
@@ -23,8 +19,6 @@ public class LookAtMouse : MonoBehaviour
         {
             clickPosition=ray.GetPoint(distanceToPlane);
         }
-        
-        
         
         Vector3 direction = clickPosition - player.transform.position;
         transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
