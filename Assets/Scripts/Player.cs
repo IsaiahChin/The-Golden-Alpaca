@@ -4,21 +4,34 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
-    /*
-     * movement: Holds new input direction from user to move to.
-     */
-    private Rigidbody rb;
-    private PlayerMovement movement;
+    // Components
+    private Rigidbody rigidBody;
+    private SpriteRenderer spriteRenderer;
+    private Animator animator;
     private Vector3 newPosition;
+    [SerializeField]
+    private Sprite deadSprite;
+
+    // Scripts
+    private PlayerMovement movement;            // Holds new input direction from user to move to.
+    private PlayerHealthUI playerHealthScript;  // Links health UI to player.
 
     [SerializeField]
-    private float maxspeed = 10.0f;
+    private float health, maxSpeed;
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        movement = new PlayerMovement(maxspeed);
+        rigidBody = GetComponent<Rigidbody>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+
+        // Initialize speed
+        maxSpeed = 5.0f;
+        movement = new PlayerMovement(maxSpeed);
+
+        // Initialize health
+        playerHealthScript = GameObject.Find("Heart Storage").GetComponent<PlayerHealthUI>();
+        health = playerHealthScript.maxHealth;
     }
 
     private void Update()
@@ -28,11 +41,29 @@ public class Player : MonoBehaviour
             Input.GetAxisRaw("Horizontal"),
             0,
             Input.GetAxisRaw("Vertical"));
+
+        if (newPosition.x != 0.0f || newPosition.z != 0.0f)
+        {
+            animator.SetBool("isMoving", true);
+        }
+        else
+        {
+            animator.SetBool("isMoving", false);
+        }
+
+        health = playerHealthScript.currentHealth;
+        if (health <= 0.0f)
+        {
+            spriteRenderer.sprite = deadSprite;
+            newPosition = new Vector3(0, 0, 0);
+            animator.enabled = false; // Stop animator from playing
+            this.enabled = false; // Remove player controls
+        }
     }
 
     private void FixedUpdate()
     {
         // Call method to add new vector to the speed of the player.
-        rb.velocity = movement.CalculateMovement(newPosition);
+        rigidBody.velocity = movement.CalculateMovement(newPosition);
     }
 }

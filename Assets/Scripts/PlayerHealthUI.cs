@@ -28,7 +28,6 @@ public class PlayerHealthUI : MonoBehaviour
 
     private readonly float healthIncrement = 0.5f;
 
-    // Start is called before the first frame update
     void Start()
     {
         maxHealth = 3;
@@ -37,15 +36,14 @@ public class PlayerHealthUI : MonoBehaviour
         status = canvas.GetComponent<Status>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow)) //Increase health by one half
+        if (Input.GetKeyDown(KeyCode.UpArrow)) // Increase health by one half
         {
             currentHealth += healthIncrement;
             UpdateHealth();
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow)) //Decrease health by one half
+        else if (Input.GetKeyDown(KeyCode.DownArrow)) // Decrease health by one half
         {
             currentHealth -= healthIncrement;
             UpdateHealth();
@@ -54,18 +52,18 @@ public class PlayerHealthUI : MonoBehaviour
 
     private void UpdateHealth()
     {
-        if (currentHealth > maxHealth) //Check if health goes over max health
+        if (currentHealth > maxHealth) // Check if health goes over max health
         {
-            currentHealth = maxHealth; //Don't allow health overflow
+            currentHealth = maxHealth; // Don't allow health overflow
         }
         else
         {
-            foreach (Transform heart in transform) //Remove all heart prefabs from the Heart Storage
+            foreach (Transform heart in transform) // Remove all heart prefabs from the Heart Storage
             {
                 Destroy(heart.gameObject);
             }
 
-            for (int i = 0; i < maxHealth; i++) //Instantiate heart prefabs
+            for (int i = 0; i < maxHealth; i++) // Instantiate heart prefabs
             {
                 if (currentHealth == i + 1)
                 {
@@ -100,11 +98,11 @@ public class PlayerHealthUI : MonoBehaviour
                 currentHealth = 0.0f;
                 if (status != null)
                 {
-                    status.UpdateText("Dead"); //Update health status text
+                    status.UpdateText("Dead"); // Update health status text
                 }
-                //Create Game Over Text in parent object (Script is attached to Heart Storage object, child of Canvas)
+                // Create Game Over Text in parent object (Script is attached to Heart Storage object, child of Canvas)
                 Instantiate(gameOverText, transform.parent.gameObject.transform);
-                this.enabled = false; //Disable this script
+                this.enabled = false; // Disable this script
             }
         }
     }
