@@ -28,22 +28,23 @@ public class PlayerHealthUI : MonoBehaviour
 
     private readonly float healthIncrement = 0.5f;
 
-    void Start()
+    private void Start()
     {
         maxHealth = 3;
         currentHealth = maxHealth;
         UpdateHealth();
+        canvas = transform.parent.gameObject;
         status = canvas.GetComponent<Status>();
     }
 
-    void Update()
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow)) // Increase health by one half
+        if (Input.GetKeyDown(KeyCode.RightBracket)) // Increase health by one half
         {
             currentHealth += healthIncrement;
             UpdateHealth();
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow)) // Decrease health by one half
+        else if (Input.GetKeyDown(KeyCode.LeftBracket)) // Decrease health by one half
         {
             currentHealth -= healthIncrement;
             UpdateHealth();
@@ -96,7 +97,7 @@ public class PlayerHealthUI : MonoBehaviour
             if (currentHealth <= 0.0f) //Check if player is dead
             {
                 currentHealth = 0.0f;
-                if (status != null)
+                if (status != null) // For death feature testing
                 {
                     status.UpdateText("Dead"); // Update health status text
                 }

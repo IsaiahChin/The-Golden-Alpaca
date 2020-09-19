@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.ComTypes;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -13,8 +14,8 @@ public class Player : MonoBehaviour
     private Sprite deadSprite;
 
     // Scripts
-    private PlayerMovement movement;            // Holds new input direction from user to move to.
-    private PlayerHealthUI playerHealthScript;  // Links health UI to player.
+    private PlayerMovement movement;            // Holds new input direction from user to move to
+    private PlayerHealthUI playerHealthScript;  // Links health UI to player
 
     [SerializeField]
     private float health, maxSpeed;
@@ -36,12 +37,10 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        // Get player input for new direction, and store it.
-        newPosition = new Vector3(
-            Input.GetAxisRaw("Horizontal"),
-            0,
-            Input.GetAxisRaw("Vertical"));
+        // Get player input for new direction, and store it
+        newPosition = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
+        // Change boolean in player animator depending on movement speed
         if (newPosition.x != 0.0f || newPosition.z != 0.0f)
         {
             animator.SetBool("isMoving", true);
@@ -55,15 +54,24 @@ public class Player : MonoBehaviour
         if (health <= 0.0f)
         {
             spriteRenderer.sprite = deadSprite;
-            newPosition = new Vector3(0, 0, 0);
+            rigidBody.velocity = new Vector3(0, 0, 0); // Stop player movement
             animator.enabled = false; // Stop animator from playing
-            this.enabled = false; // Remove player controls
+            this.enabled = false; // Remove player controls 
+        }
+
+        if (Input.mousePosition.x >= transform.position.x)
+        {
+
+        }
+        else
+        {
+
         }
     }
 
     private void FixedUpdate()
     {
-        // Call method to add new vector to the speed of the player.
+        // Call method to add new vector to the speed of the player
         rigidBody.velocity = movement.CalculateMovement(newPosition);
     }
 }
