@@ -15,22 +15,21 @@ public class PlayerCombat : MonoBehaviour
     public float meleeAttackRate = 2f;
     
     float nextAttackTime = 0f;
+    
 
     void Update()
-    {
-        
+    {        
         //If attack has reset to avoid attack spamming
         if (Time.time >= nextAttackTime)
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                //Melee attack
                 //animator.SetTrigger("Attack");
                 melee.Attack();
                 nextAttackTime = Time.time + 1f / meleeAttackRate;
             } else if (Input.GetKeyDown(KeyCode.Mouse1))
             {
-                //Ranged attack
+           
                 //animator.SetTrigger("Attack");
                 ranged.Attack();
                 nextAttackTime = Time.time + 1f / shootAttackRate;
@@ -38,6 +37,4 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-
-    
 }

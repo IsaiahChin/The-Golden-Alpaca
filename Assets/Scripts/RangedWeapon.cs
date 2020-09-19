@@ -8,10 +8,10 @@ public class RangedWeapon : MonoBehaviour
     public GameObject bulletPrefab;
 
 	//Fire point
-    public Transform firePoint;
+	public Transform firePoint;
 
 	//Attack stats
-    public float speed = 50f;
+    public float speed = 10f;
 
     public void Attack()
 	{
@@ -19,6 +19,7 @@ public class RangedWeapon : MonoBehaviour
 		GameObject ball = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 		//Get the rigidbody of the bullet object
 		Rigidbody ballRB = ball.GetComponent<Rigidbody>();
+
 		//Apply a force to the bullet object of the bullet speed
 		ballRB.AddForce(firePoint.forward * speed, ForceMode.VelocityChange);
 	}
