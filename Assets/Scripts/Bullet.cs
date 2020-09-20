@@ -1,17 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UIElements;
 using UnityEngine;
 
+//Author: MatthewCopeland
 public class Bullet : MonoBehaviour
 {
-    //Bullet Damage
+    [Header("Settings")]
     public int damage=40;
+    public float decayTime = 2;
     private float timer;
+    public string shooterTag;
 
     private void Update()
     {
         timer += 1.0f * Time.deltaTime;
-        if (timer>=2)
+        if (timer>= decayTime)
         {
             Destroy(gameObject);
         }
@@ -20,25 +24,19 @@ public class Bullet : MonoBehaviour
     //When a bullet collides with anything
     private void OnTriggerEnter(Collider collision)
     {
-        switch (collision.tag)
+        if (collision.tag=="Player"&&collision.tag!=shooterTag)
         {
-            case "Player":
-                break;
-            case "Enviroment":
-                Destroy(gameObject);
-                break;
-            case "Enemy":
-                EnemyController enemy = collision.GetComponent<EnemyController>();
-                if (enemy != null)
-                {
-                    //If the collsision has an enemy comonent, then damage it
-                    enemy.TakeDamage(damage);
-                }
-                Destroy(gameObject);
-                break;
-            default:
-                break;
+            Debug.Log(shooterTag + " Hit " + collision.tag+" with "+damage+" damage");
+            Destroy(gameObject);
         }
-        
+        else if (collision.tag == "Enemy" && collision.tag != shooterTag)
+        {
+            Debug.Log(shooterTag + " Hit " + collision.tag + " with " + damage + " damage");
+            Destroy(gameObject);
+        }
+        else
+        {
+            
+        }        
     }
 }

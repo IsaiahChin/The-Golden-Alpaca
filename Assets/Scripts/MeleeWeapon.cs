@@ -3,37 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 
+//Author: MatthewCopeland
 public class MeleeWeapon : MonoBehaviour
 {
+    [Header("Resources")]
     //Attack Point
     public Transform attackPoint;
     
-    //ENemy Layers
-    public LayerMask enemyLayers;
+    //Enemy Layers
+    public LayerMask targetLayers;
 
-    //Attack Stats
+    [Header("Attack Stats")]
     public float attackRange = 0.5f;
-    public float meleeAttackDamage = 40f;
+    public float AttackDamage = 40f;
 
     //Standard melee attack function
     public void Attack()
 	{
         //Get all the coliders within the attack range
-        Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
+        Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, targetLayers);
 
         //Damage each collider with an enemy layer 
         foreach (Collider enemy in hitEnemies)
         {
-            if (enemy.GetComponent<EnemyController>()!=null)
-            {
-                enemy.GetComponent<EnemyController>().TakeDamage(meleeAttackDamage);
-            }
-            else
-            {
-                enemy.GetComponent<PlayerController>().TakeDamage(meleeAttackDamage);
-            }
-
-            
+            //Insert Damage Script            
         }
     }
 

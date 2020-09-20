@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Author: MatthewCopeland
 public class PlayerCombat : MonoBehaviour
 {
-    //public Animator animator;
+    public Animator animator;
 
-    //Ranged attack stats
-    public RangedWeapon ranged;
-    public float shootAttackRate = 2f;
-
-    //Melee attack stats
+    [Header("Melee Attack")]
     public MeleeWeapon melee;
     public float meleeAttackRate = 2f;
     
-    float nextAttackTime = 0f;
-    public Animator animator;
+
+    [Header("Ranged Attack")]
+    public RangedWeapon ranged;
+    public float shootAttackRate = 2f;
+
+    private float nextAttackTime = 0f;
 
     void Update()
     {        

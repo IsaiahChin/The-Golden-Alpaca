@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Author: MatthewCopeland
 public class LightFlicker : MonoBehaviour
 {
+	[Header("Settings")]
 	public float baseStart = 0.0f; // start 
 	public float amplitude = 1.0f; // amplitude of the wave
 	public float phase = 0.0f; // start point inside on wave cycle
@@ -28,11 +30,8 @@ public class LightFlicker : MonoBehaviour
 	float Flicker()
 	{
 		float x = (Time.time + phase) * frequency;
-		float y;
 		x = x - Mathf.Floor(x); // normalized value (0..1)
-
-		y = Mathf.Sin(x * 2 * Mathf.PI);
-
+		float y = Mathf.Sin(x * 2 * Mathf.PI);
 		return (y * amplitude) + baseStart;
 	}
 }

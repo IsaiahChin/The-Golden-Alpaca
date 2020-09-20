@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7529110609395195210}
   - component: {fileID: 6092227921400474396}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: BulletRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -233,12 +233,12 @@ PrefabInstance:
     - target: {fileID: 3972355826797332031, guid: e45205fd77f022340ae6bc60a882486b,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.5686275
+      value: 0.15822345
       objectReference: {fileID: 0}
     - target: {fileID: 3972355826797332031, guid: e45205fd77f022340ae6bc60a882486b,
         type: 3}
       propertyPath: m_Color.b
-      value: 0.15294118
+      value: 0.15294115
       objectReference: {fileID: 0}
     - target: {fileID: 3972355826797332031, guid: e45205fd77f022340ae6bc60a882486b,
         type: 3}

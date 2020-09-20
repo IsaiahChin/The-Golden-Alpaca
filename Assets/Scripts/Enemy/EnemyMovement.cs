@@ -2,21 +2,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
+//Author: MatthewCopeland
 public class EnemyMovement : MonoBehaviour
 {
-    public Transform playerPosition;
-    public NavMeshAgent agent;
+    public Transform target;
+    public NavMeshAgent navmeshAgent;
 
+    [Header("Settings")]
     public float sightRange;
-    bool playerInSightRange;
-    public LayerMask player;
+    public LayerMask followLayer;
+    public bool showSceneLabels;
+
+    private bool playerInSightRange;
 
     private void Update()
     {
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, player);
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, followLayer);
 
         if (playerInSightRange)
         {
@@ -31,22 +36,17 @@ public class EnemyMovement : MonoBehaviour
 
     private void ChasePlayer()
     {
-        agent.SetDestination(playerPosition.position);
+        navmeshAgent.SetDestination(target.position);
     }
 
     private void OnDrawGizmosSelected()
     {
-        //If there is no view point, do nothing
-        if (GetComponent<Transform>() == null)
-        {
-            return;
-        }
-        else
+        if (showSceneLabels)
         {
             //Draw sphere from the view point of the size of the view range
-            Gizmos.color = Color.green;
+            Gizmos.color = Color.white;
             Gizmos.DrawWireSphere(GetComponent<Transform>().position, sightRange);
+            Handles.Label(new Vector3(transform.position.x, transform.position.y - sightRange, transform.position.z), "Sight Range: "+sightRange);
         }
-
     }
 }
