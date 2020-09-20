@@ -6,6 +6,16 @@ public class Bullet : MonoBehaviour
 {
     //Bullet Damage
     public int damage=40;
+    private float timer;
+
+    private void Update()
+    {
+        timer += 1.0f * Time.deltaTime;
+        if (timer>=2)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     //When a bullet collides with anything
     private void OnTriggerEnter(Collider collision)
