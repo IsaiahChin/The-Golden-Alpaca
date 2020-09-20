@@ -7,8 +7,8 @@ public class Player : MonoBehaviour
 {
     // Components
     private Rigidbody rigidBody;
-    private SpriteRenderer spriteRenderer;
-    private Animator animator;
+    public SpriteRenderer spriteRenderer;
+    public Animator animator;
     private Vector3 newPosition;
 
     // Scripts
@@ -22,8 +22,6 @@ public class Player : MonoBehaviour
     private void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
 
         // Initialize speed
         maxSpeed = 4.0f;
