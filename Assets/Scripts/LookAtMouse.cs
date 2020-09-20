@@ -5,7 +5,6 @@ using UnityEngine;
 public class LookAtMouse : MonoBehaviour
 {
     public Camera cam;
-    public GameObject player;
     // Update is called once per frame
     void Update()
     {
@@ -20,7 +19,7 @@ public class LookAtMouse : MonoBehaviour
             clickPosition=ray.GetPoint(distanceToPlane);
         }
         
-        Vector3 direction = clickPosition - player.transform.position;
+        Vector3 direction = clickPosition - transform.position;
         transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
         transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, transform.eulerAngles.z);
     }
