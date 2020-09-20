@@ -76,6 +76,7 @@ public class Generator2D : MonoBehaviour
                 random.Next(0, size.y)
             );
 
+            //Modified to have a minimum room size
             Vector2Int roomSize = new Vector2Int(
                 random.Next(roomMinSize.x, roomMaxSize.x + 1),
                 random.Next(roomMinSize.y, roomMaxSize.y + 1)

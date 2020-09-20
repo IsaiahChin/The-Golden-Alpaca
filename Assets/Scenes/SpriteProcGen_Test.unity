@@ -161,6 +161,9 @@ MonoBehaviour:
   - {fileID: 601962152097659205, guid: 8ac3649eba83a32419b6388954d4e88e, type: 3}
   redMaterial: {fileID: 2100000, guid: 149e4c64ea557234baf854205c8a3694, type: 2}
   blueMaterial: {fileID: 2100000, guid: df7b71d6190d6cb4bbe9edfff6296bac, type: 2}
+  wallPrefab: {fileID: 1194013876004247523, guid: c170bfddffead4741936500cfe4aa252,
+    type: 3}
+  greenMaterial: {fileID: 2100000, guid: 7f16c12247ea6ac40913d664fae1913a, type: 2}
 --- !u!4 &78370887
 Transform:
   m_ObjectHideFlags: 0

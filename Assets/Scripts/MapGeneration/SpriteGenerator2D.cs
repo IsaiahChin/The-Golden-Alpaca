@@ -38,13 +38,19 @@ public class SpriteGenerator2D : MonoBehaviour
     //Created to make a minimum room size.
     [SerializeField]
     Vector2Int roomMinSize = new Vector2Int(1, 1);
-    //Modified to use a selection of different floor tiles.
+    //Modified to hold a selection of different floor tiles.
     [SerializeField]
     GameObject[] spritePrefab;
     [SerializeField]
     Material redMaterial;
     [SerializeField]
     Material blueMaterial;
+
+    //Created to hold a wall tile.
+    [SerializeField]
+    GameObject wallPrefab;
+    [SerializeField]
+    Material greenMaterial;
 
     Random random;
     Grid2D<CellType> grid;
@@ -78,6 +84,7 @@ public class SpriteGenerator2D : MonoBehaviour
                 random.Next(0, size.y)
             );
 
+            //Modified to have a minimum room size.
             Vector2Int roomSize = new Vector2Int(
                 random.Next(roomMinSize.x, roomMaxSize.x + 1),
                 random.Next(roomMinSize.y, roomMaxSize.y + 1)
@@ -228,6 +235,14 @@ public class SpriteGenerator2D : MonoBehaviour
         go.GetComponent<SpriteRenderer>().material = material;
     }
 
+    //Created to place a wall at a given position
+    void PlaceWallSprite(Vector2Int location, Vector2Int size, Material material)
+    {
+        GameObject go = Instantiate(wallPrefab, SpriteLocationFix(size, location), Quaternion.identity);
+        go.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
+        go.GetComponent<SpriteRenderer>().material = material;
+    }
+
     //Modified to place a sprite on each unit of a room.
     void PlaceRoom(Vector2Int location, Vector2Int size)
     {
@@ -237,6 +252,7 @@ public class SpriteGenerator2D : MonoBehaviour
             {
                 Vector2Int nextSpriteLocation = new Vector2Int(location.x + i, location.y + j);
                 PlaceFloorSprite(nextSpriteLocation, new Vector2Int(1, 1), redMaterial);
+                PlaceWallSprite(nextSpriteLocation, new Vector2Int(1, 1), greenMaterial);
             }
         }
     }
