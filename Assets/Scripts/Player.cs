@@ -10,8 +10,6 @@ public class Player : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private Vector3 newPosition;
-    [SerializeField]
-    private Sprite deadSprite;
 
     // Scripts
     private PlayerMovement movement;            // Holds new input direction from user to move to
@@ -28,7 +26,7 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
 
         // Initialize speed
-        maxSpeed = 5.0f;
+        maxSpeed = 4.0f;
         movement = new PlayerMovement(maxSpeed);
 
         // Initialize health
@@ -40,46 +38,15 @@ public class Player : MonoBehaviour
     {
         // Get player input for new direction, and store it
         newPosition = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-        //Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, 0, 0.1f));
 
-
-        // Change booleans in player animator depending on movement speed
-        if (newPosition.x != 0.0f || newPosition.z != 0.0f) // Check if player is moving
-        {
-            animator.SetBool("isMoving", true);
-            //Debug.Log("Mouse: " + mousePos);
-            //Debug.Log("Alpaca: " + transform.position);
-
-            /**
-             * Note: No check for x == 0.0f because we want to retain 
-             * the previous "Right" or "Left" state when moving only up or down
-            **/
-            if (newPosition.x > 0.0f) // Check if moving to the right
-            //if (mousePos.x > transform.position.x) // Check if moving to the right
-            {
-                //TODO: Change on mouse x position
-                animator.SetBool("Right", true);
-                animator.SetBool("Left", false);
-            }
-            else if (newPosition.x < 0.0f) //Check if moving to the left
-            //else if (mousePos.x < transform.position.x) //Check if moving to the left
-            {
-                animator.SetBool("Left", true);
-                animator.SetBool("Right", false);
-            }
-        }
-        else
-        {
-            animator.SetBool("isMoving", false);
-        }
+        UpdateAnimator(CalculateMousePosition());
 
         // Update health + check for dead player
         health = playerHealthScript.currentHealth;
         if (health <= 0.0f)
         {
-            spriteRenderer.sprite = deadSprite;
             rigidBody.velocity = new Vector3(0, 0, 0); // Stop player movement
-            animator.enabled = false; // Stop animator from playing
+            animator.SetBool("isDead", true);
             this.enabled = false; // Remove player controls 
         }
     }
@@ -88,5 +55,74 @@ public class Player : MonoBehaviour
     {
         // Call method to add new vector to the speed of the player
         rigidBody.velocity = movement.CalculateMovement(newPosition);
+    }
+
+    /**
+     * This method calculates and returns the mouse cursor position relative to in-game
+     */
+    private Vector3 CalculateMousePosition()
+    {
+        Vector3 mousePos = -Vector3.one;
+        Plane mousePlane = new Plane(Vector3.up, 0.0f);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        float distanceToPlane;
+
+        if (mousePlane.Raycast(ray, out distanceToPlane))
+        {
+            mousePos = ray.GetPoint(distanceToPlane);
+        }
+
+        return mousePos;
+    }
+
+    /**
+     * This method updates the player animator based on movement and mouse position
+     */
+    private void UpdateAnimator(Vector3 mousePos)
+    {
+        // Change booleans in player animator depending on movement speed
+        if (newPosition.x != 0.0f || newPosition.z != 0.0f) // Check if player is moving
+        {
+            animator.SetBool("isMoving", true);
+            /**
+             * Note: No check for x == 0.0f because we want to retain 
+             * the previous "Right" or "Left" state when moving only up or down
+            **/
+            if (newPosition.x > 0) // Check if moving to the right
+            {
+                if (mousePos.x > transform.position.x) // Check if mouse is right of player
+                {
+                    animator.SetBool("Right", true);
+                    animator.SetBool("Left", false);
+                    animator.SetFloat("Playback Speed", 1.0f);
+                }
+                else
+                {
+                    animator.SetBool("Left", true);
+                    animator.SetBool("Right", false);
+                    animator.SetFloat("Playback Speed", -1.0f);
+                }
+            }
+            else
+            {
+                if (mousePos.x > transform.position.x)
+                {
+                    animator.SetBool("Right", true);
+                    animator.SetBool("Left", false);
+                    animator.SetFloat("Playback Speed", -1.0f);
+                }
+                else
+                {
+                    animator.SetBool("Left", true);
+                    animator.SetBool("Right", false);
+                    animator.SetFloat("Playback Speed", 1.0f);
+                }
+            }
+        }
+        else
+        {
+            animator.SetBool("isMoving", false);
+            animator.SetFloat("Playback Speed", 1.0f);
+        }
     }
 }
