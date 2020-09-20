@@ -18,8 +18,14 @@ public class EnemyMovement : MonoBehaviour
     {
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, player);
 
-        if (playerInSightRange) ChasePlayer();
-
+        if (playerInSightRange)
+        {
+            ChasePlayer();
+        }
+        else
+        {
+            
+        }
 
     }
 
