@@ -34,9 +34,9 @@ public class Bullet : MonoBehaviour
             Debug.Log(shooterTag + " Hit " + collision.tag + " with " + damage + " damage");
             Destroy(gameObject);
         }
-        else
+        else if (collision.tag == "Enviroment" && collision.tag != shooterTag)
         {
-            
-        }        
+            Destroy(gameObject);
+        }       
     }
 }
