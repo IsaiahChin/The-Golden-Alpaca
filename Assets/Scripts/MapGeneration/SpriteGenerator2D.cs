@@ -314,16 +314,15 @@ public class SpriteGenerator2D : MonoBehaviour
         {
             position = position | SpritePositionType.Left;
         }
-        else if (xPos == (size.x - 1))
+        if (xPos == (size.x - 1))
         {
             position = position | SpritePositionType.Right;
         }
-
         if (yPos == 0)
         {
             position = position | SpritePositionType.Bottom;
         }
-        else if (yPos == (size.y - 1))
+        if (yPos == (size.y - 1))
         {
             position = position | SpritePositionType.Top;
         }
