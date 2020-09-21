@@ -7,8 +7,7 @@ public class Player : MonoBehaviour
 {
     // Components
     private Rigidbody rigidBody;
-    public SpriteRenderer spriteRenderer;
-    public Animator animator;
+    private Animator animator;
     private Vector3 newPosition;
 
     // Scripts
@@ -16,20 +15,25 @@ public class Player : MonoBehaviour
     private PlayerHealthUI playerHealthScript;  // Links health UI to player
 
     // Player attributes
+    public float health { get; set; }
+    public float maxHealth { get; set; }
     [SerializeField]
-    private float health, maxSpeed;
+    private float maxSpeed;
 
     private void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
+        playerHealthScript = GameObject.Find("Heart Storage").GetComponent<PlayerHealthUI>();
 
         // Initialize speed
         maxSpeed = 4.0f;
         movement = new PlayerMovement(maxSpeed);
 
         // Initialize health
-        playerHealthScript = GameObject.Find("Heart Storage").GetComponent<PlayerHealthUI>();
-        health = playerHealthScript.maxHealth;
+        maxHealth = 3.0f;
+        health = maxHealth;
+        playerHealthScript.UpdateHealth();
     }
 
     private void Update()
@@ -40,12 +44,22 @@ public class Player : MonoBehaviour
         UpdateAnimator(CalculateMousePosition());
 
         // Update health + check for dead player
-        health = playerHealthScript.currentHealth;
         if (health <= 0.0f)
         {
+            playerHealthScript.UpdateHealth();
             rigidBody.velocity = new Vector3(0, 0, 0); // Stop player movement
             animator.SetBool("isDead", true);
-            this.enabled = false; // Remove player controls 
+            this.enabled = false; // Remove player controls
+        }
+
+        // Health testing
+        if (Input.GetKeyDown(KeyCode.RightBracket)) // Increase health by one half
+        {
+            increaseHealth(0.5f);
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftBracket)) // Decrease health by one half
+        {
+            decreaseHealth(0.5f);
         }
     }
 
@@ -53,6 +67,24 @@ public class Player : MonoBehaviour
     {
         // Call method to add new vector to the speed of the player
         rigidBody.velocity = movement.CalculateMovement(newPosition);
+    }
+
+    /**
+     * This method increases the health attribute by the life parameter
+     */
+    private void increaseHealth(float life)
+    {
+        health += life;
+        playerHealthScript.UpdateHealth();
+    }
+
+    /**
+     * This method decreases the health attribute by the damage parameter
+     */
+    private void decreaseHealth(float damage)
+    {
+        health -= damage;
+        playerHealthScript.UpdateHealth();
     }
 
     /**

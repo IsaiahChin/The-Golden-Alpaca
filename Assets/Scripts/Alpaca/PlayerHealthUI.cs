@@ -25,34 +25,19 @@ public class PlayerHealthUI : MonoBehaviour
     public GameObject gameOverText;
 
     private Status status;
-
-    private readonly float healthIncrement = 0.5f;
+    private Player player;
 
     private void Start()
     {
-        maxHealth = 3;
-        currentHealth = maxHealth;
-        UpdateHealth();
         canvas = transform.parent.gameObject;
         status = canvas.GetComponent<Status>();
+        player = GameObject.Find("Alpaca").GetComponent<Player>();
     }
 
-    private void Update()
+    public void UpdateHealth()
     {
-        if (Input.GetKeyDown(KeyCode.RightBracket)) // Increase health by one half
-        {
-            currentHealth += healthIncrement;
-            UpdateHealth();
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftBracket)) // Decrease health by one half
-        {
-            currentHealth -= healthIncrement;
-            UpdateHealth();
-        }
-    }
-
-    private void UpdateHealth()
-    {
+        currentHealth = player.health;
+        maxHealth = player.maxHealth;
         if (currentHealth > maxHealth) // Check if health goes over max health
         {
             currentHealth = maxHealth; // Don't allow health overflow
