@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
     private float timer;
     public string shooterTag;
 
-    private void Update()
+    private void FixedUpdate()
     {
         timer += 1.0f * Time.deltaTime;
         if (timer>= decayTime)

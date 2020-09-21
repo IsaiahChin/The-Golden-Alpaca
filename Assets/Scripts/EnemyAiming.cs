@@ -15,7 +15,7 @@ public class EnemyAiming : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector3 direction = target.transform.position - transform.position;
         transform.rotation = Quaternion.LookRotation(direction, Vector3.up);

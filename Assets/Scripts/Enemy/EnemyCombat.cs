@@ -27,7 +27,7 @@ public class EnemyCombat : MonoBehaviour
 
     private float nextAttackTime = 0f;
 
-    void Update()
+    void FixedUpdate()
     {
         playerInMeleeRange = Physics.CheckSphere(melee.attackPoint.position, meleeAttackRange, attackLayer);
         playerInRangedRange = Physics.CheckSphere(ranged.attackPoint.position, rangedAttackRange, attackLayer);

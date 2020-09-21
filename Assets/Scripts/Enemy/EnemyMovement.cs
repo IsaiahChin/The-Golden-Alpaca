@@ -34,7 +34,7 @@ public class EnemyMovement : MonoBehaviour
         }
         else
         {
-            
+            //Idle movement would go here
         }
 
     }

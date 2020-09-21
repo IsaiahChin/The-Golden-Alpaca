@@ -12,7 +12,7 @@ public class MouseFollow : MonoBehaviour
     private Vector3 clickPosition;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         clickPosition = -Vector3.one;
 
