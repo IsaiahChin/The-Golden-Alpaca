@@ -263,11 +263,28 @@ public class SpriteGenerator2D : MonoBehaviour
                 wallTB = Instantiate(wallPrefab, SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Bottom)), Quaternion.identity);
                 wallTB.GetComponent<Transform>().rotation = Quaternion.Euler(0, 180, 0);
             }
-
             if (wallTB != null)
             {
                 wallTB.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
                 wallTB.GetComponent<SpriteRenderer>().material = material;
+            }
+
+            GameObject wallLR = null;
+
+            if ((relativePos & SpritePositionType.Left) == SpritePositionType.Left)
+            {
+                wallLR = Instantiate(wallPrefab, SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Left)), Quaternion.identity);
+                wallLR.GetComponent<Transform>().rotation = Quaternion.Euler(0, 270, 0);
+            }
+            else if ((relativePos & SpritePositionType.Right) == SpritePositionType.Right)
+            {
+                wallLR = Instantiate(wallPrefab, SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Right)), Quaternion.identity);
+                wallLR.GetComponent<Transform>().rotation = Quaternion.Euler(0, 90, 0);
+            }
+            if (wallLR != null)
+            {
+                wallLR.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
+                wallLR.GetComponent<SpriteRenderer>().material = material;
             }
         }
     }
@@ -331,8 +348,17 @@ public class SpriteGenerator2D : MonoBehaviour
     Vector3 SpriteWallLocationFix(Vector2Int spriteSize, Vector2Int spriteLocation, SpritePositionType relativePos)
     {
         float spriteLocationX = spriteLocation.x + (spriteSize.x / 2.0f);
+        float spriteLocationZ = spriteLocation.y + (spriteSize.y / 2.0f);
 
-        float spriteLocationZ = 0.0f;
+        if (relativePos == SpritePositionType.Left)
+        {
+            spriteLocationX = spriteLocation.x;
+        }
+        else if (relativePos == SpritePositionType.Right)
+        {
+            spriteLocationX = spriteLocation.x + spriteSize.x;
+        }
+
         if (relativePos == SpritePositionType.Top)
         {
             spriteLocationZ = spriteLocation.y + spriteSize.x;
