@@ -253,18 +253,22 @@ public class SpriteGenerator2D : MonoBehaviour
         {
             GameObject wallTB = null;
 
-            if ((relativePos | SpritePositionType.Top) == SpritePositionType.Top)
+            if ((relativePos & SpritePositionType.Top) == SpritePositionType.Top)
             {
-                wallTB = Instantiate(wallPrefab, SpriteWallLocationFix(size, location), Quaternion.identity);
+                wallTB = Instantiate(wallPrefab, SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Top)), Quaternion.identity);
                 wallTB.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 0);
             }
-            else if ((relativePos | SpritePositionType.Bottom) == SpritePositionType.Bottom)
+            else if ((relativePos & SpritePositionType.Bottom) == SpritePositionType.Bottom)
             {
-                wallTB = Instantiate(wallPrefab, SpriteWallLocationFix(size, location), Quaternion.identity);
+                wallTB = Instantiate(wallPrefab, SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Bottom)), Quaternion.identity);
                 wallTB.GetComponent<Transform>().rotation = Quaternion.Euler(0, 180, 0);
             }
-            wallTB.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
-            wallTB.GetComponent<SpriteRenderer>().material = material;
+
+            if (wallTB != null)
+            {
+                wallTB.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
+                wallTB.GetComponent<SpriteRenderer>().material = material;
+            }
         }
     }
 
@@ -324,10 +328,19 @@ public class SpriteGenerator2D : MonoBehaviour
         return new Vector3(spriteLocationX, 0, spriteLocationY);
     }
 
-    Vector3 SpriteWallLocationFix(Vector2Int spriteSize, Vector2Int spriteLocation)
+    Vector3 SpriteWallLocationFix(Vector2Int spriteSize, Vector2Int spriteLocation, SpritePositionType relativePos)
     {
         float spriteLocationX = spriteLocation.x + (spriteSize.x / 2.0f);
-        float spriteLocationZ = spriteLocation.y;
+
+        float spriteLocationZ = 0.0f;
+        if (relativePos == SpritePositionType.Top)
+        {
+            spriteLocationZ = spriteLocation.y + spriteSize.x;
+        }
+        else if (relativePos == SpritePositionType.Bottom)
+        {
+            spriteLocationZ = spriteLocation.y;
+        }
 
         return new Vector3(spriteLocationX, 0.5f, spriteLocationZ);
     }
