@@ -6,6 +6,17 @@ using Graphs;
 
 public class SpriteGenerator2D : MonoBehaviour
 {
+    //Enumeration for the position of a sprite in a room. Set as flags.
+    [System.Flags]
+    enum SpritePositionType : short
+    {
+        None = 0,
+        Top = 1,
+        Bottom = 2,
+        Left = 4,
+        Right = 8
+    }
+
     enum CellType
     {
         None,
@@ -228,7 +239,7 @@ public class SpriteGenerator2D : MonoBehaviour
     //Modified to work with sprites instead of cubes.
     void PlaceFloorSprite(Vector2Int location, Vector2Int size, Material material)
     {
-        GameObject go = Instantiate(NextSprite(), SpriteLocationFix(size, location), Quaternion.identity);
+        GameObject go = Instantiate(NextSprite(), SpriteFloorLocationFix(size, location), Quaternion.identity);
         go.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
         //Rotate sprite to be flat, then a random 90 degree rotation on the ground.
         go.GetComponent<Transform>().rotation = Quaternion.Euler(90, random.Next(0, 4) * 90, 0);
@@ -236,11 +247,14 @@ public class SpriteGenerator2D : MonoBehaviour
     }
 
     //Created to place a wall at a given position
-    void PlaceWallSprite(Vector2Int location, Vector2Int size, Material material)
+    void PlaceWallSprite(Vector2Int location, Vector2Int size, Material material, SpritePositionType relativePos)
     {
-        GameObject go = Instantiate(wallPrefab, SpriteLocationFix(size, location), Quaternion.identity);
-        go.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
-        go.GetComponent<SpriteRenderer>().material = material;
+        if ((relativePos | SpritePositionType.None) != SpritePositionType.None)
+        {
+            GameObject go = Instantiate(wallPrefab, SpriteWallLocationFix(size, location), Quaternion.identity);
+            go.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
+            go.GetComponent<SpriteRenderer>().material = material;
+        }
     }
 
     //Modified to place a sprite on each unit of a room.
@@ -250,11 +264,39 @@ public class SpriteGenerator2D : MonoBehaviour
         {
             for (int j = 0; j < size.y; j++)
             {
+                SpritePositionType spriteRelativePosition = GetSpriteRelativePosition(i, j, size);
+
                 Vector2Int nextSpriteLocation = new Vector2Int(location.x + i, location.y + j);
                 PlaceFloorSprite(nextSpriteLocation, new Vector2Int(1, 1), redMaterial);
                 PlaceWallSprite(nextSpriteLocation, new Vector2Int(1, 1), greenMaterial);
             }
         }
+    }
+
+    //Method to calculate a sprites position, to understand where walls should be placed.
+    SpritePositionType GetSpriteRelativePosition(int xPos, int yPos, Vector2Int size)
+    {
+        SpritePositionType position = SpritePositionType.None;
+
+        if (xPos == 0)
+        {
+            position = position | SpritePositionType.Left;
+        }
+        else if (xPos == (size.x - 1))
+        {
+            position = position | SpritePositionType.Right;
+        }
+
+        if (yPos == 0)
+        {
+            position = position | SpritePositionType.Bottom;
+        }
+        else if (yPos == (size.y - 1))
+        {
+            position = position | SpritePositionType.Top;
+        }
+
+        return position;
     }
 
     void PlaceHallway(Vector2Int location)
@@ -263,12 +305,20 @@ public class SpriteGenerator2D : MonoBehaviour
     }
 
     //Method created to place sprites in the correct location, since sprite position is based on centre.
-    Vector3 SpriteLocationFix(Vector2Int spriteSize, Vector2Int spriteLocation)
+    Vector3 SpriteFloorLocationFix(Vector2Int spriteSize, Vector2Int spriteLocation)
     {
         float spriteLocationX = spriteLocation.x + (spriteSize.x / 2.0f);
         float spriteLocationY = spriteLocation.y + (spriteSize.y / 2.0f);
 
         return new Vector3(spriteLocationX, 0, spriteLocationY);
+    }
+
+    Vector3 SpriteWallLocationFix(Vector2Int spriteSize, Vector2Int spriteLocation)
+    {
+        float spriteLocationX = spriteLocation.x + (spriteSize.x / 2.0f);
+        float spriteLocationZ = spriteLocation.y;
+
+        return new Vector3(spriteLocationX, 0.5f, spriteLocationZ);
     }
 
     //Method to choose a randomly selected sprite from the available prefabs.
