@@ -22,10 +22,6 @@ public class Player : MonoBehaviour
     private void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
-<<<<<<< HEAD:Assets/Scripts/Player/Player.cs
-        
-=======
->>>>>>> master:Assets/Scripts/Alpaca/Player.cs
 
         // Initialize speed
         maxSpeed = 4.0f;
