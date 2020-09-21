@@ -19,6 +19,11 @@ public class EnemyMovement : MonoBehaviour
 
     private bool playerInSightRange;
 
+    private void Start()
+    {
+        target = GameObject.Find("Alpaca").transform;
+    }
+
     private void Update()
     {
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, followLayer);

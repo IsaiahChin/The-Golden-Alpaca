@@ -9,6 +9,11 @@ public class EnemyAiming : MonoBehaviour
     public GameObject target;
     public bool showSceneLabels;
 
+    private void Start()
+    {
+        target = GameObject.Find("Alpaca");
+    }
+
     // Update is called once per frame
     void Update()
     {
