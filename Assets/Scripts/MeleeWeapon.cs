@@ -15,7 +15,7 @@ public class MeleeWeapon : MonoBehaviour
 
     [Header("Attack Stats")]
     public float attackRange = 0.5f;
-    public float AttackDamage = 40f;
+    public float AttackDamage = 1f;
 
     //Standard melee attack function
     public void Attack()
@@ -26,7 +26,7 @@ public class MeleeWeapon : MonoBehaviour
         //Damage each collider with an enemy layer 
         foreach (Collider enemy in hitEnemies)
         {
-            //Insert Damage Script            
+            Debug.Log(this.tag+" Hit " + enemy.name+" with "+AttackDamage+" damage - Melee");            
         }
     }
 

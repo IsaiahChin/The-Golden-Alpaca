@@ -15,7 +15,7 @@ public class RangedWeapon : MonoBehaviour
 	[Header("Attack Stats")]
 	//Speed that the bullet should travel at
 	public float speed = 10f;
-	public int damage = 10;
+	public float damage = 1;
 
     public void Attack()
 	{

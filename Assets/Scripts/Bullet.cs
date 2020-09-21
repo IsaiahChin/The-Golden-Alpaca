@@ -7,7 +7,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [Header("Settings")]
-    public int damage=40;
+    public float damage=1;
     public float decayTime = 2;
     private float timer;
     public string shooterTag;
@@ -26,12 +26,12 @@ public class Bullet : MonoBehaviour
     {
         if (collision.tag=="Player"&&collision.tag!=shooterTag)
         {
-            Debug.Log(shooterTag + " Hit " + collision.tag+" with "+damage+" damage");
+            Debug.Log(shooterTag + " Hit " + collision.tag+" with "+damage+" damage - RANGED");
             Destroy(gameObject);
         }
         else if (collision.tag == "Enemy" && collision.tag != shooterTag)
         {
-            Debug.Log(shooterTag + " Hit " + collision.tag + " with " + damage + " damage");
+            Debug.Log(shooterTag + " Hit " + collision.tag + " with " + damage + " damage - RANGED");
             Destroy(gameObject);
         }
         else if (collision.tag == "Enviroment" && collision.tag != shooterTag)
