@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 5bb33f4cfbc2ba745908bab1754e9cd0
+guid: 4ad94d7b37117e84f84e9258d3d7f6e8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7581548615974880203
-    second: sword_swing_0
+      213: 3531370096813628869
+    second: sword_swing_left_0
   - first:
-      213: -7877150809514670865
-    second: sword_swing_1
+      213: -3336211581039631084
+    second: sword_swing_left_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -93,7 +93,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sword_swing_0
+      name: sword_swing_left_0
       rect:
         serializedVersion: 2
         x: 0
@@ -107,14 +107,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc389862c42173960800000000000000
-      internalID: 7581548615974880203
+      spriteID: 5cd530f9462f10130800000000000000
+      internalID: 3531370096813628869
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sword_swing_1
+      name: sword_swing_left_1
       rect:
         serializedVersion: 2
         x: 19
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe482bcd21dbea290800000000000000
-      internalID: -7877150809514670865
+      spriteID: 415a6983e3563b1d0800000000000000
+      internalID: -3336211581039631084
       vertices: []
       indices: 
       edges: []
@@ -137,7 +137,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 0453e44337f13f1489d4d1f8c68fa791
     internalID: 0
     vertices: []
     indices: 
