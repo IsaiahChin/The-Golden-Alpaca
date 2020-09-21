@@ -246,14 +246,25 @@ public class SpriteGenerator2D : MonoBehaviour
         go.GetComponent<SpriteRenderer>().material = material;
     }
 
-    //Created to place a wall at a given position
+    //Created to place a wall at given flags, with appropriate positions and rotation.
     void PlaceWallSprite(Vector2Int location, Vector2Int size, Material material, SpritePositionType relativePos)
     {
         if ((relativePos | SpritePositionType.None) != SpritePositionType.None)
         {
-            GameObject go = Instantiate(wallPrefab, SpriteWallLocationFix(size, location), Quaternion.identity);
-            go.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
-            go.GetComponent<SpriteRenderer>().material = material;
+            GameObject wallTB = null;
+
+            if ((relativePos | SpritePositionType.Top) == SpritePositionType.Top)
+            {
+                wallTB = Instantiate(wallPrefab, SpriteWallLocationFix(size, location), Quaternion.identity);
+                wallTB.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 0);
+            }
+            else if ((relativePos | SpritePositionType.Bottom) == SpritePositionType.Bottom)
+            {
+                wallTB = Instantiate(wallPrefab, SpriteWallLocationFix(size, location), Quaternion.identity);
+                wallTB.GetComponent<Transform>().rotation = Quaternion.Euler(0, 180, 0);
+            }
+            wallTB.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
+            wallTB.GetComponent<SpriteRenderer>().material = material;
         }
     }
 
@@ -268,7 +279,7 @@ public class SpriteGenerator2D : MonoBehaviour
 
                 Vector2Int nextSpriteLocation = new Vector2Int(location.x + i, location.y + j);
                 PlaceFloorSprite(nextSpriteLocation, new Vector2Int(1, 1), redMaterial);
-                PlaceWallSprite(nextSpriteLocation, new Vector2Int(1, 1), greenMaterial);
+                PlaceWallSprite(nextSpriteLocation, new Vector2Int(1, 1), greenMaterial, spriteRelativePosition);
             }
         }
     }
