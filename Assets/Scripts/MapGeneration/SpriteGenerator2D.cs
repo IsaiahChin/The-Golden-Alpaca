@@ -485,9 +485,12 @@ public class SpriteGenerator2D : MonoBehaviour
     //Used to place roof tiles.
     void PlaceRoof()
     {
-        for (int i = 0; i < size.x; i++)
+        //Used to have roof extend over map range, giving less chance of camera to see outside the roof.
+        int roofExtension = 10;
+
+        for (int i = (0 - roofExtension); i < (size.x + roofExtension); i++)
         {
-            for (int j = 0; j < size.y; j++)
+            for (int j = (0 - roofExtension); j < (size.y + roofExtension); j++)
             {
                 Vector2Int location = new Vector2Int(i, j);
 
