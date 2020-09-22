@@ -51,7 +51,7 @@ public class SpriteGenerator2D : MonoBehaviour
     Vector2Int roomMinSize = new Vector2Int(1, 1);
     //Modified to hold a selection of different floor tiles.
     [SerializeField]
-    GameObject[] spritePrefab;
+    GameObject[] spritePrefabs;
     [SerializeField]
     Material redMaterial;
     [SerializeField]
@@ -66,6 +66,8 @@ public class SpriteGenerator2D : MonoBehaviour
     //Created to hol the roof tile.
     [SerializeField]
     GameObject roofPrefab;
+    [SerializeField]
+    GameObject[] roofPrefabs;
 
     Random random;
     Grid2D<CellType> grid;
@@ -462,7 +464,7 @@ public class SpriteGenerator2D : MonoBehaviour
     //Method to choose a randomly selected sprite from the available prefabs.
     GameObject NextSprite()
     {
-        return spritePrefab[random.Next(0, spritePrefab.Length)];
+        return spritePrefabs[random.Next(0, spritePrefabs.Length)];
     }
 
     //Used to detect floor tiles.
@@ -502,10 +504,12 @@ public class SpriteGenerator2D : MonoBehaviour
 
     GameObject GetRoofTile(Vector3 location)
     {
-        GameObject roofTile = null;
+        SpritePositionType wallPositions = SpritePositionType.None;
 
         Vector3 wallDetection = new Vector3(location.x, location.y + 0.7f, location.z);
         Collider[] wallsFound = Physics.OverlapSphere(wallDetection, 0.5f);
+
+        int arrayLocation = 0;
 
         foreach (Collider wall in wallsFound)
         {
@@ -514,24 +518,53 @@ public class SpriteGenerator2D : MonoBehaviour
 
             if (wallXPos > wallDetection.x)
             {
-
+                wallPositions = wallPositions | SpritePositionType.Right;
             }
             if (wallXPos < wallDetection.x)
             {
-
+                wallPositions = wallPositions | SpritePositionType.Left;
             }
             if (wallZPos > wallDetection.z)
             {
-
+                wallPositions = wallPositions | SpritePositionType.Top;
             }
             if (wallZPos < wallDetection.z)
             {
-
+                wallPositions = wallPositions | SpritePositionType.Bottom;
             }
-
-            Destroy(wall.gameObject);
         }
 
-        return roofTile;
+        switch (wallPositions)
+        {
+            case SpritePositionType.Top:
+                arrayLocation = 1;
+                break;
+            case SpritePositionType.Bottom:
+                arrayLocation = 2;
+                break;
+            case SpritePositionType.Right:
+                arrayLocation = 3;
+                break;
+            case SpritePositionType.Left:
+                arrayLocation = 4;
+                break;
+            case SpritePositionType.Top | SpritePositionType.Right:
+                arrayLocation = 5;
+                break;
+            case SpritePositionType.Top | SpritePositionType.Left:
+                arrayLocation = 6;
+                break;
+            case SpritePositionType.Bottom | SpritePositionType.Right:
+                arrayLocation = 7;
+                break;
+            case SpritePositionType.Bottom | SpritePositionType.Left:
+                arrayLocation = 8;
+                break;
+            default:
+                arrayLocation = 0;
+                break;
+        }
+
+        return roofPrefabs[arrayLocation];
     }
 }
