@@ -260,7 +260,7 @@ public class SpriteGenerator2D : MonoBehaviour
         Vector3 fixedLoaction = SpriteFloorLocationFix(size, location);
         Vector3 placeAt = new Vector3(fixedLoaction.x, fixedLoaction.y + 1.0f, fixedLoaction.z);
 
-        GameObject go = Instantiate(roofPrefab, placeAt, Quaternion.identity);
+        GameObject go = Instantiate(GetRoofTile(fixedLoaction), placeAt, Quaternion.identity);
         go.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
         go.GetComponent<Transform>().rotation = Quaternion.Euler(90, 0, 0);
     }
@@ -507,8 +507,8 @@ public class SpriteGenerator2D : MonoBehaviour
     {
         SpritePositionType wallPositions = SpritePositionType.None;
 
-        Vector3 wallDetection = new Vector3(location.x, location.y + 0.7f, location.z);
-        Collider[] wallsFound = Physics.OverlapSphere(wallDetection, 0.5f);
+        Vector3 wallDetector = new Vector3(location.x, location.y + 0.7f, location.z);
+        Collider[] wallsFound = Physics.OverlapSphere(wallDetector, 0.5f);
 
         int arrayLocation = 0;
 
@@ -517,19 +517,19 @@ public class SpriteGenerator2D : MonoBehaviour
             float wallXPos = wall.gameObject.transform.position.x;
             float wallZPos = wall.gameObject.transform.position.z;
 
-            if (wallXPos > wallDetection.x)
+            if (wallXPos > wallDetector.x)
             {
                 wallPositions = wallPositions | SpritePositionType.Right;
             }
-            if (wallXPos < wallDetection.x)
+            if (wallXPos < wallDetector.x)
             {
                 wallPositions = wallPositions | SpritePositionType.Left;
             }
-            if (wallZPos > wallDetection.z)
+            if (wallZPos > wallDetector.z)
             {
                 wallPositions = wallPositions | SpritePositionType.Top;
             }
-            if (wallZPos < wallDetection.z)
+            if (wallZPos < wallDetector.z)
             {
                 wallPositions = wallPositions | SpritePositionType.Bottom;
             }
@@ -543,29 +543,86 @@ public class SpriteGenerator2D : MonoBehaviour
             case SpritePositionType.Bottom:
                 arrayLocation = 2;
                 break;
-            case SpritePositionType.Right:
+            case SpritePositionType.Left:
                 arrayLocation = 3;
                 break;
-            case SpritePositionType.Left:
+            case SpritePositionType.Right:
                 arrayLocation = 4;
                 break;
-            case SpritePositionType.Top | SpritePositionType.Right:
+            case SpritePositionType.Top | SpritePositionType.Left:
                 arrayLocation = 5;
                 break;
-            case SpritePositionType.Top | SpritePositionType.Left:
+            case SpritePositionType.Top | SpritePositionType.Right:
                 arrayLocation = 6;
                 break;
-            case SpritePositionType.Bottom | SpritePositionType.Right:
+            case SpritePositionType.Bottom | SpritePositionType.Left:
                 arrayLocation = 7;
                 break;
-            case SpritePositionType.Bottom | SpritePositionType.Left:
+            case SpritePositionType.Bottom | SpritePositionType.Right:
                 arrayLocation = 8;
+                break;
+            default:
+                arrayLocation = GetCornerRoofTiles(wallDetector);
+                break;
+        }
+
+        return roofPrefabs[arrayLocation];
+    }
+
+    int GetCornerRoofTiles(Vector3 originalDetector)
+    {
+        SpritePositionType wallPositions = SpritePositionType.None;
+
+        Vector3 extendedDetector = new Vector3(
+            originalDetector.x,
+            originalDetector.y,
+            originalDetector.z);
+        Collider[] wallsFound = Physics.OverlapSphere(extendedDetector, 1.0f);
+
+        int arrayLocation = 0;
+
+        foreach (Collider wall in wallsFound)
+        {
+            float wallXPos = wall.gameObject.transform.position.x;
+            float wallZPos = wall.gameObject.transform.position.z;
+
+            if (wallXPos > extendedDetector.x)
+            {
+                wallPositions = wallPositions | SpritePositionType.Right;
+            }
+            if (wallXPos < extendedDetector.x)
+            {
+                wallPositions = wallPositions | SpritePositionType.Left;
+            }
+            if (wallZPos > extendedDetector.z)
+            {
+                wallPositions = wallPositions | SpritePositionType.Top;
+            }
+            if (wallZPos < extendedDetector.z)
+            {
+                wallPositions = wallPositions | SpritePositionType.Bottom;
+            }
+        }
+
+        switch (wallPositions)
+        {
+            case SpritePositionType.Top | SpritePositionType.Left:
+                arrayLocation = 9;
+                break;
+            case SpritePositionType.Top | SpritePositionType.Right:
+                arrayLocation = 10;
+                break;
+            case SpritePositionType.Bottom | SpritePositionType.Left:
+                arrayLocation = 11;
+                break;
+            case SpritePositionType.Bottom | SpritePositionType.Right:
+                arrayLocation = 12;
                 break;
             default:
                 arrayLocation = 0;
                 break;
         }
 
-        return roofPrefabs[arrayLocation];
+        return arrayLocation;
     }
 }
