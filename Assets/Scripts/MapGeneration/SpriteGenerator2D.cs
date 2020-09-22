@@ -255,8 +255,8 @@ public class SpriteGenerator2D : MonoBehaviour
     //Created to place a roof tile.
     void PlaceRoofSprite(Vector2Int location, Vector2Int size)
     {
-        Vector3 placeAt = SpriteFloorLocationFix(size, location);
-        placeAt = new Vector3(placeAt.x, placeAt.y + 1.0f, placeAt.z);
+        Vector3 fixedLoaction = SpriteFloorLocationFix(size, location);
+        Vector3 placeAt = new Vector3(fixedLoaction.x, fixedLoaction.y + 1.0f, fixedLoaction.z);
 
         GameObject go = Instantiate(roofPrefab, placeAt, Quaternion.identity);
         go.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
@@ -384,7 +384,7 @@ public class SpriteGenerator2D : MonoBehaviour
          */
             Vector3 wallDetection = SpriteFloorLocationFix(new Vector2Int(1, 1), location);
             wallDetection = new Vector3(wallDetection.x, wallDetection.y + 0.7f, wallDetection.z);
-            Collider[] collidersTest = Physics.OverlapSphere(wallDetection, 0.5f);
+            Collider[] wallsFound = Physics.OverlapSphere(wallDetection, 0.5f);
 
             SpritePositionType hallwayWalls = (
                 SpritePositionType.Top |
@@ -392,31 +392,29 @@ public class SpriteGenerator2D : MonoBehaviour
                 SpritePositionType.Left |
                 SpritePositionType.Right);
 
-            foreach (Collider test in collidersTest)
+            foreach (Collider wall in wallsFound)
             {
-                float testXPos = test.gameObject.transform.position.x;
-                float testZPos = test.gameObject.transform.position.z;
+                float wallXPos = wall.gameObject.transform.position.x;
+                float wallZPos = wall.gameObject.transform.position.z;
 
-                Vector3 testPosVec = test.gameObject.transform.position;
-
-                if (testXPos > wallDetection.x)
+                if (wallXPos > wallDetection.x)
                 {
                     hallwayWalls = hallwayWalls & ~SpritePositionType.Right;
                 }
-                if (testXPos < wallDetection.x)
+                if (wallXPos < wallDetection.x)
                 {
                     hallwayWalls = hallwayWalls & ~SpritePositionType.Left;
                 }
-                if (testZPos > wallDetection.z)
+                if (wallZPos > wallDetection.z)
                 {
                     hallwayWalls = hallwayWalls & ~SpritePositionType.Top;
                 }
-                if (testZPos < wallDetection.z)
+                if (wallZPos < wallDetection.z)
                 {
                     hallwayWalls = hallwayWalls & ~SpritePositionType.Bottom;
                 }
 
-                Destroy(test.gameObject);
+                Destroy(wall.gameObject);
             }
 
             PlaceFloorSprite(location, new Vector2Int(1, 1), blueMaterial);
@@ -482,6 +480,7 @@ public class SpriteGenerator2D : MonoBehaviour
         return existsAtPosition;
     }
 
+    //Used to place roof tiles.
     void PlaceRoof()
     {
         for (int i = 0; i < size.x; i++)
@@ -499,5 +498,40 @@ public class SpriteGenerator2D : MonoBehaviour
                 }
             }
         }
+    }
+
+    GameObject GetRoofTile(Vector3 location)
+    {
+        GameObject roofTile = null;
+
+        Vector3 wallDetection = new Vector3(location.x, location.y + 0.7f, location.z);
+        Collider[] wallsFound = Physics.OverlapSphere(wallDetection, 0.5f);
+
+        foreach (Collider wall in wallsFound)
+        {
+            float wallXPos = wall.gameObject.transform.position.x;
+            float wallZPos = wall.gameObject.transform.position.z;
+
+            if (wallXPos > wallDetection.x)
+            {
+
+            }
+            if (wallXPos < wallDetection.x)
+            {
+
+            }
+            if (wallZPos > wallDetection.z)
+            {
+
+            }
+            if (wallZPos < wallDetection.z)
+            {
+
+            }
+
+            Destroy(wall.gameObject);
+        }
+
+        return roofTile;
     }
 }
