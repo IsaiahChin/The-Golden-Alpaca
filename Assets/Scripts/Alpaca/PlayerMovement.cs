@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement
 {
-    private float maxspeed { get; set; }
+    public float maxspeed { get; set; }
 
     public PlayerMovement(float maxspeed)
     {
