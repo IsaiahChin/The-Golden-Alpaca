@@ -259,59 +259,57 @@ public class SpriteGenerator2D : MonoBehaviour
 
         if ((relativePos | SpritePositionType.None) != SpritePositionType.None)
         {
-            for (int i = 0; i < allWallTypes.Length; i++)
-            {
-                SpritePositionType contained = relativePos & allWallTypes[i];
-                GameObject wallTB = null;
+            GameObject Wall = null;
 
-                if (contained == SpritePositionType.Top)
-                {
-                    wallTB = Instantiate(wallPrefab, SpriteWallLocationFix(size, location, contained), Quaternion.identity);
-                    wallTB.GetComponent<Transform>().rotation = Quaternion.Euler(0, (90 * i), 0);
-                }
-                if (wallTB != null)
-                {
-                    wallTB.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
-                    wallTB.GetComponent<SpriteRenderer>().material = material;
-                }
+            if ((relativePos & SpritePositionType.Top) == SpritePositionType.Top)
+            {
+                Wall = Instantiate(wallPrefab, SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Top)), Quaternion.identity);
+                Wall.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 0);
+            }
+            if (Wall != null)
+            {
+                Wall.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
+                Wall.GetComponent<SpriteRenderer>().material = material;
             }
 
+            Wall = null;
 
-            //GameObject wallTB = null;
+            if ((relativePos & SpritePositionType.Bottom) == SpritePositionType.Bottom)
+            {
+                Wall = Instantiate(wallPrefab, SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Bottom)), Quaternion.identity);
+                Wall.GetComponent<Transform>().rotation = Quaternion.Euler(0, 180, 0);
+            }
+            if (Wall != null)
+            {
+                Wall.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
+                Wall.GetComponent<SpriteRenderer>().material = material;
+            }
 
-            //if ((relativePos & SpritePositionType.Top) == SpritePositionType.Top)
-            //{
-            //    wallTB = Instantiate(wallPrefab, SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Top)), Quaternion.identity);
-            //    wallTB.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 0);
-            //}
-            //else if ((relativePos & SpritePositionType.Bottom) == SpritePositionType.Bottom)
-            //{
-            //    wallTB = Instantiate(wallPrefab, SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Bottom)), Quaternion.identity);
-            //    wallTB.GetComponent<Transform>().rotation = Quaternion.Euler(0, 180, 0);
-            //}
-            //if (wallTB != null)
-            //{
-            //    wallTB.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
-            //    wallTB.GetComponent<SpriteRenderer>().material = material;
-            //}
+            Wall = null;
 
-            //GameObject wallLR = null;
+            if ((relativePos & SpritePositionType.Left) == SpritePositionType.Left)
+            {
+                Wall = Instantiate(wallPrefab, SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Left)), Quaternion.identity);
+                Wall.GetComponent<Transform>().rotation = Quaternion.Euler(0, 270, 0);
+            }
+            if (Wall != null)
+            {
+                Wall.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
+                Wall.GetComponent<SpriteRenderer>().material = material;
+            }
 
-            //if ((relativePos & SpritePositionType.Left) == SpritePositionType.Left)
-            //{
-            //    wallLR = Instantiate(wallPrefab, SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Left)), Quaternion.identity);
-            //    wallLR.GetComponent<Transform>().rotation = Quaternion.Euler(0, 270, 0);
-            //}
-            //else if ((relativePos & SpritePositionType.Right) == SpritePositionType.Right)
-            //{
-            //    wallLR = Instantiate(wallPrefab, SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Right)), Quaternion.identity);
-            //    wallLR.GetComponent<Transform>().rotation = Quaternion.Euler(0, 90, 0);
-            //}
-            //if (wallLR != null)
-            //{
-            //    wallLR.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
-            //    wallLR.GetComponent<SpriteRenderer>().material = material;
-            //}
+            Wall = null;
+
+            if ((relativePos & SpritePositionType.Right) == SpritePositionType.Right)
+            {
+                Wall = Instantiate(wallPrefab, SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Right)), Quaternion.identity);
+                Wall.GetComponent<Transform>().rotation = Quaternion.Euler(0, 90, 0);
+            }
+            if (Wall != null)
+            {
+                Wall.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
+                Wall.GetComponent<SpriteRenderer>().material = material;
+            }
         }
     }
 
