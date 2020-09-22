@@ -249,43 +249,69 @@ public class SpriteGenerator2D : MonoBehaviour
     //Created to place a wall at given flags, with appropriate positions and rotation.
     void PlaceWallSprite(Vector2Int location, Vector2Int size, Material material, SpritePositionType relativePos)
     {
+        SpritePositionType[] allWallTypes =
+        {
+            SpritePositionType.Top,
+            SpritePositionType.Right,
+            SpritePositionType.Bottom,
+            SpritePositionType.Left
+        };
+
         if ((relativePos | SpritePositionType.None) != SpritePositionType.None)
         {
-            GameObject wallTB = null;
+            for (int i = 0; i < allWallTypes.Length; i++)
+            {
+                SpritePositionType contained = relativePos & allWallTypes[i];
+                GameObject wallTB = null;
 
-            if ((relativePos & SpritePositionType.Top) == SpritePositionType.Top)
-            {
-                wallTB = Instantiate(wallPrefab, SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Top)), Quaternion.identity);
-                wallTB.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 0);
-            }
-            else if ((relativePos & SpritePositionType.Bottom) == SpritePositionType.Bottom)
-            {
-                wallTB = Instantiate(wallPrefab, SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Bottom)), Quaternion.identity);
-                wallTB.GetComponent<Transform>().rotation = Quaternion.Euler(0, 180, 0);
-            }
-            if (wallTB != null)
-            {
-                wallTB.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
-                wallTB.GetComponent<SpriteRenderer>().material = material;
+                if (contained == SpritePositionType.Top)
+                {
+                    wallTB = Instantiate(wallPrefab, SpriteWallLocationFix(size, location, contained), Quaternion.identity);
+                    wallTB.GetComponent<Transform>().rotation = Quaternion.Euler(0, (90 * i), 0);
+                }
+                if (wallTB != null)
+                {
+                    wallTB.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
+                    wallTB.GetComponent<SpriteRenderer>().material = material;
+                }
             }
 
-            GameObject wallLR = null;
 
-            if ((relativePos & SpritePositionType.Left) == SpritePositionType.Left)
-            {
-                wallLR = Instantiate(wallPrefab, SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Left)), Quaternion.identity);
-                wallLR.GetComponent<Transform>().rotation = Quaternion.Euler(0, 270, 0);
-            }
-            else if ((relativePos & SpritePositionType.Right) == SpritePositionType.Right)
-            {
-                wallLR = Instantiate(wallPrefab, SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Right)), Quaternion.identity);
-                wallLR.GetComponent<Transform>().rotation = Quaternion.Euler(0, 90, 0);
-            }
-            if (wallLR != null)
-            {
-                wallLR.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
-                wallLR.GetComponent<SpriteRenderer>().material = material;
-            }
+            //GameObject wallTB = null;
+
+            //if ((relativePos & SpritePositionType.Top) == SpritePositionType.Top)
+            //{
+            //    wallTB = Instantiate(wallPrefab, SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Top)), Quaternion.identity);
+            //    wallTB.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 0);
+            //}
+            //else if ((relativePos & SpritePositionType.Bottom) == SpritePositionType.Bottom)
+            //{
+            //    wallTB = Instantiate(wallPrefab, SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Bottom)), Quaternion.identity);
+            //    wallTB.GetComponent<Transform>().rotation = Quaternion.Euler(0, 180, 0);
+            //}
+            //if (wallTB != null)
+            //{
+            //    wallTB.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
+            //    wallTB.GetComponent<SpriteRenderer>().material = material;
+            //}
+
+            //GameObject wallLR = null;
+
+            //if ((relativePos & SpritePositionType.Left) == SpritePositionType.Left)
+            //{
+            //    wallLR = Instantiate(wallPrefab, SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Left)), Quaternion.identity);
+            //    wallLR.GetComponent<Transform>().rotation = Quaternion.Euler(0, 270, 0);
+            //}
+            //else if ((relativePos & SpritePositionType.Right) == SpritePositionType.Right)
+            //{
+            //    wallLR = Instantiate(wallPrefab, SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Right)), Quaternion.identity);
+            //    wallLR.GetComponent<Transform>().rotation = Quaternion.Euler(0, 90, 0);
+            //}
+            //if (wallLR != null)
+            //{
+            //    wallLR.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
+            //    wallLR.GetComponent<SpriteRenderer>().material = material;
+            //}
         }
     }
 
@@ -340,7 +366,7 @@ public class SpriteGenerator2D : MonoBehaviour
         detectionCentre = new Vector3(detectionCentre.x, detectionCentre.y + 0.5f, detectionCentre.z);
         Collider[] collidersTest = Physics.OverlapSphere(detectionCentre, 0.5f);
 
-        SpritePositionType hallwayWalls = (
+        SpritePositionType hallwayWalls= (
             SpritePositionType.Top |
             SpritePositionType.Bottom |
             SpritePositionType.Left |
@@ -351,22 +377,21 @@ public class SpriteGenerator2D : MonoBehaviour
             float testXPos = test.gameObject.transform.position.x;
             float testZPos = test.gameObject.transform.position.z;
 
-            print(test.transform.position);
+            Vector3 testPosVec = test.gameObject.transform.position;
 
-
-            if (testXPos > location.x)
+            if (testXPos > detectionCentre.x)
             {
                 hallwayWalls = hallwayWalls & ~SpritePositionType.Right;
             }
-            if (testXPos < location.x)
+            if (testXPos < detectionCentre.x)
             {
                 hallwayWalls = hallwayWalls & ~SpritePositionType.Left;
             }
-            if (testZPos > location.y)
+            if (testZPos > detectionCentre.z)
             {
                 hallwayWalls = hallwayWalls & ~SpritePositionType.Top;
             }
-            if (testZPos < location.y)
+            if (testZPos < detectionCentre.z)
             {
                 hallwayWalls = hallwayWalls & ~SpritePositionType.Bottom;
             }
