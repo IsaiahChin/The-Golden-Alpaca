@@ -356,49 +356,57 @@ public class SpriteGenerator2D : MonoBehaviour
 
     void PlaceHallway(Vector2Int location)
     {
-        /*
+        Vector3 testingDetection = SpriteFloorLocationFix(new Vector2Int(1, 1), location);
+        testingDetection = new Vector3(testingDetection.x, testingDetection.y - 0.1f, testingDetection.z);
+
+        if (!DetectSprite(testingDetection))
+        {
+            /*
          * Before creating hallways, the program must find out what walls to delete, and learn the hallways relative
          * position, based on the deleted walls.
          */
-        Vector3 detectionCentre = SpriteFloorLocationFix(new Vector2Int(1, 1), location);
-        detectionCentre = new Vector3(detectionCentre.x, detectionCentre.y + 0.7f, detectionCentre.z);
-        Collider[] collidersTest = Physics.OverlapSphere(detectionCentre, 0.5f);
+            Vector3 detectionCentre = SpriteFloorLocationFix(new Vector2Int(1, 1), location);
+            detectionCentre = new Vector3(detectionCentre.x, detectionCentre.y + 0.7f, detectionCentre.z);
+            Collider[] collidersTest = Physics.OverlapSphere(detectionCentre, 0.5f);
 
-        SpritePositionType hallwayWalls= (
-            SpritePositionType.Top |
-            SpritePositionType.Bottom |
-            SpritePositionType.Left |
-            SpritePositionType.Right);
+            SpritePositionType hallwayWalls = (
+                SpritePositionType.Top |
+                SpritePositionType.Bottom |
+                SpritePositionType.Left |
+                SpritePositionType.Right);
 
-        foreach (Collider test in collidersTest)
-        {
-            float testXPos = test.gameObject.transform.position.x;
-            float testZPos = test.gameObject.transform.position.z;
-
-            Vector3 testPosVec = test.gameObject.transform.position;
-
-            if (testXPos > detectionCentre.x)
+            foreach (Collider test in collidersTest)
             {
-                hallwayWalls = hallwayWalls & ~SpritePositionType.Right;
-            }
-            if (testXPos < detectionCentre.x)
-            {
-                hallwayWalls = hallwayWalls & ~SpritePositionType.Left;
-            }
-            if (testZPos > detectionCentre.z)
-            {
-                hallwayWalls = hallwayWalls & ~SpritePositionType.Top;
-            }
-            if (testZPos < detectionCentre.z)
-            {
-                hallwayWalls = hallwayWalls & ~SpritePositionType.Bottom;
+                float testXPos = test.gameObject.transform.position.x;
+                float testZPos = test.gameObject.transform.position.z;
+
+                Vector3 testPosVec = test.gameObject.transform.position;
+
+                if (testXPos > detectionCentre.x)
+                {
+                    hallwayWalls = hallwayWalls & ~SpritePositionType.Right;
+                }
+                if (testXPos < detectionCentre.x)
+                {
+                    hallwayWalls = hallwayWalls & ~SpritePositionType.Left;
+                }
+                if (testZPos > detectionCentre.z)
+                {
+                    hallwayWalls = hallwayWalls & ~SpritePositionType.Top;
+                }
+                if (testZPos < detectionCentre.z)
+                {
+                    hallwayWalls = hallwayWalls & ~SpritePositionType.Bottom;
+                }
+
+                Destroy(test.gameObject);
             }
 
-            Destroy(test.gameObject);
+            PlaceFloorSprite(location, new Vector2Int(1, 1), blueMaterial);
+            PlaceWallSprite(location, new Vector2Int(1, 1), greenMaterial, hallwayWalls);
         }
 
-        PlaceFloorSprite(location, new Vector2Int(1, 1), blueMaterial);
-        PlaceWallSprite(location, new Vector2Int(1, 1), greenMaterial, hallwayWalls);
+        
     }
 
     //Method created to place sprites in the correct location, since sprite position is based on centre.
