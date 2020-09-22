@@ -164,6 +164,8 @@ MonoBehaviour:
   wallPrefab: {fileID: 1194013876004247523, guid: c170bfddffead4741936500cfe4aa252,
     type: 3}
   greenMaterial: {fileID: 2100000, guid: 7f16c12247ea6ac40913d664fae1913a, type: 2}
+  roofPrefab: {fileID: 4681040560181736910, guid: 19a50fa37d413b94596e9a34da19e509,
+    type: 3}
 --- !u!4 &78370887
 Transform:
   m_ObjectHideFlags: 0

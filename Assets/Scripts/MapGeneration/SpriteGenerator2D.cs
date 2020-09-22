@@ -63,6 +63,10 @@ public class SpriteGenerator2D : MonoBehaviour
     [SerializeField]
     Material greenMaterial;
 
+    //Created to hol the roof tile.
+    [SerializeField]
+    GameObject roofPrefab;
+
     Random random;
     Grid2D<CellType> grid;
     List<Room> rooms;
@@ -80,10 +84,12 @@ public class SpriteGenerator2D : MonoBehaviour
         grid = new Grid2D<CellType>(size, Vector2Int.zero);
         rooms = new List<Room>();
 
+        //Modified to allow for the roof creation
         PlaceRooms();
         Triangulate();
         CreateHallways();
         PathfindHallways();
+        PlaceRoof();
     }
 
     void PlaceRooms()
@@ -246,6 +252,17 @@ public class SpriteGenerator2D : MonoBehaviour
         go.GetComponent<SpriteRenderer>().material = material;
     }
 
+    //Created to place a roof tile.
+    void PlaceRoofSprite(Vector2Int location, Vector2Int size)
+    {
+        Vector3 placeAt = SpriteFloorLocationFix(size, location);
+        placeAt = new Vector3(placeAt.x, placeAt.y + 1.0f, placeAt.z);
+
+        GameObject go = Instantiate(roofPrefab, placeAt, Quaternion.identity);
+        go.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
+        go.GetComponent<Transform>().rotation = Quaternion.Euler(90, 0, 0);
+    }
+
     //Created to place a wall at given flags, with appropriate positions and rotation.
     void PlaceWallSprite(Vector2Int location, Vector2Int size, Material material, SpritePositionType relativePos)
     {
@@ -356,18 +373,18 @@ public class SpriteGenerator2D : MonoBehaviour
 
     void PlaceHallway(Vector2Int location)
     {
-        Vector3 testingDetection = SpriteFloorLocationFix(new Vector2Int(1, 1), location);
-        testingDetection = new Vector3(testingDetection.x, testingDetection.y - 0.1f, testingDetection.z);
+        Vector3 floorDetection = SpriteFloorLocationFix(new Vector2Int(1, 1), location);
+        floorDetection = new Vector3(floorDetection.x, floorDetection.y - 0.1f, floorDetection.z);
 
-        if (!DetectSprite(testingDetection))
+        if (!DetectSprite(floorDetection))
         {
             /*
          * Before creating hallways, the program must find out what walls to delete, and learn the hallways relative
          * position, based on the deleted walls.
          */
-            Vector3 detectionCentre = SpriteFloorLocationFix(new Vector2Int(1, 1), location);
-            detectionCentre = new Vector3(detectionCentre.x, detectionCentre.y + 0.7f, detectionCentre.z);
-            Collider[] collidersTest = Physics.OverlapSphere(detectionCentre, 0.5f);
+            Vector3 wallDetection = SpriteFloorLocationFix(new Vector2Int(1, 1), location);
+            wallDetection = new Vector3(wallDetection.x, wallDetection.y + 0.7f, wallDetection.z);
+            Collider[] collidersTest = Physics.OverlapSphere(wallDetection, 0.5f);
 
             SpritePositionType hallwayWalls = (
                 SpritePositionType.Top |
@@ -382,19 +399,19 @@ public class SpriteGenerator2D : MonoBehaviour
 
                 Vector3 testPosVec = test.gameObject.transform.position;
 
-                if (testXPos > detectionCentre.x)
+                if (testXPos > wallDetection.x)
                 {
                     hallwayWalls = hallwayWalls & ~SpritePositionType.Right;
                 }
-                if (testXPos < detectionCentre.x)
+                if (testXPos < wallDetection.x)
                 {
                     hallwayWalls = hallwayWalls & ~SpritePositionType.Left;
                 }
-                if (testZPos > detectionCentre.z)
+                if (testZPos > wallDetection.z)
                 {
                     hallwayWalls = hallwayWalls & ~SpritePositionType.Top;
                 }
-                if (testZPos < detectionCentre.z)
+                if (testZPos < wallDetection.z)
                 {
                     hallwayWalls = hallwayWalls & ~SpritePositionType.Bottom;
                 }
@@ -463,5 +480,24 @@ public class SpriteGenerator2D : MonoBehaviour
         }
 
         return existsAtPosition;
+    }
+
+    void PlaceRoof()
+    {
+        for (int i = 0; i < size.x; i++)
+        {
+            for (int j = 0; j < size.y; j++)
+            {
+                Vector2Int location = new Vector2Int(i, j);
+
+                Vector3 floorDetectionRange = SpriteFloorLocationFix(new Vector2Int(1, 1), location);
+                floorDetectionRange = new Vector3(floorDetectionRange.x, floorDetectionRange.y - 0.1f, floorDetectionRange.z);
+
+                if (!DetectSprite(floorDetectionRange))
+                {
+                    PlaceRoofSprite(location, new Vector2Int(1, 1));
+                }
+            }
+        }
     }
 }
