@@ -441,4 +441,19 @@ public class SpriteGenerator2D : MonoBehaviour
     {
         return spritePrefab[random.Next(0, spritePrefab.Length)];
     }
+
+    //Used to detect floor tiles.
+    bool DetectSprite (Vector3 atPosition)
+    {
+        bool existsAtPosition = false;
+
+        Collider[] foundColliders = Physics.OverlapSphere(atPosition, 0.1f);
+
+        if (foundColliders.Length > 0)
+        {
+            existsAtPosition = true;
+        }
+
+        return existsAtPosition;
+    }
 }
