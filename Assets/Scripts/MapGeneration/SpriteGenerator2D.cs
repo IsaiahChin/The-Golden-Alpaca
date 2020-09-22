@@ -332,6 +332,10 @@ public class SpriteGenerator2D : MonoBehaviour
 
     void PlaceHallway(Vector2Int location)
     {
+        /*
+         * Before creating hallways, the program must find out what walls to delete, and learn the hallways relative
+         * position, based on the deleted walls.
+         */
         Vector3 detectionCentre = SpriteFloorLocationFix(new Vector2Int(1, 1), location);
         detectionCentre = new Vector3(detectionCentre.x, detectionCentre.y + 0.5f, detectionCentre.z);
         Collider[] collidersTest = Physics.OverlapSphere(detectionCentre, 0.5f);
@@ -346,6 +350,8 @@ public class SpriteGenerator2D : MonoBehaviour
         {
             float testXPos = test.gameObject.transform.position.x;
             float testZPos = test.gameObject.transform.position.z;
+
+            print(test.transform.position);
 
 
             if (testXPos > location.x)
@@ -369,6 +375,7 @@ public class SpriteGenerator2D : MonoBehaviour
         }
 
         PlaceFloorSprite(location, new Vector2Int(1, 1), blueMaterial);
+        PlaceWallSprite(location, new Vector2Int(1, 1), greenMaterial, hallwayWalls);
     }
 
     //Method created to place sprites in the correct location, since sprite position is based on centre.
