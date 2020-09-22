@@ -361,7 +361,7 @@ public class SpriteGenerator2D : MonoBehaviour
          * position, based on the deleted walls.
          */
         Vector3 detectionCentre = SpriteFloorLocationFix(new Vector2Int(1, 1), location);
-        detectionCentre = new Vector3(detectionCentre.x, detectionCentre.y + 0.5f, detectionCentre.z);
+        detectionCentre = new Vector3(detectionCentre.x, detectionCentre.y + 0.7f, detectionCentre.z);
         Collider[] collidersTest = Physics.OverlapSphere(detectionCentre, 0.5f);
 
         SpritePositionType hallwayWalls= (
