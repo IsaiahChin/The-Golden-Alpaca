@@ -333,13 +333,38 @@ public class SpriteGenerator2D : MonoBehaviour
     void PlaceHallway(Vector2Int location)
     {
         Vector3 detectionCentre = SpriteFloorLocationFix(new Vector2Int(1, 1), location);
-
         detectionCentre = new Vector3(detectionCentre.x, detectionCentre.y + 0.5f, detectionCentre.z);
-
         Collider[] collidersTest = Physics.OverlapSphere(detectionCentre, 0.5f);
+
+        SpritePositionType hallwayWalls = (
+            SpritePositionType.Top |
+            SpritePositionType.Bottom |
+            SpritePositionType.Left |
+            SpritePositionType.Right);
 
         foreach (Collider test in collidersTest)
         {
+            float testXPos = test.gameObject.transform.position.x;
+            float testZPos = test.gameObject.transform.position.z;
+
+
+            if (testXPos > location.x)
+            {
+                hallwayWalls = hallwayWalls & ~SpritePositionType.Right;
+            }
+            if (testXPos < location.x)
+            {
+                hallwayWalls = hallwayWalls & ~SpritePositionType.Left;
+            }
+            if (testZPos > location.y)
+            {
+                hallwayWalls = hallwayWalls & ~SpritePositionType.Top;
+            }
+            if (testZPos < location.y)
+            {
+                hallwayWalls = hallwayWalls & ~SpritePositionType.Bottom;
+            }
+
             Destroy(test.gameObject);
         }
 
