@@ -561,6 +561,27 @@ public class SpriteGenerator2D : MonoBehaviour
             case SpritePositionType.Bottom | SpritePositionType.Right:
                 arrayLocation = 8;
                 break;
+            case SpritePositionType.Top | SpritePositionType.Bottom:
+                arrayLocation = 9;
+                break;
+            case SpritePositionType.Left | SpritePositionType.Right:
+                arrayLocation = 10;
+                break;
+            case SpritePositionType.Top | SpritePositionType.Left | SpritePositionType.Right:
+                arrayLocation = 11;
+                break;
+            case SpritePositionType.Bottom | SpritePositionType.Left | SpritePositionType.Right:
+                arrayLocation = 12;
+                break;
+            case SpritePositionType.Top | SpritePositionType.Bottom | SpritePositionType.Left:
+                arrayLocation = 13;
+                break;
+            case SpritePositionType.Top | SpritePositionType.Bottom | SpritePositionType.Right:
+                arrayLocation = 14;
+                break;
+            case SpritePositionType.Top | SpritePositionType.Bottom | SpritePositionType.Left | SpritePositionType.Right:
+                arrayLocation = 15;
+                break;
             default:
                 arrayLocation = GetCornerRoofTiles(wallDetector);
                 break;
@@ -607,16 +628,16 @@ public class SpriteGenerator2D : MonoBehaviour
         switch (wallPositions)
         {
             case SpritePositionType.Top | SpritePositionType.Left:
-                arrayLocation = 9;
+                arrayLocation = 16;
                 break;
             case SpritePositionType.Top | SpritePositionType.Right:
-                arrayLocation = 10;
+                arrayLocation = 17;
                 break;
             case SpritePositionType.Bottom | SpritePositionType.Left:
-                arrayLocation = 11;
+                arrayLocation = 18;
                 break;
             case SpritePositionType.Bottom | SpritePositionType.Right:
-                arrayLocation = 12;
+                arrayLocation = 19;
                 break;
             default:
                 arrayLocation = 0;
