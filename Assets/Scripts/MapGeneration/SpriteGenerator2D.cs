@@ -502,6 +502,7 @@ public class SpriteGenerator2D : MonoBehaviour
         }
     }
 
+    //Used to get the required roof tile, based on the walls closest to the roof tile.
     GameObject GetRoofTile(Vector3 location)
     {
         SpritePositionType wallPositions = SpritePositionType.None;
