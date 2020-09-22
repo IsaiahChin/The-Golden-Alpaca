@@ -150,20 +150,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6235e4b1ce605024d8ed47ce2884bfcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 40, y: 40}
+  size: {x: 60, y: 60}
   roomCount: 100
   roomMaxSize: {x: 10, y: 10}
-  roomMinSize: {x: 3, y: 3}
+  roomMinSize: {x: 9, y: 9}
   spritePrefabs:
   - {fileID: 7977006537340900227, guid: a4e4f64ee6ec455498d104765c0a7011, type: 3}
   - {fileID: 1651923538560382547, guid: 4e6a8b2a26a391a40a18aadd31845547, type: 3}
   - {fileID: 4068667680124895519, guid: f08c3621b332e03499043461cbf70ac8, type: 3}
   - {fileID: 601962152097659205, guid: 8ac3649eba83a32419b6388954d4e88e, type: 3}
-  redMaterial: {fileID: 2100000, guid: 149e4c64ea557234baf854205c8a3694, type: 2}
-  blueMaterial: {fileID: 2100000, guid: df7b71d6190d6cb4bbe9edfff6296bac, type: 2}
+  redMaterial: {fileID: 670224309865224971, guid: b92b405991cf972418ca613f0bc67725,
+    type: 3}
+  blueMaterial: {fileID: 670224309865224971, guid: b92b405991cf972418ca613f0bc67725,
+    type: 3}
   wallPrefab: {fileID: 1194013876004247523, guid: c170bfddffead4741936500cfe4aa252,
     type: 3}
-  greenMaterial: {fileID: 2100000, guid: 7f16c12247ea6ac40913d664fae1913a, type: 2}
+  greenMaterial: {fileID: 670224309865224971, guid: b92b405991cf972418ca613f0bc67725,
+    type: 3}
   roofPrefab: {fileID: 4681040560181736910, guid: 19a50fa37d413b94596e9a34da19e509,
     type: 3}
   roofPrefabs:
