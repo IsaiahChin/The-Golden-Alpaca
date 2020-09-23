@@ -94,6 +94,9 @@ public class SpriteGenerator2D : MonoBehaviour
         CreateHallways();
         PathfindHallways();
         PlaceRoof();
+
+        //Call player spawn
+        SpawnAlpaca();
     }
 
     void PlaceRooms()
