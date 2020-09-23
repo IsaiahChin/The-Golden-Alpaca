@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class PlayerMovement
 {
-    private float maxspeed { get; set; }
+    private float maxSpeed { get; set; }
 
     public PlayerMovement(float maxspeed)
     {
-        this.maxspeed = maxspeed;
+        this.maxSpeed = maxspeed;
     }
 
     // Calculates the speed in which the character is going in.
     public Vector3 CalculateMovement(Vector3 direction)
     {
-        return direction * maxspeed;
+        return direction * maxSpeed;
     }
 }

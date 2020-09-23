@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0ea030ebed26b464b81643c575a31788
+guid: 2f42f1e8de1333643b1626a96b2ce799
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -14,7 +14,8 @@ MonoImporter:
       type: 3}
   - lastHalfHeart: {fileID: 1304184804011979187, guid: 2f71806234f07894b8081b1d657f4d28,
       type: 3}
-  - gameOverText: {instanceID: 0}
+  - gameOverText: {fileID: 3996865793304040749, guid: caa48d378d6f11041930be12369d67ad,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
