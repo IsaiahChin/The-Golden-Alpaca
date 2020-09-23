@@ -15,6 +15,11 @@ public class CameraFollow : MonoBehaviour
 
     void FixedUpdate()
     {
+        RotateTowardsTarget();
+    }
+
+    private void RotateTowardsTarget()
+    {
         Vector3 desiredPosition = target.position + offset;
         Vector3 smoothedPosition = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocity, smoothingSpeed);
         transform.position = smoothedPosition;

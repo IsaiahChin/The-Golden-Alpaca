@@ -14,20 +14,29 @@ public class MouseFollow : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        CalculateClickPosition();
+        RotateTowardsClickPosition();
+    }
+
+    private void RotateTowardsClickPosition()
+    {
+        Vector3 direction = clickPosition - transform.position;
+        transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
+        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, transform.eulerAngles.z);
+    }
+
+    private void CalculateClickPosition()
+    {
         clickPosition = -Vector3.one;
 
         Plane plane = new Plane(Vector3.up, 0f);
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         float distanceToPlane;
 
-        if (plane.Raycast(ray,out distanceToPlane))
+        if (plane.Raycast(ray, out distanceToPlane))
         {
-            clickPosition=ray.GetPoint(distanceToPlane);
+            clickPosition = ray.GetPoint(distanceToPlane);
         }
-        
-        Vector3 direction = clickPosition - transform.position;
-        transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
-        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, transform.eulerAngles.z);
     }
 
     private void OnDrawGizmosSelected()

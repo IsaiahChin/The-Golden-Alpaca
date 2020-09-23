@@ -18,7 +18,7 @@ public class PlayerCombat : MonoBehaviour
 
     private float nextAttackTime = 0f;
 
-    void FixedUpdate()
+    void Update()
     {        
         //If attack has reset to avoid attack spamming
         if (Time.time >= nextAttackTime)

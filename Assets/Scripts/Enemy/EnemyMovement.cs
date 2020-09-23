@@ -9,8 +9,8 @@ using Random = UnityEngine.Random;
 //Author: MatthewCopeland
 public class EnemyMovement : MonoBehaviour
 {
-    public Transform target;
-    public NavMeshAgent navmeshAgent;
+    private Transform target;
+    private NavMeshAgent navmeshAgent;
 
     [Header("Settings")]
     public float sightRange;
@@ -22,6 +22,7 @@ public class EnemyMovement : MonoBehaviour
     private void Start()
     {
         target = GameObject.Find("Alpaca").transform;
+        navmeshAgent = GetComponent<NavMeshAgent>();
     }
 
     private void Update()

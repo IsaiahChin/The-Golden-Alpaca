@@ -27,11 +27,13 @@ public class Bullet : MonoBehaviour
         if (collision.tag=="Player"&&collision.tag!=shooterTag)
         {
             Debug.Log(shooterTag + " Hit " + collision.tag+" with "+damage+" damage - RANGED");
+            collision.GetComponent<Player>().decreaseHealth(damage);
             Destroy(gameObject);
         }
         else if (collision.tag == "Enemy" && collision.tag != shooterTag)
         {
             Debug.Log(shooterTag + " Hit " + collision.tag + " with " + damage + " damage - RANGED");
+            collision.GetComponent<EnemyHealthController>().decreaseHealth(damage);
             Destroy(gameObject);
         }
         else if (collision.tag == "Enviroment" && collision.tag != shooterTag)

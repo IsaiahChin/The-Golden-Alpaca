@@ -6,7 +6,7 @@ using UnityEditor;
 //Author: MatthewCopeland
 public class EnemyCombat : MonoBehaviour
 {
-    public Animator animator;
+    private Animator animator;
 
     [Header("Melee Attack")]
     public MeleeWeapon melee;
@@ -26,6 +26,11 @@ public class EnemyCombat : MonoBehaviour
     public bool showSceneLabels;
 
     private float nextAttackTime = 0f;
+
+    private void Start()
+    {
+        animator = GameObject.Find("EnemySword").GetComponent<Animator>();
+    }
 
     void FixedUpdate()
     {

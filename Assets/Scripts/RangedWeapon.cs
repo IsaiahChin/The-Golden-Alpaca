@@ -18,12 +18,18 @@ public class RangedWeapon : MonoBehaviour
 	public float damage = 1;
 
     public void Attack()
-	{
-		//Instatiate a bullet object
-		GameObject bullet = Instantiate(bulletPrefab, attackPoint.position, attackPoint.rotation);
-		bullet.GetComponent<Bullet>().shooterTag = this.tag;
-		bullet.GetComponent<Bullet>().damage = this.damage;
-		//Get the rigidbody of the bullet object then Apply a force to the bullet object of the bullet speed
-		bullet.GetComponent<Rigidbody>().AddForce(attackPoint.forward * speed, ForceMode.VelocityChange);
-	}
+    {
+        FireBullet(attackPoint.forward);
+        //Any further expansions/bullet patterns will go here
+    }
+
+    private void FireBullet(Vector3 direction)
+    {
+        //Instatiate a bullet object
+        GameObject bullet = Instantiate(bulletPrefab, attackPoint.position, attackPoint.rotation);
+        bullet.GetComponent<Bullet>().shooterTag = this.tag;
+        bullet.GetComponent<Bullet>().damage = this.damage;
+        //Get the rigidbody of the bullet object then Apply a force to the bullet object of the bullet speed
+        bullet.GetComponent<Rigidbody>().AddForce(direction * speed, ForceMode.VelocityChange);
+    }
 }

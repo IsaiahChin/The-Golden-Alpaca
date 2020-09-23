@@ -26,7 +26,16 @@ public class MeleeWeapon : MonoBehaviour
         //Damage each collider with an enemy layer 
         foreach (Collider enemy in hitEnemies)
         {
-            Debug.Log(this.tag+" Hit " + enemy.name+" with "+AttackDamage+" damage - Melee");            
+            Debug.Log(this.tag+" Hit " + enemy.name+" with "+AttackDamage+" damage - Melee");
+
+            if (enemy.tag == "Player")
+            {
+                enemy.GetComponent<Player>().decreaseHealth(AttackDamage);
+            }
+            else if (enemy.tag == "Enemy")
+            {
+                enemy.GetComponent<EnemyHealthController>().decreaseHealth(AttackDamage);
+            }
         }
     }
 
