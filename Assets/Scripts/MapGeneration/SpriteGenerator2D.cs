@@ -282,7 +282,7 @@ public class SpriteGenerator2D : MonoBehaviour
 
                 if ((relativePos & allWallTypes[i]) == allWallTypes[i])
                 {
-                    wall = Instantiate(NextWallSprite(), SpriteWallLocationFix(size, location, (relativePos & allWallTypes[i])), Quaternion.identity);
+                    wall = Instantiate(NextWallSprite(), WallSpriteLocationFix(size, location, (relativePos & allWallTypes[i])), Quaternion.identity);
                     wall.GetComponent<Transform>().rotation = Quaternion.Euler(0, 90 * i, 0);
                 }
                 if (wall != null)
@@ -388,36 +388,44 @@ public class SpriteGenerator2D : MonoBehaviour
     //Method created to place sprites in the correct location, since sprite position is based on centre.
     Vector3 SpriteFloorLocationFix(Vector2Int spriteSize, Vector2Int spriteLocation)
     {
-        float spriteLocationX = spriteLocation.x + (spriteSize.x / 2.0f);
-        float spriteLocationY = spriteLocation.y + (spriteSize.y / 2.0f);
-
-        return new Vector3(spriteLocationX, 0, spriteLocationY);
+        return SpriteLocationFix(spriteSize, spriteLocation, SpritePositionType.None);
     }
 
-    Vector3 SpriteWallLocationFix(Vector2Int spriteSize, Vector2Int spriteLocation, SpritePositionType relativePos)
+    Vector3 WallSpriteLocationFix(Vector2Int spriteSize, Vector2Int spriteLocation, SpritePositionType relativePos)
+    {
+        return SpriteLocationFix(spriteSize, spriteLocation, relativePos);
+    }
+
+    Vector3 SpriteLocationFix(Vector2Int spriteSize, Vector2Int spriteLocation, SpritePositionType relativePos)
     {
         float spriteLocationX = spriteLocation.x + (spriteSize.x / 2.0f);
         float spriteLocationZ = spriteLocation.y + (spriteSize.y / 2.0f);
+        float spriteLocationY = 0.0f;
 
-        if (relativePos == SpritePositionType.Left)
+        if (relativePos != SpritePositionType.None)
         {
-            spriteLocationX = spriteLocation.x;
-        }
-        else if (relativePos == SpritePositionType.Right)
-        {
-            spriteLocationX = spriteLocation.x + spriteSize.x;
+            spriteLocationY = 0.5f;
+
+            if (relativePos == SpritePositionType.Left)
+            {
+                spriteLocationX = spriteLocation.x;
+            }
+            else if (relativePos == SpritePositionType.Right)
+            {
+                spriteLocationX = spriteLocation.x + spriteSize.x;
+            }
+
+            if (relativePos == SpritePositionType.Top)
+            {
+                spriteLocationZ = spriteLocation.y + spriteSize.x;
+            }
+            else if (relativePos == SpritePositionType.Bottom)
+            {
+                spriteLocationZ = spriteLocation.y;
+            }
         }
 
-        if (relativePos == SpritePositionType.Top)
-        {
-            spriteLocationZ = spriteLocation.y + spriteSize.x;
-        }
-        else if (relativePos == SpritePositionType.Bottom)
-        {
-            spriteLocationZ = spriteLocation.y;
-        }
-
-        return new Vector3(spriteLocationX, 0.5f, spriteLocationZ);
+        return new Vector3(spriteLocationX, spriteLocationY, spriteLocationZ);
     }
 
     //Method to choose a randomly selected sprite from the available prefabs.
@@ -426,6 +434,7 @@ public class SpriteGenerator2D : MonoBehaviour
         return spritePrefabs[random.Next(0, spritePrefabs.Length)];
     }
 
+    //Method to randomly select a wall sprite from the available prefabs.
     GameObject NextWallSprite()
     {
         return wallPrefabs[random.Next(0, wallPrefabs.Length)];
