@@ -52,20 +52,25 @@ public class DeathFeature : MonoBehaviour
         }
     }
 
+    /**
+     * This class deals with the UI Hearts.
+     * It checks for health going over max health and <= 0.
+     * It destroys all hearts and re-instantiates them every time health changes.
+     */
     private void UpdateHealth()
     {
-        if (currentHealth > maxHealth) //Check if health goes over max health
+        if (currentHealth > maxHealth) // Check if health goes over max health
         {
-            currentHealth = maxHealth; //Don't allow health overflow
+            currentHealth = maxHealth; // Don't allow health overflow
         }
         else
         {
-            foreach (Transform heart in transform) //Remove all heart prefabs from the Heart Storage
+            foreach (Transform heart in transform) // Remove all heart prefabs from the Heart Storage
             {
                 Destroy(heart.gameObject);
             }
 
-            for (int i = 0; i < maxHealth; i++) //Instantiate heart prefabs
+            for (int i = 0; i < maxHealth; i++) // Instantiate heart prefabs
             {
                 if (currentHealth == i + 1)
                 {
@@ -95,13 +100,13 @@ public class DeathFeature : MonoBehaviour
                 }
             }
 
-            if (currentHealth <= 0.0f) //Check if player is dead
+            if (currentHealth <= 0.0f) // Check if player is dead
             {
                 currentHealth = 0.0f;
-                status.UpdateText("Dead"); //Update health status text
-                //Create Game Over Text in parent object (Script is attached to Heart Storage object, child of Canvas)
+                status.UpdateText("Dead"); // Update health status text
+                // Create Game Over Text in parent object (Script is attached to Heart Storage object, child of Canvas)
                 Instantiate(gameOverText, transform.parent.gameObject.transform);
-                this.enabled = false; //Disable this script
+                this.enabled = false; // Disable this script
             }
         }
     }

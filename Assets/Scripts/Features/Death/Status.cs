@@ -11,13 +11,15 @@ public class Status : MonoBehaviour
 {
     public GameObject status;
     public Text statusText;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         statusText.text = "Alive";
     }
 
+    /**
+     * This feature updates the Text attribute to the newText parameter
+     */
     public void UpdateText(string newText)
     {
         statusText.text = newText;

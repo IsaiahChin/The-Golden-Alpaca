@@ -8,15 +8,17 @@ using UnityEngine;
  */
 public class PlayerDeathFeature : MonoBehaviour
 {
+    // Components
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     public Sprite deadSprite;
-    public float health;
 
+    // Attributes
+    public float health;
     private GameObject heartStorage;
     private DeathFeature deathFeatureScript;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -27,10 +29,12 @@ public class PlayerDeathFeature : MonoBehaviour
         health = deathFeatureScript.maxHealth;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        // Constantly update health attribute with health value from UI script
         health = deathFeatureScript.currentHealth;
+
+        // Check if player should be dead
         if (health <= 0.0f)
         {
             animator.enabled = false;
