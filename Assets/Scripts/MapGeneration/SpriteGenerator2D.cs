@@ -59,13 +59,11 @@ public class SpriteGenerator2D : MonoBehaviour
 
     //Created to hold a wall tile.
     [SerializeField]
-    GameObject wallPrefab;
+    GameObject[] wallPrefabs;
     [SerializeField]
     Material greenMaterial;
 
     //Created to hol the roof tile.
-    [SerializeField]
-    GameObject roofPrefab;
     [SerializeField]
     GameObject[] roofPrefabs;
 
@@ -247,7 +245,7 @@ public class SpriteGenerator2D : MonoBehaviour
     //Modified to work with sprites instead of cubes.
     void PlaceFloorSprite(Vector2Int location, Vector2Int size, Material material)
     {
-        GameObject go = Instantiate(NextSprite(), SpriteFloorLocationFix(size, location), Quaternion.identity);
+        GameObject go = Instantiate(NextFloorSprite(), SpriteFloorLocationFix(size, location), Quaternion.identity);
         go.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
         //Rotate sprite to be flat, then a random 90 degree rotation on the ground.
         go.GetComponent<Transform>().rotation = Quaternion.Euler(90, random.Next(0, 4) * 90, 0);
@@ -282,7 +280,7 @@ public class SpriteGenerator2D : MonoBehaviour
 
             if ((relativePos & SpritePositionType.Top) == SpritePositionType.Top)
             {
-                Wall = Instantiate(wallPrefab, SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Top)), Quaternion.identity);
+                Wall = Instantiate(NextWallSprite(), SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Top)), Quaternion.identity);
                 Wall.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 0);
             }
             if (Wall != null)
@@ -295,7 +293,7 @@ public class SpriteGenerator2D : MonoBehaviour
 
             if ((relativePos & SpritePositionType.Bottom) == SpritePositionType.Bottom)
             {
-                Wall = Instantiate(wallPrefab, SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Bottom)), Quaternion.identity);
+                Wall = Instantiate(NextWallSprite(), SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Bottom)), Quaternion.identity);
                 Wall.GetComponent<Transform>().rotation = Quaternion.Euler(0, 180, 0);
             }
             if (Wall != null)
@@ -308,7 +306,7 @@ public class SpriteGenerator2D : MonoBehaviour
 
             if ((relativePos & SpritePositionType.Left) == SpritePositionType.Left)
             {
-                Wall = Instantiate(wallPrefab, SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Left)), Quaternion.identity);
+                Wall = Instantiate(NextWallSprite(), SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Left)), Quaternion.identity);
                 Wall.GetComponent<Transform>().rotation = Quaternion.Euler(0, 270, 0);
             }
             if (Wall != null)
@@ -321,7 +319,7 @@ public class SpriteGenerator2D : MonoBehaviour
 
             if ((relativePos & SpritePositionType.Right) == SpritePositionType.Right)
             {
-                Wall = Instantiate(wallPrefab, SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Right)), Quaternion.identity);
+                Wall = Instantiate(NextWallSprite(), SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Right)), Quaternion.identity);
                 Wall.GetComponent<Transform>().rotation = Quaternion.Euler(0, 90, 0);
             }
             if (Wall != null)
@@ -462,9 +460,14 @@ public class SpriteGenerator2D : MonoBehaviour
     }
 
     //Method to choose a randomly selected sprite from the available prefabs.
-    GameObject NextSprite()
+    GameObject NextFloorSprite()
     {
         return spritePrefabs[random.Next(0, spritePrefabs.Length)];
+    }
+
+    GameObject NextWallSprite()
+    {
+        return wallPrefabs[random.Next(0, wallPrefabs.Length)];
     }
 
     //Used to detect floor tiles.
