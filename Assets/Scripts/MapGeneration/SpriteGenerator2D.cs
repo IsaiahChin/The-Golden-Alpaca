@@ -67,6 +67,10 @@ public class SpriteGenerator2D : MonoBehaviour
     [SerializeField]
     GameObject[] roofPrefabs;
 
+    //Test for spawning
+    [SerializeField]
+    GameObject alpacaPrefab;
+
     Random random;
     Grid2D<CellType> grid;
     List<Room> rooms;
@@ -620,5 +624,20 @@ public class SpriteGenerator2D : MonoBehaviour
         }
 
         return arrayLocation;
+    }
+
+    void SpawnAlpaca()
+    {
+        Room spawnRoom = rooms.ToArray()[random.Next(0, rooms.Count)];
+
+        Vector2Int spawnRoomEdge = spawnRoom.bounds.position;
+        Vector3 spawnAt = new Vector3(
+            (float)spawnRoomEdge.x + ((float)spawnRoom.bounds.size.x / 2.0f),
+            0.5f,
+            (float)spawnRoomEdge.y + ((float)spawnRoom.bounds.size.y / 2.0f));
+
+
+        GameObject alpaca = Instantiate(alpacaPrefab, spawnAt, Quaternion.identity);
+        alpaca.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
     }
 }
