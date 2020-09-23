@@ -5,14 +5,10 @@ using UnityEngine.Video;
 
 public class PlayerView : MonoBehaviour
 {
-    //private PlayerController controller;
-
     public Animator animator { get; set; }
 
     void Start()
     {
-        //controller = GetComponent<PlayerController>();
-
         animator = GetComponent<Animator>();
     }
 

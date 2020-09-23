@@ -269,8 +269,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f42f1e8de1333643b1626a96b2ce799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
-  currentHealth: 0
+  maxHealth: 5
+  currentHealth: 5
   canvas: {fileID: 142001629}
   heartStorage: {fileID: 162245545}
   emptyHeart: {fileID: 4119967270801098288, guid: 96a411163e6050748a3f5e53b8b2b395,
@@ -283,6 +283,7 @@ MonoBehaviour:
     type: 3}
   gameOverText: {fileID: 3996865793304040749, guid: caa48d378d6f11041930be12369d67ad,
     type: 3}
+  player: {fileID: 954270053}
 --- !u!114 &162245548
 MonoBehaviour:
   m_ObjectHideFlags: 0

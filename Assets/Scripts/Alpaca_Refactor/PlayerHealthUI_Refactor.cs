@@ -24,20 +24,33 @@ public class PlayerHealthUI_Refactor : MonoBehaviour
     [Header("Game Over Assets")]
     public GameObject gameOverText;
 
-    private Status status;
-    private PlayerController player;
+    [Header("Scripts")]
+    public PlayerController player;
 
-    private IEnumerator Start()
+    private void Start()
     {
-        yield return new WaitForSeconds(5000);
         canvas = transform.parent.gameObject;
-        status = canvas.GetComponent<Status>();
-        player = GameObject.Find("Alpaca").GetComponent<PlayerController>();
+        StartCoroutine(LateStart());
     }
 
+    /**
+     * This method is called after the Start method with a 1 second delay.
+     * This is to ensure that other scripts with variables are instantiated first.
+     */
+    IEnumerator LateStart()
+    {
+        yield return new WaitForSeconds(1);
+        currentHealth = player.getHealth();
+        maxHealth = player.getMaxHealth();
+        UpdateHealth();
+    }
+
+    /**
+     * This method refreshes the UI hearts depending on the amount of health the player has.
+     */
     public void UpdateHealth()
     {
-        currentHealth = player.getHealth(); // TODO: fix this null reference
+        currentHealth = player.getHealth();
         maxHealth = player.getMaxHealth();
         if (currentHealth > maxHealth) // Check if health goes over max health
         {

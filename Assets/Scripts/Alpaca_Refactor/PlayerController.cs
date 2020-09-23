@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    // MVC
     private PlayerModel model;
     private PlayerView view;
 
@@ -15,7 +16,6 @@ public class PlayerController : MonoBehaviour
         model = gameObject.AddComponent<PlayerModel>();
         view = gameObject.AddComponent<PlayerView>();
         playerHealthScript = GameObject.Find("Heart Storage").GetComponent<PlayerHealthUI_Refactor>();
-        playerHealthScript.UpdateHealth();
     }
 
     void Update()
@@ -26,9 +26,10 @@ public class PlayerController : MonoBehaviour
         if (model.health <= 0.0f)
         {
             playerHealthScript.UpdateHealth();
-            model.rigidBody.velocity = new Vector3(0, 0, 0); // Stop player movement
             view.animator.SetBool("isDead", true);
-            this.enabled = false; // Remove player controls
+            model.rigidBody.velocity = new Vector3(0, 0, 0); // Stop player movement
+            Destroy(model);
+            this.enabled = false;
         }
 
         // Health testing
@@ -48,6 +49,10 @@ public class PlayerController : MonoBehaviour
     public void heal(float life)
     {
         model.health += life;
+        if (model.health > model.maxHealth)
+        {
+            model.health = model.maxHealth;
+        }
         playerHealthScript.UpdateHealth();
     }
 

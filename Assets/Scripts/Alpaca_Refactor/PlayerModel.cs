@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerModel : MonoBehaviour
 {
+    // MVC
     private PlayerView view;
 
     // Components
@@ -29,6 +30,7 @@ public class PlayerModel : MonoBehaviour
 
     void Update()
     {
+        // Update the player animation every frame based on the mouse position and movement
         UpdateAnimator(CalculateMousePosition());
     }
 
@@ -49,7 +51,7 @@ public class PlayerModel : MonoBehaviour
     /**
      * This method calculates and returns the mouse cursor position relative to in-game
      */
-    protected Vector3 CalculateMousePosition()
+    private Vector3 CalculateMousePosition()
     {
         Vector3 mousePos = -Vector3.one;
         Plane mousePlane = new Plane(Vector3.up, 0.0f);
