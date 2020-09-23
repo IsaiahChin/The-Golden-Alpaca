@@ -276,56 +276,20 @@ public class SpriteGenerator2D : MonoBehaviour
 
         if ((relativePos | SpritePositionType.None) != SpritePositionType.None)
         {
-            GameObject Wall = null;
+            for (int i = 0; i < allWallTypes.Length; i++)
+            {
+                GameObject wall = null;
 
-            if ((relativePos & SpritePositionType.Top) == SpritePositionType.Top)
-            {
-                Wall = Instantiate(NextWallSprite(), SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Top)), Quaternion.identity);
-                Wall.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 0);
-            }
-            if (Wall != null)
-            {
-                Wall.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
-                Wall.GetComponent<SpriteRenderer>().material = material;
-            }
-
-            Wall = null;
-
-            if ((relativePos & SpritePositionType.Bottom) == SpritePositionType.Bottom)
-            {
-                Wall = Instantiate(NextWallSprite(), SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Bottom)), Quaternion.identity);
-                Wall.GetComponent<Transform>().rotation = Quaternion.Euler(0, 180, 0);
-            }
-            if (Wall != null)
-            {
-                Wall.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
-                Wall.GetComponent<SpriteRenderer>().material = material;
-            }
-
-            Wall = null;
-
-            if ((relativePos & SpritePositionType.Left) == SpritePositionType.Left)
-            {
-                Wall = Instantiate(NextWallSprite(), SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Left)), Quaternion.identity);
-                Wall.GetComponent<Transform>().rotation = Quaternion.Euler(0, 270, 0);
-            }
-            if (Wall != null)
-            {
-                Wall.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
-                Wall.GetComponent<SpriteRenderer>().material = material;
-            }
-
-            Wall = null;
-
-            if ((relativePos & SpritePositionType.Right) == SpritePositionType.Right)
-            {
-                Wall = Instantiate(NextWallSprite(), SpriteWallLocationFix(size, location, (relativePos & SpritePositionType.Right)), Quaternion.identity);
-                Wall.GetComponent<Transform>().rotation = Quaternion.Euler(0, 90, 0);
-            }
-            if (Wall != null)
-            {
-                Wall.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
-                Wall.GetComponent<SpriteRenderer>().material = material;
+                if ((relativePos & allWallTypes[i]) == allWallTypes[i])
+                {
+                    wall = Instantiate(NextWallSprite(), SpriteWallLocationFix(size, location, (relativePos & allWallTypes[i])), Quaternion.identity);
+                    wall.GetComponent<Transform>().rotation = Quaternion.Euler(0, 90 * i, 0);
+                }
+                if (wall != null)
+                {
+                    wall.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
+                    wall.GetComponent<SpriteRenderer>().material = material;
+                }
             }
         }
     }
