@@ -8,21 +8,12 @@ namespace Tests
 {
     public class PlayerMovementTests
     {
-        // A Test behaves as an ordinary method
         [Test]
         public void PlayerMovementTestsSimplePasses()
         {
-            // Use the Assert class to test conditions
-        }
+            int speed = 5;
+            Vector3 LeftMovement = new Vector3(1, 0, 0);
 
-        // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-        // `yield return null;` to skip a frame.
-        [UnityTest]
-        public IEnumerator PlayerMovementTestsWithEnumeratorPasses()
-        {
-            // Use the Assert class to test conditions.
-            // Use yield to skip a frame.
-            yield return null;
         }
     }
 }
