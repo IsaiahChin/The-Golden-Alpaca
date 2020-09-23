@@ -14,6 +14,6 @@ public class PlayerMovement
     // Calculates the speed in which the character is going in.
     public Vector3 CalculateMovement(Vector3 direction)
     {
-        
+        return direction.normalized * maxspeed;
     }
 }
