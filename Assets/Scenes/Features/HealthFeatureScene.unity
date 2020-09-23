@@ -256,7 +256,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 1090470506}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 1
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -531,18 +531,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1239554133}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ea030ebed26b464b81643c575a31788, type: 3}
+  m_Script: {fileID: 11500000, guid: daafdfca43078f54597d8c1eec27d3cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 0
   currentHealth: 0
   canvas: {fileID: 845458087}
   heartStorage: {fileID: 1239554133}
-  emptyHeart: {fileID: 4119967270801098288, guid: 76790d3bd2f1f3b4b93abf9b2169eb23,
+  emptyHeart: {fileID: 4119967270801098288, guid: 96a411163e6050748a3f5e53b8b2b395,
     type: 3}
-  halfHeart: {fileID: 7857902078775631580, guid: c27bd1791ab778343bf52235b5f5a252,
+  halfHeart: {fileID: 7857902078775631580, guid: d90e6281218325c458e756d79dec5584,
     type: 3}
-  fullHeart: {fileID: 4589217381581002406, guid: 27aef8e9c9bb4254592f3eaeb14735e8,
+  fullHeart: {fileID: 4589217381581002406, guid: 2416dda8e0990c449bf94cbb5883f0cb,
     type: 3}
   lastHalfHeart: {fileID: 1304184804011979187, guid: 2f71806234f07894b8081b1d657f4d28,
     type: 3}
