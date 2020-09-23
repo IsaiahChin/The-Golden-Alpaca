@@ -80,7 +80,7 @@ public class SpriteGenerator2D : MonoBehaviour
 
     void Generate()
     {
-        random = new Random();
+        random = new Random(0);
         grid = new Grid2D<CellType>(size, Vector2Int.zero);
         rooms = new List<Room>();
 
@@ -373,10 +373,7 @@ public class SpriteGenerator2D : MonoBehaviour
 
     void PlaceHallway(Vector2Int location)
     {
-        Vector3 floorDetection = SpriteFloorLocationFix(new Vector2Int(1, 1), location);
-        floorDetection = new Vector3(floorDetection.x, floorDetection.y - 0.1f, floorDetection.z);
-
-        if (!DetectSprite(floorDetection))
+        if (!DetectSprite(SpriteFloorLocationFix(new Vector2Int(1, 1), location)))
         {
             /*
          * Before creating hallways, the program must find out what walls to delete, and learn the hallways relative
@@ -471,8 +468,10 @@ public class SpriteGenerator2D : MonoBehaviour
     }
 
     //Used to detect floor tiles.
-    bool DetectSprite (Vector3 atPosition)
+    bool DetectSprite (Vector3 cornerPosition)
     {
+        Vector3 atPosition = new Vector3(cornerPosition.x, cornerPosition.y - 0.1f, cornerPosition.z);
+
         bool existsAtPosition = false;
 
         Collider[] foundColliders = Physics.OverlapSphere(atPosition, 0.1f);
@@ -497,10 +496,7 @@ public class SpriteGenerator2D : MonoBehaviour
             {
                 Vector2Int location = new Vector2Int(i, j);
 
-                Vector3 floorDetectionRange = SpriteFloorLocationFix(new Vector2Int(1, 1), location);
-                floorDetectionRange = new Vector3(floorDetectionRange.x, floorDetectionRange.y - 0.1f, floorDetectionRange.z);
-
-                if (!DetectSprite(floorDetectionRange))
+                if (!DetectSprite(SpriteFloorLocationFix(new Vector2Int(1, 1), location)))
                 {
                     PlaceRoofSprite(location, new Vector2Int(1, 1));
                 }

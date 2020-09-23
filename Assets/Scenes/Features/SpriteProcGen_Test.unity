@@ -159,10 +159,8 @@ MonoBehaviour:
   - {fileID: 1651923538560382547, guid: 4e6a8b2a26a391a40a18aadd31845547, type: 3}
   - {fileID: 4068667680124895519, guid: f08c3621b332e03499043461cbf70ac8, type: 3}
   - {fileID: 601962152097659205, guid: 8ac3649eba83a32419b6388954d4e88e, type: 3}
-  redMaterial: {fileID: 670224309865224971, guid: b92b405991cf972418ca613f0bc67725,
-    type: 3}
-  blueMaterial: {fileID: 670224309865224971, guid: b92b405991cf972418ca613f0bc67725,
-    type: 3}
+  redMaterial: {fileID: 2100000, guid: 149e4c64ea557234baf854205c8a3694, type: 2}
+  blueMaterial: {fileID: 2100000, guid: df7b71d6190d6cb4bbe9edfff6296bac, type: 2}
   wallPrefabs:
   - {fileID: 1194013876004247523, guid: c170bfddffead4741936500cfe4aa252, type: 3}
   - {fileID: 3121421907173534485, guid: cec8a10dce9ab8041a3aedad97ed4d81, type: 3}
@@ -170,8 +168,7 @@ MonoBehaviour:
   - {fileID: 1119054539774066894, guid: 21fbca5ec133237499f2fe92ff6ba060, type: 3}
   - {fileID: 7187436985822696762, guid: 0247f0a40d9849f4a8d95a977d017766, type: 3}
   - {fileID: 3795495423640527591, guid: 9496ff9a6662caa4f98a1567ba79baed, type: 3}
-  greenMaterial: {fileID: 670224309865224971, guid: b92b405991cf972418ca613f0bc67725,
-    type: 3}
+  greenMaterial: {fileID: 2100000, guid: 7f16c12247ea6ac40913d664fae1913a, type: 2}
   roofPrefabs:
   - {fileID: 2702961964855930636, guid: 597bb377ca6f839478368b60fa90d804, type: 3}
   - {fileID: 2785719902041192385, guid: 9e4abd23714cfe24791a92cb7acaaf3c, type: 3}
