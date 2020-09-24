@@ -11,18 +11,21 @@ public class PlayerView : MonoBehaviour
     {
         animator = GetComponent<Animator>();
     }
-
-    public void SetMoving(bool moving)
+    public void setDead(bool dead)
+    {
+        animator.SetBool("isDead", dead);
+    }
+    public void setMoving(bool moving)
     {
         animator.SetBool("isMoving", moving);
     }
 
-    public void SetPlaybackSpeed(float playbackSpeed)
+    public void setPlaybackSpeed(float playbackSpeed)
     {
         animator.SetFloat("Playback Speed", playbackSpeed);
     }
 
-    public void SetDirection(bool right, bool left)
+    public void setDirection(bool right, bool left)
     {
         animator.SetBool("Right", right);
         animator.SetBool("Left", left);

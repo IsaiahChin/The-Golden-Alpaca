@@ -21,6 +21,7 @@ public class PlayerModel : MonoBehaviour
         view = GetComponent<PlayerView>();
 
         rigidBody = gameObject.GetComponent<Rigidbody>();
+        
 
         // Initialize variables
         maxSpeed = 4.0f;
