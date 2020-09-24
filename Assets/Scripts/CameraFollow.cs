@@ -7,11 +7,16 @@ using UnityEditor;
 public class CameraFollow : MonoBehaviour
 {
     [Header("Settings")]
-    public Transform target;
+    private Transform target;
     public Vector3 offset;
     private Vector3 velocity = Vector3.zero;
     public float smoothingSpeed = 0.125f;
     public bool showSceneLabels;
+
+    private void Start()
+    {
+        target = GameObject.Find("Alpaca").transform;
+    }
 
     void FixedUpdate()
     {
@@ -27,7 +32,7 @@ public class CameraFollow : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        if (showSceneLabels)
+        if (showSceneLabels&&target!=null)
         {
             //Draw sphere from the view point of the size of the view range
             Gizmos.color = Color.white;

@@ -24,12 +24,12 @@ public class EnemyAiming : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        if (showSceneLabels)
+        if (showSceneLabels&& target != null)
         {
             //Draw sphere from the view point of the size of the view range
             Gizmos.color = Color.white;
             Gizmos.DrawLine(transform.position, target.transform.position);
-            Handles.Label(target.transform.position, "Aim Target: "+target.name);
+            Handles.Label(target.transform.position, "Aim Target: " + target.name);
         }
     }
 }

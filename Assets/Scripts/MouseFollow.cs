@@ -47,7 +47,7 @@ public class MouseFollow : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        if (showSceneLabels)
+        if (showSceneLabels&&clickPosition!=-Vector3.one)
         {
             //Draw sphere from the view point of the size of the view range
             Gizmos.color = Color.white;

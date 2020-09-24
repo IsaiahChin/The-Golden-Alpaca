@@ -6,16 +6,19 @@ using UnityEngine.Experimental.GlobalIllumination;
 //Author: MatthewCopeland
 public class MeleeWeapon : MonoBehaviour
 {
-    [Header("Resources")]
-    //Attack Point
-    public Transform attackPoint;
-    
-    //Enemy Layers
+    //Target Layers
     public LayerMask targetLayers;
+    public Transform attackPoint { get; set; }
+    
+    public float attackRange { get; set; }
+    public float AttackDamage { get; set; }
 
-    [Header("Attack Stats")]
-    public float attackRange = 0.5f;
-    public float AttackDamage = 1f;
+    private void Start()
+    {
+        attackRange = 0.5f;
+        AttackDamage = 1f;
+        attackPoint = this.gameObject.transform.GetChild(1).transform;
+    }
 
     //Standard melee attack function
     public void Attack()
@@ -30,7 +33,7 @@ public class MeleeWeapon : MonoBehaviour
 
             if (enemy.tag == "Player")
             {
-                enemy.GetComponent<Player>().decreaseHealth(AttackDamage);
+                enemy.GetComponent<PlayerController>().takeDamage(AttackDamage);
             }
             else if (enemy.tag == "Enemy")
             {
@@ -43,16 +46,11 @@ public class MeleeWeapon : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         //If there is no attack point, do nothing
-        if (attackPoint == null)
-        {
-            return;
-        }
-        else
+        if (attackPoint != null)
         {
             //Draw sphere from the attack point of the size of the attack range
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(attackPoint.position, attackRange);
         }
-
     }
 }

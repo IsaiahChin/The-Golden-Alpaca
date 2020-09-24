@@ -1,21 +1,25 @@
-﻿using System.Collections;
+﻿using JetBrains.Annotations;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 //Author: MatthewCopeland
 public class RangedWeapon : MonoBehaviour
 {
-	[Header("Resources")]
 	//Prefab of the bullet object to be fired
     public GameObject bulletPrefab;
 
-	//Attack point from where the bullet is fired from
-	public Transform attackPoint;
+    //Attack point from where the bullet is fired from
+    public Transform attackPoint { get; set; }
+    public float speed { get; set; }
+    public float damage { get; set; }
 
-	[Header("Attack Stats")]
-	//Speed that the bullet should travel at
-	public float speed = 10f;
-	public float damage = 1;
+    private void Start()
+    {
+        speed = 10.0f;
+        damage = 0.5f;
+        attackPoint = this.gameObject.transform.GetChild(1).transform;
+    }
 
     public void Attack()
     {

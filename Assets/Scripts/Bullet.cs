@@ -6,11 +6,16 @@ using UnityEngine;
 //Author: MatthewCopeland
 public class Bullet : MonoBehaviour
 {
-    [Header("Settings")]
-    public float damage=1;
-    public float decayTime = 2;
     private float timer;
-    public string shooterTag;
+    public string shooterTag { get; set; }
+    public float decayTime { get; set; }
+    public float damage { get; set; }
+
+    private void Start()
+    {
+        decayTime = 2.0f;
+        damage = 0.5f;
+    }
 
     private void FixedUpdate()
     {
@@ -27,7 +32,7 @@ public class Bullet : MonoBehaviour
         if (collision.tag=="Player"&&collision.tag!=shooterTag)
         {
             Debug.Log(shooterTag + " Hit " + collision.tag+" with "+damage+" damage - RANGED");
-            collision.GetComponent<Player>().decreaseHealth(damage);
+            collision.GetComponent<PlayerController>().takeDamage(damage);
             Destroy(gameObject);
         }
         else if (collision.tag == "Enemy" && collision.tag != shooterTag)
