@@ -3,34 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /**
- * [OUTDATED]: This class has been merged with the Player class as of 19/09/20
- * 
+ * This class is to be used only for the Death Feature Scene.
+ * It handles the alpaca 
  */
-public class PlayerHealth : MonoBehaviour
+public class PlayerDeathFeature : MonoBehaviour
 {
+    // Components
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     public Sprite deadSprite;
+
+    // Attributes
     public float health;
-
     private GameObject heartStorage;
-    private PlayerHealthUI playerHealthScript;
+    private DeathFeature deathFeatureScript;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
 
         heartStorage = GameObject.Find("Heart Storage");
-        playerHealthScript = heartStorage.GetComponent<PlayerHealthUI>();
-        health = playerHealthScript.maxHealth;
+        deathFeatureScript = heartStorage.GetComponent<DeathFeature>();
+        health = deathFeatureScript.maxHealth;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        health = playerHealthScript.currentHealth;
+        // Constantly update health attribute with health value from UI script
+        health = deathFeatureScript.currentHealth;
+
+        // Check if player should be dead
         if (health <= 0.0f)
         {
             animator.enabled = false;
