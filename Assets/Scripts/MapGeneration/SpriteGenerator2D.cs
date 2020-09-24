@@ -68,8 +68,8 @@ public class SpriteGenerator2D : MonoBehaviour
     GameObject[] roofPrefabs;
 
     //Test for spawning
-    [SerializeField]
-    GameObject alpacaPrefab;
+    //[SerializeField]
+    //GameObject alpacaPrefab;
 
     Random random;
     Grid2D<CellType> grid;
@@ -84,7 +84,7 @@ public class SpriteGenerator2D : MonoBehaviour
 
     void Generate()
     {
-        random = new Random(0);
+        random = new Random();
         grid = new Grid2D<CellType>(size, Vector2Int.zero);
         rooms = new List<Room>();
 
@@ -96,7 +96,7 @@ public class SpriteGenerator2D : MonoBehaviour
         PlaceRoof();
 
         //Call player spawn
-        SpawnAlpaca();
+        //SpawnAlpaca();
     }
 
     void PlaceRooms()
@@ -629,18 +629,18 @@ public class SpriteGenerator2D : MonoBehaviour
         return arrayLocation;
     }
 
-    void SpawnAlpaca()
-    {
-        Room spawnRoom = rooms.ToArray()[random.Next(0, rooms.Count)];
+    //void SpawnAlpaca()
+    //{
+    //    Room spawnRoom = rooms.ToArray()[random.Next(0, rooms.Count)];
 
-        Vector2Int spawnRoomEdge = spawnRoom.bounds.position;
-        Vector3 spawnAt = new Vector3(
-            (float)spawnRoomEdge.x + ((float)spawnRoom.bounds.size.x / 2.0f),
-            0.5f,
-            (float)spawnRoomEdge.y + ((float)spawnRoom.bounds.size.y / 2.0f));
+    //    Vector2Int spawnRoomEdge = spawnRoom.bounds.position;
+    //    Vector3 spawnAt = new Vector3(
+    //        (float)spawnRoomEdge.x + ((float)spawnRoom.bounds.size.x / 2.0f),
+    //        0.5f,
+    //        (float)spawnRoomEdge.y + ((float)spawnRoom.bounds.size.y / 2.0f));
 
 
-        GameObject alpaca = Instantiate(alpacaPrefab, spawnAt, Quaternion.identity);
-        alpaca.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
-    }
+    //    GameObject alpaca = Instantiate(alpacaPrefab, spawnAt, Quaternion.identity);
+    //    alpaca.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+    //}
 }
