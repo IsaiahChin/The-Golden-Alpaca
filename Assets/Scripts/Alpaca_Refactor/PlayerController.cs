@@ -13,8 +13,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        model = gameObject.AddComponent<PlayerModel>();
-        view = gameObject.AddComponent<PlayerView>();
+        model = GetComponent<PlayerModel>();
+        view = GetComponent<PlayerView>();
         playerHealthScript = GameObject.Find("Heart Storage").GetComponent<PlayerHealthUI_Refactor>();
     }
 
@@ -26,7 +26,8 @@ public class PlayerController : MonoBehaviour
         if (model.health <= 0.0f)
         {
             playerHealthScript.UpdateHealth();
-            view.animator.SetBool("isDead", true);
+            playerHealthScript.InitiateGameOver();
+            view.setDead(true);
             model.rigidBody.velocity = new Vector3(0, 0, 0); // Stop player movement
             Destroy(model);
             this.enabled = false;

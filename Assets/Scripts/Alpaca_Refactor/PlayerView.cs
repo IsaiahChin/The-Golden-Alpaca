@@ -11,7 +11,10 @@ public class PlayerView : MonoBehaviour
     {
         animator = GetComponent<Animator>();
     }
-
+    public void setDead(bool dead)
+    {
+        animator.SetBool("isDead", dead);
+    }
     public void setMoving(bool moving)
     {
         animator.SetBool("isMoving", moving);
