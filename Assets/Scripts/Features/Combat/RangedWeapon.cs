@@ -21,12 +21,18 @@ public class RangedWeapon : MonoBehaviour
         attackPoint = this.gameObject.transform.GetChild(1).transform;
     }
 
+    /**
+    * This method fires a bullet
+    */
     public void Attack()
     {
         FireBullet(attackPoint.forward);
         //Any further expansions/bullet patterns will go here
     }
 
+    /**
+    * This method instatiates then fires a bullet
+    */
     private void FireBullet(Vector3 direction)
     {
         //Instatiate a bullet object

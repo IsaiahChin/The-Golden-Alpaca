@@ -7,8 +7,6 @@ using UnityEngine.AI;
 public class NavmeshBaker : MonoBehaviour
 {
     //public navmeshsurface
-
-    // Start is called before the first frame update
     void Start()
     {
         UnityEditor.AI.NavMeshBuilder.BuildNavMesh(); 

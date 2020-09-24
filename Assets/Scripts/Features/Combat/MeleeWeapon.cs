@@ -20,7 +20,9 @@ public class MeleeWeapon : MonoBehaviour
         attackPoint = this.gameObject.transform.GetChild(1).transform;
     }
 
-    //Standard melee attack function
+    /**
+    * This method attacks anything within a given range
+    */
     public void Attack()
 	{
         //Get all the coliders within the attack range
@@ -33,16 +35,20 @@ public class MeleeWeapon : MonoBehaviour
 
             if (enemy.tag == "Player")
             {
+                //If the collider is a player, call the player damage script
                 enemy.GetComponent<PlayerController>().takeDamage(AttackDamage);
             }
             else if (enemy.tag == "Enemy")
             {
+                //If the collider is a enemy, call the enemy damage script
                 enemy.GetComponent<EnemyHealthController>().decreaseHealth(AttackDamage);
             }
         }
     }
 
-    //Draws an representation of the attack range on the attack point for the scene view
+    /**
+    * This method displays the melee attack range
+    */
     private void OnDrawGizmosSelected()
     {
         //If there is no attack point, do nothing

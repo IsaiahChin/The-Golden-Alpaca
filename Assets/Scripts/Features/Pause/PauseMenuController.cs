@@ -11,6 +11,7 @@ public class PauseMenuController : MonoBehaviour
 
     private void Start()
     {
+        //Set paused to false
         GameIsPaused = false;
     }
 
@@ -33,6 +34,7 @@ public class PauseMenuController : MonoBehaviour
 
     public void Resume()
     {
+        //Resume the game
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
@@ -40,6 +42,7 @@ public class PauseMenuController : MonoBehaviour
 
     private void Pause()
     {
+        //Pause the game
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;

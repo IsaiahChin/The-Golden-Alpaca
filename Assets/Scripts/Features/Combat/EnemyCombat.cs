@@ -8,32 +8,44 @@ public class EnemyCombat : MonoBehaviour
 {
     private Animator animator;
 
+    //Melee attack stats
     [Header("Melee Attack")]
     public MeleeWeapon melee;
     public float meleeAttackRate = 1f;
     public float meleeAttackRange = 1f;
 
+    //Ranged attack stats
     [Header("Ranged Attack")]
     public RangedWeapon ranged;
     public float rangedAttackRate = 1f;
     public float rangedAttackRange = 5f;
 
+    //Attack range states
     private bool playerInMeleeRange;
     private bool playerInRangedRange;
 
+    //General settings
     [Header("Settings")]
     public LayerMask attackLayer;
     public bool showSceneLabels;
 
+    //Attack cooldown
     private float nextAttackTime = 0f;
 
+    /**
+     * This method finds the sword animatior
+     */
     private void Start()
     {
         animator = GameObject.Find("EnemySword").GetComponent<Animator>();
     }
 
+    /**
+     * This method controls manages the enemies attack
+     */
     void FixedUpdate()
     {
+        //Check what range the player is from the enemy
         playerInMeleeRange = Physics.CheckSphere(melee.attackPoint.position, meleeAttackRange, attackLayer);
         playerInRangedRange = Physics.CheckSphere(ranged.attackPoint.position, rangedAttackRange, attackLayer);
 
@@ -42,13 +54,14 @@ public class EnemyCombat : MonoBehaviour
         {
             if (playerInMeleeRange)
             {
-                //Melee attack
+                //If the player is in the melee attack range then preform a melee attack
                 animator.SetTrigger("Attack");
                 melee.Attack();
                 nextAttackTime = Time.time + 1f / meleeAttackRate;
             }
             else if(playerInRangedRange)
             {
+                //If the player is in the ranged attack range then preform a ranged attack
                 ranged.Attack();
                 nextAttackTime = Time.time + 1f / rangedAttackRate;
             }
