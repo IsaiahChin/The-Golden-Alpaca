@@ -24,6 +24,10 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (true)
+        {
+
+        }
         model.newPosition = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
         // Check if player should be dead
