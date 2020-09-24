@@ -10,9 +10,13 @@ public class PlayerController : MonoBehaviour
     private PlayerView view;
 
     private PlayerHealthUI_Refactor playerHealthScript; // Links health UI to player
+    private MeleeWeapon melee;
+    private RangedWeapon ranged;
 
     void Start()
     {
+        melee = this.gameObject.GetComponent<MeleeWeapon>();
+        ranged = this.gameObject.GetComponent<RangedWeapon>();
         model = gameObject.AddComponent<PlayerModel>();
         view = gameObject.AddComponent<PlayerView>();
         playerHealthScript = GameObject.Find("Heart Storage").GetComponent<PlayerHealthUI_Refactor>();
@@ -41,6 +45,22 @@ public class PlayerController : MonoBehaviour
         {
             takeDamage(0.5f);
         }
+
+        if (Time.time >= model.nextAttackTime)
+        {
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                view.swordAnimator.SetTrigger("Attack");
+                melee.Attack();
+                model.nextAttackTime = Time.time + 1f / model.meleeAttackRate;
+            }
+            else if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                ranged.Attack();
+                model.nextAttackTime = Time.time + 1f / model.rangedAttackRate;
+            }
+        }
+
     }
 
     /**

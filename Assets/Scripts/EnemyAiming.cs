@@ -6,7 +6,7 @@ using UnityEngine;
 //Author: MatthewCopeland
 public class EnemyAiming : MonoBehaviour
 {
-    public GameObject target;
+    private GameObject target;
     public bool showSceneLabels;
 
     private void Start()

@@ -6,10 +6,12 @@ using UnityEngine.Video;
 public class PlayerView : MonoBehaviour
 {
     public Animator animator { get; set; }
+    public Animator swordAnimator { get; set; }
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        swordAnimator = GameObject.Find("AlpacaSword").GetComponent<Animator>();
     }
 
     public void setMoving(bool moving)

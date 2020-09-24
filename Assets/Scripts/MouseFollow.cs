@@ -6,10 +6,16 @@ using UnityEngine;
 //Author: MatthewCopeland
 public class MouseFollow : MonoBehaviour
 {
-    public Camera mainCamera;
+    private Camera mainCamera;
     public bool showSceneLabels;
 
     private Vector3 clickPosition;
+
+    private void Start()
+    {
+        mainCamera = Camera.main;
+        showSceneLabels = true;
+    }
 
     // Update is called once per frame
     void FixedUpdate()
