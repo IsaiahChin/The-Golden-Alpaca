@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
         {
             playerHealthScript.UpdateHealth();
             playerHealthScript.InitiateGameOver();
-            view.setDead(true);
+            view.SetDead(true);
             model.rigidBody.velocity = new Vector3(0, 0, 0); // Stop player movement
             Destroy(model);
             this.enabled = false;
