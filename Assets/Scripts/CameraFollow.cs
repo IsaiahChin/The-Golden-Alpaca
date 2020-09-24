@@ -34,7 +34,6 @@ public class CameraFollow : MonoBehaviour
     {
         if (showSceneLabels&&target!=null)
         {
-            //Draw sphere from the view point of the size of the view range
             Gizmos.color = Color.white;
             Gizmos.DrawLine(transform.position, target.position);
             Handles.Label(target.position,"Follow Target: "+target.name);
