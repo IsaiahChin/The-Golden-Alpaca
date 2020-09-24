@@ -31,18 +31,21 @@ public class PlayerHealthUI_Refactor : MonoBehaviour
     {
         canvas = transform.parent.gameObject;
         StartCoroutine(LateStart());
+      
     }
 
     /**
      * This method is called after the Start method with a 1 second delay.
      * This is to ensure that other scripts with variables are instantiated first.
      */
+     
     IEnumerator LateStart()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         currentHealth = player.getHealth();
         maxHealth = player.getMaxHealth();
         UpdateHealth();
+        
     }
 
     /**
@@ -93,13 +96,15 @@ public class PlayerHealthUI_Refactor : MonoBehaviour
                 }
             }
 
-            if (currentHealth <= 0.0f) //Check if player is dead
-            {
-                currentHealth = 0.0f;
-                // Create Game Over Text in parent object (Script is attached to Heart Storage object, child of Canvas)
-                Instantiate(gameOverText, transform.parent.gameObject.transform);
-                this.enabled = false; // Disable this script
-            }
         }
+    }
+
+    //This method instantiates game over text in the UI and disables script    
+    public void InitiateGameOver()
+    {
+        currentHealth = 0.0f;
+        // Create Game Over Text in parent object (Script is attached to Heart Storage object, child of Canvas)
+        Instantiate(gameOverText, transform.parent.gameObject.transform);
+        this.enabled = false; // Disable this script
     }
 }
