@@ -87,6 +87,7 @@ public class PlayerController : MonoBehaviour
     public void takeDamage(float damage)
     {
         model.health -= damage;
+        //view.animator.SetTrigger("Hit");
         playerHealthScript.UpdateHealth();
     }
 
