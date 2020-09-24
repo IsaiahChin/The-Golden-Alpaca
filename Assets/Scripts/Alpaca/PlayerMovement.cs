@@ -8,7 +8,7 @@ public class PlayerMovement
 
     public PlayerMovement(float maxspeed)
     {
-        this.maxSpeed = maxspeed;
+        this.maxspeed = maxspeed;
     }
 
     // Calculates the speed in which the character is going in.

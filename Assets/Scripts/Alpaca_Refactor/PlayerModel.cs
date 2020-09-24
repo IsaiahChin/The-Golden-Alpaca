@@ -45,7 +45,7 @@ public class PlayerModel : MonoBehaviour
      */
     public Vector3 CalculateMovement(Vector3 direction)
     {
-        return direction * maxSpeed;
+        return direction.normalized * maxSpeed;
     }
 
     /**
