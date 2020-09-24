@@ -40,8 +40,8 @@ public class PlayerHealthUI_Refactor : MonoBehaviour
     IEnumerator LateStart()
     {
         yield return new WaitForSeconds(1);
-        currentHealth = player.getHealth();
-        maxHealth = player.getMaxHealth();
+        currentHealth = player.GetHealth();
+        maxHealth = player.GetMaxHealth();
         UpdateHealth();
     }
 
@@ -50,8 +50,8 @@ public class PlayerHealthUI_Refactor : MonoBehaviour
      */
     public void UpdateHealth()
     {
-        currentHealth = player.getHealth();
-        maxHealth = player.getMaxHealth();
+        currentHealth = player.GetHealth();
+        maxHealth = player.GetMaxHealth();
         if (currentHealth > maxHealth) // Check if health goes over max health
         {
             currentHealth = maxHealth; // Don't allow health overflow

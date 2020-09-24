@@ -35,18 +35,18 @@ public class PlayerController : MonoBehaviour
         // Health testing
         if (Input.GetKeyDown(KeyCode.RightBracket)) // Increase health by one half
         {
-            heal(0.5f);
+            Heal(0.5f);
         }
         else if (Input.GetKeyDown(KeyCode.LeftBracket)) // Decrease health by one half
         {
-            takeDamage(0.5f);
+            TakeDamage(0.5f);
         }
     }
 
     /**
      * This method increases the health attribute by the life parameter
      */
-    public void heal(float life)
+    public void Heal(float life)
     {
         model.health += life;
         if (model.health > model.maxHealth)
@@ -59,18 +59,18 @@ public class PlayerController : MonoBehaviour
     /**
      * This method decreases the health attribute by the damage parameter
      */
-    public void takeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         model.health -= damage;
         playerHealthScript.UpdateHealth();
     }
 
-    public float getHealth()
+    public float GetHealth()
     {
         return model.health;
     }
 
-    public float getMaxHealth()
+    public float GetMaxHealth()
     {
         return model.maxHealth;
     }
