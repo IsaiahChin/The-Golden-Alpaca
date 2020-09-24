@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 0ea030ebed26b464b81643c575a31788
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - canvas: {instanceID: 0}
+  - heartStorage: {instanceID: 0}
+  - emptyHeart: {fileID: 4119967270801098288, guid: 96a411163e6050748a3f5e53b8b2b395,
+      type: 3}
+  - halfHeart: {fileID: 7857902078775631580, guid: d90e6281218325c458e756d79dec5584,
+      type: 3}
+  - fullHeart: {fileID: 4589217381581002406, guid: 2416dda8e0990c449bf94cbb5883f0cb,
+      type: 3}
+  - lastHalfHeart: {fileID: 1304184804011979187, guid: 2f71806234f07894b8081b1d657f4d28,
+      type: 3}
+  - gameOverText: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
