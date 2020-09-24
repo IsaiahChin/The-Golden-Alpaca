@@ -29,8 +29,8 @@ public class PlayerModel : MonoBehaviour
         rigidBody = gameObject.GetComponent<Rigidbody>();
 
         // Initialize variables
-        maxSpeed = 10.0f;
-        maxHealth = 3.0f;
+        maxSpeed = 5.0f;
+        maxHealth = 6.0f;
         health = maxHealth;
         meleeAttackRate = 2.0f;
         rangedAttackRate = 2.0f;

@@ -15,8 +15,8 @@ public class MeleeWeapon : MonoBehaviour
 
     private void Start()
     {
-        attackRange = 0.5f;
-        AttackDamage = 1f;
+        attackRange = 1f;
+        AttackDamage = 0.5f;
         attackPoint = this.gameObject.transform.GetChild(1).transform;
     }
 

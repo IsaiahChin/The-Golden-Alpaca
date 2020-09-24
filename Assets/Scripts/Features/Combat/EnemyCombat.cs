@@ -10,13 +10,13 @@ public class EnemyCombat : MonoBehaviour
 
     [Header("Melee Attack")]
     public MeleeWeapon melee;
-    public float meleeAttackRate = 2f;
-    public float meleeAttackRange = 5f;
+    public float meleeAttackRate = 1f;
+    public float meleeAttackRange = 1f;
 
     [Header("Ranged Attack")]
     public RangedWeapon ranged;
-    public float rangedAttackRate = 2f;
-    public float rangedAttackRange = 10f;
+    public float rangedAttackRate = 1f;
+    public float rangedAttackRange = 5f;
 
     private bool playerInMeleeRange;
     private bool playerInRangedRange;
@@ -58,7 +58,7 @@ public class EnemyCombat : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         //If there is no attack point, do nothing
-        if (showSceneLabels&&melee!=null&&ranged!=null)
+        if (showSceneLabels&&melee.attackPoint!=null&&ranged.attackPoint!=null)
         {
             //Draw sphere from the attack point of the size of the attack range
             Gizmos.color = Color.red;
