@@ -58,7 +58,7 @@ public class EnemyCombat : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         //If there is no attack point, do nothing
-        if (showSceneLabels)
+        if (showSceneLabels&&melee!=null&&ranged!=null)
         {
             //Draw sphere from the attack point of the size of the attack range
             Gizmos.color = Color.red;

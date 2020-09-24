@@ -50,7 +50,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 1
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -109,7 +109,7 @@ GameObject:
   m_Component:
   - component: {fileID: 716316077608473630}
   - component: {fileID: 716316077608473631}
-  - component: {fileID: 716316077608473617}
+  - component: {fileID: 2147802983562038035}
   m_Layer: 5
   m_Name: Heart Storage
   m_TagString: Untagged
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Spacing: {x: 20, y: 20}
   m_Constraint: 0
   m_ConstraintCount: 2
---- !u!114 &716316077608473617
+--- !u!114 &2147802983562038035
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,20 +169,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 716316077608473628}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ea030ebed26b464b81643c575a31788, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f42f1e8de1333643b1626a96b2ce799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
-  currentHealth: 0
+  maxHealth: 5
+  currentHealth: 5
   canvas: {fileID: 716316076174452462}
   heartStorage: {fileID: 716316077608473628}
-  emptyHeart: {fileID: 4119967270801098288, guid: 76790d3bd2f1f3b4b93abf9b2169eb23,
+  emptyHeart: {fileID: 4119967270801098288, guid: 96a411163e6050748a3f5e53b8b2b395,
     type: 3}
-  halfHeart: {fileID: 7857902078775631580, guid: c27bd1791ab778343bf52235b5f5a252,
+  halfHeart: {fileID: 7857902078775631580, guid: d90e6281218325c458e756d79dec5584,
     type: 3}
-  fullHeart: {fileID: 4589217381581002406, guid: 27aef8e9c9bb4254592f3eaeb14735e8,
+  fullHeart: {fileID: 4589217381581002406, guid: 2416dda8e0990c449bf94cbb5883f0cb,
     type: 3}
   lastHalfHeart: {fileID: 1304184804011979187, guid: 2f71806234f07894b8081b1d657f4d28,
     type: 3}
   gameOverText: {fileID: 3996865793304040749, guid: caa48d378d6f11041930be12369d67ad,
     type: 3}
+  player: {fileID: 0}
