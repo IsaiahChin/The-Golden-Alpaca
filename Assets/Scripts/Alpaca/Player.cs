@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
     /**
      * This method decreases the health attribute by the damage parameter
      */
-    private void decreaseHealth(float damage)
+    public void decreaseHealth(float damage)
     {
         health -= damage;
         playerHealthScript.UpdateHealth();

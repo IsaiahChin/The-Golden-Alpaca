@@ -10,43 +10,80 @@ public class PlayerController : MonoBehaviour
     private PlayerView view;
 
     private PlayerHealthUI_Refactor playerHealthScript; // Links health UI to player
+    private MeleeWeapon melee;
+    private RangedWeapon ranged;
+
+    private PauseMenuController pauseMenu;
 
     void Start()
     {
-        model = gameObject.AddComponent<PlayerModel>();
-        view = gameObject.AddComponent<PlayerView>();
+        pauseMenu = GameObject.Find("PauseCanvas").GetComponent<PauseMenuController>();
+        melee = this.gameObject.GetComponent<MeleeWeapon>();
+        ranged = this.gameObject.GetComponent<RangedWeapon>();
+        model = GetComponent<PlayerModel>();
+        view = GetComponent<PlayerView>();
         playerHealthScript = GameObject.Find("Heart Storage").GetComponent<PlayerHealthUI_Refactor>();
     }
 
     void Update()
     {
-        model.newPosition = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-
-        // Check if player should be dead
-        if (model.health <= 0.0f)
+        if (pauseMenu.GameIsPaused==false)
         {
-            playerHealthScript.UpdateHealth();
-            view.animator.SetBool("isDead", true);
-            model.rigidBody.velocity = new Vector3(0, 0, 0); // Stop player movement
-            Destroy(model);
-            this.enabled = false;
+            model.newPosition = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+
+            // Check if player should be dead
+            if (model.health <= 0.0f)
+            {
+				playerHealthScript.UpdateHealth();
+				playerHealthScript.InitiateGameOver();
+				view.SetDead(true);
+				model.rigidBody.velocity = new Vector3(0, 0, 0); // Stop player movement
+				Destroy(model);
+				this.enabled = false;
+            }
+
+            // Health testing
+            if (Input.GetKeyDown(KeyCode.RightBracket)) // Increase health by one half
+            {
+                heal(0.5f);
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftBracket)) // Decrease health by one half
+            {
+                takeDamage(0.5f);
+            }
+
+            if (Time.time >= model.nextAttackTime)
+            {
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    view.swordAnimator.SetTrigger("Attack");
+                    melee.Attack();
+                    model.nextAttackTime = Time.time + 1f / model.meleeAttackRate;
+                }
+                else if (Input.GetKeyDown(KeyCode.Mouse1))
+                {
+                    ranged.Attack();
+                    model.nextAttackTime = Time.time + 1f / model.rangedAttackRate;
+                }
+            }
+            
         }
 
         // Health testing
         if (Input.GetKeyDown(KeyCode.RightBracket)) // Increase health by one half
         {
-            heal(0.5f);
+            HealPlayer(0.5f);
         }
         else if (Input.GetKeyDown(KeyCode.LeftBracket)) // Decrease health by one half
         {
-            takeDamage(0.5f);
+            DamagePlayer(0.5f);
         }
     }
 
     /**
      * This method increases the health attribute by the life parameter
      */
-    public void heal(float life)
+    public void HealPlayer(float life)
     {
         model.health += life;
         if (model.health > model.maxHealth)
@@ -59,9 +96,10 @@ public class PlayerController : MonoBehaviour
     /**
      * This method decreases the health attribute by the damage parameter
      */
-    public void takeDamage(float damage)
+    public void DamagePlayer(float damage)
     {
         model.health -= damage;
+        //view.animator.SetTrigger("Hit");
         playerHealthScript.UpdateHealth();
     }
 

@@ -16,16 +16,26 @@ public class PlayerModel : MonoBehaviour
     public float maxHealth { get; set; }
     public float maxSpeed { get; set; }
 
+    public float meleeAttackRate { get; set; }
+
+    public float rangedAttackRate { get; set; }
+
+    public float nextAttackTime { get; set; }
+
     void Start()
     {
         view = GetComponent<PlayerView>();
 
         rigidBody = gameObject.GetComponent<Rigidbody>();
+        
 
         // Initialize variables
-        maxSpeed = 4.0f;
-        maxHealth = 3.0f;
+        maxSpeed = 5.0f;
+        maxHealth = 6.0f;
         health = maxHealth;
+        meleeAttackRate = 2.0f;
+        rangedAttackRate = 2.0f;
+        nextAttackTime = 0.0f;
     }
 
     void Update()
@@ -74,7 +84,7 @@ public class PlayerModel : MonoBehaviour
         // Change booleans in player animator depending on movement speed
         if (newPosition.x != 0.0f || newPosition.z != 0.0f) // Check if player is moving
         {
-            view.setMoving(true);
+            view.SetMoving(true);
             /**
              * Note: No check for x == 0.0f because we want to retain 
              * the previous "Right" or "Left" state when moving only up or down
@@ -83,33 +93,33 @@ public class PlayerModel : MonoBehaviour
             {
                 if (mousePos.x > transform.position.x) // Check if mouse is right of player
                 {
-                    view.setDirection(true, false);
-                    view.setPlaybackSpeed(1.0f);
+                    view.SetDirection(true, false);
+                    view.SetPlaybackSpeed(1.0f);
                 }
                 else
                 {
-                    view.setDirection(false, true);
-                    view.setPlaybackSpeed(-1.0f);
+                    view.SetDirection(false, true);
+                    view.SetPlaybackSpeed(-1.0f);
                 }
             }
             else
             {
                 if (mousePos.x > transform.position.x)
                 {
-                    view.setDirection(true, false);
-                    view.setPlaybackSpeed(-1.0f);
+                    view.SetDirection(true, false);
+                    view.SetPlaybackSpeed(-1.0f);
                 }
                 else
                 {
-                    view.setDirection(false, true);
-                    view.setPlaybackSpeed(1.0f);
+                    view.SetDirection(false, true);
+                    view.SetPlaybackSpeed(1.0f);
                 }
             }
         }
         else
         {
-            view.setMoving(false);
-            view.setPlaybackSpeed(1.0f);
+            view.SetMoving(false);
+            view.SetPlaybackSpeed(1.0f);
         }
     }
 }

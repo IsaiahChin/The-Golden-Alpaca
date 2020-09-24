@@ -498,8 +498,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 954270057}
-  offset: {x: 0, y: 3, z: -4}
-  smoothSpeed: 0.05
+  offset: {x: 0, y: 2, z: -5}
+  smoothingSpeed: 0.125
+  showSceneLabels: 0
 --- !u!1 &658974204
 GameObject:
   m_ObjectHideFlags: 0
@@ -639,9 +640,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 954270052}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf3f3f1bd92c07f469660e6755d41ceb, type: 3}
+  m_Script: {fileID: 11500000, guid: bf05c63f45054244ab97915b68a57e62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 954270056}
+  animator: {fileID: 954270055}
+  health: 0
   maxSpeed: 0
 --- !u!54 &954270054
 Rigidbody:
