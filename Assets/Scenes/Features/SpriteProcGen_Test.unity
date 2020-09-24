@@ -190,7 +190,7 @@ MonoBehaviour:
   - {fileID: 7909974285045172944, guid: d5ea082862d69cd47b0305e9339e4017, type: 3}
   - {fileID: 3634083779287960188, guid: 21e6de79a641ae24b91a0346006d60c4, type: 3}
   - {fileID: 3245215636748981985, guid: b17586c35eb0b1745923071d73594da6, type: 3}
-  alpacaPrefab: {fileID: 7660538627576734624, guid: 79a2c3edaa252cf4a86fdb0bd4930a82,
+  alpacaPrefab: {fileID: 7789210365783323947, guid: 79a2c3edaa252cf4a86fdb0bd4930a82,
     type: 3}
 --- !u!4 &78370887
 Transform:
