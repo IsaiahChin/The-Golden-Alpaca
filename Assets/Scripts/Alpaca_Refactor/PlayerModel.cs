@@ -27,6 +27,7 @@ public class PlayerModel : MonoBehaviour
         view = GetComponent<PlayerView>();
 
         rigidBody = gameObject.GetComponent<Rigidbody>();
+        
 
         // Initialize variables
         maxSpeed = 5.0f;
@@ -83,7 +84,7 @@ public class PlayerModel : MonoBehaviour
         // Change booleans in player animator depending on movement speed
         if (newPosition.x != 0.0f || newPosition.z != 0.0f) // Check if player is moving
         {
-            view.setMoving(true);
+            view.SetMoving(true);
             /**
              * Note: No check for x == 0.0f because we want to retain 
              * the previous "Right" or "Left" state when moving only up or down
@@ -92,33 +93,33 @@ public class PlayerModel : MonoBehaviour
             {
                 if (mousePos.x > transform.position.x) // Check if mouse is right of player
                 {
-                    view.setDirection(true, false);
-                    view.setPlaybackSpeed(1.0f);
+                    view.SetDirection(true, false);
+                    view.SetPlaybackSpeed(1.0f);
                 }
                 else
                 {
-                    view.setDirection(false, true);
-                    view.setPlaybackSpeed(-1.0f);
+                    view.SetDirection(false, true);
+                    view.SetPlaybackSpeed(-1.0f);
                 }
             }
             else
             {
                 if (mousePos.x > transform.position.x)
                 {
-                    view.setDirection(true, false);
-                    view.setPlaybackSpeed(-1.0f);
+                    view.SetDirection(true, false);
+                    view.SetPlaybackSpeed(-1.0f);
                 }
                 else
                 {
-                    view.setDirection(false, true);
-                    view.setPlaybackSpeed(1.0f);
+                    view.SetDirection(false, true);
+                    view.SetPlaybackSpeed(1.0f);
                 }
             }
         }
         else
         {
-            view.setMoving(false);
-            view.setPlaybackSpeed(1.0f);
+            view.SetMoving(false);
+            view.SetPlaybackSpeed(1.0f);
         }
     }
 }

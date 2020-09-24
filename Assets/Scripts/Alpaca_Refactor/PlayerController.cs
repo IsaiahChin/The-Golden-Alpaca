@@ -20,8 +20,8 @@ public class PlayerController : MonoBehaviour
         pauseMenu = GameObject.Find("PauseCanvas").GetComponent<PauseMenuController>();
         melee = this.gameObject.GetComponent<MeleeWeapon>();
         ranged = this.gameObject.GetComponent<RangedWeapon>();
-        model = gameObject.AddComponent<PlayerModel>();
-        view = gameObject.AddComponent<PlayerView>();
+        model = GetComponent<PlayerModel>();
+        view = GetComponent<PlayerView>();
         playerHealthScript = GameObject.Find("Heart Storage").GetComponent<PlayerHealthUI_Refactor>();
     }
 
@@ -34,11 +34,12 @@ public class PlayerController : MonoBehaviour
             // Check if player should be dead
             if (model.health <= 0.0f)
             {
-                playerHealthScript.UpdateHealth();
-                view.animator.SetBool("isDead", true);
-                model.rigidBody.velocity = new Vector3(0, 0, 0); // Stop player movement
-                Destroy(model);
-                this.enabled = false;
+				playerHealthScript.UpdateHealth();
+				playerHealthScript.InitiateGameOver();
+				view.SetDead(true);
+				model.rigidBody.velocity = new Vector3(0, 0, 0); // Stop player movement
+				Destroy(model);
+				this.enabled = false;
             }
 
             // Health testing
@@ -65,13 +66,24 @@ public class PlayerController : MonoBehaviour
                     model.nextAttackTime = Time.time + 1f / model.rangedAttackRate;
                 }
             }
+            
+        }
+
+        // Health testing
+        if (Input.GetKeyDown(KeyCode.RightBracket)) // Increase health by one half
+        {
+            HealPlayer(0.5f);
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftBracket)) // Decrease health by one half
+        {
+            DamagePlayer(0.5f);
         }
     }
 
     /**
      * This method increases the health attribute by the life parameter
      */
-    public void heal(float life)
+    public void HealPlayer(float life)
     {
         model.health += life;
         if (model.health > model.maxHealth)
@@ -84,7 +96,7 @@ public class PlayerController : MonoBehaviour
     /**
      * This method decreases the health attribute by the damage parameter
      */
-    public void takeDamage(float damage)
+    public void DamagePlayer(float damage)
     {
         model.health -= damage;
         //view.animator.SetTrigger("Hit");
