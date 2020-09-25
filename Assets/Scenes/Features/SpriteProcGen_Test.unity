@@ -191,7 +191,7 @@ MonoBehaviour:
   - {fileID: 3634083779287960188, guid: 21e6de79a641ae24b91a0346006d60c4, type: 3}
   - {fileID: 3245215636748981985, guid: b17586c35eb0b1745923071d73594da6, type: 3}
   enemyPrefabs:
-  - {fileID: 1677702235491058087, guid: 6108aee5515ea3645a1aa762f2d84e67, type: 3}
+  - {fileID: 1961051431253368337, guid: e0b645bd06dfb354c8cfdf50cff6674f, type: 3}
   minEnemyNumber: 1
 --- !u!4 &78370887
 Transform:
