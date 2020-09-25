@@ -103,8 +103,8 @@ public class SpriteGenerator2D : MonoBehaviour
         PlaceRoof();
 
         //Call player spawn
-        SpawnAlpaca();
-        SpawnEnemies();
+        Room playerSpawn = SpawnAlpaca();
+        SpawnEnemies(playerSpawn);
     }
 
     void PlaceRooms()
@@ -638,7 +638,7 @@ public class SpriteGenerator2D : MonoBehaviour
         return arrayLocation;
     }
 
-    void SpawnAlpaca()
+    Room SpawnAlpaca()
     {
         Room spawnRoom = rooms.ToArray()[random.Next(0, rooms.Count)];
 
@@ -652,41 +652,46 @@ public class SpriteGenerator2D : MonoBehaviour
         GameObject alpaca = Instantiate(alpacaPrefab, spawnAt, Quaternion.identity);
         alpaca.name = "Alpaca";
         alpaca.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+
+        return spawnRoom;
     }
 
-    void SpawnEnemies()
+    void SpawnEnemies(Room playerSpawn)
     {
         foreach (Room toSpawnIn in rooms)
         {
-            Vector2Int spawnRoomEdge = toSpawnIn.bounds.position;
-            int maxEnemyNumber = Mathf.Min(toSpawnIn.bounds.size.x, toSpawnIn.bounds.size.y) - 2;
-            int enemiesSpawned = 0;
-            int enemiesToSpawn = random.Next(minEnemyNumber, maxEnemyNumber);
-
-            while (enemiesSpawned < enemiesToSpawn)
+            if (toSpawnIn != playerSpawn)
             {
-                Vector2Int spawnPosition = new Vector2Int(
-                spawnRoomEdge.x + random.Next(0, toSpawnIn.bounds.size.x),
-                spawnRoomEdge.y + random.Next(0, toSpawnIn.bounds.size.y));
+                Vector2Int spawnRoomEdge = toSpawnIn.bounds.position;
+                int maxEnemyNumber = Mathf.Min(toSpawnIn.bounds.size.x, toSpawnIn.bounds.size.y) - 2;
+                int enemiesSpawned = 0;
+                int enemiesToSpawn = random.Next(minEnemyNumber, maxEnemyNumber);
 
-                Vector3 spawnAt = SpriteFloorLocationFix(new Vector2Int(1, 1), spawnPosition);
-                spawnAt = new Vector3(spawnAt.x, 0.5f, spawnAt.z);
-
-                bool enemyExists = false;
-                Collider[] potentialEnemies = Physics.OverlapSphere(spawnAt, 0.1f);
-                foreach (Collider sprite in potentialEnemies)
+                while (enemiesSpawned < enemiesToSpawn)
                 {
-                    if (sprite.tag == "Enemy")
+                    Vector2Int spawnPosition = new Vector2Int(
+                    spawnRoomEdge.x + random.Next(0, toSpawnIn.bounds.size.x),
+                    spawnRoomEdge.y + random.Next(0, toSpawnIn.bounds.size.y));
+
+                    Vector3 spawnAt = SpriteFloorLocationFix(new Vector2Int(1, 1), spawnPosition);
+                    spawnAt = new Vector3(spawnAt.x, 0.5f, spawnAt.z);
+
+                    bool enemyExists = false;
+                    Collider[] potentialEnemies = Physics.OverlapSphere(spawnAt, 0.1f);
+                    foreach (Collider sprite in potentialEnemies)
                     {
-                        enemyExists = false;
+                        if (sprite.tag == "Enemy")
+                        {
+                            enemyExists = false;
+                        }
                     }
-                }
 
-                if (!enemyExists)
-                {
-                    GameObject enemy = Instantiate(enemyPrefabs[random.Next(0, enemyPrefabs.Length)], spawnAt, Quaternion.identity);
-                    enemy.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                    enemiesSpawned++;
+                    if (!enemyExists)
+                    {
+                        GameObject enemy = Instantiate(enemyPrefabs[random.Next(0, enemyPrefabs.Length)], spawnAt, Quaternion.identity);
+                        enemy.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                        enemiesSpawned++;
+                    }
                 }
             }
         }
