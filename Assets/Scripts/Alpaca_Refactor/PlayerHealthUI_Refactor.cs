@@ -30,22 +30,19 @@ public class PlayerHealthUI_Refactor : MonoBehaviour
     private void Start()
     {
         canvas = transform.parent.gameObject;
-        StartCoroutine(LateStart());
-      
+        StartCoroutine(LateStart(1));
     }
 
     /**
-     * This method is called after the Start method with a 1 second delay.
+     * This method is called after the Start method with a delay time.
      * This is to ensure that other scripts with variables are instantiated first.
      */
-     
-    IEnumerator LateStart()
+    IEnumerator LateStart(float delayTime)
     {
-        yield return new WaitForSeconds(0.5f);
-        currentHealth = player.getHealth();
-        maxHealth = player.getMaxHealth();
+        yield return new WaitForSeconds(delayTime);
+        currentHealth = player.GetHealth();
+        maxHealth = player.GetMaxHealth();
         UpdateHealth();
-        
     }
 
     /**
@@ -53,8 +50,8 @@ public class PlayerHealthUI_Refactor : MonoBehaviour
      */
     public void UpdateHealth()
     {
-        currentHealth = player.getHealth();
-        maxHealth = player.getMaxHealth();
+        currentHealth = player.GetHealth();
+        maxHealth = player.GetMaxHealth();
         if (currentHealth > maxHealth) // Check if health goes over max health
         {
             currentHealth = maxHealth; // Don't allow health overflow
@@ -99,7 +96,9 @@ public class PlayerHealthUI_Refactor : MonoBehaviour
         }
     }
 
-    //This method instantiates game over text in the UI and disables script    
+    /**
+     * This method instantiates game over text in the UI and disables script
+     */
     public void InitiateGameOver()
     {
         currentHealth = 0.0f;
