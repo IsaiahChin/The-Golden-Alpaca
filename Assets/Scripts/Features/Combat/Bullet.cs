@@ -40,14 +40,18 @@ public class Bullet : MonoBehaviour
         if (collision.tag=="Player"&&collision.tag!=shooterTag)
         {
             //If the collision is with a player and the player didnt shoot it, then self destrict
-            Debug.Log(shooterTag + " Hit " + collision.tag+" with "+damage+" damage - RANGED");
+            
+            //Outdated: From combat development
+            //Debug.Log(shooterTag + " Hit " + collision.tag+" with "+damage+" damage - RANGED");
             collision.GetComponent<PlayerController>().DamagePlayer(damage);
             Destroy(gameObject);
         }
         else if (collision.tag == "Enemy" && collision.tag != shooterTag)
         {
             //If the collision is with a enemy and the enemy didnt shoot it, then self destrict
-            Debug.Log(shooterTag + " Hit " + collision.tag + " with " + damage + " damage - RANGED");
+            
+            //Outdated: From combat development
+            //Debug.Log(shooterTag + " Hit " + collision.tag + " with " + damage + " damage - RANGED");
             collision.GetComponent<EnemyHealthController>().decreaseHealth(damage);
             Destroy(gameObject);
         }

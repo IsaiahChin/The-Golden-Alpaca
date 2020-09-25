@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyHealthController : MonoBehaviour
 {
     public float health;
+    public Animator animator;
 
     private void Update()
     {
@@ -22,6 +23,6 @@ public class EnemyHealthController : MonoBehaviour
     public void decreaseHealth(float damage)
     {
         health -= damage;
-        Debug.Log("Hit with " + damage + " points of damage, current health is " + health);
+        animator.SetTrigger("Hit");
     }
 }

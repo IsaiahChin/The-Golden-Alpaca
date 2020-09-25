@@ -16,6 +16,7 @@ public class PlayerModel : MonoBehaviour
     public float maxHealth { get; set; }
     public float maxSpeed { get; set; }
 
+    // Attack attributes
     public float meleeAttackRate { get; set; }
 
     public float rangedAttackRate { get; set; }
@@ -25,14 +26,13 @@ public class PlayerModel : MonoBehaviour
     void Start()
     {
         view = GetComponent<PlayerView>();
-
-        rigidBody = gameObject.GetComponent<Rigidbody>();
+        rigidBody = GetComponent<Rigidbody>();
         
-
         // Initialize variables
         maxSpeed = 5.0f;
-        maxHealth = 6.0f;
+        maxHealth = 3.0f;
         health = maxHealth;
+
         meleeAttackRate = 2.0f;
         rangedAttackRate = 2.0f;
         nextAttackTime = 0.0f;
