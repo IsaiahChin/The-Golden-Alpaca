@@ -11,7 +11,11 @@ public class GameOverController : MonoBehaviour
     {
         DisableGameOver();
     }
-
+    
+    /**
+     * This method pauses the time scale of the game and sets a boolean variable
+     * to true. Then activates a Game Over menu screen.
+     */
     public void EnableGameOver()
     {
         Time.timeScale = 0f;
@@ -19,6 +23,10 @@ public class GameOverController : MonoBehaviour
         gameOverMenu.SetActive(isGameOver);
     }
 
+    /**
+     * This method resets the time scale of the game and sets a boolean variable
+     * to false. Then deactivates the Game Over menu screen.
+     */
     public void DisableGameOver()
     {
         Time.timeScale = 1f;
