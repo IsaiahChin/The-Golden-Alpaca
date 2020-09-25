@@ -14,7 +14,7 @@ public class RangedWeapon : MonoBehaviour
     public float speed { get; set; }
     public float damage { get; set; }
 
-    private void Start()
+    private void Awake()
     {
         speed = 10.0f;
         damage = 0.5f;

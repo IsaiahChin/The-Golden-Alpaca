@@ -103,7 +103,7 @@ public class SpriteGenerator2D : MonoBehaviour
         PlaceRoof();
 
         //Call player spawn
-        SpawnAlpaca();
+        //SpawnAlpaca();
         SpawnEnemies();
     }
 
@@ -686,6 +686,9 @@ public class SpriteGenerator2D : MonoBehaviour
                     GameObject enemy = Instantiate(enemyPrefabs[random.Next(0, enemyPrefabs.Length)], spawnAt, Quaternion.identity);
                     enemy.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
                     enemiesSpawned++;
+
+                    //Test Code
+                    MeleeWeapon test = enemy.GetComponent<MeleeWeapon>();
                 }
             }
         }
