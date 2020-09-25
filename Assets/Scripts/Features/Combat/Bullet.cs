@@ -41,7 +41,7 @@ public class Bullet : MonoBehaviour
         {
             //If the collision is with a player and the player didnt shoot it, then self destrict
             Debug.Log(shooterTag + " Hit " + collision.tag+" with "+damage+" damage - RANGED");
-            collision.GetComponent<PlayerController>().takeDamage(damage);
+            collision.GetComponent<PlayerController>().DamagePlayer(damage);
             Destroy(gameObject);
         }
         else if (collision.tag == "Enemy" && collision.tag != shooterTag)

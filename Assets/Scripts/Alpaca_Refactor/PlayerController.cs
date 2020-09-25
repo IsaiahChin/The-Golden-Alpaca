@@ -45,11 +45,11 @@ public class PlayerController : MonoBehaviour
             // Health testing
             if (Input.GetKeyDown(KeyCode.RightBracket)) // Increase health by one half
             {
-                heal(0.5f);
+                HealPlayer(0.5f);
             }
             else if (Input.GetKeyDown(KeyCode.LeftBracket)) // Decrease health by one half
             {
-                takeDamage(0.5f);
+                DamagePlayer(0.5f);
             }
 
             if (Time.time >= model.nextAttackTime)
