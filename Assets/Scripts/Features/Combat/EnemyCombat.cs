@@ -46,7 +46,10 @@ public class EnemyCombat : MonoBehaviour
     void FixedUpdate()
     {
         //Check what range the player is from the enemy
-        playerInMeleeRange = Physics.CheckSphere(melee.attackPoint.position, meleeAttackRange, attackLayer);
+        playerInMeleeRange = Physics.CheckSphere(
+            melee.attackPoint.position,
+            meleeAttackRange,
+            attackLayer);
         playerInRangedRange = Physics.CheckSphere(ranged.attackPoint.position, rangedAttackRange, attackLayer);
 
         //If attack has reset to avoid attack spamming
