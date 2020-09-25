@@ -667,9 +667,21 @@ public class SpriteGenerator2D : MonoBehaviour
             Vector3 spawnAt = SpriteFloorLocationFix(new Vector2Int(1, 1), spawnPosition);
             spawnAt = new Vector3(spawnAt.x, 0.5f, spawnAt.z);
 
-            GameObject enemy = Instantiate(enemyPrefabs[random.Next(0, enemyPrefabs.Length)], spawnAt, Quaternion.identity);
-            enemy.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            bool enemyExists = false;
+            Collider[] potentialEnemies = Physics.OverlapSphere(spawnAt, 0.1f);
+            foreach (Collider sprite in potentialEnemies)
+            {
+                if (sprite.tag == "Enemy")
+                {
+                    enemyExists = false;
+                }
+            }
 
+            if (!enemyExists)
+            {
+                GameObject enemy = Instantiate(enemyPrefabs[random.Next(0, enemyPrefabs.Length)], spawnAt, Quaternion.identity);
+                enemy.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            }
         }
     }
 }
