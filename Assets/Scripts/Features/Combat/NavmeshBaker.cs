@@ -6,9 +6,9 @@ using UnityEngine.AI;
 
 public class NavmeshBaker : MonoBehaviour
 {
-    //public navmeshsurface
+    //public NavMeshSurface
     void Start()
     {
-        UnityEditor.AI.NavMeshBuilder.BuildNavMesh(); 
+        UnityEditor.AI.NavMeshBuilder.BuildNavMesh();
     }
 }
