@@ -658,15 +658,18 @@ public class SpriteGenerator2D : MonoBehaviour
         {
             Vector2Int spawnRoomEdge = toSpawnIn.bounds.position;
 
-            int maxEnemyNumber = Mathf.Max(toSpawnIn.bounds.size.x, toSpawnIn.bounds.size.y) - 2;
+            //int maxEnemyNumber = Mathf.Max(toSpawnIn.bounds.size.x, toSpawnIn.bounds.size.y) - 2;
 
-            Vector3 spawnAt = new Vector3(
-                (float)spawnRoomEdge.x + ((float)random.Next(0, toSpawnIn.bounds.size.x)),
-                0.5f,
-                (float)spawnRoomEdge.y + ((float)random.Next(0, toSpawnIn.bounds.size.x)));
+            Vector2Int spawnPosition = new Vector2Int(
+                spawnRoomEdge.x + random.Next(0, toSpawnIn.bounds.size.x),
+                spawnRoomEdge.y + random.Next(0, toSpawnIn.bounds.size.y));
+
+            Vector3 spawnAt = SpriteFloorLocationFix(new Vector2Int(1, 1), spawnPosition);
+            spawnAt = new Vector3(spawnAt.x, 0.5f, spawnAt.z);
 
             GameObject enemy = Instantiate(enemyPrefabs[random.Next(0, enemyPrefabs.Length)], spawnAt, Quaternion.identity);
             enemy.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+
         }
     }
 }
