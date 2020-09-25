@@ -257,7 +257,7 @@ Animator:
   m_GameObject: {fileID: 4902178324375276467}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 191bd0201a0b6db49b687ea20f440e30, type: 2}
+  m_Controller: {fileID: 9100000, guid: 522a001a263d27747a9e797fed2c18ad, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -295,10 +295,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   melee: {fileID: 4902178324375276465}
-  meleeAttackRate: 2
+  meleeAttackRate: 0.5
   meleeAttackRange: 1
   ranged: {fileID: 4902178324375276466}
-  rangedAttackRate: 2
+  rangedAttackRate: 0.5
   rangedAttackRange: 5
   attackLayer:
     serializedVersion: 2
@@ -359,7 +359,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 920db9137a5c64444993665c25624f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 6
+  health: 3
+  animator: {fileID: 8249869463085454176}
 --- !u!114 &4902178324375276107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,7 +388,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 10
+  m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 0
