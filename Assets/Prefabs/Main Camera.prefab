@@ -146,8 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7a9ad9bf32bc734d8b7f4013c8ba2f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  offset: {x: 0, y: 8, z: -8}
+  offset: {x: 0, y: 3, z: -4}
   smoothingSpeed: 0.125
   showSceneLabels: 1
 --- !u!114 &6336638331049417745

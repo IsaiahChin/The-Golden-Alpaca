@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Image = UnityEngine.UI.Image;
 
-public class PlayerHealthUI_Refactor : MonoBehaviour
+public class ReturnToMainMenuHeartUI : MonoBehaviour
 {
     [Header("Health Stats")]
     public float maxHealth;
@@ -20,9 +20,6 @@ public class PlayerHealthUI_Refactor : MonoBehaviour
     public GameObject halfHeart;
     public GameObject fullHeart;
     public GameObject lastHalfHeart;
-
-    //[Header("Game Over Assets")]
-    //public GameObject gameOverText;
 
     [Header("Scripts")]
     public PlayerController player;
