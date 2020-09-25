@@ -657,30 +657,35 @@ public class SpriteGenerator2D : MonoBehaviour
         foreach (Room toSpawnIn in rooms)
         {
             Vector2Int spawnRoomEdge = toSpawnIn.bounds.position;
+            int maxEnemyNumber = Mathf.Min(toSpawnIn.bounds.size.x, toSpawnIn.bounds.size.y) - 2;
+            int enemiesSpawned = 0;
+            int enemiesToSpawn = random.Next(minEnemyNumber, maxEnemyNumber);
 
-            //int maxEnemyNumber = Mathf.Max(toSpawnIn.bounds.size.x, toSpawnIn.bounds.size.y) - 2;
-
-            Vector2Int spawnPosition = new Vector2Int(
+            while (enemiesSpawned < enemiesToSpawn)
+            {
+                Vector2Int spawnPosition = new Vector2Int(
                 spawnRoomEdge.x + random.Next(0, toSpawnIn.bounds.size.x),
                 spawnRoomEdge.y + random.Next(0, toSpawnIn.bounds.size.y));
 
-            Vector3 spawnAt = SpriteFloorLocationFix(new Vector2Int(1, 1), spawnPosition);
-            spawnAt = new Vector3(spawnAt.x, 0.5f, spawnAt.z);
+                Vector3 spawnAt = SpriteFloorLocationFix(new Vector2Int(1, 1), spawnPosition);
+                spawnAt = new Vector3(spawnAt.x, 0.5f, spawnAt.z);
 
-            bool enemyExists = false;
-            Collider[] potentialEnemies = Physics.OverlapSphere(spawnAt, 0.1f);
-            foreach (Collider sprite in potentialEnemies)
-            {
-                if (sprite.tag == "Enemy")
+                bool enemyExists = false;
+                Collider[] potentialEnemies = Physics.OverlapSphere(spawnAt, 0.1f);
+                foreach (Collider sprite in potentialEnemies)
                 {
-                    enemyExists = false;
+                    if (sprite.tag == "Enemy")
+                    {
+                        enemyExists = false;
+                    }
                 }
-            }
 
-            if (!enemyExists)
-            {
-                GameObject enemy = Instantiate(enemyPrefabs[random.Next(0, enemyPrefabs.Length)], spawnAt, Quaternion.identity);
-                enemy.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                if (!enemyExists)
+                {
+                    GameObject enemy = Instantiate(enemyPrefabs[random.Next(0, enemyPrefabs.Length)], spawnAt, Quaternion.identity);
+                    enemy.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    enemiesSpawned++;
+                }
             }
         }
     }
