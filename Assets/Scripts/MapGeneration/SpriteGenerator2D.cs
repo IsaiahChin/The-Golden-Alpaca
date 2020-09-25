@@ -299,6 +299,7 @@ public class SpriteGenerator2D : MonoBehaviour
                 {
                     wall = Instantiate(NextWallSprite(), WallSpriteLocationFix(size, location, (relativePos & allWallTypes[i])), Quaternion.identity);
                     wall.GetComponent<Transform>().rotation = Quaternion.Euler(0, 90 * i, 0);
+                    wall.tag = "Enviroment";
                 }
                 if (wall != null)
                 {
@@ -354,7 +355,7 @@ public class SpriteGenerator2D : MonoBehaviour
     {
         if (!DetectSprite(SpriteFloorLocationFix(new Vector2Int(1, 1), location)))
         {
-            /*
+        /*
          * Before creating hallways, the program must find out what walls to delete, and learn the hallways relative
          * position, based on the deleted walls.
          */
@@ -686,9 +687,6 @@ public class SpriteGenerator2D : MonoBehaviour
                     GameObject enemy = Instantiate(enemyPrefabs[random.Next(0, enemyPrefabs.Length)], spawnAt, Quaternion.identity);
                     enemy.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
                     enemiesSpawned++;
-
-                    //Test Code
-                    MeleeWeapon test = enemy.GetComponent<MeleeWeapon>();
                 }
             }
         }
