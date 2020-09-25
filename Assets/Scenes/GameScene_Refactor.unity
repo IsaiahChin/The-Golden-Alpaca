@@ -341,7 +341,7 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 624117793}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00c1d600dc6624c4793a5323689302f0, type: 3}
 --- !u!20 &611738000 stripped
@@ -350,87 +350,6 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 236734391788104903}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &624117792
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1457024374300521502, guid: 28db7e55271397643a71daea6274ebb8,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1457024374300521502, guid: 28db7e55271397643a71daea6274ebb8,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1457024374300521502, guid: 28db7e55271397643a71daea6274ebb8,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1457024374300521502, guid: 28db7e55271397643a71daea6274ebb8,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.3420201
-      objectReference: {fileID: 0}
-    - target: {fileID: 1457024374300521502, guid: 28db7e55271397643a71daea6274ebb8,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1457024374300521502, guid: 28db7e55271397643a71daea6274ebb8,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1457024374300521502, guid: 28db7e55271397643a71daea6274ebb8,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9396927
-      objectReference: {fileID: 0}
-    - target: {fileID: 1457024374300521502, guid: 28db7e55271397643a71daea6274ebb8,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1457024374300521502, guid: 28db7e55271397643a71daea6274ebb8,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 1457024374300521502, guid: 28db7e55271397643a71daea6274ebb8,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1457024374300521502, guid: 28db7e55271397643a71daea6274ebb8,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1457024374554860645, guid: 28db7e55271397643a71daea6274ebb8,
-        type: 3}
-      propertyPath: m_Name
-      value: Alpaca
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 28db7e55271397643a71daea6274ebb8, type: 3}
---- !u!114 &624117793 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1091197059421077493, guid: 28db7e55271397643a71daea6274ebb8,
-    type: 3}
-  m_PrefabInstance: {fileID: 624117792}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 369003f0f0c4f2e4ba7335e3b3a6086e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &658974204
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,7 +629,7 @@ PrefabInstance:
     - target: {fileID: 8714820308133208738, guid: 29d736b2e4bb8b042a2a54b45982da23,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8714820308133208738, guid: 29d736b2e4bb8b042a2a54b45982da23,
         type: 3}
@@ -732,6 +651,12 @@ PrefabInstance:
       propertyPath: enemyPrefabs.Array.data[0]
       value: 
       objectReference: {fileID: 4902178324375276467, guid: 814c4d0ab82f70b44bc88f8e1a333c9f,
+        type: 3}
+    - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
+        type: 3}
+      propertyPath: alpacaPrefab
+      value: 
+      objectReference: {fileID: 1457024374554860645, guid: 28db7e55271397643a71daea6274ebb8,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29d736b2e4bb8b042a2a54b45982da23, type: 3}

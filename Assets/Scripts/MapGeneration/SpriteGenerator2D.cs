@@ -103,7 +103,7 @@ public class SpriteGenerator2D : MonoBehaviour
         PlaceRoof();
 
         //Call player spawn
-        //SpawnAlpaca();
+        SpawnAlpaca();
         SpawnEnemies();
     }
 
