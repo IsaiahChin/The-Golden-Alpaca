@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
     public void DamagePlayer(float damage)
     {
         model.health -= damage;
-        //view.animator.SetTrigger("Hit");
+        view.animator.SetTrigger("Hit");
         playerHealthScript.UpdateHealth();
     }
 

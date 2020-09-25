@@ -13,7 +13,7 @@ public class MeleeWeapon : MonoBehaviour
     public float attackRange { get; set; }
     public float AttackDamage { get; set; }
 
-    private void Start()
+    private void Awake()
     {
         attackRange = 1f;
         AttackDamage = 0.5f;
@@ -31,7 +31,8 @@ public class MeleeWeapon : MonoBehaviour
         //Damage each collider with an enemy layer 
         foreach (Collider enemy in hitEnemies)
         {
-            Debug.Log(this.tag+" Hit " + enemy.name+" with "+AttackDamage+" damage - Melee");
+            //Outdated: From combat development
+            //Debug.Log(this.tag+" Hit " + enemy.name+" with "+AttackDamage+" damage - Melee");
 
             if (enemy.tag == "Player")
             {
