@@ -36,7 +36,7 @@ public class MeleeWeapon : MonoBehaviour
             if (enemy.tag == "Player")
             {
                 //If the collider is a player, call the player damage script
-                enemy.GetComponent<PlayerController>().takeDamage(AttackDamage);
+                enemy.GetComponent<PlayerController>().DamagePlayer(AttackDamage);
             }
             else if (enemy.tag == "Enemy")
             {
