@@ -71,6 +71,13 @@ public class SpriteGenerator2D : MonoBehaviour
     //[SerializeField]
     //GameObject alpacaPrefab;
 
+    //List of Enemies
+    [SerializeField]
+    GameObject[] enemyPrefabs;
+    //Minimum number of enemies per room
+    [SerializeField]
+    int minEnemyNumber;
+
     Random random;
     Grid2D<CellType> grid;
     List<Room> rooms;
@@ -97,6 +104,7 @@ public class SpriteGenerator2D : MonoBehaviour
 
         //Call player spawn
         //SpawnAlpaca();
+        SpawnEnemies();
     }
 
     void PlaceRooms()
@@ -643,4 +651,22 @@ public class SpriteGenerator2D : MonoBehaviour
     //    GameObject alpaca = Instantiate(alpacaPrefab, spawnAt, Quaternion.identity);
     //    alpaca.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
     //}
+
+    void SpawnEnemies()
+    {
+        foreach (Room toSpawnIn in rooms)
+        {
+            Vector2Int spawnRoomEdge = toSpawnIn.bounds.position;
+
+            int maxEnemyNumber = Mathf.Max(toSpawnIn.bounds.size.x, toSpawnIn.bounds.size.y) - 2;
+
+            Vector3 spawnAt = new Vector3(
+                (float)spawnRoomEdge.x + ((float)random.Next(0, toSpawnIn.bounds.size.x)),
+                0.5f,
+                (float)spawnRoomEdge.y + ((float)random.Next(0, toSpawnIn.bounds.size.x)));
+
+            GameObject enemy = Instantiate(enemyPrefabs[random.Next(0, enemyPrefabs.Length)], spawnAt, Quaternion.identity);
+            enemy.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        }
+    }
 }
