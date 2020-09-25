@@ -20,7 +20,7 @@ public class CameraFollow : MonoBehaviour
 
     IEnumerator LateStart()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.1f);
         target = GameObject.Find("Alpaca").transform;
     }
 

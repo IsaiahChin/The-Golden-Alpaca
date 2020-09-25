@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Image = UnityEngine.UI.Image;
 
-public class PlayerHealthUI_Refactor : MonoBehaviour
+public class ReturnToMainMenuHeartUI : MonoBehaviour
 {
     [Header("Health Stats")]
     public float maxHealth;
@@ -28,7 +28,6 @@ public class PlayerHealthUI_Refactor : MonoBehaviour
     {
         canvas = transform.parent.gameObject;
         StartCoroutine(LateStart(0.5f));
-        player = GameObject.Find("Alpaca").GetComponent<PlayerController>();
     }
 
     /**
@@ -100,6 +99,8 @@ public class PlayerHealthUI_Refactor : MonoBehaviour
     public void InitiateGameOver()
     {
         currentHealth = 0.0f;
+        // Create Game Over Text in parent object (Script is attached to Heart Storage object, child of Canvas)
+        //Instantiate(gameOverText, transform.parent.gameObject.transform);
         this.enabled = false; // Disable this script
     }
 }
