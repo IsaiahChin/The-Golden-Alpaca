@@ -63,7 +63,7 @@ public class SpriteGenerator2D : MonoBehaviour
     [SerializeField]
     Material greenMaterial;
 
-    //Created to hol the roof tile.
+    //Created to hold the roof tile.
     [SerializeField]
     GameObject[] roofPrefabs;
 
@@ -104,6 +104,7 @@ public class SpriteGenerator2D : MonoBehaviour
 
         //Call player spawn
         Room playerSpawn = SpawnAlpaca();
+        //Call enemy spawn
         SpawnEnemies(playerSpawn);
     }
 
