@@ -31,6 +31,7 @@ public class PlayerHealthUI_Refactor : MonoBehaviour
     {
         canvas = transform.parent.gameObject;
         StartCoroutine(LateStart(1));
+        player = GameObject.Find("Alpaca").GetComponent<PlayerController>();
     }
 
     /**
