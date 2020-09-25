@@ -9,37 +9,40 @@ public class PlayerController : MonoBehaviour
     private PlayerModel model;
     private PlayerView view;
 
+    // Scripts
     private PlayerHealthUI_Refactor playerHealthScript; // Links health UI to player
-    private MeleeWeapon melee;
-    private RangedWeapon ranged;
+    private MeleeWeapon meleeWeaponScript;              // Melee weapon script
+    private RangedWeapon rangedWeaponScript;            // Ranged weapon script
 
     private PauseMenuController pauseMenu;
 
     void Start()
     {
-        pauseMenu = GameObject.Find("PauseCanvas").GetComponent<PauseMenuController>();
-        melee = this.gameObject.GetComponent<MeleeWeapon>();
-        ranged = this.gameObject.GetComponent<RangedWeapon>();
         model = GetComponent<PlayerModel>();
         view = GetComponent<PlayerView>();
         playerHealthScript = GameObject.Find("Heart Storage").GetComponent<PlayerHealthUI_Refactor>();
+
+        meleeWeaponScript = GetComponent<MeleeWeapon>();
+        rangedWeaponScript = GetComponent<RangedWeapon>();
+
+        pauseMenu = GameObject.Find("PauseCanvas").GetComponent<PauseMenuController>();
     }
 
     void Update()
     {
-        if (pauseMenu.GameIsPaused==false)
+        if (pauseMenu.GameIsPaused == false)
         {
             model.newPosition = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
             // Check if player should be dead
             if (model.health <= 0.0f)
             {
-				playerHealthScript.UpdateHealth();
-				playerHealthScript.InitiateGameOver();
-				view.SetDead(true);
-				model.rigidBody.velocity = new Vector3(0, 0, 0); // Stop player movement
-				Destroy(model);
-				this.enabled = false;
+                playerHealthScript.UpdateHealth();
+                playerHealthScript.InitiateGameOver();
+                view.SetDead(true);
+                model.rigidBody.velocity = new Vector3(0, 0, 0); // Stop player movement
+                Destroy(model);
+                this.enabled = false;
             }
 
             // Health testing
@@ -57,26 +60,16 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
                     view.swordAnimator.SetTrigger("Attack");
-                    melee.Attack();
+                    meleeWeaponScript.Attack();
                     model.nextAttackTime = Time.time + 1f / model.meleeAttackRate;
                 }
                 else if (Input.GetKeyDown(KeyCode.Mouse1))
                 {
-                    ranged.Attack();
+                    rangedWeaponScript.Attack();
                     model.nextAttackTime = Time.time + 1f / model.rangedAttackRate;
                 }
             }
-            
-        }
 
-        // Health testing
-        if (Input.GetKeyDown(KeyCode.RightBracket)) // Increase health by one half
-        {
-            HealPlayer(0.5f);
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftBracket)) // Decrease health by one half
-        {
-            DamagePlayer(0.5f);
         }
     }
 
@@ -103,12 +96,12 @@ public class PlayerController : MonoBehaviour
         playerHealthScript.UpdateHealth();
     }
 
-    public float getHealth()
+    public float GetHealth()
     {
         return model.health;
     }
 
-    public float getMaxHealth()
+    public float GetMaxHealth()
     {
         return model.maxHealth;
     }
