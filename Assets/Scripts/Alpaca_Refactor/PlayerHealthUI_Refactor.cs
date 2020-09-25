@@ -21,16 +21,13 @@ public class PlayerHealthUI_Refactor : MonoBehaviour
     public GameObject fullHeart;
     public GameObject lastHalfHeart;
 
-    [Header("Game Over Assets")]
-    public GameObject gameOverText;
-
     [Header("Scripts")]
     public PlayerController player;
 
     private void Start()
     {
         canvas = transform.parent.gameObject;
-        StartCoroutine(LateStart(1));
+        StartCoroutine(LateStart(0.5f));
         player = GameObject.Find("Alpaca").GetComponent<PlayerController>();
     }
 
@@ -103,8 +100,6 @@ public class PlayerHealthUI_Refactor : MonoBehaviour
     public void InitiateGameOver()
     {
         currentHealth = 0.0f;
-        // Create Game Over Text in parent object (Script is attached to Heart Storage object, child of Canvas)
-        Instantiate(gameOverText, transform.parent.gameObject.transform);
         this.enabled = false; // Disable this script
     }
 }

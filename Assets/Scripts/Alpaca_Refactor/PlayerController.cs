@@ -44,18 +44,11 @@ public class PlayerController : MonoBehaviour
                 view.SetDead(true);
                 gameOverMenu.EnableGameOver();
                 model.rigidBody.velocity = new Vector3(0, 0, 0); // Stop player movement
-                model.enabled = false;
-                this.enabled = false;
-            }
 
-            // Health testing
-            if (Input.GetKeyDown(KeyCode.RightBracket)) // Increase health by one half
-            {
-                HealPlayer(0.5f);
-            }
-            else if (Input.GetKeyDown(KeyCode.LeftBracket)) // Decrease health by one half
-            {
-                DamagePlayer(0.5f);
+                // Disable MVC
+                model.enabled = false;
+                view.enabled = false;
+                this.enabled = false;
             }
 
             if (Time.time >= model.nextAttackTime)

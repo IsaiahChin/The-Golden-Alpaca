@@ -26,7 +26,7 @@ public class Bullet : MonoBehaviour
     private void FixedUpdate()
     {
         timer += 1.0f * Time.deltaTime;
-        if (timer>= decayTime)
+        if (timer >= decayTime)
         {
             Destroy(gameObject);
         }
@@ -37,10 +37,10 @@ public class Bullet : MonoBehaviour
     */
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.tag=="Player"&&collision.tag!=shooterTag)
+        if (collision.tag == "Player" && collision.tag != shooterTag)
         {
             //If the collision is with a player and the player didnt shoot it, then self destrict
-            
+
             //Outdated: From combat development
             //Debug.Log(shooterTag + " Hit " + collision.tag+" with "+damage+" damage - RANGED");
             collision.GetComponent<PlayerController>().DamagePlayer(damage);
@@ -49,7 +49,7 @@ public class Bullet : MonoBehaviour
         else if (collision.tag == "Enemy" && collision.tag != shooterTag)
         {
             //If the collision is with a enemy and the enemy didnt shoot it, then self destrict
-            
+
             //Outdated: From combat development
             //Debug.Log(shooterTag + " Hit " + collision.tag + " with " + damage + " damage - RANGED");
             collision.GetComponent<EnemyHealthController>().decreaseHealth(damage);
@@ -59,6 +59,6 @@ public class Bullet : MonoBehaviour
         {
             //If the collision is with the enviroment, self destrict
             Destroy(gameObject);
-        }     
+        }
     }
 }
