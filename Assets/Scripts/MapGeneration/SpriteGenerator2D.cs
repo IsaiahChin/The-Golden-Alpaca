@@ -78,6 +78,9 @@ public class SpriteGenerator2D : MonoBehaviour
     [SerializeField]
     int minEnemyNumber;
 
+    //List of Wall Props
+    GameObject[] wallProps;
+
     Random random;
     Grid2D<CellType> grid;
     List<Room> rooms;
