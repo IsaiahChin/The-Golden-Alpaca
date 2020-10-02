@@ -91,7 +91,7 @@ public class SpriteGenerator2D : MonoBehaviour
 
     void Generate()
     {
-        random = new Random();
+        random = new Random(0);
         grid = new Grid2D<CellType>(size, Vector2Int.zero);
         rooms = new List<Room>();
 
