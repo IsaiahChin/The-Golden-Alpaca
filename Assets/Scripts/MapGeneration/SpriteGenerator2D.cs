@@ -51,7 +51,7 @@ public class SpriteGenerator2D : MonoBehaviour
     Vector2Int roomMinSize = new Vector2Int(1, 1);
     //Modified to hold a selection of different floor tiles.
     [SerializeField]
-    GameObject[] spritePrefabs;
+    GameObject[] floorPrefabs;
     [SerializeField]
     Material redMaterial;
     [SerializeField]
@@ -261,7 +261,7 @@ public class SpriteGenerator2D : MonoBehaviour
     //Modified to work with sprites instead of cubes.
     void PlaceFloorSprite(Vector2Int location, Vector2Int size, Material material)
     {
-        GameObject go = Instantiate(NextFloorSprite(), SpriteFloorLocationFix(size, location), Quaternion.identity);
+        GameObject go = Instantiate(NextSprite(floorPrefabs), SpriteFloorLocationFix(size, location), Quaternion.identity);
         go.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
         //Rotate sprite to be flat, then a random 90 degree rotation on the ground.
         go.GetComponent<Transform>().rotation = Quaternion.Euler(90, random.Next(0, 4) * 90, 0);
@@ -298,7 +298,7 @@ public class SpriteGenerator2D : MonoBehaviour
 
                 if ((relativePos & allWallTypes[i]) == allWallTypes[i])
                 {
-                    wall = Instantiate(NextWallSprite(), WallSpriteLocationFix(size, location, (relativePos & allWallTypes[i])), Quaternion.identity);
+                    wall = Instantiate(NextSprite(wallPrefabs), WallSpriteLocationFix(size, location, (relativePos & allWallTypes[i])), Quaternion.identity);
                     wall.GetComponent<Transform>().rotation = Quaternion.Euler(0, 90 * i, 0);
                     wall.tag = "Enviroment";
                 }
@@ -445,16 +445,10 @@ public class SpriteGenerator2D : MonoBehaviour
         return new Vector3(spriteLocationX, spriteLocationY, spriteLocationZ);
     }
 
-    //Method to choose a randomly selected sprite from the available prefabs.
-    GameObject NextFloorSprite()
+    //Method to choose a random sprite from the given sprites entered.
+    GameObject NextSprite(GameObject[] sprites)
     {
-        return spritePrefabs[random.Next(0, spritePrefabs.Length)];
-    }
-
-    //Method to randomly select a wall sprite from the available prefabs.
-    GameObject NextWallSprite()
-    {
-        return wallPrefabs[random.Next(0, wallPrefabs.Length)];
+        return sprites[random.Next(0, sprites.Length)];
     }
 
     //Used to detect floor tiles.
