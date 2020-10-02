@@ -299,6 +299,7 @@ public class SpriteGenerator2D : MonoBehaviour
             for (int i = 0; i < allWallTypes.Length; i++)
             {
                 GameObject wall = null;
+                int placePropChance = random.Next() % 3;
 
                 if ((relativePos & allWallTypes[i]) == allWallTypes[i])
                 {
@@ -310,6 +311,12 @@ public class SpriteGenerator2D : MonoBehaviour
                 {
                     wall.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
                     wall.GetComponent<SpriteRenderer>().material = material;
+                }
+                if (placePropChance == 0)
+                {
+                    GameObject prop = Instantiate(NextSprite(wallProps), WallSpriteLocationFix(size, location, (relativePos & allWallTypes[i])), Quaternion.identity);
+                    prop.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
+                    prop.GetComponent<Transform>().rotation = Quaternion.Euler(0, 90 * i, 0);
                 }
             }
         }
