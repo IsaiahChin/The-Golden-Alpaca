@@ -79,6 +79,7 @@ public class SpriteGenerator2D : MonoBehaviour
     int minEnemyNumber;
 
     //List of Wall Props
+    [SerializeField]
     GameObject[] wallProps;
 
     Random random;
