@@ -299,11 +299,12 @@ public class SpriteGenerator2D : MonoBehaviour
             for (int i = 0; i < allWallTypes.Length; i++)
             {
                 GameObject wall = null;
+                SpritePositionType currentPos = relativePos & allWallTypes[i];
                 int placePropChance = random.Next() % 3;
 
-                if ((relativePos & allWallTypes[i]) == allWallTypes[i])
+                if (currentPos == allWallTypes[i])
                 {
-                    wall = Instantiate(NextSprite(wallPrefabs), WallSpriteLocationFix(size, location, (relativePos & allWallTypes[i])), Quaternion.identity);
+                    wall = Instantiate(NextSprite(wallPrefabs), WallSpriteLocationFix(size, location, currentPos), Quaternion.identity);
                     wall.GetComponent<Transform>().rotation = Quaternion.Euler(0, 90 * i, 0);
                     wall.tag = "Enviroment";
                 }
@@ -315,7 +316,7 @@ public class SpriteGenerator2D : MonoBehaviour
                     if (placePropChance == 0)
                     {
                         
-                        GameObject prop = Instantiate(NextSprite(wallProps), WallSpriteLocationFix(size, location, (relativePos & allWallTypes[i])), Quaternion.identity);
+                        GameObject prop = Instantiate(NextSprite(wallProps), WallSpriteLocationFix(size, location, currentPos), Quaternion.identity);
                         prop.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
                         prop.GetComponent<Transform>().rotation = Quaternion.Euler(0, 90 * i, 0);
                     }
