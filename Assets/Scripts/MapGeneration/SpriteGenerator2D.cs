@@ -316,7 +316,7 @@ public class SpriteGenerator2D : MonoBehaviour
                     if (placePropChance == 0)
                     {
                         
-                        GameObject prop = Instantiate(NextSprite(wallProps), WallSpriteLocationFix(size, location, currentPos), Quaternion.identity);
+                        GameObject prop = Instantiate(NextSprite(wallProps), WallPropLocationFix(size, location, currentPos), Quaternion.identity);
                         prop.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
                         prop.GetComponent<Transform>().rotation = Quaternion.Euler(0, 90 * i, 0);
                     }
@@ -429,7 +429,7 @@ public class SpriteGenerator2D : MonoBehaviour
 
     Vector3 WallPropLocationFix(Vector2Int spriteSize, Vector2Int spriteLocation, SpritePositionType relativePos)
     {
-        Vector3 propPosition = WallPropLocationFix(spriteSize, spriteLocation, relativePos);
+        Vector3 propPosition = WallSpriteLocationFix(spriteSize, spriteLocation, relativePos);
         float propXPos = propPosition.x;
         float propZPos = propPosition.z;
 
