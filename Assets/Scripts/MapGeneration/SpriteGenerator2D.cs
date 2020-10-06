@@ -284,7 +284,7 @@ public class SpriteGenerator2D : MonoBehaviour
     }
 
     //Created to place a wall at given flags, with appropriate positions and rotation.
-    void PlaceWallSprite(Vector2Int location, Vector2Int size, Material material, SpritePositionType relativePos)
+    void PlaceWallSprite(Vector2Int location, Vector2Int size, Material material, SpritePositionType relativePos, bool isHallway)
     {
         SpritePositionType[] allWallTypes =
         {
@@ -313,7 +313,7 @@ public class SpriteGenerator2D : MonoBehaviour
                     wall.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
                     wall.GetComponent<SpriteRenderer>().material = material;
 
-                    if (placePropChance == 0)
+                    if ((placePropChance == 0) && !isHallway)
                     {
                         
                         GameObject prop = Instantiate(NextSprite(wallProps), WallPropLocationFix(size, location, currentPos), Quaternion.identity);
@@ -336,7 +336,7 @@ public class SpriteGenerator2D : MonoBehaviour
 
                 Vector2Int nextSpriteLocation = new Vector2Int(location.x + i, location.y + j);
                 PlaceFloorSprite(nextSpriteLocation, new Vector2Int(1, 1), redMaterial);
-                PlaceWallSprite(nextSpriteLocation, new Vector2Int(1, 1), greenMaterial, spriteRelativePosition);
+                PlaceWallSprite(nextSpriteLocation, new Vector2Int(1, 1), greenMaterial, spriteRelativePosition, false);
             }
         }
     }
@@ -410,7 +410,7 @@ public class SpriteGenerator2D : MonoBehaviour
             }
 
             PlaceFloorSprite(location, new Vector2Int(1, 1), blueMaterial);
-            PlaceWallSprite(location, new Vector2Int(1, 1), greenMaterial, hallwayWalls);
+            PlaceWallSprite(location, new Vector2Int(1, 1), greenMaterial, hallwayWalls, true);
         }
 
         
@@ -436,16 +436,16 @@ public class SpriteGenerator2D : MonoBehaviour
         switch (relativePos)
         {
             case SpritePositionType.Left:
-                propXPos += 0.1f;
+                propXPos += 0.01f;
                 break;
             case SpritePositionType.Right:
-                propXPos -= 0.1f;
+                propXPos -= 0.01f;
                 break;
             case SpritePositionType.Top:
-                propZPos -= 0.1f;
+                propZPos -= 0.01f;
                 break;
             case SpritePositionType.Bottom:
-                propZPos += 0.1f;
+                propZPos += 0.01f;
                 break;
         }
             
