@@ -284,7 +284,7 @@ public class SpriteGenerator2D : MonoBehaviour
     }
 
     //Created to place a wall at given flags, with appropriate positions and rotation.
-    void PlaceWallSprite(Vector2Int location, Vector2Int size, Material material, SpritePositionType relativePos, bool isHallway)
+    void PlaceWallSprite(Vector2Int location, Vector2Int size, Material material, SpritePositionType relativePos)
     {
         SpritePositionType[] allWallTypes =
         {
@@ -306,14 +306,14 @@ public class SpriteGenerator2D : MonoBehaviour
                 {
                     wall = Instantiate(NextSprite(wallPrefabs), WallSpriteLocationFix(size, location, currentPos), Quaternion.identity);
                     wall.GetComponent<Transform>().rotation = Quaternion.Euler(0, 90 * i, 0);
-                    wall.tag = "Enviroment";
+                    //wall.tag = "Enviroment";
                 }
                 if (wall != null)
                 {
                     wall.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
                     wall.GetComponent<SpriteRenderer>().material = material;
 
-                    if ((placePropChance == 0) && !isHallway)
+                    if (placePropChance == 0)
                     {
                         
                         GameObject prop = Instantiate(NextSprite(wallProps), WallPropLocationFix(size, location, currentPos), Quaternion.identity);
@@ -336,7 +336,7 @@ public class SpriteGenerator2D : MonoBehaviour
 
                 Vector2Int nextSpriteLocation = new Vector2Int(location.x + i, location.y + j);
                 PlaceFloorSprite(nextSpriteLocation, new Vector2Int(1, 1), redMaterial);
-                PlaceWallSprite(nextSpriteLocation, new Vector2Int(1, 1), greenMaterial, spriteRelativePosition, false);
+                PlaceWallSprite(nextSpriteLocation, new Vector2Int(1, 1), greenMaterial, spriteRelativePosition);
             }
         }
     }
@@ -410,7 +410,7 @@ public class SpriteGenerator2D : MonoBehaviour
             }
 
             PlaceFloorSprite(location, new Vector2Int(1, 1), blueMaterial);
-            PlaceWallSprite(location, new Vector2Int(1, 1), greenMaterial, hallwayWalls, true);
+            PlaceWallSprite(location, new Vector2Int(1, 1), greenMaterial, hallwayWalls);
         }
 
         
