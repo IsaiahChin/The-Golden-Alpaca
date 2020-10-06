@@ -6,6 +6,8 @@ using UnityEngine;
 //Author: MatthewCopeland
 public class Bullet : MonoBehaviour
 {
+    public Animator animator;
+
     private float timer;
     public string shooterTag { get; set; }
     public float decayTime { get; set; }
@@ -40,25 +42,33 @@ public class Bullet : MonoBehaviour
         if (collision.tag == "Player" && collision.tag != shooterTag)
         {
             //If the collision is with a player and the player didnt shoot it, then self destrict
-
-            //Outdated: From combat development
-            //Debug.Log(shooterTag + " Hit " + collision.tag+" with "+damage+" damage - RANGED");
             collision.GetComponent<PlayerController>().DamagePlayer(damage);
-            Destroy(gameObject);
+            Hit();
         }
         else if (collision.tag == "Enemy" && collision.tag != shooterTag)
         {
             //If the collision is with a enemy and the enemy didnt shoot it, then self destrict
-
-            //Outdated: From combat development
-            //Debug.Log(shooterTag + " Hit " + collision.tag + " with " + damage + " damage - RANGED");
             collision.GetComponent<EnemyHealthController>().decreaseHealth(damage);
-            Destroy(gameObject);
+            Hit();
         }
         else if (collision.tag == "Enviroment" && collision.tag != shooterTag)
         {
             //If the collision is with the enviroment, self destrict
-            Destroy(gameObject);
+            Hit();
         }
+    }
+
+    private void Hit()
+    {
+        this.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        animator.SetTrigger("Hit");
+        StartCoroutine(waiter());
+    }
+
+    IEnumerator waiter()
+    {
+        //Wait for animation to play before destroying
+        yield return new WaitForSeconds(0.5f);
+        Destroy(gameObject);
     }
 }
