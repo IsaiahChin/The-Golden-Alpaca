@@ -13,7 +13,7 @@ public class MeleeWeapon : MonoBehaviour
     public float attackRange { get; set; }
     public float AttackDamage { get; set; }
 
-    private void Start()
+    private void Awake()
     {
         attackRange = 1f;
         AttackDamage = 0.5f;

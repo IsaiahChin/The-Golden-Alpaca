@@ -15,12 +15,21 @@ public class CameraFollow : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(LateStart());
+    }
+
+    IEnumerator LateStart()
+    {
+        yield return new WaitForSeconds(0.1f);
         target = GameObject.Find("Alpaca").transform;
     }
 
     void FixedUpdate()
     {
-        RotateTowardsTarget();
+        if (target != null)
+        {
+            RotateTowardsTarget();
+        }
     }
 
     private void RotateTowardsTarget()

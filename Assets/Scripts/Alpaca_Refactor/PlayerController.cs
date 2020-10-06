@@ -14,7 +14,8 @@ public class PlayerController : MonoBehaviour
     private MeleeWeapon meleeWeaponScript;              // Melee weapon script
     private RangedWeapon rangedWeaponScript;            // Ranged weapon script
 
-    private PauseMenuController pauseMenu;
+    private PauseMenuController pauseMenu;              // Pause menu controller script
+    private GameOverController gameOverMenu;            // Game over controller script
 
     void Start()
     {
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
         rangedWeaponScript = GetComponent<RangedWeapon>();
 
         pauseMenu = GameObject.Find("PauseCanvas").GetComponent<PauseMenuController>();
+        gameOverMenu = GameObject.Find("GameOverCanvas").GetComponent<GameOverController>();
     }
 
     void Update()
@@ -40,19 +42,13 @@ public class PlayerController : MonoBehaviour
                 playerHealthScript.UpdateHealth();
                 playerHealthScript.InitiateGameOver();
                 view.SetDead(true);
+                gameOverMenu.EnableGameOver();
                 model.rigidBody.velocity = new Vector3(0, 0, 0); // Stop player movement
-                Destroy(model);
-                this.enabled = false;
-            }
 
-            // Health testing
-            if (Input.GetKeyDown(KeyCode.RightBracket)) // Increase health by one half
-            {
-                HealPlayer(0.5f);
-            }
-            else if (Input.GetKeyDown(KeyCode.LeftBracket)) // Decrease health by one half
-            {
-                DamagePlayer(0.5f);
+                // Disable MVC
+                model.enabled = false;
+                view.enabled = false;
+                this.enabled = false;
             }
 
             if (Time.time >= model.nextAttackTime)
@@ -69,7 +65,6 @@ public class PlayerController : MonoBehaviour
                     model.nextAttackTime = Time.time + 1f / model.rangedAttackRate;
                 }
             }
-
         }
     }
 
