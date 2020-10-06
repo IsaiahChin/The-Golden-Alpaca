@@ -306,7 +306,6 @@ public class SpriteGenerator2D : MonoBehaviour
                 {
                     wall = Instantiate(NextSprite(wallPrefabs), WallSpriteLocationFix(size, location, currentPos), Quaternion.identity);
                     wall.GetComponent<Transform>().rotation = Quaternion.Euler(0, 90 * i, 0);
-                    //wall.tag = "Enviroment";
                 }
                 if (wall != null)
                 {
@@ -386,24 +385,27 @@ public class SpriteGenerator2D : MonoBehaviour
 
             foreach (Collider wall in wallsFound)
             {
-                float wallXPos = wall.gameObject.transform.position.x;
-                float wallZPos = wall.gameObject.transform.position.z;
+                if (!wall.tag.Equals("Prop"))
+                {
+                    float wallXPos = wall.gameObject.transform.position.x;
+                    float wallZPos = wall.gameObject.transform.position.z;
 
-                if (wallXPos > wallDetection.x)
-                {
-                    hallwayWalls = hallwayWalls & ~SpritePositionType.Right;
-                }
-                if (wallXPos < wallDetection.x)
-                {
-                    hallwayWalls = hallwayWalls & ~SpritePositionType.Left;
-                }
-                if (wallZPos > wallDetection.z)
-                {
-                    hallwayWalls = hallwayWalls & ~SpritePositionType.Top;
-                }
-                if (wallZPos < wallDetection.z)
-                {
-                    hallwayWalls = hallwayWalls & ~SpritePositionType.Bottom;
+                    if (wallXPos > wallDetection.x)
+                    {
+                        hallwayWalls = hallwayWalls & ~SpritePositionType.Right;
+                    }
+                    if (wallXPos < wallDetection.x)
+                    {
+                        hallwayWalls = hallwayWalls & ~SpritePositionType.Left;
+                    }
+                    if (wallZPos > wallDetection.z)
+                    {
+                        hallwayWalls = hallwayWalls & ~SpritePositionType.Top;
+                    }
+                    if (wallZPos < wallDetection.z)
+                    {
+                        hallwayWalls = hallwayWalls & ~SpritePositionType.Bottom;
+                    }
                 }
 
                 Destroy(wall.gameObject);
