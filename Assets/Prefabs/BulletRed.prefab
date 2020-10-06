@@ -39,7 +39,7 @@ SpriteRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1844279024782690105}
   m_Enabled: 1
-  m_CastShadows: 2
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -157,9 +157,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a3e3e8e1da8d484392a363dc0b77f95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 40
-  decayTime: 2
-  shooterTag: 
 --- !u!1001 &3570609697144398175
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -246,6 +243,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.r
       value: 0.7254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 3972355826797332031, guid: e45205fd77f022340ae6bc60a882486b,
+        type: 3}
+      propertyPath: m_Range
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3972355826797332031, guid: e45205fd77f022340ae6bc60a882486b,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e45205fd77f022340ae6bc60a882486b, type: 3}
