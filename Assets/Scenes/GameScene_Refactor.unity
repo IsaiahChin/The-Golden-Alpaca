@@ -484,6 +484,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
         type: 3}
+      propertyPath: floorProps.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
+        type: 3}
       propertyPath: enemyPrefabs.Array.data[0]
       value: 
       objectReference: {fileID: 4902178324375276467, guid: 814c4d0ab82f70b44bc88f8e1a333c9f,
@@ -533,6 +538,12 @@ PrefabInstance:
       propertyPath: wallProps.Array.data[0]
       value: 
       objectReference: {fileID: 5205675216227772825, guid: cd8b03c69e23cb546b8bf198e46e1ebb,
+        type: 3}
+    - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
+        type: 3}
+      propertyPath: floorProps.Array.data[0]
+      value: 
+      objectReference: {fileID: 2723984498985343308, guid: 185e0ddf84841b64fb8666e5f87a9367,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29d736b2e4bb8b042a2a54b45982da23, type: 3}

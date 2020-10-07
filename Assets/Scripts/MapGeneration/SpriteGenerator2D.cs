@@ -81,6 +81,9 @@ public class SpriteGenerator2D : MonoBehaviour
     //List of Wall Props
     [SerializeField]
     GameObject[] wallProps;
+    //List of Floor Props;
+    [SerializeField]
+    GameObject[] floorProps;
 
     Random random;
     Grid2D<CellType> grid;
@@ -106,10 +109,12 @@ public class SpriteGenerator2D : MonoBehaviour
         PathfindHallways();
         PlaceRoof();
 
-        //Call player spawn
+        //Call player spawn and retrieve spawn room.
         Room playerSpawn = SpawnAlpaca();
         //Call enemy spawn
         SpawnEnemies(playerSpawn);
+        //Spawn Floor Props.
+        SpawnFloorProps();
     }
 
     void PlaceRooms()
@@ -733,6 +738,41 @@ public class SpriteGenerator2D : MonoBehaviour
                         enemy.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
                         enemiesSpawned++;
                     }
+                }
+            }
+        }
+    }
+
+    void SpawnFloorProps()
+    {
+        foreach (Room currentRoom in rooms)
+        {
+            int propNumber = random.Next(0, 10);
+            for (int i = 0; i < propNumber; i++)
+            {
+                Vector2Int spawnRoomEdge = currentRoom.bounds.position;
+
+                Vector2Int spawnPosition = new Vector2Int(
+                    spawnRoomEdge.x + random.Next(0, currentRoom.bounds.size.x),
+                    spawnRoomEdge.y + random.Next(0, currentRoom.bounds.size.y));
+
+                Vector3 spawnAt = SpriteFloorLocationFix(new Vector2Int(1, 1), spawnPosition);
+                spawnAt = new Vector3(spawnAt.x, 0.5f, spawnAt.z);
+
+                bool enemyExists = false;
+                Collider[] potentialEnemies = Physics.OverlapSphere(spawnAt, 0.1f);
+                foreach (Collider sprite in potentialEnemies)
+                {
+                    if (sprite.tag == "Enemy")
+                    {
+                        enemyExists = false;
+                    }
+                }
+
+                if (!enemyExists)
+                {
+                    GameObject prop = Instantiate(NextSprite(floorProps), spawnAt, Quaternion.identity);
+                    prop.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
                 }
             }
         }
