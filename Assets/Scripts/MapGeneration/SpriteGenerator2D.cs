@@ -375,7 +375,8 @@ public class SpriteGenerator2D : MonoBehaviour
          */
             Vector3 wallDetection = SpriteFloorLocationFix(new Vector2Int(1, 1), location);
             wallDetection = new Vector3(wallDetection.x, wallDetection.y + 0.7f, wallDetection.z);
-            Collider[] wallsFound = Physics.OverlapSphere(wallDetection, 0.5f, LayerMask.NameToLayer("Environment"));
+            int layer = LayerMask.NameToLayer("Environment");
+            Collider[] wallsFound = Physics.OverlapSphere(wallDetection, 0.6f, layer);
 
             SpritePositionType hallwayWalls = (
                 SpritePositionType.Top |
@@ -408,7 +409,7 @@ public class SpriteGenerator2D : MonoBehaviour
                     }
                 } else
                 {
-                    System.Console.WriteLine("Test");
+                    Debug.Log("Test");
                 }
 
                 Destroy(wall.gameObject);
