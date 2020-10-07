@@ -773,6 +773,7 @@ public class SpriteGenerator2D : MonoBehaviour
                 {
                     GameObject prop = Instantiate(NextSprite(floorProps), spawnAt, Quaternion.identity);
                     prop.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    prop.GetComponent<Transform>().rotation = Quaternion.Euler(20, 0, 0);
                 }
             }
         }
