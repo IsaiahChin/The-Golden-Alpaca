@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8717203801017776575}
   - component: {fileID: 7538280401890260027}
   - component: {fileID: -6195021954588842231}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: stone_wallTiles_ss_3
   m_TagString: Enviroment
   m_Icon: {fileID: 0}
