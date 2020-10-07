@@ -375,7 +375,7 @@ public class SpriteGenerator2D : MonoBehaviour
          */
             Vector3 wallDetection = SpriteFloorLocationFix(new Vector2Int(1, 1), location);
             wallDetection = new Vector3(wallDetection.x, wallDetection.y + 0.7f, wallDetection.z);
-            int layer = LayerMask.NameToLayer("Environment");
+            int layer = 1 << LayerMask.NameToLayer("Environment");
             Collider[] wallsFound = Physics.OverlapSphere(wallDetection, 0.6f, layer);
 
             SpritePositionType hallwayWalls = (
