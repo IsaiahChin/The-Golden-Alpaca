@@ -757,7 +757,7 @@ public class SpriteGenerator2D : MonoBehaviour
                     spawnRoomEdge.y + random.Next(0, currentRoom.bounds.size.y));
 
                 Vector3 spawnAt = SpriteFloorLocationFix(new Vector2Int(1, 1), spawnPosition);
-                spawnAt = new Vector3(spawnAt.x, 0.5f, spawnAt.z);
+                spawnAt = new Vector3(spawnAt.x, 0.2f, spawnAt.z);
 
                 bool enemyExists = false;
                 Collider[] potentialEnemies = Physics.OverlapSphere(spawnAt, 0.1f);
@@ -773,7 +773,7 @@ public class SpriteGenerator2D : MonoBehaviour
                 {
                     GameObject prop = Instantiate(NextSprite(floorProps), spawnAt, Quaternion.identity);
                     prop.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                    prop.GetComponent<Transform>().rotation = Quaternion.Euler(20, 0, 0);
+                    prop.GetComponent<Transform>().rotation = Quaternion.Euler(40, 0, 0);
                 }
             }
         }
