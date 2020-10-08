@@ -537,7 +537,7 @@ PrefabInstance:
         type: 3}
       propertyPath: wallProps.Array.data[0]
       value: 
-      objectReference: {fileID: 1570327113513312512, guid: 59cac137032985845ab719f61012afdd,
+      objectReference: {fileID: 2252850895338237445, guid: 517f393df7bb46f46a34b3b8d5983cc7,
         type: 3}
     - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
         type: 3}
