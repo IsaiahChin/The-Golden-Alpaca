@@ -98,7 +98,7 @@ public class SpriteGenerator2D : MonoBehaviour
 
     void Generate()
     {
-        random = new Random(0);
+        random = new Random(2);
         grid = new Grid2D<CellType>(size, Vector2Int.zero);
         rooms = new List<Room>();
 
@@ -756,7 +756,7 @@ public class SpriteGenerator2D : MonoBehaviour
                 spawnAt = new Vector3(spawnAt.x, 0.2f, spawnAt.z);
 
                 bool enemyExists = false;
-                Collider[] potentialEnemies = Physics.OverlapSphere(spawnAt, 0.1f);
+                Collider[] potentialEnemies = Physics.OverlapSphere(spawnAt, 1f, (1 << LayerMask.NameToLayer("Enemy")));
                 foreach (Collider sprite in potentialEnemies)
                 {
                     if (sprite.tag == "Enemy")
