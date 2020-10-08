@@ -540,7 +540,7 @@ public class SpriteGenerator2D : MonoBehaviour
         SpritePositionType wallPositions = SpritePositionType.None;
 
         Vector3 wallDetector = new Vector3(location.x, location.y + 0.7f, location.z);
-        Collider[] wallsFound = Physics.OverlapSphere(wallDetector, 0.5f);
+        Collider[] wallsFound = Physics.OverlapSphere(wallDetector, 0.6f);
 
         int arrayLocation = 0;
 
@@ -743,6 +743,7 @@ public class SpriteGenerator2D : MonoBehaviour
         foreach (Room currentRoom in rooms)
         {
             int propNumber = random.Next(0, 10);
+
             for (int i = 0; i < propNumber; i++)
             {
                 Vector2Int spawnRoomEdge = currentRoom.bounds.position;
