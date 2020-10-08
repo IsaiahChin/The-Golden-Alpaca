@@ -412,9 +412,6 @@ public class SpriteGenerator2D : MonoBehaviour
                     {
                         hallwayWalls = hallwayWalls & ~SpritePositionType.Bottom;
                     }
-                } else
-                {
-                    Debug.Log("Test");
                 }
 
                 Destroy(wall.gameObject);
@@ -423,8 +420,6 @@ public class SpriteGenerator2D : MonoBehaviour
             PlaceFloorSprite(location, new Vector2Int(1, 1), blueMaterial);
             PlaceWallSprite(location, new Vector2Int(1, 1), greenMaterial, hallwayWalls);
         }
-
-        
     }
 
     //Method created to place sprites in the correct location, since sprite position is based on centre.
