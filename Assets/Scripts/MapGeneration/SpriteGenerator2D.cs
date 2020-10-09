@@ -743,6 +743,7 @@ public class SpriteGenerator2D : MonoBehaviour
         foreach (Room currentRoom in rooms)
         {
             int propNumber = random.Next(0, 10);
+            List<Vector2Int> propLocations = new List<Vector2Int>();
 
             for (int i = 0; i < propNumber; i++)
             {
@@ -752,24 +753,29 @@ public class SpriteGenerator2D : MonoBehaviour
                     spawnRoomEdge.x + random.Next(0, currentRoom.bounds.size.x),
                     spawnRoomEdge.y + random.Next(0, currentRoom.bounds.size.y));
 
-                Vector3 spawnAt = SpriteFloorLocationFix(new Vector2Int(1, 1), spawnPosition);
-                spawnAt = new Vector3(spawnAt.x, 0.2f, spawnAt.z);
-
-                bool enemyExists = false;
-                Collider[] potentialEnemies = Physics.OverlapSphere(spawnAt, 0.1f);
-                foreach (Collider sprite in potentialEnemies)
+                if (!propLocations.Contains(spawnPosition))
                 {
-                    if (sprite.tag == "Enemy")
+                    propLocations.Add(spawnPosition);
+
+                    Vector3 spawnAt = SpriteFloorLocationFix(new Vector2Int(1, 1), spawnPosition);
+                    spawnAt = new Vector3(spawnAt.x, 0.2f, spawnAt.z);
+
+                    bool enemyExists = false;
+                    Collider[] potentialEnemies = Physics.OverlapSphere(spawnAt, 0.1f);
+                    foreach (Collider sprite in potentialEnemies)
                     {
-                        enemyExists = true;
+                        if (sprite.tag == "Enemy")
+                        {
+                            enemyExists = true;
+                        }
                     }
-                }
 
-                if (!enemyExists)
-                {
-                    GameObject prop = Instantiate(NextSprite(floorProps), spawnAt, Quaternion.identity);
-                    prop.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                    prop.GetComponent<Transform>().rotation = Quaternion.Euler(40, 0, 0);
+                    if (!enemyExists)
+                    {
+                        GameObject prop = Instantiate(NextSprite(floorProps), spawnAt, Quaternion.identity);
+                        prop.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                        prop.GetComponent<Transform>().rotation = Quaternion.Euler(40, 0, 0);
+                    }
                 }
             }
         }
