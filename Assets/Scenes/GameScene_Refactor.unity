@@ -513,17 +513,17 @@ PrefabInstance:
         type: 3}
       propertyPath: redMaterial
       value: 
-      objectReference: {fileID: 2100000, guid: 14db22d7ded2ba6499ef04084f406cde, type: 2}
+      objectReference: {fileID: 2100000, guid: 149e4c64ea557234baf854205c8a3694, type: 2}
     - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
         type: 3}
       propertyPath: blueMaterial
       value: 
-      objectReference: {fileID: 2100000, guid: 14db22d7ded2ba6499ef04084f406cde, type: 2}
+      objectReference: {fileID: 2100000, guid: df7b71d6190d6cb4bbe9edfff6296bac, type: 2}
     - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
         type: 3}
       propertyPath: greenMaterial
       value: 
-      objectReference: {fileID: 2100000, guid: 17d51c9c2bb4e674fb252d23a029bbd0, type: 2}
+      objectReference: {fileID: 2100000, guid: 7f16c12247ea6ac40913d664fae1913a, type: 2}
     - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
         type: 3}
       propertyPath: floorPrefabs.Array.data[0]
