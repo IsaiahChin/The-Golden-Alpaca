@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8069348348395902559}
   - component: {fileID: 398719592213963479}
-  - component: {fileID: -6350710200650921210}
+  - component: {fileID: 3259037663291266804}
   m_Layer: 11
   m_Name: stone_wallTiles_ss_5
   m_TagString: Enviroment
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &
+--- !u!65 &3259037663291266804
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
