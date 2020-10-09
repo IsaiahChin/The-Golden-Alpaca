@@ -275,7 +275,7 @@ public class SpriteGenerator2D : MonoBehaviour
     //Modified to work with sprites instead of cubes.
     void PlaceFloorSprite(Vector2Int location, Vector2Int size, Material material)
     {
-        GameObject go = Instantiate(NextSprite(floorPrefabs), SpriteFloorLocationFix(size, location), Quaternion.identity);
+        GameObject go = Instantiate(NextSprite(floorPrefabs), FloorSpriteLocationFix(size, location), Quaternion.identity);
         go.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
         //Rotate sprite to be flat, then a random 90 degree rotation on the ground.
         go.GetComponent<Transform>().rotation = Quaternion.Euler(90, random.Next(0, 4) * 90, 0);
@@ -285,7 +285,7 @@ public class SpriteGenerator2D : MonoBehaviour
     //Created to place a roof tile.
     void PlaceRoofSprite(Vector2Int location, Vector2Int size)
     {
-        Vector3 fixedLoaction = SpriteFloorLocationFix(size, location);
+        Vector3 fixedLoaction = FloorSpriteLocationFix(size, location);
         Vector3 placeAt = new Vector3(fixedLoaction.x, fixedLoaction.y + 1.0f, fixedLoaction.z);
 
         GameObject go = Instantiate(GetRoofTile(fixedLoaction), placeAt, Quaternion.identity);
@@ -376,13 +376,13 @@ public class SpriteGenerator2D : MonoBehaviour
 
     void PlaceHallway(Vector2Int location)
     {
-        if (!DetectSprite(SpriteFloorLocationFix(new Vector2Int(1, 1), location)))
+        if (!DetectSprite(FloorSpriteLocationFix(new Vector2Int(1, 1), location)))
         {
         /*
          * Before creating hallways, the program must find out what walls to delete, and learn the hallways relative
          * position, based on the deleted walls.
          */
-            Vector3 wallDetection = SpriteFloorLocationFix(new Vector2Int(1, 1), location);
+            Vector3 wallDetection = FloorSpriteLocationFix(new Vector2Int(1, 1), location);
             wallDetection = new Vector3(wallDetection.x, wallDetection.y + 0.7f, wallDetection.z);
             int layer = 1 << LayerMask.NameToLayer("Environment");
             Collider[] wallsFound = Physics.OverlapSphere(wallDetection, 0.6f, layer);
@@ -426,8 +426,7 @@ public class SpriteGenerator2D : MonoBehaviour
         }
     }
 
-    //Method created to place sprites in the correct location, since sprite position is based on centre.
-    Vector3 SpriteFloorLocationFix(Vector2Int spriteSize, Vector2Int spriteLocation)
+    Vector3 FloorSpriteLocationFix(Vector2Int spriteSize, Vector2Int spriteLocation)
     {
         return SpriteLocationFix(spriteSize, spriteLocation, SpritePositionType.None);
     }
@@ -437,6 +436,9 @@ public class SpriteGenerator2D : MonoBehaviour
         return SpriteLocationFix(spriteSize, spriteLocation, relativePos);
     }
 
+    /**
+     * Sets prop location to just infront of the wall sprite it is attached to.
+     */
     Vector3 WallPropLocationFix(Vector2Int spriteSize, Vector2Int spriteLocation, SpritePositionType relativePos)
     {
         Vector3 propPosition = WallSpriteLocationFix(spriteSize, spriteLocation, relativePos);
@@ -458,11 +460,14 @@ public class SpriteGenerator2D : MonoBehaviour
                 propZPos += 0.01f;
                 break;
         }
-            
 
         return new Vector3(propXPos, propPosition.y, propZPos);
     }
 
+    /**
+     * Changes a sprite position to be placed as if it's center of transformation
+     * is on the bottom left side of the sprite, and not the centre of the sprite.
+     */
     Vector3 SpriteLocationFix(Vector2Int spriteSize, Vector2Int spriteLocation, SpritePositionType relativePos)
     {
         float spriteLocationX = spriteLocation.x + (spriteSize.x / 2.0f);
@@ -530,7 +535,7 @@ public class SpriteGenerator2D : MonoBehaviour
             {
                 Vector2Int location = new Vector2Int(i, j);
 
-                if (!DetectSprite(SpriteFloorLocationFix(new Vector2Int(1, 1), location)))
+                if (!DetectSprite(FloorSpriteLocationFix(new Vector2Int(1, 1), location)))
                 {
                     PlaceRoofSprite(location, new Vector2Int(1, 1));
                 }
@@ -719,7 +724,7 @@ public class SpriteGenerator2D : MonoBehaviour
                     spawnRoomEdge.x + random.Next(0, toSpawnIn.bounds.size.x),
                     spawnRoomEdge.y + random.Next(0, toSpawnIn.bounds.size.y));
 
-                    Vector3 spawnAt = SpriteFloorLocationFix(new Vector2Int(1, 1), spawnPosition);
+                    Vector3 spawnAt = FloorSpriteLocationFix(new Vector2Int(1, 1), spawnPosition);
                     spawnAt = new Vector3(spawnAt.x, 0.5f, spawnAt.z);
 
                     bool enemyExists = false;
@@ -761,7 +766,7 @@ public class SpriteGenerator2D : MonoBehaviour
                 {
                     propLocations.Add(spawnPosition);
 
-                    Vector3 spawnAt = SpriteFloorLocationFix(new Vector2Int(1, 1), spawnPosition);
+                    Vector3 spawnAt = FloorSpriteLocationFix(new Vector2Int(1, 1), spawnPosition);
                     spawnAt = new Vector3(spawnAt.x, 0.2f, spawnAt.z);
 
                     bool enemyExists = false;
