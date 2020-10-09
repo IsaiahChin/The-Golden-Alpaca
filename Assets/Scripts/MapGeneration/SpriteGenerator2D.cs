@@ -560,19 +560,19 @@ public class SpriteGenerator2D : MonoBehaviour
 
             if (wallXPos > wallDetector.x)
             {
-                wallPositions = wallPositions | SpritePositionType.Right;
+                wallPositions |= SpritePositionType.Right;
             }
             if (wallXPos < wallDetector.x)
             {
-                wallPositions = wallPositions | SpritePositionType.Left;
+                wallPositions |= SpritePositionType.Left;
             }
             if (wallZPos > wallDetector.z)
             {
-                wallPositions = wallPositions | SpritePositionType.Top;
+                wallPositions |= SpritePositionType.Top;
             }
             if (wallZPos < wallDetector.z)
             {
-                wallPositions = wallPositions | SpritePositionType.Bottom;
+                wallPositions |= SpritePositionType.Bottom;
             }
         }
 
@@ -651,19 +651,19 @@ public class SpriteGenerator2D : MonoBehaviour
 
             if (wallXPos > extendedDetector.x)
             {
-                wallPositions = wallPositions | SpritePositionType.Right;
+                wallPositions |= SpritePositionType.Right;
             }
             if (wallXPos < extendedDetector.x)
             {
-                wallPositions = wallPositions | SpritePositionType.Left;
+                wallPositions |= SpritePositionType.Left;
             }
             if (wallZPos > extendedDetector.z)
             {
-                wallPositions = wallPositions | SpritePositionType.Top;
+                wallPositions |= SpritePositionType.Top;
             }
             if (wallZPos < extendedDetector.z)
             {
-                wallPositions = wallPositions | SpritePositionType.Bottom;
+                wallPositions |= SpritePositionType.Bottom;
             }
         }
 
@@ -731,7 +731,7 @@ public class SpriteGenerator2D : MonoBehaviour
                     Collider[] potentialEnemies = Physics.OverlapSphere(spawnAt, 0.1f);
                     foreach (Collider sprite in potentialEnemies)
                     {
-                        if (sprite.tag == "Enemy")
+                        if (sprite.tag.Equals("Enemy"))
                         {
                             enemyExists = true;
                         }
@@ -764,8 +764,6 @@ public class SpriteGenerator2D : MonoBehaviour
 
                 if (!propLocations.Contains(spawnPosition))
                 {
-                    propLocations.Add(spawnPosition);
-
                     Vector3 spawnAt = FloorSpriteLocationFix(new Vector2Int(1, 1), spawnPosition);
                     spawnAt = new Vector3(spawnAt.x, 0.2f, spawnAt.z);
 
@@ -773,7 +771,7 @@ public class SpriteGenerator2D : MonoBehaviour
                     Collider[] potentialEnemies = Physics.OverlapSphere(spawnAt, 0.1f);
                     foreach (Collider sprite in potentialEnemies)
                     {
-                        if (sprite.tag == "Enemy")
+                        if (sprite.tag.Equals("Enemy"))
                         {
                             enemyExists = true;
                         }
@@ -784,6 +782,8 @@ public class SpriteGenerator2D : MonoBehaviour
                         GameObject prop = Instantiate(NextSprite(floorProps), spawnAt, Quaternion.identity);
                         prop.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
                         prop.GetComponent<Transform>().rotation = Quaternion.Euler(40, 0, 0);
+
+                        propLocations.Add(spawnPosition);
                     }
                 }
             }
