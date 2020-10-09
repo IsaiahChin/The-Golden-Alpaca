@@ -189,7 +189,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.7254902, g: 0.5686275, b: 0.15294118, a: 1}
+  m_Color: {r: 0.92156863, g: 0.8039216, b: 0.11764706, a: 1}
   m_Intensity: 5
   m_Range: 5
   m_SpotAngle: 30
@@ -457,7 +457,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}

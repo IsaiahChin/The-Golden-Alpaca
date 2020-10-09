@@ -23,7 +23,7 @@ public class Bullet : MonoBehaviour
     }
 
     /**
-    * This method self destructs teh bullet if it has been flying for too long
+    * This method self destructs the bullet if it has been flying for too long
     */
     private void FixedUpdate()
     {
@@ -60,8 +60,8 @@ public class Bullet : MonoBehaviour
 
     private void Hit()
     {
-        this.GetComponent<Rigidbody>().velocity = Vector3.zero;
         animator.SetTrigger("Hit");
+        this.GetComponent<Rigidbody>().velocity = Vector3.zero;
         StartCoroutine(waiter());
     }
 
