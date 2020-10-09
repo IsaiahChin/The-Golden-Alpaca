@@ -51,7 +51,7 @@ public class SpriteGenerator2D : MonoBehaviour
     Vector2Int roomMinSize = new Vector2Int(1, 1);
     //Modified to hold a selection of different floor tiles.
     [SerializeField]
-    GameObject[] spritePrefabs;
+    GameObject[] floorPrefabs;
     [SerializeField]
     Material redMaterial;
     [SerializeField]
@@ -78,6 +78,13 @@ public class SpriteGenerator2D : MonoBehaviour
     [SerializeField]
     int minEnemyNumber;
 
+    //List of Wall Props
+    [SerializeField]
+    GameObject[] wallProps;
+    //List of Floor Props;
+    [SerializeField]
+    GameObject[] floorProps;
+
     Random random;
     Grid2D<CellType> grid;
     List<Room> rooms;
@@ -102,10 +109,12 @@ public class SpriteGenerator2D : MonoBehaviour
         PathfindHallways();
         PlaceRoof();
 
-        //Call player spawn
+        //Call player spawn and retrieve spawn room.
         Room playerSpawn = SpawnAlpaca();
         //Call enemy spawn
         SpawnEnemies(playerSpawn);
+        //Spawn Floor Props.
+        SpawnFloorProps();
     }
 
     void PlaceRooms()
@@ -258,10 +267,15 @@ public class SpriteGenerator2D : MonoBehaviour
         }
     }
 
+    /**
+     * Placing cubes has been modified into two methods, to fit with our game design. And, to create a roof around the
+     * level, a method has been added to create the roof.
+     */
+
     //Modified to work with sprites instead of cubes.
     void PlaceFloorSprite(Vector2Int location, Vector2Int size, Material material)
     {
-        GameObject go = Instantiate(NextFloorSprite(), SpriteFloorLocationFix(size, location), Quaternion.identity);
+        GameObject go = Instantiate(NextSprite(floorPrefabs), FloorSpriteLocationFix(size, location), Quaternion.identity);
         go.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
         //Rotate sprite to be flat, then a random 90 degree rotation on the ground.
         go.GetComponent<Transform>().rotation = Quaternion.Euler(90, random.Next(0, 4) * 90, 0);
@@ -271,7 +285,7 @@ public class SpriteGenerator2D : MonoBehaviour
     //Created to place a roof tile.
     void PlaceRoofSprite(Vector2Int location, Vector2Int size)
     {
-        Vector3 fixedLoaction = SpriteFloorLocationFix(size, location);
+        Vector3 fixedLoaction = FloorSpriteLocationFix(size, location);
         Vector3 placeAt = new Vector3(fixedLoaction.x, fixedLoaction.y + 1.0f, fixedLoaction.z);
 
         GameObject go = Instantiate(GetRoofTile(fixedLoaction), placeAt, Quaternion.identity);
@@ -295,17 +309,25 @@ public class SpriteGenerator2D : MonoBehaviour
             for (int i = 0; i < allWallTypes.Length; i++)
             {
                 GameObject wall = null;
+                SpritePositionType currentPos = relativePos & allWallTypes[i];
+                int placePropChance = random.Next() % 3;
 
-                if ((relativePos & allWallTypes[i]) == allWallTypes[i])
+                if (currentPos == allWallTypes[i])
                 {
-                    wall = Instantiate(NextWallSprite(), WallSpriteLocationFix(size, location, (relativePos & allWallTypes[i])), Quaternion.identity);
+                    wall = Instantiate(NextSprite(wallPrefabs), WallSpriteLocationFix(size, location, currentPos), Quaternion.identity);
                     wall.GetComponent<Transform>().rotation = Quaternion.Euler(0, 90 * i, 0);
-                    wall.tag = "Enviroment";
                 }
                 if (wall != null)
                 {
                     wall.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
                     wall.GetComponent<SpriteRenderer>().material = material;
+
+                    if (placePropChance == 0)
+                    {
+                        GameObject prop = Instantiate(NextSprite(wallProps), WallPropLocationFix(size, location, currentPos), Quaternion.identity);
+                        prop.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
+                        prop.GetComponent<Transform>().rotation = Quaternion.Euler(0, 90 * i, 0);
+                    }
                 }
             }
         }
@@ -354,15 +376,16 @@ public class SpriteGenerator2D : MonoBehaviour
 
     void PlaceHallway(Vector2Int location)
     {
-        if (!DetectSprite(SpriteFloorLocationFix(new Vector2Int(1, 1), location)))
+        if (!DetectSprite(FloorSpriteLocationFix(new Vector2Int(1, 1), location)))
         {
         /*
          * Before creating hallways, the program must find out what walls to delete, and learn the hallways relative
          * position, based on the deleted walls.
          */
-            Vector3 wallDetection = SpriteFloorLocationFix(new Vector2Int(1, 1), location);
+            Vector3 wallDetection = FloorSpriteLocationFix(new Vector2Int(1, 1), location);
             wallDetection = new Vector3(wallDetection.x, wallDetection.y + 0.7f, wallDetection.z);
-            Collider[] wallsFound = Physics.OverlapSphere(wallDetection, 0.5f);
+            int layer = 1 << LayerMask.NameToLayer("Environment");
+            Collider[] wallsFound = Physics.OverlapSphere(wallDetection, 0.6f, layer);
 
             SpritePositionType hallwayWalls = (
                 SpritePositionType.Top |
@@ -372,24 +395,27 @@ public class SpriteGenerator2D : MonoBehaviour
 
             foreach (Collider wall in wallsFound)
             {
-                float wallXPos = wall.gameObject.transform.position.x;
-                float wallZPos = wall.gameObject.transform.position.z;
+                if (!wall.tag.Equals("Prop"))
+                {
+                    float wallXPos = wall.gameObject.transform.position.x;
+                    float wallZPos = wall.gameObject.transform.position.z;
 
-                if (wallXPos > wallDetection.x)
-                {
-                    hallwayWalls = hallwayWalls & ~SpritePositionType.Right;
-                }
-                if (wallXPos < wallDetection.x)
-                {
-                    hallwayWalls = hallwayWalls & ~SpritePositionType.Left;
-                }
-                if (wallZPos > wallDetection.z)
-                {
-                    hallwayWalls = hallwayWalls & ~SpritePositionType.Top;
-                }
-                if (wallZPos < wallDetection.z)
-                {
-                    hallwayWalls = hallwayWalls & ~SpritePositionType.Bottom;
+                    if (wallXPos > wallDetection.x)
+                    {
+                        hallwayWalls = hallwayWalls & ~SpritePositionType.Right;
+                    }
+                    if (wallXPos < wallDetection.x)
+                    {
+                        hallwayWalls = hallwayWalls & ~SpritePositionType.Left;
+                    }
+                    if (wallZPos > wallDetection.z)
+                    {
+                        hallwayWalls = hallwayWalls & ~SpritePositionType.Top;
+                    }
+                    if (wallZPos < wallDetection.z)
+                    {
+                        hallwayWalls = hallwayWalls & ~SpritePositionType.Bottom;
+                    }
                 }
 
                 Destroy(wall.gameObject);
@@ -398,12 +424,9 @@ public class SpriteGenerator2D : MonoBehaviour
             PlaceFloorSprite(location, new Vector2Int(1, 1), blueMaterial);
             PlaceWallSprite(location, new Vector2Int(1, 1), greenMaterial, hallwayWalls);
         }
-
-        
     }
 
-    //Method created to place sprites in the correct location, since sprite position is based on centre.
-    Vector3 SpriteFloorLocationFix(Vector2Int spriteSize, Vector2Int spriteLocation)
+    Vector3 FloorSpriteLocationFix(Vector2Int spriteSize, Vector2Int spriteLocation)
     {
         return SpriteLocationFix(spriteSize, spriteLocation, SpritePositionType.None);
     }
@@ -413,6 +436,38 @@ public class SpriteGenerator2D : MonoBehaviour
         return SpriteLocationFix(spriteSize, spriteLocation, relativePos);
     }
 
+    /**
+     * Sets prop location to just infront of the wall sprite it is attached to.
+     */
+    Vector3 WallPropLocationFix(Vector2Int spriteSize, Vector2Int spriteLocation, SpritePositionType relativePos)
+    {
+        Vector3 propPosition = WallSpriteLocationFix(spriteSize, spriteLocation, relativePos);
+        float propXPos = propPosition.x;
+        float propZPos = propPosition.z;
+
+        switch (relativePos)
+        {
+            case SpritePositionType.Left:
+                propXPos += 0.01f;
+                break;
+            case SpritePositionType.Right:
+                propXPos -= 0.01f;
+                break;
+            case SpritePositionType.Top:
+                propZPos -= 0.01f;
+                break;
+            case SpritePositionType.Bottom:
+                propZPos += 0.01f;
+                break;
+        }
+
+        return new Vector3(propXPos, propPosition.y, propZPos);
+    }
+
+    /**
+     * Changes a sprite position to be placed as if it's center of transformation
+     * is on the bottom left side of the sprite, and not the centre of the sprite.
+     */
     Vector3 SpriteLocationFix(Vector2Int spriteSize, Vector2Int spriteLocation, SpritePositionType relativePos)
     {
         float spriteLocationX = spriteLocation.x + (spriteSize.x / 2.0f);
@@ -445,16 +500,10 @@ public class SpriteGenerator2D : MonoBehaviour
         return new Vector3(spriteLocationX, spriteLocationY, spriteLocationZ);
     }
 
-    //Method to choose a randomly selected sprite from the available prefabs.
-    GameObject NextFloorSprite()
+    //Method to choose a random sprite from the given sprites entered.
+    GameObject NextSprite(GameObject[] sprites)
     {
-        return spritePrefabs[random.Next(0, spritePrefabs.Length)];
-    }
-
-    //Method to randomly select a wall sprite from the available prefabs.
-    GameObject NextWallSprite()
-    {
-        return wallPrefabs[random.Next(0, wallPrefabs.Length)];
+        return sprites[random.Next(0, sprites.Length)];
     }
 
     //Used to detect floor tiles.
@@ -486,7 +535,7 @@ public class SpriteGenerator2D : MonoBehaviour
             {
                 Vector2Int location = new Vector2Int(i, j);
 
-                if (!DetectSprite(SpriteFloorLocationFix(new Vector2Int(1, 1), location)))
+                if (!DetectSprite(FloorSpriteLocationFix(new Vector2Int(1, 1), location)))
                 {
                     PlaceRoofSprite(location, new Vector2Int(1, 1));
                 }
@@ -500,9 +549,9 @@ public class SpriteGenerator2D : MonoBehaviour
         SpritePositionType wallPositions = SpritePositionType.None;
 
         Vector3 wallDetector = new Vector3(location.x, location.y + 0.7f, location.z);
-        Collider[] wallsFound = Physics.OverlapSphere(wallDetector, 0.5f);
+        Collider[] wallsFound = Physics.OverlapSphere(wallDetector, 0.6f);
 
-        int arrayLocation = 0;
+        int arrayLocation;
 
         foreach (Collider wall in wallsFound)
         {
@@ -511,19 +560,19 @@ public class SpriteGenerator2D : MonoBehaviour
 
             if (wallXPos > wallDetector.x)
             {
-                wallPositions = wallPositions | SpritePositionType.Right;
+                wallPositions |= SpritePositionType.Right;
             }
             if (wallXPos < wallDetector.x)
             {
-                wallPositions = wallPositions | SpritePositionType.Left;
+                wallPositions |= SpritePositionType.Left;
             }
             if (wallZPos > wallDetector.z)
             {
-                wallPositions = wallPositions | SpritePositionType.Top;
+                wallPositions |= SpritePositionType.Top;
             }
             if (wallZPos < wallDetector.z)
             {
-                wallPositions = wallPositions | SpritePositionType.Bottom;
+                wallPositions |= SpritePositionType.Bottom;
             }
         }
 
@@ -590,9 +639,10 @@ public class SpriteGenerator2D : MonoBehaviour
             originalDetector.x,
             originalDetector.y,
             originalDetector.z);
+
         Collider[] wallsFound = Physics.OverlapSphere(extendedDetector, 1.0f);
 
-        int arrayLocation = 0;
+        int arrayLocation;
 
         foreach (Collider wall in wallsFound)
         {
@@ -601,19 +651,19 @@ public class SpriteGenerator2D : MonoBehaviour
 
             if (wallXPos > extendedDetector.x)
             {
-                wallPositions = wallPositions | SpritePositionType.Right;
+                wallPositions |= SpritePositionType.Right;
             }
             if (wallXPos < extendedDetector.x)
             {
-                wallPositions = wallPositions | SpritePositionType.Left;
+                wallPositions |= SpritePositionType.Left;
             }
             if (wallZPos > extendedDetector.z)
             {
-                wallPositions = wallPositions | SpritePositionType.Top;
+                wallPositions |= SpritePositionType.Top;
             }
             if (wallZPos < extendedDetector.z)
             {
-                wallPositions = wallPositions | SpritePositionType.Bottom;
+                wallPositions |= SpritePositionType.Bottom;
             }
         }
 
@@ -674,16 +724,16 @@ public class SpriteGenerator2D : MonoBehaviour
                     spawnRoomEdge.x + random.Next(0, toSpawnIn.bounds.size.x),
                     spawnRoomEdge.y + random.Next(0, toSpawnIn.bounds.size.y));
 
-                    Vector3 spawnAt = SpriteFloorLocationFix(new Vector2Int(1, 1), spawnPosition);
+                    Vector3 spawnAt = FloorSpriteLocationFix(new Vector2Int(1, 1), spawnPosition);
                     spawnAt = new Vector3(spawnAt.x, 0.5f, spawnAt.z);
 
                     bool enemyExists = false;
                     Collider[] potentialEnemies = Physics.OverlapSphere(spawnAt, 0.1f);
                     foreach (Collider sprite in potentialEnemies)
                     {
-                        if (sprite.tag == "Enemy")
+                        if (sprite.tag.Equals("Enemy"))
                         {
-                            enemyExists = false;
+                            enemyExists = true;
                         }
                     }
 
@@ -692,6 +742,48 @@ public class SpriteGenerator2D : MonoBehaviour
                         GameObject enemy = Instantiate(enemyPrefabs[random.Next(0, enemyPrefabs.Length)], spawnAt, Quaternion.identity);
                         enemy.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
                         enemiesSpawned++;
+                    }
+                }
+            }
+        }
+    }
+
+    void SpawnFloorProps()
+    {
+        foreach (Room currentRoom in rooms)
+        {
+            int propNumber = random.Next(0, 10);
+            List<Vector2Int> propLocations = new List<Vector2Int>();
+
+            for (int i = 0; i < propNumber; i++)
+            {
+                Vector2Int spawnRoomEdge = currentRoom.bounds.position;
+                Vector2Int spawnPosition = new Vector2Int(
+                    spawnRoomEdge.x + random.Next(0, currentRoom.bounds.size.x),
+                    spawnRoomEdge.y + random.Next(0, currentRoom.bounds.size.y));
+
+                if (!propLocations.Contains(spawnPosition))
+                {
+                    Vector3 spawnAt = FloorSpriteLocationFix(new Vector2Int(1, 1), spawnPosition);
+                    spawnAt = new Vector3(spawnAt.x, 0.2f, spawnAt.z);
+
+                    bool enemyExists = false;
+                    Collider[] potentialEnemies = Physics.OverlapSphere(spawnAt, 0.1f);
+                    foreach (Collider sprite in potentialEnemies)
+                    {
+                        if (sprite.tag.Equals("Enemy"))
+                        {
+                            enemyExists = true;
+                        }
+                    }
+
+                    if (!enemyExists)
+                    {
+                        GameObject prop = Instantiate(NextSprite(floorProps), spawnAt, Quaternion.identity);
+                        prop.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                        prop.GetComponent<Transform>().rotation = Quaternion.Euler(40, 0, 0);
+
+                        propLocations.Add(spawnPosition);
                     }
                 }
             }
