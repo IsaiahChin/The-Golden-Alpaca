@@ -267,6 +267,11 @@ public class SpriteGenerator2D : MonoBehaviour
         }
     }
 
+    /**
+     * Placing cubes has been modified into two methods, to fit with our game design. And, to create a roof around the
+     * level, a method has been added to create the roof.
+     */
+
     //Modified to work with sprites instead of cubes.
     void PlaceFloorSprite(Vector2Int location, Vector2Int size, Material material)
     {
@@ -319,7 +324,6 @@ public class SpriteGenerator2D : MonoBehaviour
 
                     if (placePropChance == 0)
                     {
-                        
                         GameObject prop = Instantiate(NextSprite(wallProps), WallPropLocationFix(size, location, currentPos), Quaternion.identity);
                         prop.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
                         prop.GetComponent<Transform>().rotation = Quaternion.Euler(0, 90 * i, 0);
@@ -542,7 +546,7 @@ public class SpriteGenerator2D : MonoBehaviour
         Vector3 wallDetector = new Vector3(location.x, location.y + 0.7f, location.z);
         Collider[] wallsFound = Physics.OverlapSphere(wallDetector, 0.6f);
 
-        int arrayLocation = 0;
+        int arrayLocation;
 
         foreach (Collider wall in wallsFound)
         {
@@ -630,9 +634,10 @@ public class SpriteGenerator2D : MonoBehaviour
             originalDetector.x,
             originalDetector.y,
             originalDetector.z);
+
         Collider[] wallsFound = Physics.OverlapSphere(extendedDetector, 1.0f);
 
-        int arrayLocation = 0;
+        int arrayLocation;
 
         foreach (Collider wall in wallsFound)
         {
@@ -748,7 +753,6 @@ public class SpriteGenerator2D : MonoBehaviour
             for (int i = 0; i < propNumber; i++)
             {
                 Vector2Int spawnRoomEdge = currentRoom.bounds.position;
-
                 Vector2Int spawnPosition = new Vector2Int(
                     spawnRoomEdge.x + random.Next(0, currentRoom.bounds.size.x),
                     spawnRoomEdge.y + random.Next(0, currentRoom.bounds.size.y));
