@@ -723,7 +723,7 @@ public class SpriteGenerator2D : MonoBehaviour
                     {
                         if (sprite.tag == "Enemy")
                         {
-                            enemyExists = false;
+                            enemyExists = true;
                         }
                     }
 
@@ -756,12 +756,12 @@ public class SpriteGenerator2D : MonoBehaviour
                 spawnAt = new Vector3(spawnAt.x, 0.2f, spawnAt.z);
 
                 bool enemyExists = false;
-                Collider[] potentialEnemies = Physics.OverlapSphere(spawnAt, 1f, (1 << LayerMask.NameToLayer("Enemy")));
+                Collider[] potentialEnemies = Physics.OverlapSphere(spawnAt, 0.1f);
                 foreach (Collider sprite in potentialEnemies)
                 {
                     if (sprite.tag == "Enemy")
                     {
-                        enemyExists = false;
+                        enemyExists = true;
                     }
                 }
 
