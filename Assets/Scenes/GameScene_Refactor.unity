@@ -511,6 +511,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
         type: 3}
+      propertyPath: redMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 14db22d7ded2ba6499ef04084f406cde, type: 2}
+    - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
+        type: 3}
+      propertyPath: blueMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 14db22d7ded2ba6499ef04084f406cde, type: 2}
+    - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
+        type: 3}
+      propertyPath: greenMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 17d51c9c2bb4e674fb252d23a029bbd0, type: 2}
+    - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
+        type: 3}
       propertyPath: floorPrefabs.Array.data[0]
       value: 
       objectReference: {fileID: 7977006537340900227, guid: a4e4f64ee6ec455498d104765c0a7011,
@@ -786,6 +801,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1649851618871980303, guid: 302f00d53bb675d41a0c5aa40b0aa266,
+        type: 3}
+      propertyPath: offset.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1649851618871980303, guid: 302f00d53bb675d41a0c5aa40b0aa266,
+        type: 3}
+      propertyPath: offset.z
+      value: -6
+      objectReference: {fileID: 0}
     - target: {fileID: 5048702411188450803, guid: 302f00d53bb675d41a0c5aa40b0aa266,
         type: 3}
       propertyPath: m_Name
