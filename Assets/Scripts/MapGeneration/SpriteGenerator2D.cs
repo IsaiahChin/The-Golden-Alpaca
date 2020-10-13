@@ -819,7 +819,7 @@ public class SpriteGenerator2D : MonoBehaviour
 
         foreach(Collider environmentElement in currentWall)
         {
-            GameObject.Destroy(environmentElement);
+            Destroy(environmentElement.gameObject);
         }
 
         GameObject exitDoor = Instantiate(clossedDoorSprite, placementPosition, Quaternion.identity);
