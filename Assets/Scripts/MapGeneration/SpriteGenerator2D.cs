@@ -800,7 +800,7 @@ public class SpriteGenerator2D : MonoBehaviour
         Room[] availableRooms = rooms.ToArray();
         Room exitRoom = null;
 
-        while (exitRoom != null)
+        while (exitRoom == null)
         {
             Room toExit = availableRooms[random.Next(0, availableRooms.Length)];
             if (toExit != playerSpawn)
@@ -823,7 +823,7 @@ public class SpriteGenerator2D : MonoBehaviour
         }
 
         GameObject exitDoor = Instantiate(clossedDoorSprite, placementPosition, Quaternion.identity);
-        exitDoor.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
+        exitDoor.GetComponent<Transform>().localScale = Vector3.one;
         exitDoor.GetComponent<SpriteRenderer>().material = greenMaterial;
     }
 }
