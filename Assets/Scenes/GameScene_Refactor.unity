@@ -596,6 +596,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 261725627692418674, guid: 44c66bbc5c0f16e4d89186bb0e41d90c,
         type: 3}
+    - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
+        type: 3}
+      propertyPath: clossedDoorSprite
+      value: 
+      objectReference: {fileID: 601962152097659205, guid: 8ac3649eba83a32419b6388954d4e88e,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29d736b2e4bb8b042a2a54b45982da23, type: 3}
 --- !u!1001 &1187305466

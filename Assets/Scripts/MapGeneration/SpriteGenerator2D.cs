@@ -118,6 +118,8 @@ public class SpriteGenerator2D : MonoBehaviour
         SpawnEnemies(playerSpawn);
         //Spawn Floor Props.
         SpawnFloorProps();
+        //Spawn Exit Door
+        SpawnExitWall(playerSpawn);
     }
 
     void PlaceRooms()
