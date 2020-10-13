@@ -85,6 +85,9 @@ public class SpriteGenerator2D : MonoBehaviour
     [SerializeField]
     GameObject[] floorProps;
 
+    [SerializeField]
+    GameObject clossedDoorSprite;
+
     Random random;
     Grid2D<CellType> grid;
     List<Room> rooms;
@@ -806,5 +809,19 @@ public class SpriteGenerator2D : MonoBehaviour
 
         Vector2Int topWallStart = exitRoom.bounds.position;
         topWallStart.y += exitRoom.bounds.size.y;
+
+        Vector2Int doorPosition = new Vector2Int(random.Next(topWallStart.x + 1, topWallStart.x + exitRoom.bounds.size.x), topWallStart.y);
+        Vector3 placementPosition = WallSpriteLocationFix(new Vector2Int(1, 1), doorPosition, SpritePositionType.Top);
+
+        Collider[] currentWall = Physics.OverlapSphere(placementPosition, 0.1f, 1 << LayerMask.NameToLayer("Environement"));
+
+        foreach(Collider environmentElement in currentWall)
+        {
+            GameObject.Destroy(environmentElement);
+        }
+
+        GameObject exitDoor = Instantiate(clossedDoorSprite, placementPosition, Quaternion.identity);
+        exitDoor.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
+        exitDoor.GetComponent<SpriteRenderer>().material = greenMaterial;
     }
 }
