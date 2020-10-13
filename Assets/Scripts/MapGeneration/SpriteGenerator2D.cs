@@ -810,12 +810,12 @@ public class SpriteGenerator2D : MonoBehaviour
         }
 
         Vector2Int topWallStart = exitRoom.bounds.position;
-        topWallStart.y += exitRoom.bounds.size.y;
+        topWallStart.y += exitRoom.bounds.size.y - 1;
 
         Vector2Int doorPosition = new Vector2Int(random.Next(topWallStart.x + 1, topWallStart.x + exitRoom.bounds.size.x), topWallStart.y);
         Vector3 placementPosition = WallSpriteLocationFix(new Vector2Int(1, 1), doorPosition, SpritePositionType.Top);
 
-        Collider[] currentWall = Physics.OverlapSphere(placementPosition, 0.1f, 1 << LayerMask.NameToLayer("Environement"));
+        Collider[] currentWall = Physics.OverlapSphere(placementPosition, 0.1f, 1 << LayerMask.NameToLayer("Environment"));
 
         foreach(Collider environmentElement in currentWall)
         {
