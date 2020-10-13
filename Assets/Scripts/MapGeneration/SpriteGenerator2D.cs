@@ -789,4 +789,22 @@ public class SpriteGenerator2D : MonoBehaviour
             }
         }
     }
+
+    void SpawnExitWall(Room playerSpawn)
+    {
+        Room[] availableRooms = rooms.ToArray();
+        Room exitRoom = null;
+
+        while (exitRoom != null)
+        {
+            Room toExit = availableRooms[random.Next(0, availableRooms.Length)];
+            if (toExit != playerSpawn)
+            {
+                exitRoom = toExit;
+            }
+        }
+
+        Vector2Int topWallStart = exitRoom.bounds.position;
+        topWallStart.y += exitRoom.bounds.size.y;
+    }
 }
