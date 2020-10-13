@@ -101,7 +101,7 @@ public class SpriteGenerator2D : MonoBehaviour
 
     void Generate()
     {
-        random = new Random();
+        random = new Random(0);
         grid = new Grid2D<CellType>(size, Vector2Int.zero);
         rooms = new List<Room>();
 
@@ -815,7 +815,7 @@ public class SpriteGenerator2D : MonoBehaviour
         Vector2Int doorPosition = new Vector2Int(random.Next(topWallStart.x + 1, topWallStart.x + exitRoom.bounds.size.x), topWallStart.y);
         Vector3 placementPosition = WallSpriteLocationFix(new Vector2Int(1, 1), doorPosition, SpritePositionType.Top);
 
-        Collider[] currentWall = Physics.OverlapSphere(placementPosition, 0.1f, 1 << LayerMask.NameToLayer("Environment"));
+        Collider[] currentWall = Physics.OverlapSphere(placementPosition, 0.2f, 1 << LayerMask.NameToLayer("Environment"));
 
         foreach(Collider environmentElement in currentWall)
         {
