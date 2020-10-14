@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3109968668608602081}
   - component: {fileID: 8957955232657226638}
   - component: {fileID: 4910170429444484663}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: stone_wallTiles_ss_1
-  m_TagString: Untagged
+  m_TagString: Enviroment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40,8 +40,8 @@ SpriteRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3121421907173534485}
   m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
