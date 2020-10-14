@@ -7,6 +7,12 @@ public class EnemyHealthController : MonoBehaviour
     public float health;
     public Animator animator;
 
+    private void Start()
+    {
+        //Increase the enemy counter
+        GameObject.Find("CounterCanvas").GetComponentInChildren<EnemyCounter>().increaseCount();
+    }
+
     private void Update()
     {
         if (health<=0)
@@ -17,6 +23,8 @@ public class EnemyHealthController : MonoBehaviour
 
     private void Die()
     {
+        //Decrease enemy counter
+        GameObject.Find("CounterCanvas").GetComponentInChildren<EnemyCounter>().decreaseCount();
         Destroy(gameObject);
     }
 
