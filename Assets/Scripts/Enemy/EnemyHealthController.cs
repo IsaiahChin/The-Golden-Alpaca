@@ -10,7 +10,7 @@ public class EnemyHealthController : MonoBehaviour
     private void Start()
     {
         //Increase the enemy counter
-        GameObject.Find("CounterCanvas").GetComponentInChildren<EnemyCounter>().increaseCount();
+        //GameObject.Find("CounterCanvas").GetComponentInChildren<EnemyCounter>().increaseCount();
     }
 
     private void Update()
@@ -24,7 +24,7 @@ public class EnemyHealthController : MonoBehaviour
     private void Die()
     {
         //Decrease enemy counter
-        GameObject.Find("CounterCanvas").GetComponentInChildren<EnemyCounter>().decreaseCount();
+        //GameObject.Find("CounterCanvas").GetComponentInChildren<EnemyCounter>().decreaseCount();
         Destroy(gameObject);
     }
 
