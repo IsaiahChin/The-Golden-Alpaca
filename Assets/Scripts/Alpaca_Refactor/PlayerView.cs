@@ -10,7 +10,7 @@ public class PlayerView : MonoBehaviour
 
     void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = GameObject.Find("AlpacaGFX").GetComponent<Animator>();
         swordAnimator = GameObject.Find("AlpacaSword").GetComponent<Animator>();
     }
     public void SetDead(bool dead)
