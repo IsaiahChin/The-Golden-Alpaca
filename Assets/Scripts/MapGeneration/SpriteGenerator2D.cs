@@ -797,6 +797,13 @@ public class SpriteGenerator2D : MonoBehaviour
 
     void SpawnExitWall(Room playerSpawn)
     {
+        //bool doorPlaced = false;
+
+        //while (!doorPlaced)
+        //{
+
+        //}
+
         Room[] availableRooms = rooms.ToArray();
         Room exitRoom = null;
 
