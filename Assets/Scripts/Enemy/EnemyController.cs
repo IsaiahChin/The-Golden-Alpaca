@@ -19,22 +19,22 @@ public class EnemyController : MonoBehaviour
         //Setup modular weapon system
         if (gameObject.GetComponent<MeleeWeapon>() == null)
         {
-            model.meleeEnabled = false;
+            model.MeleeEnabled = false;
         }
         else
         {
             melee = gameObject.GetComponent<MeleeWeapon>();
-            model.meleeEnabled = true;
+            model.MeleeEnabled = true;
         }
 
         if (gameObject.GetComponent<RangedWeapon>() == null)
         {
-            model.rangedEnabled = false;
+            model.RangedEnabled = false;
         }
         else
         {
             ranged = gameObject.GetComponent<RangedWeapon>();
-            model.rangedEnabled = true;
+            model.RangedEnabled = true;
         }
 
         //Increase the enemy counter
@@ -44,7 +44,7 @@ public class EnemyController : MonoBehaviour
     private void Update()
     {
         //Check Health
-        if (model.health <= 0)
+        if (model.Health <= 0)
         {
             Die();
         }
@@ -52,7 +52,7 @@ public class EnemyController : MonoBehaviour
         CalculateMovement();
 
         //If the enemy can attack and has line of sight, then attack
-        if (Time.time >= model.nextAttackTime && PlayerInLineOfSight())
+        if (Time.time >= model.NextAttackTime && PlayerInLineOfSight())
         {
             CalculateAttack();
         }
@@ -69,8 +69,8 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            model.timer += Time.deltaTime;
-            if (model.timer >= model.wanderTimer)
+            model.Timer += Time.deltaTime;
+            if (model.Timer >= model.WanderTimer)
             {
                 model.IdleMove();
             }
@@ -82,7 +82,7 @@ public class EnemyController : MonoBehaviour
     */
     private bool PlayerInLineOfSight()
     {
-        if (Physics.Raycast(model.attackPoint.position, model.attackPoint.forward, out RaycastHit hit, model.sightRange))
+        if (Physics.Raycast(model.AttackPoint.position, model.AttackPoint.forward, out RaycastHit hit, model.SightRange))
         {
             if (hit.transform.CompareTag("Player"))
             {
@@ -105,41 +105,41 @@ public class EnemyController : MonoBehaviour
     private void CalculateAttack()
     {
         //If the enemy has a melee and ranged attack
-        if (model.meleeEnabled && model.rangedEnabled)
+        if (model.MeleeEnabled && model.RangedEnabled)
         {
             //Check if the player is within range
-            if (Physics.CheckSphere(melee.attackPoint.position, model.meleeAttackRange, model.attackLayer))
+            if (Physics.CheckSphere(melee.attackPoint.position, model.MeleeAttackRange, model.attackLayer))
             {
                 melee.Attack();
                 //Reset the attack time
-                model.nextAttackTime = Time.time + 1f / model.meleeAttackRate;
+                model.NextAttackTime = Time.time + 1f / model.MeleeAttackRate;
             } //Check if the player is within range
-            else if (Physics.CheckSphere(ranged.attackPoint.position, model.rangedAttackRange, model.attackLayer))
+            else if (Physics.CheckSphere(ranged.attackPoint.position, model.RangedAttackRange, model.attackLayer))
             {
                 ranged.Attack();
                 //Reset the attack time
-                model.nextAttackTime = Time.time + 1f / model.rangedAttackRate;
+                model.NextAttackTime = Time.time + 1f / model.RangedAttackRate;
             }
 
         } //If the enemy has a melee but no ranged attack
-        else if (model.meleeEnabled && !model.rangedEnabled)
+        else if (model.MeleeEnabled && !model.RangedEnabled)
         {
             //Check if the player is within range
-            if (Physics.CheckSphere(melee.attackPoint.position, model.meleeAttackRange, model.attackLayer))
+            if (Physics.CheckSphere(melee.attackPoint.position, model.MeleeAttackRange, model.attackLayer))
             {
                 melee.Attack();
                 //Reset the attack time
-                model.nextAttackTime = Time.time + 1f / model.meleeAttackRate;
+                model.NextAttackTime = Time.time + 1f / model.MeleeAttackRate;
             }
         } //If the enemy has a ranged but no melee attack
-        else if (model.rangedEnabled && !model.meleeEnabled)
+        else if (model.RangedEnabled && !model.MeleeEnabled)
         {
             //Check if the player is within range
-            if (Physics.CheckSphere(ranged.attackPoint.position, model.rangedAttackRange, model.attackLayer))
+            if (Physics.CheckSphere(ranged.attackPoint.position, model.RangedAttackRange, model.attackLayer))
             {
                 ranged.Attack();
                 //Reset the attack time
-                model.nextAttackTime = Time.time + 1f / model.rangedAttackRate;
+                model.NextAttackTime = Time.time + 1f / model.RangedAttackRate;
             }
         }
 
@@ -159,7 +159,7 @@ public class EnemyController : MonoBehaviour
 
     public void decreaseHealth(float damage)
     {
-        model.health -= damage;
+        model.Health -= damage;
         //view.animator.SetTrigger("Hit");
     }
 }
