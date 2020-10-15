@@ -110,8 +110,6 @@ public class SpriteGenerator2D : MonoBehaviour
         PathfindHallways();
         PlaceRoof();
 
-        baker.Bake();
-
         //Call player spawn and retrieve spawn room.
         Room playerSpawn = SpawnAlpaca();
 
@@ -121,7 +119,6 @@ public class SpriteGenerator2D : MonoBehaviour
         SpawnEnemies(playerSpawn);
         //Spawn Floor Props.
         SpawnFloorProps();
-        baker.Bake();
     }
 
     void PlaceRooms()
