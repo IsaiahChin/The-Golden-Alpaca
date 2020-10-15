@@ -42,7 +42,7 @@ public class MeleeWeapon : MonoBehaviour
             else if (enemy.tag == "Enemy")
             {
                 //If the collider is a enemy, call the enemy damage script
-                enemy.GetComponent<EnemyHealthController>().decreaseHealth(AttackDamage);
+                enemy.GetComponent<EnemyController>().decreaseHealth(AttackDamage);
             }
         }
     }

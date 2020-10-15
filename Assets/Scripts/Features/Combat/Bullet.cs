@@ -48,7 +48,7 @@ public class Bullet : MonoBehaviour
         else if (collision.tag == "Enemy" && collision.tag != shooterTag)
         {
             //If the collision is with a enemy and the enemy didnt shoot it, then self destrict
-            collision.GetComponent<EnemyHealthController>().decreaseHealth(damage);
+            collision.GetComponent<EnemyController>().decreaseHealth(damage);
             Hit();
         }
         else if (collision.tag == "Enviroment" && collision.tag != shooterTag)

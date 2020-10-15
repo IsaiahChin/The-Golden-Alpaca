@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class EnemyView : MonoBehaviour
 {
+    public Animator swordAnimator { get; set; }
     public Animator animator { get; set; }
 
     private void Start()
     {
-        animator = GameObject.Find("EnemySword").GetComponent<Animator>();
+        swordAnimator = GameObject.Find("EnemySword").GetComponent<Animator>();
     }
 
 }

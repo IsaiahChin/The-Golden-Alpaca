@@ -29,9 +29,14 @@ public class EnemyModel : MonoBehaviour
     public float sightRange { get; set; }
     public LayerMask followLayer;
 
-    internal void ChasePlayer()
+    public float health { get; set; }
+
+    public void ChasePlayer()
     {
-        navmeshAgent.SetDestination(target.position);
+        if (health>0)
+        {
+            navmeshAgent.SetDestination(target.position);
+        }        
     }
 
     public bool playerInSightRange { get; set; }
@@ -54,6 +59,7 @@ public class EnemyModel : MonoBehaviour
 
         target = GameObject.Find("Alpaca").transform;
         navmeshAgent = GetComponent<NavMeshAgent>();
+        health = 1;
 
     }
 }

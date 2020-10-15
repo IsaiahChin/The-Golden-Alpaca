@@ -18,10 +18,18 @@ public class EnemyController : MonoBehaviour
 
         melee = GetComponent<MeleeWeapon>();
         ranged = GetComponent<RangedWeapon>();
+
+        //Increase the enemy counter
+        GameObject.Find("CounterCanvas").GetComponentInChildren<EnemyCounter>().increaseCount();
     }
 
     private void Update()
     {
+        if (model.health <= 0)
+        {
+            Die();
+        }
+
         //Check if the player is in the sight range
         model.playerInSightRange = Physics.CheckSphere(transform.position, model.sightRange, model.followLayer);
 
@@ -57,5 +65,21 @@ public class EnemyController : MonoBehaviour
             }
         }
 
+    }
+
+    private void Die()
+    {
+        //Decrease enemy counter
+        GameObject.Find("CounterCanvas").GetComponentInChildren<EnemyCounter>().decreaseCount();
+        model.enabled = false;
+        view.enabled = false;
+        this.enabled = false;
+        Destroy(gameObject);
+    }
+
+    public void decreaseHealth(float damage)
+    {
+        model.health -= damage;
+        //view.animator.SetTrigger("Hit");
     }
 }
