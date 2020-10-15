@@ -10,7 +10,7 @@ public class LightFlicker : MonoBehaviour
 	public float amplitude = 1.0f; // amplitude of the wave
 	public float phase = 0.0f; // start point inside on wave cycle
 	public float frequency = 0.5f; // cycle frequency per second
-
+	
 	// Keep a copy of the original color
 	private Color originalColor;
 	private new Light light;
@@ -23,7 +23,7 @@ public class LightFlicker : MonoBehaviour
 	}
 
 	void Update()
-	{
+	{ 
 		light.color = originalColor * (Flicker());
 	}
 
