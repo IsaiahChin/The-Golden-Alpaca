@@ -8,16 +8,33 @@ public class EnemyController : MonoBehaviour
     private EnemyModel model;
     private EnemyView view;
 
-    public MeleeWeapon melee;
-    public RangedWeapon ranged;
+    private MeleeWeapon melee;
+    private RangedWeapon ranged;
 
     private void Start()
     {
         model = GetComponent<EnemyModel>();
         view = GetComponent<EnemyView>();
 
-        melee = GetComponent<MeleeWeapon>();
-        ranged = GetComponent<RangedWeapon>();
+        if (gameObject.GetComponent<MeleeWeapon>() == null)
+        {
+            model.meleeEnabled = false;
+        }
+        else
+        {
+            melee = gameObject.GetComponent<MeleeWeapon>();
+            model.meleeEnabled = true;
+        }
+
+        if (gameObject.GetComponent<RangedWeapon>() == null)
+        {
+            model.rangedEnabled = false;
+        }
+        else
+        {
+            ranged = gameObject.GetComponent<RangedWeapon>();
+            model.rangedEnabled = true;
+        }
 
         //Increase the enemy counter
         GameObject.Find("CounterCanvas").GetComponentInChildren<EnemyCounter>().increaseCount();
@@ -29,42 +46,82 @@ public class EnemyController : MonoBehaviour
         {
             Die();
         }
+        
+        CalculateMovement();
 
-        //Check if the player is in the sight range
-        model.playerInSightRange = Physics.CheckSphere(transform.position, model.sightRange, model.followLayer);
-
-        model.playerInMeleeRange = Physics.CheckSphere(melee.attackPoint.position, model.meleeAttackRange, model.attackLayer);
-        //Debug.Log("Melee" + model.playerInMeleeRange);
-        model.playerInRangedRange = Physics.CheckSphere(ranged.attackPoint.position, model.rangedAttackRange, model.attackLayer);
-        //Debug.Log("Ranged" + model.playerInRangedRange);
-
-        if (model.playerInSightRange)
+        if (Time.time >= model.nextAttackTime&& playerInLineOfSight())
         {
-            Debug.Log("Chasing" + model.playerInSightRange);
+            CalculateAttack();
+        }
+    }
+
+    private void CalculateMovement()
+    {
+        if (playerInLineOfSight())
+        {
             model.ChasePlayer();
         }
         else
         {
             //Sprint 2 TODO: Idle movement would go here
         }
+    }
 
-        if (Time.time >= model.nextAttackTime)
+    private bool playerInLineOfSight()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(model.attackPoint.position, model.attackPoint.forward, out hit, model.sightRange))
         {
-            if (model.playerInMeleeRange)
+            if (hit.transform.CompareTag("Player"))
             {
-                //If the player is in the melee attack range then preform a melee attack
-                //view.animator.SetTrigger("Attack");
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private void CalculateAttack()
+    {
+        if (model.meleeEnabled && model.rangedEnabled)
+        {
+            if (Physics.CheckSphere(melee.attackPoint.position, model.meleeAttackRange, model.attackLayer))
+            {
                 melee.Attack();
                 model.nextAttackTime = Time.time + 1f / model.meleeAttackRate;
             }
-            else if (model.playerInRangedRange)
+            else if (Physics.CheckSphere(ranged.attackPoint.position, model.rangedAttackRange, model.attackLayer))
             {
-                //If the player is in the ranged attack range then preform a ranged attack
+                ranged.Attack();
+                model.nextAttackTime = Time.time + 1f / model.rangedAttackRate;
+            }
+
+        }
+        else if (model.meleeEnabled && !model.rangedEnabled)
+        {
+            if (Physics.CheckSphere(melee.attackPoint.position, model.meleeAttackRange, model.attackLayer))
+            {
+                melee.Attack();
+                model.nextAttackTime = Time.time + 1f / model.meleeAttackRate;
+            }
+        }
+        else if (model.rangedEnabled && !model.meleeEnabled)
+        {
+            
+            if (Physics.CheckSphere(ranged.attackPoint.position, model.rangedAttackRange, model.attackLayer))
+            {
                 ranged.Attack();
                 model.nextAttackTime = Time.time + 1f / model.rangedAttackRate;
             }
         }
-
+        
     }
 
     private void Die()

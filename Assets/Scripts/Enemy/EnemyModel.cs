@@ -9,13 +9,19 @@ public class EnemyModel : MonoBehaviour
     // MVC
     private EnemyView view;
 
+    public Transform attackPoint { get; set; }
+
     //Melee attack stats
     public float meleeAttackRate { get; set; }
     public float meleeAttackRange { get; set; }
+    public bool meleeEnabled { get; set; }
+
 
     //Ranged attack stats
     public float rangedAttackRate { get; set; }
     public float rangedAttackRange { get; set; }
+
+    public bool rangedEnabled { get; set; }
 
     //Attack range states
     public bool playerInRangedRange { get; set; }
@@ -61,5 +67,6 @@ public class EnemyModel : MonoBehaviour
         navmeshAgent = GetComponent<NavMeshAgent>();
         health = 1;
 
+        attackPoint = this.gameObject.transform.GetChild(1).transform;
     }
 }
