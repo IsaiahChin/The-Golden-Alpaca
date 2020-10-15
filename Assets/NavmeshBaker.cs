@@ -5,11 +5,10 @@ using UnityEngine.AI;
 
 public class NavmeshBaker : MonoBehaviour
 {
-    
+    public NavMeshSurface surface;
 
-    //public NavMeshSurface
-    void Start()
+    private void Start()
     {
-       
+        surface.BuildNavMesh();
     }
 }
