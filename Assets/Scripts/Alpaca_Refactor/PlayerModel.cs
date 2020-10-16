@@ -10,16 +10,27 @@ public class PlayerModel : MonoBehaviour
     // Components
     public Rigidbody rigidBody { get; set; }
     public Vector3 newPosition { get; set; }
-
-    // Player attributes
     public float health { get; set; }
-    public float maxHealth { get; set; }
-    public float maxSpeed { get; set; }
 
-    // Attack attributes
-    public float meleeAttackRate { get; set; }
+    [Header("Settings")]
+    [Min(0.5f)]
+    public float maxHealth;
+    [Min(0.5f)]
+    public float maxSpeed;
 
-    public float rangedAttackRate { get; set; }
+    [Header("Melee Attack")]
+    [Min(0.1f)]
+    public float meleeAttackRate;
+    [Min(0.1f)]
+    public float meleeAttackDamage;
+
+    [Header("Ranged Attack")]
+    [Min(0.1f)]
+    public float rangedAttackRate;
+    [Min(0.1f)]
+    public float rangedAttackDamage;
+    [Min(0.1f)]
+    public float rangedAttackProjectileSpeed;
 
     public float nextAttackTime { get; set; }
 
@@ -29,12 +40,8 @@ public class PlayerModel : MonoBehaviour
         rigidBody = GetComponent<Rigidbody>();
         
         // Initialize variables
-        maxSpeed = 5.0f;
-        maxHealth = 3.0f;
         health = maxHealth;
 
-        meleeAttackRate = 2.0f;
-        rangedAttackRate = 2.0f;
         nextAttackTime = 0.0f;
     }
 
