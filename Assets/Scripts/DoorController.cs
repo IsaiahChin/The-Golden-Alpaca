@@ -13,8 +13,20 @@ public class DoorController : MonoBehaviour
         sr = gameObject.GetComponent<SpriteRenderer>();
     }
 
+    //Test code for opening doors.
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.U))
+        {
+            OpenDoor();
+        }
+    }
+
     public void OpenDoor()
     {
-        sr.sprite = openedDoor;
+        if (sr.sprite.name.Equals(openedDoor.name))
+        {
+            sr.sprite = openedDoor;
+        }
     }
 }
