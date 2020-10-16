@@ -9,14 +9,13 @@ public class MeleeWeapon : MonoBehaviour
     //Target Layers
     public LayerMask targetLayers;
     public Transform attackPoint { get; set; }
-    
-    public float attackRange { get; set; }
-    public float AttackDamage { get; set; }
+    [HideInInspector]
+    public float attackRange=1f;
+    [HideInInspector]
+    public float AttackDamage=1f;
 
     private void Awake()
     {
-        attackRange = 1f;
-        AttackDamage = 0.5f;
         attackPoint = this.gameObject.transform.GetChild(1).transform;
     }
 
