@@ -43,7 +43,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.7830189, g: 0.25060192, b: 0.24007656, a: 1}
+  m_Color: {r: 0.8941177, g: 0.86666673, b: 0.6862745, a: 1}
   m_Intensity: 5
   m_Range: 5
   m_SpotAngle: 30
@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 6544156456896301707}
   - component: {fileID: 2072549734020124243}
   m_Layer: 10
-  m_Name: Enemy
+  m_Name: EnemyFingerGun
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -271,7 +271,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   swordGFXEnabled: 0
-  meleeEnabled: 1
+  meleeEnabled: 0
   meleeAttackRate: 0.5
   meleeAttackRange: 1
   meleeAttackDamage: 1
@@ -316,7 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 500e96fa14a39144b9edf6b451a833a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 6706578177715918311, guid: 97349dfba1ae77247afcc7326bad530a,
+  bulletPrefab: {fileID: 6706578177715918311, guid: 5f5706ff4f3845c40b471a63587d7637,
     type: 3}
   speed: 10
   damage: 0.5
@@ -379,7 +379,7 @@ Animator:
   m_GameObject: {fileID: 4971152283949823109}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 522a001a263d27747a9e797fed2c18ad, type: 2}
+  m_Controller: {fileID: 9100000, guid: 524ab4f33b6df1f44ba1848c0b749643, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -427,8 +427,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7074124952420009344, guid: bab3ca1a6dc070c498957b9fb2b35ee9,
-    type: 3}
+  m_Sprite: {fileID: -89942669607408618, guid: 047a5275cecd46445abfca8323d37262, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
