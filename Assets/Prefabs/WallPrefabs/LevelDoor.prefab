@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 765821721860021919}
   - component: {fileID: 4850323510919187380}
   - component: {fileID: -9147157693296200499}
+  - component: {fileID: 2493954932461855841}
   m_Layer: 0
   m_Name: LevelDoor
   m_TagString: Untagged
@@ -97,3 +98,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openedDoor: {fileID: 4908492660009620254, guid: 1dd73bdaf90f82143bb164a3c2d536d7,
     type: 3}
+--- !u!65 &2493954932461855841
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9208192740443259567}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}

@@ -8,13 +8,13 @@ public class DoorController : MonoBehaviour
     [SerializeField]
     private Sprite openedDoor;
 
-    private void Awake()
+    void Awake()
     {
         sr = gameObject.GetComponent<SpriteRenderer>();
     }
 
     //Test code for opening doors.
-    private void Update()
+    void Update()
     {
         if (Input.GetKey(KeyCode.U))
         {
@@ -24,7 +24,7 @@ public class DoorController : MonoBehaviour
 
     public void OpenDoor()
     {
-        if (sr.sprite.name.Equals(openedDoor.name))
+        if (!sr.sprite.name.Equals(openedDoor.name))
         {
             sr.sprite = openedDoor;
         }
