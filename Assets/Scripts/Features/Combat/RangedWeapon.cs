@@ -11,13 +11,13 @@ public class RangedWeapon : MonoBehaviour
 
     //Attack point from where the bullet is fired from
     public Transform attackPoint { get; set; }
-    public float speed { get; set; }
-    public float damage { get; set; }
+    [HideInInspector]
+    public float speed = 10f;
+    [HideInInspector]
+    public float damage = 0.5f;
 
     private void Awake()
     {
-        speed = 10.0f;
-        damage = 0.5f;
         attackPoint = this.gameObject.transform.GetChild(1).transform;
     }
 
