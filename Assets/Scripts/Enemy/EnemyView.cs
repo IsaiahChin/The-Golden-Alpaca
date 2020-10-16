@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyView : MonoBehaviour
 {
@@ -10,6 +8,10 @@ public class EnemyView : MonoBehaviour
     void Start()
     {
         Animator = GameObject.Find("EnemyGFX").GetComponent<Animator>();
+    }
+
+    public void InitiateSword()
+    {
         SwordAnimator = GameObject.Find("EnemySword").GetComponent<Animator>();
     }
 

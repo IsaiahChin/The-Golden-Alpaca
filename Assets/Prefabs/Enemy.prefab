@@ -270,6 +270,7 @@ MonoBehaviour:
   followLayer:
     serializedVersion: 2
     m_Bits: 512
+  swordGFXEnabled: 0
   meleeEnabled: 1
   meleeAttackRate: 0.5
   meleeAttackRange: 1
@@ -334,6 +335,8 @@ MonoBehaviour:
   targetLayers:
     serializedVersion: 2
     m_Bits: 512
+  attackRange: 1
+  AttackDamage: 1
 --- !u!1 &4971152283949823109
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,7 +456,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8226506280977590509
 Transform:
   m_ObjectHideFlags: 0

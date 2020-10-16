@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
+﻿using UnityEngine;
 
 //Author: MatthewCopeland
 public class MeleeWeapon : MonoBehaviour

@@ -28,6 +28,7 @@ public class EnemyModel : MonoBehaviour
     public LayerMask followLayer;
 
     [Header("Melee Attack")]
+    public bool swordGFXEnabled = true;
     public bool meleeEnabled=true;
     [Min(0.1f)]
     public float meleeAttackRate;
@@ -50,6 +51,10 @@ public class EnemyModel : MonoBehaviour
     void Start()
     {
         view = GetComponent<EnemyView>();
+        if (swordGFXEnabled==true)
+        {
+            view.InitiateSword();
+        }
         Target = GameObject.Find("Alpaca").transform;
         NavAgent = GetComponent<NavMeshAgent>();
         NavAgent.speed = speed;
