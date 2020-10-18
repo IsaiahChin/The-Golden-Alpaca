@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour
 
             if ((door != null) && (Input.GetKeyDown(KeyCode.E)))
             {
-                DoorEventHandeler.ActivateInteraction();
+                EventHandeler.ActivateInteraction();
             }
         }
     }

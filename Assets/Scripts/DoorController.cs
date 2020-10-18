@@ -14,7 +14,7 @@ public class DoorController : MonoBehaviour
     void Awake()
     {
         rendererS = gameObject.GetComponent<SpriteRenderer>();
-        DoorEventHandeler.OnDoorInteraction += ToNextLevel;
+        EventHandeler.OnDoorInteraction += ToNextLevel;
     }
 
     //Test code for opening doors.
@@ -44,6 +44,6 @@ public class DoorController : MonoBehaviour
 
     private void OnDestroy()
     {
-        DoorEventHandeler.OnDoorInteraction -= ToNextLevel;
+        EventHandeler.OnDoorInteraction -= ToNextLevel;
     }
 }
