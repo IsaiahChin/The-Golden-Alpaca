@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class DoorController : MonoBehaviour
 {
-    private SpriteRenderer sr;
+    private SpriteRenderer rendererS;
     [SerializeField]
     private Sprite openedDoor;
     [SerializeField]
@@ -13,7 +13,7 @@ public class DoorController : MonoBehaviour
 
     void Awake()
     {
-        sr = gameObject.GetComponent<SpriteRenderer>();
+        rendererS = gameObject.GetComponent<SpriteRenderer>();
         DoorEventHandeler.OnDoorInteraction += ToNextLevel;
     }
 
@@ -28,15 +28,22 @@ public class DoorController : MonoBehaviour
 
     public void OpenDoor()
     {
-        if (!sr.sprite.name.Equals(openedDoor.name))
+        if (!rendererS.sprite.name.Equals(openedDoor.name))
         {
-            sr.sprite = openedDoor;
+            rendererS.sprite = openedDoor;
         }
     }
 
     private void ToNextLevel()
     {
-        SceneManager.LoadScene(nextLevelName);
+        if (rendererS.sprite.name.Equals(openedDoor.name))
+        {
+            SceneManager.LoadScene(nextLevelName);
+        }
+    }
+
+    private void OnDestroy()
+    {
         DoorEventHandeler.OnDoorInteraction -= ToNextLevel;
     }
 }
