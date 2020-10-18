@@ -12,11 +12,11 @@ public class EventHandeler : MonoBehaviour
 
     public static void ActivateInteraction()
     {
-        OnDoorInteraction();
+        OnDoorInteraction?.Invoke();
     }
 
     public static void ActivatePlayerSpawn()
     {
-        OnPlayerSpawn();
+        OnPlayerSpawn?.Invoke();
     }
 }
