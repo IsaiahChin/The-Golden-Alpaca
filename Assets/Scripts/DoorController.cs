@@ -1,16 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DoorController : MonoBehaviour
 {
     private SpriteRenderer sr;
     [SerializeField]
     private Sprite openedDoor;
+    [SerializeField]
+    private string nextLevelName;
 
     void Awake()
     {
         sr = gameObject.GetComponent<SpriteRenderer>();
+        DoorEventHandeler.OnDoorInteraction += ToNextLevel;
     }
 
     //Test code for opening doors.
@@ -28,5 +32,11 @@ public class DoorController : MonoBehaviour
         {
             sr.sprite = openedDoor;
         }
+    }
+
+    private void ToNextLevel()
+    {
+        SceneManager.LoadScene(nextLevelName);
+        DoorEventHandeler.OnDoorInteraction -= ToNextLevel;
     }
 }
