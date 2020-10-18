@@ -30,20 +30,8 @@ public class PlayerHealthUI_Refactor : MonoBehaviour
     private void Start()
     {
         canvas = transform.parent.gameObject;
-        StartCoroutine(LateStart(0.5f));
-        player = GameObject.Find("Alpaca").GetComponent<PlayerController>();
-    }
-
-    /**
-     * This method is called after the Start method with a delay time.
-     * This is to ensure that other scripts with variables are instantiated first.
-     */
-    IEnumerator LateStart(float delayTime)
-    {
-        yield return new WaitForSeconds(delayTime);
-        currentHealth = player.GetHealth();
-        maxHealth = player.GetMaxHealth();
-        UpdateHealth();
+        alpacaExists = false;
+        EventHandeler.OnPlayerSpawn += getPlayerInfo;
     }
 
     /**
@@ -51,49 +39,51 @@ public class PlayerHealthUI_Refactor : MonoBehaviour
      */
     public void UpdateHealth()
     {
-        currentHealth = player.GetHealth();
-        maxHealth = player.GetMaxHealth();
-        if (currentHealth > maxHealth) // Check if health goes over max health
+        if (alpacaExists)
         {
-            currentHealth = maxHealth; // Don't allow health overflow
-        }
-        else
-        {
-            foreach (Transform heart in transform) // Remove all heart prefabs from the Heart Storage
+            currentHealth = player.GetHealth();
+            maxHealth = player.GetMaxHealth();
+            if (currentHealth > maxHealth) // Check if health goes over max health
             {
-                Destroy(heart.gameObject);
+                currentHealth = maxHealth; // Don't allow health overflow
             }
-
-            for (int i = 0; i < maxHealth; i++) // Instantiate heart prefabs
+            else
             {
-                if (currentHealth == i + 1)
+                foreach (Transform heart in transform) // Remove all heart prefabs from the Heart Storage
                 {
-                    Instantiate(fullHeart, heartStorage.transform);
+                    Destroy(heart.gameObject);
                 }
-                else if (currentHealth > i)
+
+                for (int i = 0; i < maxHealth; i++) // Instantiate heart prefabs
                 {
-                    if (currentHealth < (i + 1))
+                    if (currentHealth == i + 1)
                     {
-                        if (currentHealth == 0.5f)
+                        Instantiate(fullHeart, heartStorage.transform);
+                    }
+                    else if (currentHealth > i)
+                    {
+                        if (currentHealth < (i + 1))
                         {
-                            Instantiate(lastHalfHeart, heartStorage.transform);
+                            if (currentHealth == 0.5f)
+                            {
+                                Instantiate(lastHalfHeart, heartStorage.transform);
+                            }
+                            else
+                            {
+                                Instantiate(halfHeart, heartStorage.transform);
+                            }
                         }
                         else
                         {
-                            Instantiate(halfHeart, heartStorage.transform);
+                            Instantiate(fullHeart, heartStorage.transform);
                         }
                     }
                     else
                     {
-                        Instantiate(fullHeart, heartStorage.transform);
+                        Instantiate(emptyHeart, heartStorage.transform);
                     }
                 }
-                else
-                {
-                    Instantiate(emptyHeart, heartStorage.transform);
-                }
             }
-
         }
     }
 
@@ -106,8 +96,23 @@ public class PlayerHealthUI_Refactor : MonoBehaviour
         this.enabled = false; // Disable this script
     }
 
-    public void getPlayerInfo()
+    /**
+     * Method to get player information required for script to run.
+     */
+    private void getPlayerInfo()
     {
+        player = GameObject.Find("Alpaca").GetComponent<PlayerController>();
+        currentHealth = player.GetHealth();
+        maxHealth = player.GetMaxHealth();
+        UpdateHealth();
+        alpacaExists = true;
+    }
 
+    /**
+     * Remove method refernce from event handeler to remove chance of memory leak.
+     */
+    private void OnDestroy()
+    {
+        EventHandeler.OnPlayerSpawn -= getPlayerInfo;
     }
 }
