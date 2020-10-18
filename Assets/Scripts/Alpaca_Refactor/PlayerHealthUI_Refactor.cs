@@ -104,8 +104,8 @@ public class PlayerHealthUI_Refactor : MonoBehaviour
         player = GameObject.Find("Alpaca").GetComponent<PlayerController>();
         currentHealth = player.GetHealth();
         maxHealth = player.GetMaxHealth();
-        UpdateHealth();
         alpacaExists = true;
+        UpdateHealth();
     }
 
     /**
