@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
         if (pauseMenu.GameIsPaused == false)
         {
             model.newPosition = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+            CheckForDoors();
 
             // Check if player should be dead
             if (model.health <= 0.0f)
@@ -99,5 +100,28 @@ public class PlayerController : MonoBehaviour
     public float GetMaxHealth()
     {
         return model.maxHealth;
+    }
+
+    private void CheckForDoors()
+    {
+        Vector3 position = GetComponent<Transform>().position;
+        Collider[] closeEnvironment = Physics.OverlapSphere(position, 1.0f, 1 << LayerMask.NameToLayer("Environment"));
+
+        if (!closeEnvironment.Length.Equals(0))
+        {
+            Collider door = null;
+            foreach (Collider possibleDoor in closeEnvironment)
+            {
+                if (possibleDoor.tag.Equals("Door"))
+                {
+                    door = possibleDoor;
+                }
+            }
+
+            if ((door != null) && (Input.GetKeyDown(KeyCode.E)))
+            {
+                DoorEventHandeler.ActivateInteraction();
+            }
+        }
     }
 }
