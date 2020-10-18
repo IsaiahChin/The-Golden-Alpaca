@@ -24,6 +24,9 @@ public class PlayerHealthUI_Refactor : MonoBehaviour
     [Header("Scripts")]
     public PlayerController player;
 
+    [Header("Detection")]
+    private bool alpacaExists;
+
     private void Start()
     {
         canvas = transform.parent.gameObject;
@@ -101,5 +104,10 @@ public class PlayerHealthUI_Refactor : MonoBehaviour
     {
         currentHealth = 0.0f;
         this.enabled = false; // Disable this script
+    }
+
+    public void getPlayerInfo()
+    {
+
     }
 }
