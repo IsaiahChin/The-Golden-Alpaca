@@ -98,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openedDoor: {fileID: 4908492660009620254, guid: 1dd73bdaf90f82143bb164a3c2d536d7,
     type: 3}
-  nextLevelName: 
+  nextLevelName: LevelTwo
 --- !u!65 &2493954932461855841
 BoxCollider:
   m_ObjectHideFlags: 0
