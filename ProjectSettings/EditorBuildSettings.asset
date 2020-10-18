@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameScene_Refactor.unity
     guid: 32101b15e6009e94d8ebdfa2434fd537
+  - enabled: 1
+    path: Assets/Scenes/Levels/LevelTwo.unity
+    guid: 84e78d4506f730d468b660a6a91d3b89
   m_configObjects: {}

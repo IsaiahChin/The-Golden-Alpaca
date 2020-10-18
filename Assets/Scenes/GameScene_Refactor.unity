@@ -461,13 +461,13 @@ PrefabInstance:
         type: 3}
       propertyPath: enemyPrefabs.Array.data[0]
       value: 
-      objectReference: {fileID: 4902178324375276467, guid: 814c4d0ab82f70b44bc88f8e1a333c9f,
+      objectReference: {fileID: 1961051431253368337, guid: e0b645bd06dfb354c8cfdf50cff6674f,
         type: 3}
     - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
         type: 3}
       propertyPath: alpacaPrefab
       value: 
-      objectReference: {fileID: 1961051431253368337, guid: e0b645bd06dfb354c8cfdf50cff6674f,
+      objectReference: {fileID: 1457024374554860645, guid: 28db7e55271397643a71daea6274ebb8,
         type: 3}
     - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
         type: 3}
