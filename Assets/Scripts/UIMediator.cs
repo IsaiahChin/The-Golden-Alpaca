@@ -24,7 +24,7 @@ public class UIMediator : MonoBehaviour
 
         if (mediationAccomplished)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 }
