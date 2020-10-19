@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour
         model = GetComponent<EnemyModel>();
         view = GetComponent<EnemyView>();
 
+        //Setup melee
         if (model.meleeEnabled == true)
         {
             melee = gameObject.GetComponent<MeleeWeapon>();
@@ -23,6 +24,7 @@ public class EnemyController : MonoBehaviour
             melee.attackRange = model.meleeAttackRange;
         }
 
+        //Setup ranged
         if (model.rangedEnabled == true)
         {
             ranged = gameObject.GetComponent<RangedWeapon>();
@@ -42,12 +44,13 @@ public class EnemyController : MonoBehaviour
             Die();
         }
 
+        //Move enemy
         if (model.movementEnabled)
         {
             CalculateMovement();
         }
 
-        //If the enemy can attack and has line of sight, then attack
+        //If the enemy can attack and has line of sight and has a weapon, then attack
         if (Time.time >= model.NextAttackTime && PlayerInLineOfSight() && (model.meleeEnabled||model.rangedEnabled))
         {
             CalculateAttack();
@@ -78,21 +81,16 @@ public class EnemyController : MonoBehaviour
     */
     private bool PlayerInLineOfSight()
     {
+        //Raycast between the player and the enemy
         if (Physics.Raycast(model.AttackPoint.position, model.AttackPoint.forward, out RaycastHit hit, model.sightRange))
         {
+            //If the raycast hits the player then it has line of sight
             if (hit.transform.CompareTag("Player"))
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
         }
-        else
-        {
-            return false;
-        }
+        return false;
     }
 
     /**

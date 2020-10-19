@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
     */
     private void Start()
     {
-        decayTime = 2.0f;
+        decayTime = 1f;
         damage = 0.5f;
     }
 

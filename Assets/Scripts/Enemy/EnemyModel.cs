@@ -58,23 +58,30 @@ public class EnemyModel : MonoBehaviour
 
     void Start()
     {
-        PrevPos = transform.position;
-        NewPos = transform.position;
+        //MVC setup
         view = GetComponent<EnemyView>();
-        Rigidbody = GetComponent<Rigidbody>();
+        
         if (swordGFXEnabled==true)
         {
             view.InitiateSword();
         }
+
+        //Navigation setup
         Target = GameObject.Find("Alpaca").transform;
         NavAgent = GetComponent<NavMeshAgent>();
         NavAgent.speed = speed;
         NavAgent.acceleration = acceleration;
-        AttackPoint = this.gameObject.transform.GetChild(1).transform;
-        NextAttackTime = 0.0f;
+        //Idle movement
         WanderTimer = UnityEngine.Random.Range(4, 10);
         Timer = WanderTimer;
         idleSearchRadius = sightRange * 2;
+        //Velocity for animation setup
+        PrevPos = transform.position;
+        NewPos = transform.position;
+
+        //Attack setup
+        AttackPoint = this.gameObject.transform.GetChild(1).transform;
+        NextAttackTime = 0.0f;
     }
     private void Update()
     {
@@ -82,21 +89,30 @@ public class EnemyModel : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        NewPos = transform.position;  // each frame track the new position
-        ObjVelocity = (NewPos - PrevPos) / Time.fixedDeltaTime;  // velocity = dist/time
-        PrevPos = NewPos;  // update position for next frame calculation
+        //Sets the object velocity based on position at each fixed update
+        NewPos = transform.position;
+        ObjVelocity = (NewPos - PrevPos) / Time.fixedDeltaTime;
+        PrevPos = NewPos;
     }
 
+    /**
+    * This method moves the enemy towards the player
+    */
     public void ChasePlayer()
     {
+        //Health check
         if (health > 0)
         {
             NavAgent.SetDestination(Target.position);
         }
     }
 
+    /**
+    * This method moves the enemy towards a random position inside the search radius
+    */
     public void IdleMove()
     {
+        //Health check
         if (health > 0)
         {
             NavAgent.SetDestination(RandomNavmeshLocation(idleSearchRadius));
@@ -104,10 +120,15 @@ public class EnemyModel : MonoBehaviour
         }
     }
 
+    /**
+    * This method returns a random position near the enemyon the navmesh
+    */
     public Vector3 RandomNavmeshLocation(float radius)
     {
+        //Get random direction
         Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * radius;
         randomDirection += transform.position;
+        //Intersect the random direction with the navmesh
         NavMeshHit navmeshHit;
         Vector3 navmeshPosition = Vector3.zero;
         if (NavMesh.SamplePosition(randomDirection, out navmeshHit, radius, 1))
@@ -117,12 +138,14 @@ public class EnemyModel : MonoBehaviour
         return navmeshPosition;
     }
 
+    /**
+    * This method updates the animator
+    */
     public void UpdateAnimator()
     {
-        // Change booleans in player animator depending on movement speed
-        if (ObjVelocity.magnitude > 0) // Check if player is moving
+        // Change booleans in enemy animator depending on movement speed
+        if (ObjVelocity.magnitude > 0) // Check if enemy is moving
         {
-            //Debug.Log("Moving "+ObjVelocity);
             view.SetMoving(true);
             /**
              * Note: No check for x == 0.0f because we want to retain 
