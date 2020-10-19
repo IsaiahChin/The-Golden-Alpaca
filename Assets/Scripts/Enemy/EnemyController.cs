@@ -156,6 +156,6 @@ public class EnemyController : MonoBehaviour
     public void decreaseHealth(float damage)
     {
         model.health -= damage;
-        //view.animator.SetTrigger("Hit");
+        view.Animator.SetTrigger("Hit");
     }
 }

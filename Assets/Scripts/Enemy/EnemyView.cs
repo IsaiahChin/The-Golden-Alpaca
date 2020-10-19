@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class EnemyView : MonoBehaviour
 {
@@ -15,4 +16,17 @@ public class EnemyView : MonoBehaviour
         SwordAnimator = GameObject.Find("EnemySword").GetComponent<Animator>();
     }
 
+    public void SetMoving(bool moving)
+    {
+        Debug.Log("Moving "+moving);
+        Animator.SetBool("isMoving", moving);
+    }
+
+    public void SetDirection(bool right, bool left)
+    {
+        Debug.Log("Right " + right);
+        Debug.Log("Left " + left);
+        Animator.SetBool("Right", right);
+        Animator.SetBool("Left", left);
+    }
 }

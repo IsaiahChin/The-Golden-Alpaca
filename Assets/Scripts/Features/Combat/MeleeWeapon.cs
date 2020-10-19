@@ -42,7 +42,6 @@ public class MeleeWeapon : MonoBehaviour
             }
             else if (enemy.CompareTag("Bullet"))
             {
-                Debug.Log("Hit bullet");
                 //If the collider is a enemy, call the enemy damage script
                 enemy.GetComponent<Bullet>().Hit();
             }
