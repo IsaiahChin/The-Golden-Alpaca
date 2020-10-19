@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else if (Input.GetKey(KeyCode.Mouse1))
                 {
-                    rangedWeaponScript.Attack();
+                    rangedWeaponScript.Attack(model.rangedAttackPattern.ToString());
                     model.nextAttackTime = Time.time + 1f / model.rangedAttackRate;
                 }
             }

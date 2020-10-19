@@ -112,7 +112,7 @@ public class EnemyController : MonoBehaviour
             } //Check if the player is within range
             else if (Physics.CheckSphere(ranged.attackPoint.position, model.rangedAttackRange, model.targetLayer))
             {
-                ranged.Attack();
+                ranged.Attack(model.rangedAttackPattern.ToString());
                 //Reset the attack time
                 model.NextAttackTime = Time.time + 1f / model.rangedAttackRate;
             }
@@ -133,7 +133,7 @@ public class EnemyController : MonoBehaviour
             //Check if the player is within range
             if (Physics.CheckSphere(ranged.attackPoint.position, model.rangedAttackRange, model.targetLayer))
             {
-                ranged.Attack();
+                ranged.Attack(model.rangedAttackPattern.ToString());
                 //Reset the attack time
                 model.NextAttackTime = Time.time + 1f / model.rangedAttackRate;
             }

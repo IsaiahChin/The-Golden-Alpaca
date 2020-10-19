@@ -32,6 +32,9 @@ public class PlayerModel : MonoBehaviour
     [Min(0.1f)]
     public float rangedAttackProjectileSpeed;
 
+    public enum AttackPattern { Default, Shotgun, CardinalPoints }
+    public AttackPattern rangedAttackPattern;
+
     public float nextAttackTime { get; set; }
 
     void Start()
@@ -49,6 +52,7 @@ public class PlayerModel : MonoBehaviour
     {
         // Update the player animation every frame based on the mouse position and movement
         UpdateAnimator(CalculateMousePosition());
+        Debug.Log("Selected Pattern: " + rangedAttackPattern);
     }
 
     private void FixedUpdate()

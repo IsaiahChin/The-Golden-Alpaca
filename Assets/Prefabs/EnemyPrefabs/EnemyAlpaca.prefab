@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 6544156456896301707}
   - component: {fileID: 2072549734020124243}
   m_Layer: 10
-  m_Name: Enemy
+  m_Name: EnemyAlpaca
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -276,7 +276,7 @@ MonoBehaviour:
   meleeAttackRange: 1
   meleeAttackDamage: 1
   rangedEnabled: 1
-  rangedAttackRate: 0.5
+  rangedAttackRate: 3
   rangedAttackRange: 8
   rangedAttackDamage: 0.5
   rangedAttackProjectileSpeed: 10

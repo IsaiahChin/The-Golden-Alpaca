@@ -48,6 +48,9 @@ public class EnemyModel : MonoBehaviour
     [Min(0.1f)]
     public float rangedAttackProjectileSpeed;
 
+    public enum AttackPattern { Default, Shotgun, CardinalPoints }
+    public AttackPattern rangedAttackPattern;
+
     void Start()
     {
         view = GetComponent<EnemyView>();
