@@ -25,6 +25,7 @@ public class PlayerHealthUI_Refactor : MonoBehaviour
     public PlayerController player;
 
     [Header("Detection")]
+    public bool startHasRun = false;
     private bool alpacaExists;
 
     private void Start()
@@ -32,6 +33,7 @@ public class PlayerHealthUI_Refactor : MonoBehaviour
         canvas = transform.parent.gameObject;
         alpacaExists = false;
         EventHandeler.OnPlayerSpawn += getPlayerInfo;
+        startHasRun = true;
     }
 
     /**

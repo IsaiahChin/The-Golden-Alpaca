@@ -709,9 +709,6 @@ public class SpriteGenerator2D : MonoBehaviour
         alpaca.name = "Alpaca";
         alpaca.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
 
-        //Call all methods that reuire player to be spawned.
-        EventHandeler.ActivatePlayerSpawn();
-
         return spawnRoom;
     }
 
