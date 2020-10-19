@@ -361,7 +361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   animator: {fileID: 8249869463085454176}
-  cloudParticleEffect: {fileID: 6341281065137407365, guid: 485ec507f7ac0d546af2534085531353,
+  deathCloudObject: {fileID: 6341281065137407365, guid: 485ec507f7ac0d546af2534085531353,
     type: 3}
 --- !u!114 &4902178324375276107
 MonoBehaviour:

@@ -880,6 +880,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 244455234, guid: 302f00d53bb675d41a0c5aa40b0aa266, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 244455234, guid: 302f00d53bb675d41a0c5aa40b0aa266, type: 3}
+      propertyPath: m_ShowCustomSorter
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 244455234, guid: 302f00d53bb675d41a0c5aa40b0aa266, type: 3}
+      propertyPath: m_ShowToolkit
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1649851618871980303, guid: 302f00d53bb675d41a0c5aa40b0aa266,
         type: 3}
       propertyPath: offset.y
