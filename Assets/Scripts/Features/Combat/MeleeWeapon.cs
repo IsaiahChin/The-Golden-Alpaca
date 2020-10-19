@@ -30,15 +30,21 @@ public class MeleeWeapon : MonoBehaviour
             //Outdated: From combat development
             //Debug.Log(this.tag+" Hit " + enemy.name+" with "+AttackDamage+" damage - Melee");
 
-            if (enemy.tag == "Player")
+            if (enemy.CompareTag("Player"))
             {
                 //If the collider is a player, call the player damage script
                 enemy.GetComponent<PlayerController>().DamagePlayer(AttackDamage);
             }
-            else if (enemy.tag == "Enemy")
+            else if (enemy.CompareTag("Enemy"))
             {
                 //If the collider is a enemy, call the enemy damage script
                 enemy.GetComponent<EnemyController>().decreaseHealth(AttackDamage);
+            }
+            else if (enemy.CompareTag("Bullet"))
+            {
+                Debug.Log("Hit bullet");
+                //If the collider is a enemy, call the enemy damage script
+                enemy.GetComponent<Bullet>().Hit();
             }
         }
     }

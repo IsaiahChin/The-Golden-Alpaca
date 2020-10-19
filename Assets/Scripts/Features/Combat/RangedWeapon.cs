@@ -45,6 +45,7 @@ public class RangedWeapon : MonoBehaviour
                 FireBullet(315);
                 break;
             default:
+                FireBullet(0);
                 break;
         }
     }

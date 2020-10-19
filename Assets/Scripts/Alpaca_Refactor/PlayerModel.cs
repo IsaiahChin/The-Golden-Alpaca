@@ -22,6 +22,8 @@ public class PlayerModel : MonoBehaviour
     [Min(0.1f)]
     public float meleeAttackRate;
     [Min(0.1f)]
+    public float meleeAttackRange;
+    [Min(0.1f)]
     public float meleeAttackDamage;
 
     [Header("Ranged Attack")]

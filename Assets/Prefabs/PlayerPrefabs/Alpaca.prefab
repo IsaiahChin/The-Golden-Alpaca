@@ -337,7 +337,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   maxSpeed: 5
-  meleeAttackRate: 10
+  meleeAttackRate: 4
+  meleeAttackRange: 1
   meleeAttackDamage: 1
   rangedAttackRate: 3
   rangedAttackDamage: 0.5
@@ -369,7 +370,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLayers:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 17408
   attackRange: 1
   AttackDamage: 1
 --- !u!114 &1457024374554860644

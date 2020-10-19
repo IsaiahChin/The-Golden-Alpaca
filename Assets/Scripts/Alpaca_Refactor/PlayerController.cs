@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
         meleeWeaponScript = GetComponent<MeleeWeapon>();
         meleeWeaponScript.AttackDamage = model.meleeAttackDamage;
+        meleeWeaponScript.attackRange = model.meleeAttackRange;
 
         rangedWeaponScript = GetComponent<RangedWeapon>();
         rangedWeaponScript.damage = model.rangedAttackDamage;

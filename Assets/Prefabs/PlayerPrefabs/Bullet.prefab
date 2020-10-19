@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6096337546164559421}
   - component: {fileID: 1278570157824560365}
   - component: {fileID: 2739138808567839359}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,9 +113,9 @@ GameObject:
   - component: {fileID: 7529110609395195210}
   - component: {fileID: 6092227921400474396}
   - component: {fileID: 8721906576066896655}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -195,6 +195,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3972355826797332024, guid: e45205fd77f022340ae6bc60a882486b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 3972355826797332030, guid: e45205fd77f022340ae6bc60a882486b,
         type: 3}

@@ -280,6 +280,7 @@ MonoBehaviour:
   rangedAttackRange: 8
   rangedAttackDamage: 0.5
   rangedAttackProjectileSpeed: 10
+  rangedAttackPattern: 1
 --- !u!114 &3485253201862655706
 MonoBehaviour:
   m_ObjectHideFlags: 0
