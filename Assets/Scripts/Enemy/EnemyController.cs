@@ -107,12 +107,14 @@ public class EnemyController : MonoBehaviour
             if (Physics.CheckSphere(melee.attackPoint.position, model.meleeAttackRange, model.targetLayer))
             {
                 melee.Attack();
+                view.animator.SetTrigger("Attack");
                 //Reset the attack time
                 model.NextAttackTime = Time.time + 1f / model.meleeAttackRate;
             } //Check if the player is within range
             else if (Physics.CheckSphere(ranged.attackPoint.position, model.rangedAttackRange, model.targetLayer))
             {
                 ranged.Attack(model.rangedAttackPattern.ToString());
+                view.animator.SetTrigger("Attack");
                 //Reset the attack time
                 model.NextAttackTime = Time.time + 1f / model.rangedAttackRate;
             }
@@ -124,6 +126,7 @@ public class EnemyController : MonoBehaviour
             if (Physics.CheckSphere(melee.attackPoint.position, model.meleeAttackRange, model.targetLayer))
             {
                 melee.Attack();
+                view.animator.SetTrigger("Attack");
                 //Reset the attack time
                 model.NextAttackTime = Time.time + 1f / model.meleeAttackRate;
             }
@@ -134,11 +137,11 @@ public class EnemyController : MonoBehaviour
             if (Physics.CheckSphere(ranged.attackPoint.position, model.rangedAttackRange, model.targetLayer))
             {
                 ranged.Attack(model.rangedAttackPattern.ToString());
+                view.animator.SetTrigger("Attack");
                 //Reset the attack time
                 model.NextAttackTime = Time.time + 1f / model.rangedAttackRate;
             }
         }
-
     }
 
     private void Die()
@@ -156,6 +159,6 @@ public class EnemyController : MonoBehaviour
     public void decreaseHealth(float damage)
     {
         model.health -= damage;
-        view.Animator.SetTrigger("Hit");
+        view.animator.SetTrigger("Hit");
     }
 }

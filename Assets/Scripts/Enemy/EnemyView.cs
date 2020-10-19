@@ -1,32 +1,30 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class EnemyView : MonoBehaviour
 {
     public Animator SwordAnimator { get; set; }
-    public Animator Animator { get; set; }
+    public Animator animator { get; set; }
 
     void Start()
     {
-        Animator = GameObject.Find("EnemyGFX").GetComponent<Animator>();
+        animator = this.gameObject.transform.GetChild(transform.childCount-1).GetComponent<Animator>();
     }
 
     public void InitiateSword()
     {
-        SwordAnimator = GameObject.Find("EnemySword").GetComponent<Animator>();
+        SwordAnimator = this.gameObject.transform.GetChild(transform.childCount - 2).GetComponent<Animator>();
     }
 
     public void SetMoving(bool moving)
     {
-        Debug.Log("Moving "+moving);
-        Animator.SetBool("isMoving", moving);
+        animator.SetBool("isMoving", moving);
     }
 
     public void SetDirection(bool right, bool left)
     {
-        Debug.Log("Right " + right);
-        Debug.Log("Left " + left);
-        Animator.SetBool("Right", right);
-        Animator.SetBool("Left", left);
+        animator.SetBool("Right", right);
+        animator.SetBool("Left", left);
     }
 }

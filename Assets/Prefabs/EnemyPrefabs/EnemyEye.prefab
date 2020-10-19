@@ -259,8 +259,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3934e8744a24a704b9c1a9e3cc9e2e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigidbody: {fileID: 4902178324375276471}
-  health: 1
+  PrevPos: {x: 0, y: 0, z: 0}
+  NewPos: {x: 0, y: 0, z: 0}
+  ObjVelocity: {x: 0, y: 0, z: 0}
+  health: 3
   speed: 3
   acceleration: 3
   sightRange: 10
@@ -281,7 +283,7 @@ MonoBehaviour:
   rangedAttackRange: 8
   rangedAttackDamage: 0.5
   rangedAttackProjectileSpeed: 10
-  rangedAttackPattern: 2
+  rangedAttackPattern: 0
 --- !u!114 &3485253201862655706
 MonoBehaviour:
   m_ObjectHideFlags: 0

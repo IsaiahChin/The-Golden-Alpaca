@@ -122,6 +122,7 @@ public class EnemyModel : MonoBehaviour
         // Change booleans in player animator depending on movement speed
         if (ObjVelocity.magnitude > 0) // Check if player is moving
         {
+            //Debug.Log("Moving "+ObjVelocity);
             view.SetMoving(true);
             /**
              * Note: No check for x == 0.0f because we want to retain 

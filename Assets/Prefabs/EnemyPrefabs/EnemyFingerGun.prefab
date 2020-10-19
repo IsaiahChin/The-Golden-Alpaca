@@ -259,7 +259,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3934e8744a24a704b9c1a9e3cc9e2e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  PrevPos: {x: 0, y: 0, z: 0}
+  NewPos: {x: 0, y: 0, z: 0}
+  ObjVelocity: {x: 0, y: 0, z: 0}
+  health: 3
   speed: 3
   acceleration: 3
   sightRange: 10
@@ -280,7 +283,7 @@ MonoBehaviour:
   rangedAttackRange: 8
   rangedAttackDamage: 0.5
   rangedAttackProjectileSpeed: 10
-  rangedAttackPattern: 1
+  rangedAttackPattern: 0
 --- !u!114 &3485253201862655706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,7 +383,7 @@ Animator:
   m_GameObject: {fileID: 4971152283949823109}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 524ab4f33b6df1f44ba1848c0b749643, type: 2}
+  m_Controller: {fileID: 9100000, guid: 49d306e0ff20fa44f85ba1a2b370158f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

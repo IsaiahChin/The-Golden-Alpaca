@@ -259,6 +259,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3934e8744a24a704b9c1a9e3cc9e2e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PrevPos: {x: 0, y: 0, z: 0}
+  NewPos: {x: 0, y: 0, z: 0}
+  ObjVelocity: {x: 0, y: 0, z: 0}
   health: 1
   speed: 3
   acceleration: 3
@@ -380,7 +383,7 @@ Animator:
   m_GameObject: {fileID: 4971152283949823109}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 19059a61b72cf8740bbe78fdb49e171a, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6ae1ab29ff0ea1b48812662fca4e481b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
