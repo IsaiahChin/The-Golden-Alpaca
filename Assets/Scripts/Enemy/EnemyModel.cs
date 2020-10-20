@@ -38,6 +38,8 @@ public class EnemyModel : MonoBehaviour
     [Min(0.1f)]
     public float meleeAttackRate;
     [Min(0.1f)]
+    public float meleeAttackDelay;
+    [Min(0.1f)]
     public float meleeAttackRange;
     [Min(0.1f)]
     public float meleeAttackDamage;
@@ -46,6 +48,8 @@ public class EnemyModel : MonoBehaviour
     public bool rangedEnabled = true;
     [Min(0.1f)]
     public float rangedAttackRate;
+    [Min(0.1f)]
+    public float rangedAttackDelay;
     [Min(0.1f)]
     public float rangedAttackRange;
     [Min(0.1f)]
@@ -71,10 +75,12 @@ public class EnemyModel : MonoBehaviour
         NavAgent = GetComponent<NavMeshAgent>();
         NavAgent.speed = speed;
         NavAgent.acceleration = acceleration;
+
         //Idle movement
         WanderTimer = UnityEngine.Random.Range(4, 10);
         Timer = WanderTimer;
         idleSearchRadius = sightRange * 2;
+
         //Velocity for animation setup
         PrevPos = transform.position;
         NewPos = transform.position;
@@ -83,10 +89,12 @@ public class EnemyModel : MonoBehaviour
         AttackPoint = this.gameObject.transform.GetChild(1).transform;
         NextAttackTime = 0.0f;
     }
+
     private void Update()
     {
         UpdateAnimator();
     }
+
     private void FixedUpdate()
     {
         //Sets the object velocity based on position at each fixed update
@@ -121,13 +129,14 @@ public class EnemyModel : MonoBehaviour
     }
 
     /**
-    * This method returns a random position near the enemyon the navmesh
+    * This method returns a random position near the enemy on the navmesh
     */
     public Vector3 RandomNavmeshLocation(float radius)
     {
         //Get random direction
         Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * radius;
         randomDirection += transform.position;
+
         //Intersect the random direction with the navmesh
         NavMeshHit navmeshHit;
         Vector3 navmeshPosition = Vector3.zero;

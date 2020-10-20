@@ -8,6 +8,7 @@ public class EnemyAiming : MonoBehaviour
 {
     //Aim target
     private GameObject target;
+
     //Scene view info enable/disable
     public bool showSceneLabels;
 

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
@@ -104,29 +105,19 @@ public class EnemyController : MonoBehaviour
             //Check if the player is within range
             if (Physics.CheckSphere(melee.attackPoint.position, model.meleeAttackRange, model.targetLayer))
             {
-                melee.Attack();
-                view.animator.SetTrigger("Attack");
-                //Reset the attack time
-                model.NextAttackTime = Time.time + 1f / model.meleeAttackRate;
+                PerformMeleeAttack();
             } //Check if the player is within range
             else if (Physics.CheckSphere(ranged.attackPoint.position, model.rangedAttackRange, model.targetLayer))
             {
-                ranged.Attack(model.rangedAttackPattern.ToString());
-                view.animator.SetTrigger("Attack");
-                //Reset the attack time
-                model.NextAttackTime = Time.time + 1f / model.rangedAttackRate;
+                PerformRangedAttack();
             }
-
         } //If the enemy has a melee but no ranged attack
         else if (model.meleeEnabled && !model.rangedEnabled)
         {
             //Check if the player is within range
             if (Physics.CheckSphere(melee.attackPoint.position, model.meleeAttackRange, model.targetLayer))
             {
-                melee.Attack();
-                view.animator.SetTrigger("Attack");
-                //Reset the attack time
-                model.NextAttackTime = Time.time + 1f / model.meleeAttackRate;
+                PerformMeleeAttack();
             }
         } //If the enemy has a ranged but no melee attack
         else if (model.rangedEnabled && !model.meleeEnabled)
@@ -134,12 +125,36 @@ public class EnemyController : MonoBehaviour
             //Check if the player is within range
             if (Physics.CheckSphere(ranged.attackPoint.position, model.rangedAttackRange, model.targetLayer))
             {
-                ranged.Attack(model.rangedAttackPattern.ToString());
-                view.animator.SetTrigger("Attack");
-                //Reset the attack time
-                model.NextAttackTime = Time.time + 1f / model.rangedAttackRate;
+                PerformRangedAttack();
             }
         }
+    }
+    private void PerformMeleeAttack()
+    {
+        //Reset the attack time
+        model.NextAttackTime = Time.time + 1f / model.meleeAttackRate;
+
+        StartCoroutine(MeleeAttackDelay(model.meleeAttackDelay));
+    }
+    private void PerformRangedAttack()
+    {
+        //Reset the attack time
+        model.NextAttackTime = Time.time + 1f / model.rangedAttackRate;
+
+        StartCoroutine(RangedAttackDelay(model.rangedAttackDelay));
+    }
+
+    IEnumerator MeleeAttackDelay(float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        melee.Attack();
+        view.animator.SetTrigger("Attack");
+    }
+    IEnumerator RangedAttackDelay(float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        ranged.Attack(model.rangedAttackPattern.ToString());
+        view.animator.SetTrigger("Attack");
     }
 
     private void Die()

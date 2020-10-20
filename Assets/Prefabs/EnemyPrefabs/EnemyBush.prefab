@@ -276,10 +276,12 @@ MonoBehaviour:
   swordGFXEnabled: 0
   meleeEnabled: 1
   meleeAttackRate: 0.5
+  meleeAttackDelay: 0.8
   meleeAttackRange: 1
   meleeAttackDamage: 1
   rangedEnabled: 0
   rangedAttackRate: 0.5
+  rangedAttackDelay: 0
   rangedAttackRange: 8
   rangedAttackDamage: 0.5
   rangedAttackProjectileSpeed: 10

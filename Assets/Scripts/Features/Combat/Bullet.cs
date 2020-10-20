@@ -45,19 +45,19 @@ public class Bullet : MonoBehaviour
         {
             if (collision.tag == "Player" && collision.tag != shooterTag)
             {
-                //If the collision is with a player and the player didnt shoot it, then self destrict
+                //If the collision is with a player and the player didnt shoot it, then self destruct
                 collision.GetComponent<PlayerController>().DamagePlayer(damage);
                 Hit();
             }
             else if (collision.tag == "Enemy" && collision.tag != shooterTag)
             {
-                //If the collision is with a enemy and the enemy didnt shoot it, then self destrict
+                //If the collision is with a enemy and the enemy didnt shoot it, then self destruct
                 collision.GetComponent<EnemyController>().decreaseHealth(damage);
                 Hit();
             }
             else if (collision.tag == "Enviroment" && collision.tag != shooterTag)
             {
-                //If the collision is with the enviroment, self destrict
+                //If the collision is with the enviroment, self destruct
                 Hit();
             }
         }

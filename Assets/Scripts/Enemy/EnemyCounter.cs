@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-
 public class EnemyCounter : MonoBehaviour
 {
     //UI text object
     private Text enemyCounterText;
+
     //Counter paramaters
     private int enemyCounter;
     private int maxEnemies;

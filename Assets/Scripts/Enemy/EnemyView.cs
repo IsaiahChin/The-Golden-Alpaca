@@ -9,13 +9,13 @@ public class EnemyView : MonoBehaviour
 
     void Start()
     {
-        //Gets the animator component from the GFX layer
+        //Gets the animator component from the GFX object
         animator = this.gameObject.transform.GetChild(transform.childCount-1).GetComponent<Animator>();
     }
 
     public void InitiateSword()
     {
-        //Gets the animator component from the Sword GFX layer
+        //Gets the animator component from the Sword GFX object
         SwordAnimator = this.gameObject.transform.GetChild(transform.childCount - 2).GetComponent<Animator>();
     }
 
