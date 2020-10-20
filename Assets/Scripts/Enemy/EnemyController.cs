@@ -39,22 +39,25 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
-        //Check Health
-        if (model.health <= 0)
+        if (model!=null&&view!=null)
         {
-            Die();
-        }
+            //Check Health
+            if (model.health <= 0)
+            {
+                Die();
+            }
 
-        //Move enemy
-        if (model.movementEnabled)
-        {
-            CalculateMovement();
-        }
+            //Move enemy
+            if (model.movementEnabled)
+            {
+                CalculateMovement();
+            }
 
-        //If the enemy can attack and has line of sight and has a weapon, then attack
-        if (Time.time >= model.NextAttackTime && PlayerInLineOfSight() && (model.meleeEnabled||model.rangedEnabled))
-        {
-            CalculateAttack();
+            //If the enemy can attack and has line of sight and has a weapon, then attack
+            if (Time.time >= model.NextAttackTime && PlayerInLineOfSight() && (model.meleeEnabled||model.rangedEnabled))
+            {
+                CalculateAttack();
+            }
         }
     }
 

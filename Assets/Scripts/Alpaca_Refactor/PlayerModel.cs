@@ -52,8 +52,12 @@ public class PlayerModel : MonoBehaviour
 
     void Update()
     {
-        // Update the player animation every frame based on the mouse position and movement
-        UpdateAnimator(CalculateMousePosition());
+        if (view!=null&&view.animator!=null)
+        {
+            // Update the player animation every frame based on the mouse position and movement
+            UpdateAnimator(CalculateMousePosition());
+        }
+        
     }
 
     private void FixedUpdate()

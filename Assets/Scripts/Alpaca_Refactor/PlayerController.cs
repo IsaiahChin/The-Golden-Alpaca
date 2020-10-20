@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (pauseMenu.GameIsPaused == false)
+        if (pauseMenu.GameIsPaused == false&&view.animator!=null)
         {
             model.newPosition = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 

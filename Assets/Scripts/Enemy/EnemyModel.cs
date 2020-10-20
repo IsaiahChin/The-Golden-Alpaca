@@ -92,7 +92,11 @@ public class EnemyModel : MonoBehaviour
 
     private void Update()
     {
-        UpdateAnimator();
+        //Check if the animator and view has been setup correctly
+        if (view!=null&&view.animator!=null)
+        {
+            UpdateAnimator();
+        }
     }
 
     private void FixedUpdate()
