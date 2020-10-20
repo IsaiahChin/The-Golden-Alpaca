@@ -4,9 +4,20 @@ using UnityEngine;
 
 public class UIMediator : MonoBehaviour
 {
-    private bool mediationAccomplished = false;
+    private bool uiMediationAccomplished = false;
+    private bool exitMediationAccomplished = false;
 
     void Update()
+    {
+        UIMediation();
+
+        if (uiMediationAccomplished && exitMediationAccomplished)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void UIMediation()
     {
         PlayerHealthUI_Refactor healthInfo = GameObject.Find("HealthCanvas").GetComponentInChildren<PlayerHealthUI_Refactor>();
         GameObject player = GameObject.Find("Alpaca");
@@ -18,13 +29,8 @@ public class UIMediator : MonoBehaviour
             if (healthStartHasRun)
             {
                 EventHandeler.ActivateHealthUI();
-                mediationAccomplished = true;
+                uiMediationAccomplished = true;
             }
-        }
-
-        if (mediationAccomplished)
-        {
-            Destroy(gameObject);
         }
     }
 }
