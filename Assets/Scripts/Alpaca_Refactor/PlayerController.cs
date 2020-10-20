@@ -24,7 +24,12 @@ public class PlayerController : MonoBehaviour
         playerHealthScript = GameObject.Find("Heart Storage").GetComponent<PlayerHealthUI_Refactor>();
 
         meleeWeaponScript = GetComponent<MeleeWeapon>();
+        meleeWeaponScript.AttackDamage = model.meleeAttackDamage;
+        meleeWeaponScript.attackRange = model.meleeAttackRange;
+
         rangedWeaponScript = GetComponent<RangedWeapon>();
+        rangedWeaponScript.damage = model.rangedAttackDamage;
+        rangedWeaponScript.speed = model.rangedAttackProjectileSpeed;
 
         pauseMenu = GameObject.Find("PauseCanvas").GetComponent<PauseMenuController>();
         gameOverMenu = GameObject.Find("GameOverCanvas").GetComponent<GameOverController>();
@@ -53,15 +58,15 @@ public class PlayerController : MonoBehaviour
 
             if (Time.time >= model.nextAttackTime)
             {
-                if (Input.GetKeyDown(KeyCode.Mouse0))
+                if (Input.GetKey(KeyCode.Mouse0))
                 {
                     view.swordAnimator.SetTrigger("Attack");
                     meleeWeaponScript.Attack();
                     model.nextAttackTime = Time.time + 1f / model.meleeAttackRate;
                 }
-                else if (Input.GetKeyDown(KeyCode.Mouse1))
+                else if (Input.GetKey(KeyCode.Mouse1))
                 {
-                    rangedWeaponScript.Attack();
+                    rangedWeaponScript.Attack(model.rangedAttackPattern.ToString());
                     model.nextAttackTime = Time.time + 1f / model.rangedAttackRate;
                 }
             }
