@@ -174,7 +174,7 @@ PrefabInstance:
     - target: {fileID: 8714820308133208736, guid: 29d736b2e4bb8b042a2a54b45982da23,
         type: 3}
       propertyPath: m_Name
-      value: TestGeneratorFirstFloor (1)
+      value: TestGeneratorFirstFloor
       objectReference: {fileID: 0}
     - target: {fileID: 8714820308133208738, guid: 29d736b2e4bb8b042a2a54b45982da23,
         type: 3}
