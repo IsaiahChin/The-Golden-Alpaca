@@ -10,9 +10,11 @@ public class UIMediator : MonoBehaviour
     void Update()
     {
         UIMediation();
+        ExitMediation();
 
         if (uiMediationAccomplished && exitMediationAccomplished)
         {
+            EventHandeler.ActivatePlayerSpawnEvent();
             Destroy(gameObject);
         }
     }
@@ -28,8 +30,22 @@ public class UIMediator : MonoBehaviour
 
             if (healthStartHasRun)
             {
-                EventHandeler.ActivateHealthUI();
                 uiMediationAccomplished = true;
+            }
+        }
+    }
+
+    private void ExitMediation()
+    {
+        GameObject procGenRef = GameObject.Find("TestGeneratorFirstFloor");
+
+        if (procGenRef != null)
+        {
+            bool generationFinished = procGenRef.GetComponent<SpriteGenerator2D>().generationFinished;
+
+            if (generationFinished)
+            {
+                exitMediationAccomplished = true;
             }
         }
     }

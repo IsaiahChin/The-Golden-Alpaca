@@ -88,6 +88,8 @@ public class SpriteGenerator2D : MonoBehaviour
     [SerializeField]
     GameObject clossedDoorSprite;
 
+    public bool generationFinished = false;
+
     Random random;
     Grid2D<CellType> grid;
     List<Room> rooms;
@@ -96,12 +98,14 @@ public class SpriteGenerator2D : MonoBehaviour
 
     void Start()
     {
+        EventHandeler.OnPlayerSpawn += SpawnExitWall;
         Generate();
+        generationFinished = true;
     }
 
     void Generate()
     {
-        random = new Random(8);
+        random = new Random(0);
         grid = new Grid2D<CellType>(size, Vector2Int.zero);
         rooms = new List<Room>();
 
@@ -118,8 +122,6 @@ public class SpriteGenerator2D : MonoBehaviour
         SpawnEnemies(playerSpawn);
         //Spawn Floor Props.
         SpawnFloorProps();
-        //Spawn Exit Door
-        SpawnExitWall(playerSpawn);
     }
 
     void PlaceRooms()
@@ -795,12 +797,11 @@ public class SpriteGenerator2D : MonoBehaviour
         }
     }
 
-    void SpawnExitWall(Room playerSpawn)
+    void SpawnExitWall()
     {
         Room[] availableRooms = rooms.ToArray();
 
         List<Room> unavailableRooms = new List<Room>();
-        unavailableRooms.Add(playerSpawn);
 
         bool doorPlaced = false;
 
@@ -868,5 +869,10 @@ public class SpriteGenerator2D : MonoBehaviour
                 unavailableRooms.Add(exitRoom);
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        EventHandeler.OnPlayerSpawn -= SpawnExitWall;
     }
 }

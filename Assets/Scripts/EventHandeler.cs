@@ -15,7 +15,7 @@ public class EventHandeler : MonoBehaviour
         OnDoorInteraction?.Invoke();
     }
 
-    public static void ActivateHealthUI()
+    public static void ActivatePlayerSpawnEvent()
     {
         OnPlayerSpawn?.Invoke();
     }
