@@ -797,40 +797,68 @@ public class SpriteGenerator2D : MonoBehaviour
 
     void SpawnExitWall(Room playerSpawn)
     {
-        //bool doorPlaced = false;
-
-        //while (!doorPlaced)
-        //{
-
-        //}
-
         Room[] availableRooms = rooms.ToArray();
-        Room exitRoom = null;
 
-        while (exitRoom == null)
+        List<Room> unavailableRooms = new List<Room>();
+        unavailableRooms.Add(playerSpawn);
+
+        bool doorPlaced = false;
+
+        while (!doorPlaced)
         {
-            Room toExit = availableRooms[random.Next(0, availableRooms.Length)];
-            if (toExit != playerSpawn)
+            //Get a new room that hasn't been checked yet.
+            Room exitRoom = null;
+            while (exitRoom == null)
             {
-                exitRoom = toExit;
+                Room toExit = availableRooms[random.Next(0, availableRooms.Length)];
+                if (!unavailableRooms.Contains(toExit))
+                {
+                    exitRoom = toExit;
+                }
+            }
+
+            Vector2Int topWallStart = exitRoom.bounds.position;
+            topWallStart.y += exitRoom.bounds.size.y - 1;
+
+            List<int> unavailableWalls = new List<int>();
+            int allWalls = topWallStart.x + exitRoom.bounds.size.x;
+
+            //Check if all walls have been viewed, or if the door has been placed.
+            while ((unavailableWalls.Count < allWalls) && (!doorPlaced))
+            {
+                //Get next wall and check if it has already been tested.
+                int nextWall = random.Next(topWallStart.x + 1, allWalls);
+                if (!unavailableWalls.Contains(nextWall))
+                {
+                    Vector2Int doorPosition = new Vector2Int(nextWall, topWallStart.y);
+                    Vector3 placementPosition = WallSpriteLocationFix(new Vector2Int(1, 1), doorPosition, SpritePositionType.Top);
+
+                    //Check if the current placement has a wall to remove.
+                    Collider[] currentWall = Physics.OverlapSphere(placementPosition, 0.2f, 1 << LayerMask.NameToLayer("Environment"));
+                    if (currentWall.Length != 0)
+                    {
+                        foreach (Collider environmentElement in currentWall)
+                        {
+                            Destroy(environmentElement.gameObject);
+                        }
+
+                        GameObject exitDoor = Instantiate(clossedDoorSprite, placementPosition, Quaternion.identity);
+                        exitDoor.GetComponent<Transform>().localScale = Vector3.one;
+                        exitDoor.GetComponent<SpriteRenderer>().material = greenMaterial;
+
+                        doorPlaced = true;
+                    }
+                    else
+                    {
+                        unavailableWalls.Add(nextWall);
+                    }
+                }
+            }
+
+            if (!doorPlaced)
+            {
+                unavailableRooms.Add(exitRoom);
             }
         }
-
-        Vector2Int topWallStart = exitRoom.bounds.position;
-        topWallStart.y += exitRoom.bounds.size.y - 1;
-
-        Vector2Int doorPosition = new Vector2Int(random.Next(topWallStart.x + 1, topWallStart.x + exitRoom.bounds.size.x), topWallStart.y);
-        Vector3 placementPosition = WallSpriteLocationFix(new Vector2Int(1, 1), doorPosition, SpritePositionType.Top);
-
-        Collider[] currentWall = Physics.OverlapSphere(placementPosition, 0.2f, 1 << LayerMask.NameToLayer("Environment"));
-
-        foreach(Collider environmentElement in currentWall)
-        {
-            Destroy(environmentElement.gameObject);
-        }
-
-        GameObject exitDoor = Instantiate(clossedDoorSprite, placementPosition, Quaternion.identity);
-        exitDoor.GetComponent<Transform>().localScale = Vector3.one;
-        exitDoor.GetComponent<SpriteRenderer>().material = greenMaterial;
     }
 }
