@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1790049606630564873, guid: 1dd73bdaf90f82143bb164a3c2d536d7,
+  m_Sprite: {fileID: -7341407202210888751, guid: fde3296595f9d8845990401164897a9d,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14264cf8773149b4aafbfa7bb65b9e94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openedDoor: {fileID: 4908492660009620254, guid: 1dd73bdaf90f82143bb164a3c2d536d7,
+  openedDoor: {fileID: 6623719234781301212, guid: fde3296595f9d8845990401164897a9d,
     type: 3}
   nextLevelName: LevelTwo
 --- !u!65 &2493954932461855841
