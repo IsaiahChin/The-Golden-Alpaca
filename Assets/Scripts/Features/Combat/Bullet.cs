@@ -13,12 +13,14 @@ public class Bullet : MonoBehaviour
     public float decayTime { get; set; }
     public float damage { get; set; }
 
+    private bool active=true;
+
     /**
     * This method sets the damage and decay time of the bullet
     */
     private void Start()
     {
-        decayTime = 2.0f;
+        decayTime = 1f;
         damage = 0.5f;
     }
 
@@ -39,27 +41,31 @@ public class Bullet : MonoBehaviour
     */
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.tag == "Player" && collision.tag != shooterTag)
+        if (active)
         {
-            //If the collision is with a player and the player didnt shoot it, then self destrict
-            collision.GetComponent<PlayerController>().DamagePlayer(damage);
-            Hit();
-        }
-        else if (collision.tag == "Enemy" && collision.tag != shooterTag)
-        {
-            //If the collision is with a enemy and the enemy didnt shoot it, then self destrict
-            collision.GetComponent<EnemyHealthController>().decreaseHealth(damage);
-            Hit();
-        }
-        else if (collision.tag == "Enviroment" && collision.tag != shooterTag)
-        {
-            //If the collision is with the enviroment, self destrict
-            Hit();
+            if (collision.tag == "Player" && collision.tag != shooterTag)
+            {
+                //If the collision is with a player and the player didnt shoot it, then self destruct
+                collision.GetComponent<PlayerController>().DamagePlayer(damage);
+                Hit();
+            }
+            else if (collision.tag == "Enemy" && collision.tag != shooterTag)
+            {
+                //If the collision is with a enemy and the enemy didnt shoot it, then self destruct
+                collision.GetComponent<EnemyController>().decreaseHealth(damage);
+                Hit();
+            }
+            else if (collision.tag == "Enviroment" && collision.tag != shooterTag)
+            {
+                //If the collision is with the enviroment, self destruct
+                Hit();
+            }
         }
     }
 
-    private void Hit()
+    public void Hit()
     {
+        active = false;
         animator.SetTrigger("Hit");
         this.GetComponent<Rigidbody>().velocity = Vector3.zero;
         StartCoroutine(waiter());

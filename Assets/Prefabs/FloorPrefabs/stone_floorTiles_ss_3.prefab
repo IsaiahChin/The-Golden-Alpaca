@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7806483630989093473}
   - component: {fileID: 2759780524683032798}
   - component: {fileID: -1954133320676247523}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: stone_floorTiles_ss_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
+﻿using UnityEngine;
 
 //Author: MatthewCopeland
 public class MeleeWeapon : MonoBehaviour
@@ -9,14 +6,13 @@ public class MeleeWeapon : MonoBehaviour
     //Target Layers
     public LayerMask targetLayers;
     public Transform attackPoint { get; set; }
-    
-    public float attackRange { get; set; }
-    public float AttackDamage { get; set; }
+    [HideInInspector]
+    public float attackRange=1f;
+    [HideInInspector]
+    public float AttackDamage=1f;
 
     private void Awake()
     {
-        attackRange = 1f;
-        AttackDamage = 0.5f;
         attackPoint = this.gameObject.transform.GetChild(1).transform;
     }
 
@@ -34,15 +30,20 @@ public class MeleeWeapon : MonoBehaviour
             //Outdated: From combat development
             //Debug.Log(this.tag+" Hit " + enemy.name+" with "+AttackDamage+" damage - Melee");
 
-            if (enemy.tag == "Player")
+            if (enemy.CompareTag("Player"))
             {
                 //If the collider is a player, call the player damage script
                 enemy.GetComponent<PlayerController>().DamagePlayer(AttackDamage);
             }
-            else if (enemy.tag == "Enemy")
+            else if (enemy.CompareTag("Enemy"))
             {
                 //If the collider is a enemy, call the enemy damage script
-                enemy.GetComponent<EnemyHealthController>().decreaseHealth(AttackDamage);
+                enemy.GetComponent<EnemyController>().decreaseHealth(AttackDamage);
+            }
+            else if (enemy.CompareTag("Bullet"))
+            {
+                //If the collider is a enemy, call the enemy damage script
+                enemy.GetComponent<Bullet>().Hit();
             }
         }
     }

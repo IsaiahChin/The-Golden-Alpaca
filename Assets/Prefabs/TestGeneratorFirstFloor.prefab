@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8714820308133208738}
   - component: {fileID: 8714820308133208739}
   m_Layer: 0
-  m_Name: TestGenerator
+  m_Name: TestGeneratorFirstFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,17 +43,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6235e4b1ce605024d8ed47ce2884bfcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baker: {fileID: 0}
   size: {x: 40, y: 40}
   roomCount: 100
   roomMaxSize: {x: 10, y: 10}
-  roomMinSize: {x: 3, y: 3}
-  spritePrefabs:
+  roomMinSize: {x: 5, y: 5}
+  floorPrefabs:
   - {fileID: 7977006537340900227, guid: a4e4f64ee6ec455498d104765c0a7011, type: 3}
   - {fileID: 1651923538560382547, guid: 4e6a8b2a26a391a40a18aadd31845547, type: 3}
   - {fileID: 4068667680124895519, guid: f08c3621b332e03499043461cbf70ac8, type: 3}
   - {fileID: 601962152097659205, guid: 8ac3649eba83a32419b6388954d4e88e, type: 3}
-  redMaterial: {fileID: 2100000, guid: 149e4c64ea557234baf854205c8a3694, type: 2}
-  blueMaterial: {fileID: 2100000, guid: df7b71d6190d6cb4bbe9edfff6296bac, type: 2}
+  redMaterial: {fileID: 2100000, guid: 935d64e2df3041a43a307e78162b8d5e, type: 2}
+  blueMaterial: {fileID: 2100000, guid: 935d64e2df3041a43a307e78162b8d5e, type: 2}
   wallPrefabs:
   - {fileID: 1194013876004247523, guid: c170bfddffead4741936500cfe4aa252, type: 3}
   - {fileID: 3121421907173534485, guid: cec8a10dce9ab8041a3aedad97ed4d81, type: 3}
@@ -61,7 +62,7 @@ MonoBehaviour:
   - {fileID: 1119054539774066894, guid: 21fbca5ec133237499f2fe92ff6ba060, type: 3}
   - {fileID: 7187436985822696762, guid: 0247f0a40d9849f4a8d95a977d017766, type: 3}
   - {fileID: 3795495423640527591, guid: 9496ff9a6662caa4f98a1567ba79baed, type: 3}
-  greenMaterial: {fileID: 2100000, guid: 7f16c12247ea6ac40913d664fae1913a, type: 2}
+  greenMaterial: {fileID: 2100000, guid: 935d64e2df3041a43a307e78162b8d5e, type: 2}
   roofPrefabs:
   - {fileID: 2702961964855930636, guid: 597bb377ca6f839478368b60fa90d804, type: 3}
   - {fileID: 2785719902041192385, guid: 9e4abd23714cfe24791a92cb7acaaf3c, type: 3}
@@ -83,6 +84,20 @@ MonoBehaviour:
   - {fileID: 7909974285045172944, guid: d5ea082862d69cd47b0305e9339e4017, type: 3}
   - {fileID: 3634083779287960188, guid: 21e6de79a641ae24b91a0346006d60c4, type: 3}
   - {fileID: 3245215636748981985, guid: b17586c35eb0b1745923071d73594da6, type: 3}
+  alpacaPrefab: {fileID: 1457024374554860645, guid: 28db7e55271397643a71daea6274ebb8,
+    type: 3}
   enemyPrefabs:
-  - {fileID: 1961051431253368337, guid: e0b645bd06dfb354c8cfdf50cff6674f, type: 3}
+  - {fileID: 4902178324375276467, guid: 3fe449ca8284005459b6fc552cbfe1d8, type: 3}
+  - {fileID: 4902178324375276467, guid: 6b27714ead47e914e830bd483664d9c5, type: 3}
+  - {fileID: 4902178324375276467, guid: a1f05ef256140304483225daf434d0b7, type: 3}
   minEnemyNumber: 1
+  wallProps:
+  - {fileID: 9173338706681722164, guid: 1e2122a034fe1f0428e9e3400928faae, type: 3}
+  - {fileID: 1570327113513312512, guid: 59cac137032985845ab719f61012afdd, type: 3}
+  - {fileID: 2252850895338237445, guid: 517f393df7bb46f46a34b3b8d5983cc7, type: 3}
+  - {fileID: 3709910033226057077, guid: 85661e3e7cb4fd34d95ec97f9948e95e, type: 3}
+  - {fileID: 4756170682228379685, guid: 2474fd58dc4cea147b35fb104c600729, type: 3}
+  floorProps:
+  - {fileID: 1881617783670977860, guid: 64e122f694890c144ba599ea81d39ed2, type: 3}
+  - {fileID: 5785087332075785784, guid: a1dbe024508041d49ae940abb50f9f78, type: 3}
+  - {fileID: 261725627692418674, guid: 44c66bbc5c0f16e4d89186bb0e41d90c, type: 3}

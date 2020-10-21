@@ -1,6 +1,4 @@
-﻿using JetBrains.Annotations;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 
 //Author: MatthewCopeland
@@ -11,35 +9,58 @@ public class RangedWeapon : MonoBehaviour
 
     //Attack point from where the bullet is fired from
     public Transform attackPoint { get; set; }
-    public float speed { get; set; }
-    public float damage { get; set; }
+    [HideInInspector]
+    public float speed = 10f;
+    [HideInInspector]
+    public float damage = 0.5f;
 
     private void Awake()
     {
-        speed = 10.0f;
-        damage = 0.5f;
         attackPoint = this.gameObject.transform.GetChild(1).transform;
     }
 
     /**
     * This method fires a bullet
     */
-    public void Attack()
+    public void Attack(string attackPattern)
     {
-        FireBullet(attackPoint.forward);
-        //Any further expansions/bullet patterns will go here
+        switch (attackPattern)
+        {
+            case "Default":
+                FireBullet(0);
+                break;
+            case "Shotgun":
+                FireBullet(0);
+                FireBullet(5);
+                FireBullet(355);
+                break;
+            case "CardinalPoints":
+                FireBullet(0);
+                FireBullet(45);
+                FireBullet(90);
+                FireBullet(135);
+                FireBullet(180);
+                FireBullet(225);
+                FireBullet(270);
+                FireBullet(315);
+                break;
+            default:
+                FireBullet(0);
+                break;
+        }
     }
 
     /**
     * This method instatiates then fires a bullet
     */
-    private void FireBullet(Vector3 direction)
+    private void FireBullet(float rotation)
     {
         //Instatiate a bullet object
         GameObject bullet = Instantiate(bulletPrefab, attackPoint.position, attackPoint.rotation);
+        bullet.transform.Rotate(0,rotation,0);
         bullet.GetComponent<Bullet>().shooterTag = this.tag;
         bullet.GetComponent<Bullet>().damage = this.damage;
         //Get the rigidbody of the bullet object then Apply a force to the bullet object of the bullet speed
-        bullet.GetComponent<Rigidbody>().AddForce(direction * speed, ForceMode.VelocityChange);
+        bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * speed, ForceMode.VelocityChange);
     }
 }

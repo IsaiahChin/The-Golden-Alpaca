@@ -30,7 +30,7 @@ public class PlayerCombat : MonoBehaviour
                 nextAttackTime = Time.time + 1f / meleeAttackRate;
             } else if (Input.GetKeyDown(KeyCode.Mouse1))
             {
-                ranged.Attack();
+                ranged.Attack("Default");
                 nextAttackTime = Time.time + 1f / shootAttackRate;
             }
         }

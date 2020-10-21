@@ -2,12 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenuController : MonoBehaviour
 {
     public bool GameIsPaused;
 
     public GameObject pauseMenuUI;
+
+    public GameOverController gameOverController;
 
     private void Start()
     {
@@ -18,7 +21,7 @@ public class PauseMenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape)&&!gameOverController.isGameOver)
         {
             if (GameIsPaused)
             {
@@ -46,5 +49,10 @@ public class PauseMenuController : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
+    }
+
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene(1);
     }
 }

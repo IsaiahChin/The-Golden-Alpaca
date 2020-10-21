@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameOverController : MonoBehaviour
 {
@@ -11,7 +12,12 @@ public class GameOverController : MonoBehaviour
     {
         DisableGameOver();
     }
-    
+
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene(1);
+    }
+
     /**
      * This method pauses the time scale of the game and sets a boolean variable
      * to true. Then activates a Game Over menu screen.
