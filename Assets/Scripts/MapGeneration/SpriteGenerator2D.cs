@@ -6,6 +6,7 @@ using Graphs;
 
 public class SpriteGenerator2D : MonoBehaviour
 {
+    public NavmeshBaker baker;
     //Enumeration for the position of a sprite in a room. Set as flags.
     [System.Flags]
     enum SpritePositionType : short
@@ -118,6 +119,9 @@ public class SpriteGenerator2D : MonoBehaviour
 
         //Call player spawn and retrieve spawn room.
         Room playerSpawn = SpawnAlpaca();
+
+        baker.Bake();
+
         //Call enemy spawn
         SpawnEnemies(playerSpawn);
         //Spawn Floor Props.

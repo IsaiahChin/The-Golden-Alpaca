@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Enviroment
   - Prop
+  - Bullet
   - Door
   layers:
   - Default
@@ -22,8 +23,8 @@ TagManager:
   - Enemy
   - Environment
   - Prop
-  - 
-  - 
+  - Floor
+  - Bullet
   - 
   - 
   - 
