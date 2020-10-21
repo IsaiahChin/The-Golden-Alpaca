@@ -56,7 +56,8 @@ public class EnemyCounter : MonoBehaviour
 
         if (!doorOpened && (enemyCounter.Equals(0)))
         {
-            
+            GameObject.Find("LevelDoor").GetComponent<DoorController>().OpenDoor();
+            doorOpened = true;
         }
     }
 }

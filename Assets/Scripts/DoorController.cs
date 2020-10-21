@@ -17,15 +17,6 @@ public class DoorController : MonoBehaviour
         EventHandeler.OnDoorInteraction += ToNextLevel;
     }
 
-    //Test code for opening doors.
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.U))
-        {
-            OpenDoor();
-        }
-    }
-
     public void OpenDoor()
     {
         if (!rendererS.sprite.name.Equals(openedDoor.name))
