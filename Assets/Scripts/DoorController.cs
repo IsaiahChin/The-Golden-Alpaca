@@ -8,8 +8,6 @@ public class DoorController : MonoBehaviour
     private SpriteRenderer rendererS;
     [SerializeField]
     private Sprite openedDoor;
-    [SerializeField]
-    private string nextLevelName;
 
     void Awake()
     {
@@ -31,7 +29,20 @@ public class DoorController : MonoBehaviour
     {
         if (rendererS.sprite.name.Equals(openedDoor.name))
         {
-            SceneManager.LoadScene(nextLevelName);
+            int allScenes = SceneManager.sceneCountInBuildSettings;
+            int sceneNo = SceneManager.GetActiveScene().buildIndex;
+            int nextScene = -2;
+
+            //Adjust for zero counting
+            if (!sceneNo.Equals(allScenes - 1))
+            {
+                nextScene = sceneNo + 1;
+            }
+            else
+            {
+                nextScene = 0;
+            }
+            SceneManager.LoadScene(nextScene);
         }
     }
 
