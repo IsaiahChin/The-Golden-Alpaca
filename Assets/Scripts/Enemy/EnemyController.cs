@@ -162,6 +162,9 @@ public class EnemyController : MonoBehaviour
 
     private void Die()
     {
+        //Create death cloud particle effect
+        Instantiate(model.deathCloudObject, transform.position, new Quaternion(0, 0, 0, 0));
+
         //Decrease enemy counter
         GameObject.Find("CounterCanvas").GetComponentInChildren<EnemyCounter>().decreaseCount();
 

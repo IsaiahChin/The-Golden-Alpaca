@@ -5097,10 +5097,10 @@ MonoBehaviour:
   meleeAttackRate: 4
   meleeAttackRange: 1
   meleeAttackDamage: 1
-  rangedAttackRate: 4
+  rangedAttackRate: 3
   rangedAttackDamage: 1
   rangedAttackProjectileSpeed: 10
-  rangedAttackPattern: 1
+  rangedAttackPattern: 0
 --- !u!114 &8859717183548070647
 MonoBehaviour:
   m_ObjectHideFlags: 0
