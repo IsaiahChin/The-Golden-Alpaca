@@ -44,8 +44,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.23921564, g: 0.78431374, b: 0.4041519, a: 1}
-  m_Intensity: 5
-  m_Range: 5
+  m_Intensity: 2
+  m_Range: 2
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -273,6 +273,8 @@ MonoBehaviour:
   followLayer:
     serializedVersion: 2
     m_Bits: 512
+  deathCloudObject: {fileID: 6341281065137407365, guid: 485ec507f7ac0d546af2534085531353,
+    type: 3}
   swordGFXEnabled: 0
   meleeEnabled: 1
   meleeAttackRate: 0.5

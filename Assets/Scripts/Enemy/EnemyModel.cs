@@ -32,6 +32,8 @@ public class EnemyModel : MonoBehaviour
     public LayerMask targetLayer;
     public LayerMask followLayer;
 
+    public GameObject deathCloudObject;
+
     [Header("Melee Attack")]
     public bool swordGFXEnabled = true;
     public bool meleeEnabled=true;
