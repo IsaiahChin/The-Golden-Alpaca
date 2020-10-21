@@ -110,7 +110,7 @@ public class PlayerController : MonoBehaviour
     private void CheckForDoors()
     {
         Vector3 position = GetComponent<Transform>().position;
-        Collider[] closeEnvironment = Physics.OverlapSphere(position, 1.0f, 1 << LayerMask.NameToLayer("Environment"));
+        Collider[] closeEnvironment = Physics.OverlapSphere(position, 0.5f, 1 << LayerMask.NameToLayer("Environment"));
 
         if (!closeEnvironment.Length.Equals(0))
         {
@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if ((door != null) && (Input.GetKeyDown(KeyCode.E)))
+            if (door != null)
             {
                 EventHandeler.ActivateInteraction();
             }
