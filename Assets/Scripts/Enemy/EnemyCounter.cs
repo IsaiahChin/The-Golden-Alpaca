@@ -12,6 +12,8 @@ public class EnemyCounter : MonoBehaviour
     private int maxEnemies;
     private int minEnemies;
 
+    private bool doorOpened;
+
     /**
     * This sets the UI object and sets the initial counter properties/limits
     */
@@ -51,5 +53,10 @@ public class EnemyCounter : MonoBehaviour
     void Update()
     {
         enemyCounterText.text = enemyCounter.ToString();
+
+        if (!doorOpened && (enemyCounter.Equals(0)))
+        {
+            
+        }
     }
 }

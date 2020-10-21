@@ -106,7 +106,7 @@ public class SpriteGenerator2D : MonoBehaviour
 
     void Generate()
     {
-        random = new Random(0);
+        random = new Random(1);
         grid = new Grid2D<CellType>(size, Vector2Int.zero);
         rooms = new List<Room>();
 
@@ -842,20 +842,13 @@ public class SpriteGenerator2D : MonoBehaviour
                     Collider[] currentWall = Physics.OverlapSphere(placementPosition, 0.2f, 1 << LayerMask.NameToLayer("Environment"));
                     if (currentWall.Length != 0)
                     {
-                        //GameObject testParent = Instantiate(new GameObject(), new Vector3(-11, -11, -11), Quaternion.identity);
-                        //testParent.GetComponent<Transform>().localScale = new Vector3(10, 10, 10);
-
                         foreach (Collider environmentElement in currentWall)
                         {
-                            //Debug.Log(environmentElement.transform.position);
-                            //GameObject test = environmentElement.gameObject;
-                            //test.GetComponent<Transform>().localScale = new Vector3(10, 10, 10);
-                            //test.GetComponent<Transform>().position = new Vector3(-11, -11, -11);
-                            //test.transform.parent = testParent.transform;
                             Destroy(environmentElement.gameObject);
                         }
 
                         GameObject exitDoor = Instantiate(clossedDoorSprite, placementPosition, Quaternion.identity);
+                        exitDoor.name = "LevelDoor";
                         exitDoor.GetComponent<Transform>().localScale = Vector3.one;
                         exitDoor.GetComponent<SpriteRenderer>().material = greenMaterial;
 
