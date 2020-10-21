@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
     private void HealthPickup()
     {
         //Get all the coliders within the attack range
-        Collider[] hits = Physics.OverlapSphere(this.transform.position, 0.5f, model.healthLayer);
+        Collider[] hits = Physics.OverlapSphere(this.transform.position, 0.3f, model.healthLayer);
 
         //Damage each collider with an enemy layer 
         foreach (Collider health in hits)
