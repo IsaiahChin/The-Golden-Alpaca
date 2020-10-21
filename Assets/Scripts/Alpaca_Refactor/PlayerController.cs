@@ -56,6 +56,8 @@ public class PlayerController : MonoBehaviour
                 this.enabled = false;
             }
 
+            HealthPickup();
+
             if (Time.time >= model.nextAttackTime)
             {
                 if (Input.GetKey(KeyCode.Mouse0))
@@ -70,6 +72,26 @@ public class PlayerController : MonoBehaviour
                     model.nextAttackTime = Time.time + 1f / model.rangedAttackRate;
                 }
             }
+        }
+    }
+
+    /**
+     * This method tries to detect and pickup health objects
+     */
+    private void HealthPickup()
+    {
+        //Get all the coliders within the attack range
+        Collider[] hits = Physics.OverlapSphere(this.transform.position, 0.5f, model.healthLayer);
+
+        //Damage each collider with an enemy layer 
+        foreach (Collider health in hits)
+        {
+            if (health.CompareTag("Health"))
+            {
+                //If the collider is a player, call the player damage script
+                HealPlayer(health.GetComponent<HealthPickupController>().Pickup());
+                health.GetComponent<HealthPickupController>().Destroy();
+            } 
         }
     }
 

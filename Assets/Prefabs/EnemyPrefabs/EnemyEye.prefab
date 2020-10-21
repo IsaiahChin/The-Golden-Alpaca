@@ -259,6 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3934e8744a24a704b9c1a9e3cc9e2e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropChance: 1
   PrevPos: {x: 0, y: 0, z: 0}
   NewPos: {x: 0, y: 0, z: 0}
   ObjVelocity: {x: 0, y: 0, z: 0}
@@ -274,6 +275,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   deathCloudObject: {fileID: 6341281065137407365, guid: 485ec507f7ac0d546af2534085531353,
+    type: 3}
+  healthObject: {fileID: 6783924239118259285, guid: e8e87b96721703d449fca2134163aa47,
     type: 3}
   swordGFXEnabled: 0
   meleeEnabled: 0

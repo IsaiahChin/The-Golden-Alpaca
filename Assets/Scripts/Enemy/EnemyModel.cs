@@ -14,11 +14,14 @@ public class EnemyModel : MonoBehaviour
     public float WanderTimer { get; set; }
     public float Timer { get; set; }
 
-    public Vector3 PrevPos;
-    public Vector3 NewPos;
-    public Vector3 ObjVelocity;
+
+    public Vector3 PrevPos { get; set; }
+    public Vector3 NewPos { get; set; }
+    public Vector3 ObjVelocity { get; set; }
 
     [Header("Settings")]
+    [Range(0f,1f)]
+    public float dropChance;
     [Min(0.5f)]
     public float health;
     [Min(0.1f)]
@@ -33,6 +36,7 @@ public class EnemyModel : MonoBehaviour
     public LayerMask followLayer;
 
     public GameObject deathCloudObject;
+    public GameObject healthObject;
 
     [Header("Melee Attack")]
     public bool swordGFXEnabled = true;
