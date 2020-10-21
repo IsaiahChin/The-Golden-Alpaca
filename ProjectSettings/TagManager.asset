@@ -8,6 +8,7 @@ TagManager:
   - Enviroment
   - Prop
   - Bullet
+  - Health
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - Prop
   - Floor
   - Bullet
-  - 
+  - Health
   - 
   - 
   - 
