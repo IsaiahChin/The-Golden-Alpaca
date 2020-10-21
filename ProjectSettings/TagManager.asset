@@ -8,6 +8,7 @@ TagManager:
   - Enviroment
   - Prop
   - Bullet
+  - Health
   - Door
   layers:
   - Default
@@ -25,7 +26,7 @@ TagManager:
   - Prop
   - Floor
   - Bullet
-  - 
+  - Health
   - 
   - 
   - 

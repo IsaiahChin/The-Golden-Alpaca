@@ -165,6 +165,12 @@ public class EnemyController : MonoBehaviour
         //Create death cloud particle effect
         Instantiate(model.deathCloudObject, transform.position, new Quaternion(0, 0, 0, 0));
 
+        //Random chance of dropping health
+        if (Random.Range(0f, 1f) <= model.dropChance)
+        {
+            Instantiate(model.healthObject, transform.position, new Quaternion(0, 0, 0, 0));
+        }
+
         //Decrease enemy counter
         GameObject.Find("CounterCanvas").GetComponentInChildren<EnemyCounter>().decreaseCount();
 

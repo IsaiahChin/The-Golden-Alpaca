@@ -5080,7 +5080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 369003f0f0c4f2e4ba7335e3b3a6086e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-8958557475427730401
+--- !u!114 &
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5092,6 +5092,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd8f03e43a00b4a44beb00e27eb4d40a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthLayer:
+    serializedVersion: 2
+    m_Bits: 32768
   maxHealth: 3
   maxSpeed: 5
   meleeAttackRate: 4

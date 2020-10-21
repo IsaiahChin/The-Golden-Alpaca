@@ -12,6 +12,8 @@ public class PlayerModel : MonoBehaviour
     public Vector3 newPosition { get; set; }
     public float health { get; set; }
 
+    public LayerMask healthLayer;
+
     [Header("Settings")]
     [Min(0.5f)]
     public float maxHealth;
@@ -43,7 +45,7 @@ public class PlayerModel : MonoBehaviour
     {
         view = GetComponent<PlayerView>();
         rigidBody = GetComponent<Rigidbody>();
-        
+
         // Initialize variables
         health = maxHealth;
 
