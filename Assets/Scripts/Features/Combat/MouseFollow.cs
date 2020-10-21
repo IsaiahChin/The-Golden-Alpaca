@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 
 //Author: MatthewCopeland
 public class MouseFollow : MonoBehaviour
@@ -51,20 +48,6 @@ public class MouseFollow : MonoBehaviour
         if (plane.Raycast(ray, out distanceToPlane))
         {
             clickPosition = ray.GetPoint(distanceToPlane);
-        }
-    }
-
-    /**
-    * This method creates a graphical representation of the mouse follow script
-    */
-    private void OnDrawGizmosSelected()
-    {
-        if (showSceneLabels&&clickPosition!=-Vector3.one)
-        {
-            //Draw sphere from the view point of the size of the view range
-            Gizmos.color = Color.white;
-            Gizmos.DrawLine(transform.position, new Vector3(clickPosition.x, 1, clickPosition.z));
-            Handles.Label(new Vector3(clickPosition.x, 1, clickPosition.z), "Player Aim");
         }
     }
 }
