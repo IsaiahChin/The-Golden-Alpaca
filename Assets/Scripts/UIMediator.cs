@@ -14,11 +14,15 @@ public class UIMediator : MonoBehaviour
 
         if (uiMediationAccomplished && exitMediationAccomplished)
         {
+            //Run all events that should be activated on the player being spawned.
             EventHandeler.ActivatePlayerSpawnEvent();
             Destroy(gameObject);
         }
     }
 
+    /**
+     * Detects if player has been placed, and the health canvis has been sucessfully activated.
+     */
     private void UIMediation()
     {
         PlayerHealthUI_Refactor healthInfo = GameObject.Find("HealthCanvas").GetComponentInChildren<PlayerHealthUI_Refactor>();
@@ -35,6 +39,9 @@ public class UIMediator : MonoBehaviour
         }
     }
 
+    /**
+     * Detects if the procedural generation has finished placing the map.
+     */
     private void ExitMediation()
     {
         GameObject procGenRef = GameObject.Find("TestGeneratorFirstFloor");

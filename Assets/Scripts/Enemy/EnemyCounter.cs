@@ -12,7 +12,7 @@ public class EnemyCounter : MonoBehaviour
     private int maxEnemies;
     private int minEnemies;
 
-    private bool doorOpened;
+    private bool doorOpened = false;
 
     /**
     * This sets the UI object and sets the initial counter properties/limits
