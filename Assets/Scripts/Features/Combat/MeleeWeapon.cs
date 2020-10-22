@@ -42,6 +42,7 @@ public class MeleeWeapon : MonoBehaviour
             }
             else if (enemy.CompareTag("Bullet"))
             {
+                FindObjectOfType<AudioManager>().Play("Bullet Paree");
                 //If the collider is a enemy, call the enemy damage script
                 enemy.GetComponent<Bullet>().Hit();
             }

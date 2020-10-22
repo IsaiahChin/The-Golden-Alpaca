@@ -152,17 +152,21 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(delayTime);
         melee.Attack();
         view.animator.SetTrigger("Attack");
+        FindObjectOfType<AudioManager>().Play("Enemy Melee");
+        
     }
     IEnumerator RangedAttackDelay(float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
         ranged.Attack(model.rangedAttackPattern.ToString());
         view.animator.SetTrigger("Attack");
+        FindObjectOfType<AudioManager>().Play("Enemy Melee");
     }
 
     private void Die()
     {
-        //Create death cloud particle effect
+        FindObjectOfType<AudioManager>().Play("Enemy Dead");//Create death cloud particle effect
+        
         Instantiate(model.deathCloudObject, transform.position, new Quaternion(0, 0, 0, 0));
 
         //Decrease enemy counter
@@ -173,10 +177,13 @@ public class EnemyController : MonoBehaviour
         view.enabled = false;
         this.enabled = false;
         Destroy(gameObject);
+
+        
     }
 
     public void decreaseHealth(float damage)
     {
+        FindObjectOfType<AudioManager>().Play("Enemy Hit");
         model.health -= damage;
         view.animator.SetTrigger("Hit");
     }

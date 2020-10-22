@@ -10,6 +10,7 @@ public class PlayerView : MonoBehaviour
 
     void Start()
     {
+        FindObjectOfType<AudioManager>().PlayBGM("Level 1");
         animator = GameObject.Find("AlpacaGFX").GetComponent<Animator>();
         swordAnimator = GameObject.Find("AlpacaSword").GetComponent<Animator>();
     }

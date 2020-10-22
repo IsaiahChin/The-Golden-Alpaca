@@ -5,11 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class TitleScreen : MonoBehaviour
 {
+    public GameObject MainMenuUI;
+    void Start(){
+        FindObjectOfType<AudioManager>().PlayBGM("Theme");
+    }
     void Update()
     {
+        
         if (Input.anyKey)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            MainMenuUI.SetActive(true);
+            this.gameObject.SetActive(false);
         }
+        
     }
 }

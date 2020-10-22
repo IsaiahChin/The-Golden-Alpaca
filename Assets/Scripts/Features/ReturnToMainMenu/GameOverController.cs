@@ -15,7 +15,7 @@ public class GameOverController : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 
     /**
@@ -23,7 +23,7 @@ public class GameOverController : MonoBehaviour
      * to true. Then activates a Game Over menu screen.
      */
     public void EnableGameOver()
-    {
+    { 
         Time.timeScale = 0f;
         isGameOver = true;
         gameOverMenu.SetActive(isGameOver);
