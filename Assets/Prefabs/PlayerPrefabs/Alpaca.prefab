@@ -5020,12 +5020,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1457024374300521502}
   - component: {fileID: 1457024374554860649}
+  - component: {fileID: 816911176915608891}
   - component: {fileID: 1091197059421077493}
   - component: {fileID: 8859717183548070647}
   - component: {fileID: 1457024374554860651}
   - component: {fileID: 1457024374554860644}
   - component: {fileID: 1457024374554860643}
-  - component: {fileID: 816911176915608891}
   m_Layer: 9
   m_Name: Alpaca
   m_TagString: Player
@@ -5068,6 +5068,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &816911176915608891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457024374554860645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd8f03e43a00b4a44beb00e27eb4d40a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  maxHealth: 3
+  maxSpeed: 5
+  meleeAttackRate: 4
+  meleeAttackRange: 1
+  meleeAttackDamage: 1
+  rangedAttackRate: 10
+  rangedAttackDamage: 1
+  rangedAttackProjectileSpeed: 10
+  rangedAttackPattern: 2
 --- !u!114 &1091197059421077493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5139,30 +5163,6 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &816911176915608891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1457024374554860645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd8f03e43a00b4a44beb00e27eb4d40a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  maxHealth: 3
-  maxSpeed: 5
-  meleeAttackRate: 4
-  meleeAttackRange: 1
-  meleeAttackDamage: 1
-  rangedAttackRate: 10
-  rangedAttackDamage: 1
-  rangedAttackProjectileSpeed: 10
-  rangedAttackPattern: 2
 --- !u!1 &2033334451027667319
 GameObject:
   m_ObjectHideFlags: 0

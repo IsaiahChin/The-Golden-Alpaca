@@ -6,15 +6,17 @@ public class UIMediator : MonoBehaviour
 {
     private bool uiMediationAccomplished = false;
     private bool exitMediationAccomplished = false;
+    private bool hasRun = false;
 
     void Update()
     {
         UIMediation();
         ExitMediation();
 
-        if (uiMediationAccomplished && exitMediationAccomplished)
+        if (uiMediationAccomplished && exitMediationAccomplished && !hasRun)
         {
             //Run all events that should be activated on the player being spawned.
+            hasRun = true;
             EventHandeler.ActivatePlayerSpawnEvent();
             Destroy(gameObject);
         }
