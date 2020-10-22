@@ -206,6 +206,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
         type: 3}
+      propertyPath: floorProps.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
+        type: 3}
       propertyPath: floorPrefabs.Array.data[0]
       value: 
       objectReference: {fileID: 1651923538560382547, guid: cb3e1bc80ad1c794b81c095d017791f8,
@@ -245,6 +250,30 @@ PrefabInstance:
       propertyPath: baker
       value: 
       objectReference: {fileID: 1996714551}
+    - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
+        type: 3}
+      propertyPath: floorProps.Array.data[0]
+      value: 
+      objectReference: {fileID: 3805884395595180923, guid: ff178997c8cb7bf49a62d81de16f7031,
+        type: 3}
+    - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
+        type: 3}
+      propertyPath: floorProps.Array.data[3]
+      value: 
+      objectReference: {fileID: 6033038289861546180, guid: d65e605d54f7dc84b83475676a47aecf,
+        type: 3}
+    - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
+        type: 3}
+      propertyPath: floorProps.Array.data[1]
+      value: 
+      objectReference: {fileID: 61298276942958132, guid: ab978be0a58645d4996fda9a23880db8,
+        type: 3}
+    - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
+        type: 3}
+      propertyPath: floorProps.Array.data[2]
+      value: 
+      objectReference: {fileID: 3232187913335174451, guid: 3d3e382f0f996f04497f56b5cbde0d79,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29d736b2e4bb8b042a2a54b45982da23, type: 3}
 --- !u!1001 &260375509
