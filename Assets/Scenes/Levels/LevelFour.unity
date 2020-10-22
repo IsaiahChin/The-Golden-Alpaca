@@ -240,6 +240,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d482d2199da53c545918c28b5cd3e03a, type: 3}
+--- !u!114 &243965941 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1876795994, guid: d482d2199da53c545918c28b5cd3e03a,
+    type: 3}
+  m_PrefabInstance: {fileID: 243965940}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6039e94902dd6f48ad38bf7f7d3c93d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &564316603
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -357,6 +369,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2118261940285109867, guid: 0db6d09709d94464ba2a509eb3502f7e,
+        type: 3}
+      propertyPath: gameOverController
+      value: 
+      objectReference: {fileID: 243965941}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0db6d09709d94464ba2a509eb3502f7e, type: 3}
 --- !u!20 &583183247 stripped
@@ -822,6 +839,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
         type: 3}
+      propertyPath: floorProps.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
+        type: 3}
       propertyPath: wallPrefabs.Array.data[0]
       value: 
       objectReference: {fileID: 1194013876004247523, guid: 3a58cf0a4b1ebbb44870a56bbf6ffbbf,
@@ -861,6 +883,30 @@ PrefabInstance:
       propertyPath: baker
       value: 
       objectReference: {fileID: 2140725490}
+    - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
+        type: 3}
+      propertyPath: floorProps.Array.data[0]
+      value: 
+      objectReference: {fileID: 3805884395595180923, guid: ff178997c8cb7bf49a62d81de16f7031,
+        type: 3}
+    - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
+        type: 3}
+      propertyPath: floorProps.Array.data[1]
+      value: 
+      objectReference: {fileID: 61298276942958132, guid: ab978be0a58645d4996fda9a23880db8,
+        type: 3}
+    - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
+        type: 3}
+      propertyPath: floorProps.Array.data[2]
+      value: 
+      objectReference: {fileID: 3232187913335174451, guid: 3d3e382f0f996f04497f56b5cbde0d79,
+        type: 3}
+    - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
+        type: 3}
+      propertyPath: floorProps.Array.data[3]
+      value: 
+      objectReference: {fileID: 6033038289861546180, guid: d65e605d54f7dc84b83475676a47aecf,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29d736b2e4bb8b042a2a54b45982da23, type: 3}
 --- !u!1 &1709479974
