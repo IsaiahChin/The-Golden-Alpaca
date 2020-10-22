@@ -844,6 +844,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
         type: 3}
+      propertyPath: wallProps.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
+        type: 3}
       propertyPath: wallPrefabs.Array.data[0]
       value: 
       objectReference: {fileID: 1194013876004247523, guid: 3a58cf0a4b1ebbb44870a56bbf6ffbbf,
@@ -906,6 +911,42 @@ PrefabInstance:
       propertyPath: floorProps.Array.data[3]
       value: 
       objectReference: {fileID: 6033038289861546180, guid: d65e605d54f7dc84b83475676a47aecf,
+        type: 3}
+    - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
+        type: 3}
+      propertyPath: wallProps.Array.data[5]
+      value: 
+      objectReference: {fileID: 4756170682228379685, guid: 2474fd58dc4cea147b35fb104c600729,
+        type: 3}
+    - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
+        type: 3}
+      propertyPath: wallProps.Array.data[0]
+      value: 
+      objectReference: {fileID: 6563140121259866212, guid: a3792fffe13e5194fbdd103147aa7a12,
+        type: 3}
+    - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
+        type: 3}
+      propertyPath: wallProps.Array.data[1]
+      value: 
+      objectReference: {fileID: 6306831764597530320, guid: e9cb8b6038ac6f84f8e32548f9025a61,
+        type: 3}
+    - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
+        type: 3}
+      propertyPath: wallProps.Array.data[2]
+      value: 
+      objectReference: {fileID: 958506394262525803, guid: e57543847d2e0fb4fb94c48f84ed2230,
+        type: 3}
+    - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
+        type: 3}
+      propertyPath: wallProps.Array.data[3]
+      value: 
+      objectReference: {fileID: 5284627151723384895, guid: e2a7a14f340a4cd4cbc3a1545cbba5e7,
+        type: 3}
+    - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
+        type: 3}
+      propertyPath: wallProps.Array.data[4]
+      value: 
+      objectReference: {fileID: 5284627151723384895, guid: e2a7a14f340a4cd4cbc3a1545cbba5e7,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29d736b2e4bb8b042a2a54b45982da23, type: 3}

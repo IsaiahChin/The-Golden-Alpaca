@@ -10,6 +10,8 @@ TagManager:
   - Bullet
   - Health
   - Door
+  - Room
+  - Hallway
   layers:
   - Default
   - TransparentFX
