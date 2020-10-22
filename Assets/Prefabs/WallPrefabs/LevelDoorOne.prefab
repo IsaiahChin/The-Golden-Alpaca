@@ -182,7 +182,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7341407202210888751, guid: fde3296595f9d8845990401164897a9d,
+  m_Sprite: {fileID: 2081591775204448903, guid: d626a2cac8d7b634791e4df6c732f891,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -206,9 +206,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14264cf8773149b4aafbfa7bb65b9e94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openedDoor: {fileID: 6623719234781301212, guid: fde3296595f9d8845990401164897a9d,
+  openedDoor: {fileID: -1469592788885339568, guid: d626a2cac8d7b634791e4df6c732f891,
     type: 3}
-  nextLevelName: LevelTwo
 --- !u!65 &2493954932461855841
 BoxCollider:
   m_ObjectHideFlags: 0
