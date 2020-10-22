@@ -81,21 +81,18 @@ public class PlayerController : MonoBehaviour
      */
     private void HealthPickup()
     {
-        if (model.health < model.maxHealth)
-        {
-            //Get all the coliders within the attack range
-            Collider[] hits = Physics.OverlapSphere(this.transform.position, 0.3f, 1 << LayerMask.NameToLayer("Health"));
+        //Get all the coliders within the attack range
+        Collider[] hits = Physics.OverlapSphere(this.transform.position, 0.3f, model.healthLayer);
 
-            //Damage each collider with an enemy layer 
-            foreach (Collider health in hits)
+        //Damage each collider with an enemy layer 
+        foreach (Collider health in hits)
+        {
+            if (health.CompareTag("Health"))
             {
-                if (health.CompareTag("Health"))
-                {
-                    //If the collider is a player, call the player damage script
-                    HealPlayer(health.GetComponent<HealthPickupController>().Pickup());
-                    health.GetComponent<HealthPickupController>().Destroy();
-                }
-            }
+                //If the collider is a player, call the player damage script
+                HealPlayer(health.GetComponent<HealthPickupController>().Pickup());
+                health.GetComponent<HealthPickupController>().Destroy();
+            } 
         }
     }
 
