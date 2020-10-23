@@ -31,7 +31,7 @@ public class DoorController : MonoBehaviour
         {
             int allScenes = SceneManager.sceneCountInBuildSettings;
             int sceneNo = SceneManager.GetActiveScene().buildIndex;
-            int nextScene;
+            int nextScene = -2;
 
             //Adjust for zero counting
             if (!sceneNo.Equals(allScenes - 1))
@@ -42,9 +42,6 @@ public class DoorController : MonoBehaviour
             {
                 nextScene = 0;
             }
-
-            GameObject.Find("Alpaca").GetComponent<Transform>().position = -Vector3.one;
-
             SceneManager.LoadScene(nextScene);
         }
     }

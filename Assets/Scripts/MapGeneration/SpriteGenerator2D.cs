@@ -716,18 +716,10 @@ public class SpriteGenerator2D : MonoBehaviour
             0.5f,
             (float)spawnRoomEdge.y + ((float)spawnRoom.bounds.size.y / 2.0f));
 
-        GameObject alpaca = GameObject.Find("Alpaca");
 
-        if (alpaca != null)
-        {
-            alpaca.GetComponent<Transform>().position = spawnAt;
-        }
-        else
-        {
-            alpaca = Instantiate(alpacaPrefab, spawnAt, Quaternion.identity);
-            alpaca.name = "Alpaca";
-            alpaca.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
-        }
+        GameObject alpaca = Instantiate(alpacaPrefab, spawnAt, Quaternion.identity);
+        alpaca.name = "Alpaca";
+        alpaca.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
 
         return spawnRoom;
     }
