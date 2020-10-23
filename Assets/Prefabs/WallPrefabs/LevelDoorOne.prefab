@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 892499355486715850}
   - component: {fileID: 1593449631586151017}
-  - component: {fileID: 4748980953360649047}
   m_Layer: 11
   m_Name: DoorLight
   m_TagString: Untagged
@@ -93,22 +92,6 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &4748980953360649047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6208870555611639609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f8b0e02af4ba504d9c19255e9ed7e9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseStart: 1
-  amplitude: 0.2
-  phase: 2
-  frequency: 0.7
 --- !u!1 &9208192740443259567
 GameObject:
   m_ObjectHideFlags: 0

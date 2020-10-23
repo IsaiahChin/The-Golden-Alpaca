@@ -11,11 +11,14 @@ public class DoorController : MonoBehaviour
     [SerializeField]
     private Color openColour;
 
+    private Light doorLight;
+
 
     void Awake()
     {
         rendererS = gameObject.GetComponent<SpriteRenderer>();
-        GetComponentInChildren<Light>().intensity = 3;
+        doorLight = GetComponentInChildren<Light>();
+        doorLight.intensity = 3;
         EventHandeler.OnDoorInteraction += ToNextLevel;
     }
 
@@ -24,8 +27,8 @@ public class DoorController : MonoBehaviour
         if (!rendererS.sprite.name.Equals(openedDoor.name))
         {
             rendererS.sprite = openedDoor;
-            GetComponentInChildren<Light>().intensity = 7;
-            GetComponentInChildren<Light>().color = openColour;
+            doorLight.intensity = 7;
+            doorLight.color = openColour;
         }
     }
 
