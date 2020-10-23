@@ -5085,13 +5085,13 @@ MonoBehaviour:
     m_Bits: 0
   maxHealth: 3
   maxSpeed: 5
-  meleeAttackRate: 4
+  meleeAttackRate: 2
   meleeAttackRange: 1
   meleeAttackDamage: 1
-  rangedAttackRate: 10
+  rangedAttackRate: 3
   rangedAttackDamage: 1
   rangedAttackProjectileSpeed: 10
-  rangedAttackPattern: 2
+  rangedAttackPattern: 0
 --- !u!114 &1091197059421077493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5103,7 +5103,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 369003f0f0c4f2e4ba7335e3b3a6086e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '--- !u!114 &'
+  m_EditorClassIdentifier: --- !u!114 &
 --- !u!114 &8859717183548070647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10005,7 +10005,8 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 1.1894e-41, z: 0, w: -2.390625}
+  m_BoundingSphereOverride: {x: 0.000000041705995, y: 1.3555904e-19, z: 1.6197548e+25,
+    w: 0.0000000017049198}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0

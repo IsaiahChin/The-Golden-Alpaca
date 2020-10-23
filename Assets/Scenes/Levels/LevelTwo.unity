@@ -1090,6 +1090,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameOverCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2747219404401022960, guid: d482d2199da53c545918c28b5cd3e03a,
+        type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 2044116750}
+    - target: {fileID: 2747219404401022963, guid: d482d2199da53c545918c28b5cd3e03a,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 450
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d482d2199da53c545918c28b5cd3e03a, type: 3}
 --- !u!114 &2044116749 stripped
@@ -1102,5 +1112,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6039e94902dd6f48ad38bf7f7d3c93d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2044116750 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2747219404401022961, guid: d482d2199da53c545918c28b5cd3e03a,
+    type: 3}
+  m_PrefabInstance: {fileID: 2044116748}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
