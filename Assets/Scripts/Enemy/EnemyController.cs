@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyController : MonoBehaviour
 {
@@ -11,11 +12,18 @@ public class EnemyController : MonoBehaviour
     private MeleeWeapon melee;
     private RangedWeapon ranged;
 
+    private BossHealthUI bossHealthScript;
+
     private void Start()
     {
         //MVC linking
         model = GetComponent<EnemyModel>();
         view = GetComponent<EnemyView>();
+
+        if (model.isBoss)
+        {
+            bossHealthScript = GameObject.Find("HealthBarStorage").GetComponent<BossHealthUI>();
+        }
 
         //Setup melee
         if (model.meleeEnabled == true)
@@ -39,11 +47,15 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
-        if (model!=null&&view!=null)
+        if (model != null && view != null)
         {
             //Check Health
             if (model.health <= 0)
             {
+                if (model.isBoss)
+                {
+                    bossHealthScript.UpdateHealthBar();
+                }
                 Die();
             }
 
@@ -54,7 +66,7 @@ public class EnemyController : MonoBehaviour
             }
 
             //If the enemy can attack and has line of sight and has a weapon, then attack
-            if (Time.time >= model.NextAttackTime && PlayerInLineOfSight() && (model.meleeEnabled||model.rangedEnabled))
+            if (Time.time >= model.NextAttackTime && PlayerInLineOfSight() && (model.meleeEnabled || model.rangedEnabled))
             {
                 CalculateAttack();
             }
@@ -91,6 +103,10 @@ public class EnemyController : MonoBehaviour
             //If the raycast hits the player then it has line of sight
             if (hit.transform.CompareTag("Player"))
             {
+                if (model.isBoss && !bossHealthScript.isHealthBarActive)
+                {
+                    bossHealthScript.ShowHealthBar();
+                }
                 return true;
             }
         }
@@ -105,13 +121,17 @@ public class EnemyController : MonoBehaviour
         //If the enemy has a melee and ranged attack
         if (model.meleeEnabled && model.rangedEnabled)
         {
-            //Check if the player is within range
+            //Check if the player is within range for melee attack
             if (Physics.CheckSphere(melee.attackPoint.position, model.meleeAttackRange, model.targetLayer))
             {
                 PerformMeleeAttack();
-            } //Check if the player is within range
+            } //Check if the player is within range for ranged attack
             else if (Physics.CheckSphere(ranged.attackPoint.position, model.rangedAttackRange, model.targetLayer))
             {
+                if (model.isBoss && SceneManager.GetActiveScene().name.Equals("LevelThree"))
+                {
+                    Instantiate(model.fireBurst, transform); // Create a particle effect if enemy is a boss
+                }
                 PerformRangedAttack();
             }
         } //If the enemy has a melee but no ranged attack
@@ -129,6 +149,20 @@ public class EnemyController : MonoBehaviour
             if (Physics.CheckSphere(ranged.attackPoint.position, model.rangedAttackRange, model.targetLayer))
             {
                 PerformRangedAttack();
+            }
+        }
+
+        // Level 3 boss spawns bees
+        if (model.isBoss && SceneManager.GetActiveScene().name.Equals("LevelThree"))
+        {
+            float numOfBees = Random.Range(1, 9);
+            if (numOfBees % 3 == 0)
+            {
+                for (int i = 0; i < numOfBees; i++)
+                {
+                    Instantiate(model.fireSwirl, transform);
+                    Instantiate(model.enemyBee, transform.position, new Quaternion(0, 0, 0, 0));
+                }
             }
         }
     }
@@ -152,22 +186,27 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(delayTime);
         melee.Attack();
         view.animator.SetTrigger("Attack");
-        FindObjectOfType<AudioManager>().Play("Enemy Melee");
-        
     }
     IEnumerator RangedAttackDelay(float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
         ranged.Attack(model.rangedAttackPattern.ToString());
         view.animator.SetTrigger("Attack");
-        FindObjectOfType<AudioManager>().Play("Enemy Melee");
     }
 
     private void Die()
     {
-        FindObjectOfType<AudioManager>().Play("Enemy Dead");//Create death cloud particle effect
-        
-        Instantiate(model.deathCloudObject, transform.position, new Quaternion(0, 0, 0, 0));
+        if (model.deathCloudObject != null)
+        {
+            //Create death cloud particle effect
+            Instantiate(model.deathCloudObject, transform.position, new Quaternion(0, 0, 0, 0));
+        }
+
+        //Random chance of dropping health
+        if (Random.Range(0f, 1f) <= model.dropChance)
+        {
+            Instantiate(model.heartPickup, transform.position, new Quaternion(0, 0, 0, 0));
+        }
 
         //Decrease enemy counter
         GameObject.Find("CounterCanvas").GetComponentInChildren<EnemyCounter>().decreaseCount();
@@ -177,14 +216,25 @@ public class EnemyController : MonoBehaviour
         view.enabled = false;
         this.enabled = false;
         Destroy(gameObject);
+    }
 
-        
+    public float GetHealth()
+    {
+        return model.health;
+    }
+
+    public float GetMaxHealth()
+    {
+        return model.maxHealth;
     }
 
     public void decreaseHealth(float damage)
     {
-        FindObjectOfType<AudioManager>().Play("Enemy Hit");
         model.health -= damage;
         view.animator.SetTrigger("Hit");
+        if (model.isBoss)
+        {
+            bossHealthScript.UpdateHealthBar();
+        }
     }
 }

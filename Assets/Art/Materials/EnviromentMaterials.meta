@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 25c66ad6ed306b841a4c107d69d05105
+=======
+<<<<<<< HEAD:Assets/Art/Animations/Robo Ball Boss.meta
+guid: 501d5f976a3f1264ca64edae783220d0
+=======
+guid: 5260665bf0c98f84cbb2bde411defe28
+>>>>>>> master:Assets/Art/Materials/EnviromentMaterials.meta
+>>>>>>> master
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
