@@ -53,16 +53,10 @@ public class SpriteGenerator2D : MonoBehaviour
     //Modified to hold a selection of different floor tiles.
     [SerializeField]
     GameObject[] floorPrefabs;
-    [SerializeField]
-    Material redMaterial;
-    [SerializeField]
-    Material blueMaterial;
 
     //Created to hold a wall tile.
     [SerializeField]
     GameObject[] wallPrefabs;
-    [SerializeField]
-    Material greenMaterial;
 
     //Created to hold the roof tile.
     [SerializeField]
@@ -86,6 +80,16 @@ public class SpriteGenerator2D : MonoBehaviour
     [SerializeField]
     GameObject[] floorProps;
 
+    [SerializeField]
+    GameObject clossedDoorSprite;
+
+    [SerializeField]
+    bool bossFloor;
+    [SerializeField]
+    GameObject bossPrefab;
+
+    public bool generationFinished = false;
+
     Random random;
     Grid2D<CellType> grid;
     List<Room> rooms;
@@ -94,7 +98,9 @@ public class SpriteGenerator2D : MonoBehaviour
 
     void Start()
     {
+        EventHandeler.OnPlayerSpawn += SpawnExitWall;
         Generate();
+        generationFinished = true;
     }
 
     void Generate()
@@ -277,13 +283,13 @@ public class SpriteGenerator2D : MonoBehaviour
      */
 
     //Modified to work with sprites instead of cubes.
-    void PlaceFloorSprite(Vector2Int location, Vector2Int size, Material material)
+    void PlaceFloorSprite(Vector2Int location, Vector2Int size, string tagName)
     {
         GameObject go = Instantiate(NextSprite(floorPrefabs), FloorSpriteLocationFix(size, location), Quaternion.identity);
         go.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
         //Rotate sprite to be flat, then a random 90 degree rotation on the ground.
         go.GetComponent<Transform>().rotation = Quaternion.Euler(90, random.Next(0, 4) * 90, 0);
-        go.GetComponent<SpriteRenderer>().material = material;
+        go.tag = tagName;
     }
 
     //Created to place a roof tile.
@@ -298,7 +304,7 @@ public class SpriteGenerator2D : MonoBehaviour
     }
 
     //Created to place a wall at given flags, with appropriate positions and rotation.
-    void PlaceWallSprite(Vector2Int location, Vector2Int size, Material material, SpritePositionType relativePos)
+    void PlaceWallSprite(Vector2Int location, Vector2Int size, SpritePositionType relativePos)
     {
         SpritePositionType[] allWallTypes =
         {
@@ -324,7 +330,6 @@ public class SpriteGenerator2D : MonoBehaviour
                 if (wall != null)
                 {
                     wall.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
-                    wall.GetComponent<SpriteRenderer>().material = material;
 
                     if (placePropChance == 0)
                     {
@@ -347,8 +352,8 @@ public class SpriteGenerator2D : MonoBehaviour
                 SpritePositionType spriteRelativePosition = GetSpriteRelativePosition(i, j, size);
 
                 Vector2Int nextSpriteLocation = new Vector2Int(location.x + i, location.y + j);
-                PlaceFloorSprite(nextSpriteLocation, new Vector2Int(1, 1), redMaterial);
-                PlaceWallSprite(nextSpriteLocation, new Vector2Int(1, 1), greenMaterial, spriteRelativePosition);
+                PlaceFloorSprite(nextSpriteLocation, new Vector2Int(1, 1), "Room");
+                PlaceWallSprite(nextSpriteLocation, new Vector2Int(1, 1), spriteRelativePosition);
             }
         }
     }
@@ -425,8 +430,8 @@ public class SpriteGenerator2D : MonoBehaviour
                 Destroy(wall.gameObject);
             }
 
-            PlaceFloorSprite(location, new Vector2Int(1, 1), blueMaterial);
-            PlaceWallSprite(location, new Vector2Int(1, 1), greenMaterial, hallwayWalls);
+            PlaceFloorSprite(location, new Vector2Int(1, 1), "Hallway");
+            PlaceWallSprite(location, new Vector2Int(1, 1), hallwayWalls);
         }
     }
 
@@ -713,6 +718,8 @@ public class SpriteGenerator2D : MonoBehaviour
 
     void SpawnEnemies(Room playerSpawn)
     {
+        bool bossHasSpawned = false;
+
         foreach (Room toSpawnIn in rooms)
         {
             if (toSpawnIn != playerSpawn)
@@ -743,8 +750,18 @@ public class SpriteGenerator2D : MonoBehaviour
 
                     if (!enemyExists)
                     {
-                        GameObject enemy = Instantiate(enemyPrefabs[random.Next(0, enemyPrefabs.Length)], spawnAt, Quaternion.identity);
-                        enemy.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                        if (bossFloor && !bossHasSpawned)
+                        {
+                            GameObject enemy = Instantiate(bossPrefab, spawnAt, Quaternion.identity);
+                            enemy.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                            bossHasSpawned = true;
+                        }
+                        else
+                        {
+                            GameObject enemy = Instantiate(enemyPrefabs[random.Next(0, enemyPrefabs.Length)], spawnAt, Quaternion.identity);
+                            enemy.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                        }
+
                         enemiesSpawned++;
                     }
                 }
@@ -792,5 +809,86 @@ public class SpriteGenerator2D : MonoBehaviour
                 }
             }
         }
+    }
+
+    void SpawnExitWall()
+    {
+        Room[] availableRooms = rooms.ToArray();
+
+        List<Room> unavailableRooms = new List<Room>();
+
+        bool doorPlaced = false;
+
+        while (!doorPlaced)
+        {
+            //Get a new room that hasn't been checked yet.
+            Room exitRoom = null;
+            while (exitRoom == null)
+            {
+                Room toExit = availableRooms[random.Next(0, availableRooms.Length)];
+                if (!unavailableRooms.Contains(toExit))
+                {
+                    exitRoom = toExit;
+                }
+            }
+
+            Vector2Int topWallStart = exitRoom.bounds.position;
+            topWallStart.y += exitRoom.bounds.size.y - 1;
+
+            List<int> unavailableWalls = new List<int>();
+            int allWalls = topWallStart.x + exitRoom.bounds.size.x;
+            int topWallNumber = exitRoom.bounds.size.x;
+
+            //Check if all walls have been viewed, or if the door has been placed.
+            while ((unavailableWalls.Count < topWallNumber) && (!doorPlaced))
+            {
+                //Get next wall and check if it has already been tested.
+                int nextWall = random.Next(topWallStart.x + 1, allWalls);
+                if (!unavailableWalls.Contains(nextWall))
+                {
+                    Vector2Int doorPosition = new Vector2Int(nextWall, topWallStart.y);
+                    Vector3 hallwayDetector = FloorSpriteLocationFix(
+                        new Vector2Int(1, 1),
+                        new Vector2Int(doorPosition.x, doorPosition.y + 1));
+
+                    Collider[] hallways = Physics.OverlapSphere(hallwayDetector, 0.2f, 1 << LayerMask.NameToLayer("Floor"));
+
+                    if (hallways.Length.Equals(0))
+                    {
+                        Vector3 placementPosition = WallSpriteLocationFix(new Vector2Int(1, 1), doorPosition, SpritePositionType.Top);
+
+                        //Check if the current placement has a wall to remove.
+                        Collider[] currentWall = Physics.OverlapSphere(placementPosition, 0.2f, 1 << LayerMask.NameToLayer("Environment"));
+                        if (currentWall.Length != 0)
+                        {
+                            foreach (Collider environmentElement in currentWall)
+                            {
+                                Destroy(environmentElement.gameObject);
+                            }
+
+                            GameObject exitDoor = Instantiate(clossedDoorSprite, placementPosition, Quaternion.identity);
+                            exitDoor.name = "LevelDoor";
+                            exitDoor.GetComponent<Transform>().localScale = Vector3.one;
+
+                            doorPlaced = true;
+                        }
+                        else
+                        {
+                            unavailableWalls.Add(nextWall);
+                        }
+                    }
+                }
+            }
+
+            if (!doorPlaced)
+            {
+                unavailableRooms.Add(exitRoom);
+            }
+        }
+    }
+
+    private void OnDestroy()
+    {
+        EventHandeler.OnPlayerSpawn -= SpawnExitWall;
     }
 }

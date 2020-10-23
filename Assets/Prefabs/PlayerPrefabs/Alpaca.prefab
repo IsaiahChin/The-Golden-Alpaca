@@ -4805,7 +4805,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 778f1237061b07c4eb36cb9fb5295989, type: 2}
+  - {fileID: 2100000, guid: 935d64e2df3041a43a307e78162b8d5e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5020,8 +5020,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1457024374300521502}
   - component: {fileID: 1457024374554860649}
+  - component: {fileID: 816911176915608891}
   - component: {fileID: 1091197059421077493}
-  - component: {fileID: -8958557475427730401}
   - component: {fileID: 8859717183548070647}
   - component: {fileID: 1457024374554860651}
   - component: {fileID: 1457024374554860644}
@@ -5068,19 +5068,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!114 &1091197059421077493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1457024374554860645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 369003f0f0c4f2e4ba7335e3b3a6086e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-8958557475427730401
+--- !u!114 &816911176915608891
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5094,16 +5082,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthLayer:
     serializedVersion: 2
-    m_Bits: 32768
+    m_Bits: 0
   maxHealth: 3
   maxSpeed: 5
   meleeAttackRate: 2
   meleeAttackRange: 1
   meleeAttackDamage: 1
-  rangedAttackRate: 3
+  rangedAttackRate: 10
   rangedAttackDamage: 1
   rangedAttackProjectileSpeed: 10
-  rangedAttackPattern: 0
+  rangedAttackPattern: 2
+--- !u!114 &1091197059421077493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457024374554860645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 369003f0f0c4f2e4ba7335e3b3a6086e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '--- !u!114 &'
 --- !u!114 &8859717183548070647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5159,7 +5159,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.49
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}

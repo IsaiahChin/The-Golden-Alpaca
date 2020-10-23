@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: dbbcbba48b652e74eb4da1632caf8565
+<<<<<<< HEAD:Assets/Art/Animations/Sunflower Boss.meta
+guid: c27fb12cde356884d97138aa3edc30ac
+=======
+guid: 35eb73a3d030bb34f834f2d9e64b2c3e
+>>>>>>> master:Assets/Scenes/Features/CollisionTest.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
