@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: -9147157693296200499}
   - component: {fileID: 2493954932461855841}
   m_Layer: 11
-  m_Name: LevelDoor
+  m_Name: LevelDoorOne
   m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -208,6 +208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openedDoor: {fileID: -1469592788885339568, guid: d626a2cac8d7b634791e4df6c732f891,
     type: 3}
+  openColour: {r: 0.92156863, g: 0.8039216, b: 0.11764706, a: 1}
 --- !u!65 &2493954932461855841
 BoxCollider:
   m_ObjectHideFlags: 0

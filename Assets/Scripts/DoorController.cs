@@ -8,6 +8,9 @@ public class DoorController : MonoBehaviour
     private SpriteRenderer rendererS;
     [SerializeField]
     private Sprite openedDoor;
+    [SerializeField]
+    private Color openColour;
+
 
     void Awake()
     {
@@ -22,6 +25,7 @@ public class DoorController : MonoBehaviour
         {
             rendererS.sprite = openedDoor;
             GetComponentInChildren<Light>().intensity = 7;
+            GetComponentInChildren<Light>().color = openColour;
         }
     }
 
