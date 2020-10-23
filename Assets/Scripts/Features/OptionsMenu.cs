@@ -10,12 +10,13 @@ public class OptionsMenu : MonoBehaviour
     public Slider volumeSlider;
     
     void Start(){
+        //moves slider to previous value
         volumeSlider.value = PlayerPrefs.GetFloat("volume",0f);
     }
     //Adjust master volume with slider on options menu
     public void SetVoulume(float volume){
-        //Master mixer scales up logarithmic and not linearly unlike volume slider 
         audioMixer.SetFloat("volume",volume);
+        //Saves user preference so slider won't reset to 0 
         PlayerPrefs.SetFloat("volume",volume);
     }
 }
