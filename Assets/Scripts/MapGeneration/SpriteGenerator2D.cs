@@ -89,6 +89,11 @@ public class SpriteGenerator2D : MonoBehaviour
     [SerializeField]
     GameObject clossedDoorSprite;
 
+    [SerializeField]
+    bool bossFloor;
+    [SerializeField]
+    GameObject bossPrefab;
+
     public bool generationFinished = false;
 
     Random random;
@@ -721,6 +726,8 @@ public class SpriteGenerator2D : MonoBehaviour
 
     void SpawnEnemies(Room playerSpawn)
     {
+        bool bossHasSpawned = false;
+
         foreach (Room toSpawnIn in rooms)
         {
             if (toSpawnIn != playerSpawn)
@@ -751,8 +758,18 @@ public class SpriteGenerator2D : MonoBehaviour
 
                     if (!enemyExists)
                     {
-                        GameObject enemy = Instantiate(enemyPrefabs[random.Next(0, enemyPrefabs.Length)], spawnAt, Quaternion.identity);
-                        enemy.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                        if (bossFloor && !bossHasSpawned)
+                        {
+                            GameObject enemy = Instantiate(bossPrefab, spawnAt, Quaternion.identity);
+                            enemy.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                            bossHasSpawned = true;
+                        }
+                        else
+                        {
+                            GameObject enemy = Instantiate(enemyPrefabs[random.Next(0, enemyPrefabs.Length)], spawnAt, Quaternion.identity);
+                            enemy.GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                        }
+
                         enemiesSpawned++;
                     }
                 }
