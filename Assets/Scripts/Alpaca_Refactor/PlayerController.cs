@@ -21,7 +21,6 @@ public class PlayerController : MonoBehaviour
     {
         model = GetComponent<PlayerModel>();
         view = GetComponent<PlayerView>();
-        playerHealthScript = GameObject.Find("Heart Storage").GetComponent<PlayerHealthUI_Refactor>();
 
         meleeWeaponScript = GetComponent<MeleeWeapon>();
         meleeWeaponScript.AttackDamage = model.meleeAttackDamage;
@@ -33,46 +32,58 @@ public class PlayerController : MonoBehaviour
 
         pauseMenu = GameObject.Find("PauseCanvas").GetComponent<PauseMenuController>();
         gameOverMenu = GameObject.Find("GameOverCanvas").GetComponent<GameOverController>();
+        playerHealthScript = GameObject.Find("Heart Storage").GetComponent<PlayerHealthUI_Refactor>();
+
+        DontDestroyOnLoad(gameObject);
     }
 
     void Update()
     {
-        if (pauseMenu.GameIsPaused == false&&view.animator!=null)
+        if ((pauseMenu != null) && (pauseMenu != null) && (pauseMenu != null))
         {
-            model.newPosition = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-            CheckForDoors();
-
-            // Check if player should be dead
-            if (model.health <= 0.0f)
+            if (pauseMenu.GameIsPaused == false && view.animator != null)
             {
-                playerHealthScript.UpdateHealth();
-                playerHealthScript.InitiateGameOver();
-                view.SetDead(true);
-                gameOverMenu.EnableGameOver();
-                model.rigidBody.velocity = new Vector3(0, 0, 0); // Stop player movement
+                model.newPosition = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+                CheckForDoors();
 
-                // Disable MVC
-                model.enabled = false;
-                view.enabled = false;
-                this.enabled = false;
-            }
-
-            HealthPickup();
-
-            if (Time.time >= model.nextAttackTime)
-            {
-                if (Input.GetKey(KeyCode.Mouse0))
+                // Check if player should be dead
+                if (model.health <= 0.0f)
                 {
-                    view.swordAnimator.SetTrigger("Attack");
-                    meleeWeaponScript.Attack();
-                    model.nextAttackTime = Time.time + 1f / model.meleeAttackRate;
+                    playerHealthScript.UpdateHealth();
+                    playerHealthScript.InitiateGameOver();
+                    view.SetDead(true);
+                    gameOverMenu.EnableGameOver();
+                    model.rigidBody.velocity = new Vector3(0, 0, 0); // Stop player movement
+
+                    // Disable MVC
+                    model.enabled = false;
+                    view.enabled = false;
+                    this.enabled = false;
                 }
-                else if (Input.GetKey(KeyCode.Mouse1))
+
+                HealthPickup();
+
+                if (Time.time >= model.nextAttackTime)
                 {
-                    rangedWeaponScript.Attack(model.rangedAttackPattern.ToString());
-                    model.nextAttackTime = Time.time + 1f / model.rangedAttackRate;
+                    if (Input.GetKey(KeyCode.Mouse0))
+                    {
+                        view.swordAnimator.SetTrigger("Attack");
+                        meleeWeaponScript.Attack();
+                        model.nextAttackTime = Time.time + 1f / model.meleeAttackRate;
+                    }
+                    else if (Input.GetKey(KeyCode.Mouse1))
+                    {
+                        rangedWeaponScript.Attack(model.rangedAttackPattern.ToString());
+                        model.nextAttackTime = Time.time + 1f / model.rangedAttackRate;
+                    }
                 }
             }
+        }
+        else
+        {
+            pauseMenu = GameObject.Find("PauseCanvas").GetComponent<PauseMenuController>();
+            gameOverMenu = GameObject.Find("GameOverCanvas").GetComponent<GameOverController>();
+            playerHealthScript = GameObject.Find("Heart Storage").GetComponent<PlayerHealthUI_Refactor>();
         }
     }
 

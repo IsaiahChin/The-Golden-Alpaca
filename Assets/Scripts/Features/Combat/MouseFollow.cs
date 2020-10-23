@@ -41,6 +41,10 @@ public class MouseFollow : MonoBehaviour
         //creates a plane at ground level
         Plane plane = new Plane(Vector3.up, 0f);
         //Finds the point on the plane where a raycast would intercept the plane from the mouse
+        if (mainCamera == null)
+        {
+            mainCamera = Camera.main;
+        }
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         float distanceToPlane;
 
