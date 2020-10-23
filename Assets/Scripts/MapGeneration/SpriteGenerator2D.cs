@@ -53,16 +53,10 @@ public class SpriteGenerator2D : MonoBehaviour
     //Modified to hold a selection of different floor tiles.
     [SerializeField]
     GameObject[] floorPrefabs;
-    [SerializeField]
-    Material redMaterial;
-    [SerializeField]
-    Material blueMaterial;
 
     //Created to hold a wall tile.
     [SerializeField]
     GameObject[] wallPrefabs;
-    [SerializeField]
-    Material greenMaterial;
 
     //Created to hold the roof tile.
     [SerializeField]
@@ -289,13 +283,12 @@ public class SpriteGenerator2D : MonoBehaviour
      */
 
     //Modified to work with sprites instead of cubes.
-    void PlaceFloorSprite(Vector2Int location, Vector2Int size, Material material, string tagName)
+    void PlaceFloorSprite(Vector2Int location, Vector2Int size, string tagName)
     {
         GameObject go = Instantiate(NextSprite(floorPrefabs), FloorSpriteLocationFix(size, location), Quaternion.identity);
         go.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
         //Rotate sprite to be flat, then a random 90 degree rotation on the ground.
         go.GetComponent<Transform>().rotation = Quaternion.Euler(90, random.Next(0, 4) * 90, 0);
-        go.GetComponent<SpriteRenderer>().material = material;
         go.tag = tagName;
     }
 
@@ -311,7 +304,7 @@ public class SpriteGenerator2D : MonoBehaviour
     }
 
     //Created to place a wall at given flags, with appropriate positions and rotation.
-    void PlaceWallSprite(Vector2Int location, Vector2Int size, Material material, SpritePositionType relativePos)
+    void PlaceWallSprite(Vector2Int location, Vector2Int size, SpritePositionType relativePos)
     {
         SpritePositionType[] allWallTypes =
         {
@@ -337,7 +330,6 @@ public class SpriteGenerator2D : MonoBehaviour
                 if (wall != null)
                 {
                     wall.GetComponent<Transform>().localScale = new Vector3(size.x, size.y, 1);
-                    wall.GetComponent<SpriteRenderer>().material = material;
 
                     if (placePropChance == 0)
                     {
@@ -360,8 +352,8 @@ public class SpriteGenerator2D : MonoBehaviour
                 SpritePositionType spriteRelativePosition = GetSpriteRelativePosition(i, j, size);
 
                 Vector2Int nextSpriteLocation = new Vector2Int(location.x + i, location.y + j);
-                PlaceFloorSprite(nextSpriteLocation, new Vector2Int(1, 1), redMaterial, "Room");
-                PlaceWallSprite(nextSpriteLocation, new Vector2Int(1, 1), greenMaterial, spriteRelativePosition);
+                PlaceFloorSprite(nextSpriteLocation, new Vector2Int(1, 1), "Room");
+                PlaceWallSprite(nextSpriteLocation, new Vector2Int(1, 1), spriteRelativePosition);
             }
         }
     }
@@ -438,8 +430,8 @@ public class SpriteGenerator2D : MonoBehaviour
                 Destroy(wall.gameObject);
             }
 
-            PlaceFloorSprite(location, new Vector2Int(1, 1), blueMaterial, "Hallway");
-            PlaceWallSprite(location, new Vector2Int(1, 1), greenMaterial, hallwayWalls);
+            PlaceFloorSprite(location, new Vector2Int(1, 1), "Hallway");
+            PlaceWallSprite(location, new Vector2Int(1, 1), hallwayWalls);
         }
     }
 
@@ -877,7 +869,6 @@ public class SpriteGenerator2D : MonoBehaviour
                             GameObject exitDoor = Instantiate(clossedDoorSprite, placementPosition, Quaternion.identity);
                             exitDoor.name = "LevelDoor";
                             exitDoor.GetComponent<Transform>().localScale = Vector3.one;
-                            exitDoor.GetComponent<SpriteRenderer>().material = greenMaterial;
 
                             doorPlaced = true;
                         }
