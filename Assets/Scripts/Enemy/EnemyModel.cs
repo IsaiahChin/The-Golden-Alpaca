@@ -19,7 +19,7 @@ public class EnemyModel : MonoBehaviour
     public Vector3 ObjVelocity { get; set; }
 
     [Header("Settings")]
-    [Range(0f,1f)]
+    [Range(0f, 1f)]
     public float dropChance;
     [Min(0.5f)]
     public float health;
@@ -32,7 +32,7 @@ public class EnemyModel : MonoBehaviour
     public bool movementEnabled = true;
     public bool isBoss = false;
     public float maxHealth { get; set; }
-    
+
     public LayerMask targetLayer;
     public LayerMask followLayer;
     public GameObject heartPickup;
@@ -45,7 +45,7 @@ public class EnemyModel : MonoBehaviour
 
     [Header("Melee Attack")]
     public bool swordGFXEnabled = true;
-    public bool meleeEnabled=true;
+    public bool meleeEnabled = true;
     [Min(0.1f)]
     public float meleeAttackRate;
     [Min(0.1f)]
@@ -77,7 +77,7 @@ public class EnemyModel : MonoBehaviour
         view = GetComponent<EnemyView>();
         maxHealth = health;
 
-        if (swordGFXEnabled==true)
+        if (swordGFXEnabled == true)
         {
             view.InitiateSword();
         }
@@ -105,7 +105,7 @@ public class EnemyModel : MonoBehaviour
     private void Update()
     {
         //Check if the animator and view has been setup correctly
-        if (view!=null&&view.animator!=null)
+        if (view != null && view.animator != null)
         {
             UpdateAnimator();
         }

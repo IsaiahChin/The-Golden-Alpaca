@@ -34,11 +34,11 @@ public class BossHealthUI : MonoBehaviour
     IEnumerator LateStart(float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
-        if (SceneManager.GetActiveScene().name.Equals("Level Three"))
+        if (SceneManager.GetActiveScene().name.Equals("LevelThree"))
         {
             enemy = GameObject.Find("BossSunflower(Clone)").GetComponent<EnemyController>();
         }
-        else if (SceneManager.GetActiveScene().name.Equals("Level Five"))
+        else if (SceneManager.GetActiveScene().name.Equals("LevelFive"))
         {
             enemy = GameObject.Find("BossRoboBall(Clone)").GetComponent<EnemyController>();
         }

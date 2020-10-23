@@ -5088,10 +5088,10 @@ MonoBehaviour:
   meleeAttackRate: 2
   meleeAttackRange: 1
   meleeAttackDamage: 1
-  rangedAttackRate: 10
+  rangedAttackRate: 3
   rangedAttackDamage: 1
   rangedAttackProjectileSpeed: 10
-  rangedAttackPattern: 2
+  rangedAttackPattern: 0
 --- !u!114 &1091197059421077493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5103,7 +5103,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 369003f0f0c4f2e4ba7335e3b3a6086e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '--- !u!114 &'
+  m_EditorClassIdentifier: --- !u!114 &
 --- !u!114 &8859717183548070647
 MonoBehaviour:
   m_ObjectHideFlags: 0

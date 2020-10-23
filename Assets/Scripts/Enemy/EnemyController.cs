@@ -128,7 +128,7 @@ public class EnemyController : MonoBehaviour
             } //Check if the player is within range for ranged attack
             else if (Physics.CheckSphere(ranged.attackPoint.position, model.rangedAttackRange, model.targetLayer))
             {
-                if (model.isBoss && SceneManager.GetActiveScene().name.Equals("Level Three"))
+                if (model.isBoss && SceneManager.GetActiveScene().name.Equals("LevelThree"))
                 {
                     Instantiate(model.fireBurst, transform); // Create a particle effect if enemy is a boss
                 }
@@ -153,7 +153,7 @@ public class EnemyController : MonoBehaviour
         }
 
         // Level 3 boss spawns bees
-        if (model.isBoss && SceneManager.GetActiveScene().name.Equals("Level Three"))
+        if (model.isBoss && SceneManager.GetActiveScene().name.Equals("LevelThree"))
         {
             float numOfBees = Random.Range(1, 9);
             if (numOfBees % 3 == 0)
