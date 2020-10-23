@@ -22,25 +22,26 @@ public class BossHealthUI : MonoBehaviour
 
     [Header("Script")]
     public EnemyController enemy;
+    public bool isHealthBarActive { get; set; }
 
     void Start()
     {
         canvas = transform.parent.gameObject;
-        //canvas.SetActive(false);
+        isHealthBarActive = false;
         StartCoroutine(LateStart(1f));
     }
 
     IEnumerator LateStart(float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
-        //if (SceneManager.GetActiveScene().name.Equals("Three"))
-        //{
+        if (SceneManager.GetActiveScene().name.Equals("Level Three"))
+        {
             enemy = GameObject.Find("BossSunflower(Clone)").GetComponent<EnemyController>();
-        //}
-        //else if (SceneManager.GetActiveScene().name.Equals("Five"))
-        //{
-        //    enemy = GameObject.Find("BossMech (Clone)").GetComponent<EnemyController>();
-        //}
+        }
+        else if (SceneManager.GetActiveScene().name.Equals("Level Five"))
+        {
+            enemy = GameObject.Find("BossRoboBall(Clone)").GetComponent<EnemyController>();
+        }
         UpdateHealthBar();
     }
 
@@ -92,9 +93,14 @@ public class BossHealthUI : MonoBehaviour
                 }
             }
         }
+        if (!isHealthBarActive)
+        {
+            canvas.SetActive(false);
+        }
     }
-    public void showHealthBar()
+    public void ShowHealthBar()
     {
         canvas.SetActive(true);
+        isHealthBarActive = true;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyController : MonoBehaviour
 {
@@ -102,6 +103,10 @@ public class EnemyController : MonoBehaviour
             //If the raycast hits the player then it has line of sight
             if (hit.transform.CompareTag("Player"))
             {
+                if (model.isBoss && !bossHealthScript.isHealthBarActive)
+                {
+                    bossHealthScript.ShowHealthBar();
+                }
                 return true;
             }
         }
@@ -116,16 +121,16 @@ public class EnemyController : MonoBehaviour
         //If the enemy has a melee and ranged attack
         if (model.meleeEnabled && model.rangedEnabled)
         {
-            //Check if the player is within range
+            //Check if the player is within range for melee attack
             if (Physics.CheckSphere(melee.attackPoint.position, model.meleeAttackRange, model.targetLayer))
             {
                 PerformMeleeAttack();
-            } //Check if the player is within range
+            } //Check if the player is within range for ranged attack
             else if (Physics.CheckSphere(ranged.attackPoint.position, model.rangedAttackRange, model.targetLayer))
             {
-                if (model.isBoss)
+                if (model.isBoss && SceneManager.GetActiveScene().name.Equals("Level Three"))
                 {
-                    Instantiate(model.fireBurst, transform);
+                    Instantiate(model.fireBurst, transform); // Create a particle effect if enemy is a boss
                 }
                 PerformRangedAttack();
             }
@@ -144,6 +149,20 @@ public class EnemyController : MonoBehaviour
             if (Physics.CheckSphere(ranged.attackPoint.position, model.rangedAttackRange, model.targetLayer))
             {
                 PerformRangedAttack();
+            }
+        }
+
+        // Level 3 boss spawns bees
+        if (model.isBoss && SceneManager.GetActiveScene().name.Equals("Level Three"))
+        {
+            float numOfBees = Random.Range(1, 9);
+            if (numOfBees % 3 == 0)
+            {
+                for (int i = 0; i < numOfBees; i++)
+                {
+                    Instantiate(model.fireSwirl, transform);
+                    Instantiate(model.enemyBee, transform.position, new Quaternion(0, 0, 0, 0));
+                }
             }
         }
     }

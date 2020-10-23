@@ -5097,7 +5097,7 @@ MonoBehaviour:
     m_Bits: 32768
   maxHealth: 3
   maxSpeed: 5
-  meleeAttackRate: 4
+  meleeAttackRate: 2
   meleeAttackRange: 1
   meleeAttackDamage: 1
   rangedAttackRate: 3

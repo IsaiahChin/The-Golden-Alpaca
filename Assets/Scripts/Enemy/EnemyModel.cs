@@ -36,6 +36,7 @@ public class EnemyModel : MonoBehaviour
     public LayerMask targetLayer;
     public LayerMask followLayer;
     public GameObject heartPickup;
+    public GameObject enemyBee;
 
     [Header("Particle Effects")]
     public GameObject deathCloudObject;
@@ -88,7 +89,7 @@ public class EnemyModel : MonoBehaviour
         NavAgent.acceleration = acceleration;
 
         //Idle movement
-        WanderTimer = UnityEngine.Random.Range(4, 10);
+        WanderTimer = Random.Range(4, 10);
         Timer = WanderTimer;
         idleSearchRadius = sightRange * 2;
 

@@ -240,7 +240,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 0
-  m_StoppingDistance: 1.1
+  m_StoppingDistance: 5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -260,11 +260,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3934e8744a24a704b9c1a9e3cc9e2e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropChance: 0.2
-  health: 3
-  speed: 3
+  dropChance: 1
+  health: 10
+  speed: 2
   acceleration: 3
-  sightRange: 10
+  sightRange: 15
   movementEnabled: 1
   isBoss: 1
   targetLayer:
@@ -274,6 +274,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   heartPickup: {fileID: 6783924239118259285, guid: e8e87b96721703d449fca2134163aa47,
+    type: 3}
+  enemyBee: {fileID: 4902178324375276467, guid: a4998194a979fab49a00c8c2ddd5c322,
     type: 3}
   deathCloudObject: {fileID: 6341281065137407365, guid: 485ec507f7ac0d546af2534085531353,
     type: 3}

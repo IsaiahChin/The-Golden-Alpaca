@@ -128,6 +128,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8831716134803629156, guid: 80dd947a4b9fa964db2c78f292fdbd7e,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8831716134803629156, guid: 80dd947a4b9fa964db2c78f292fdbd7e,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8831716134803629156, guid: 80dd947a4b9fa964db2c78f292fdbd7e,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8831716134803629157, guid: 80dd947a4b9fa964db2c78f292fdbd7e,
+        type: 3}
+      propertyPath: m_CellSize.x
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 8831716134996203156, guid: 80dd947a4b9fa964db2c78f292fdbd7e,
         type: 3}
       propertyPath: m_Name
@@ -678,12 +698,12 @@ PrefabInstance:
         type: 3}
       propertyPath: enemyPrefabs.Array.data[0]
       value: 
-      objectReference: {fileID: 4902178324375276467, guid: 83decc5ede05b0c479b144703b978afb,
+      objectReference: {fileID: 4902178324375276467, guid: 515825f0421ecfc4882757f5f0a34839,
         type: 3}
     - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
         type: 3}
       propertyPath: roomCount
-      value: 100
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29d736b2e4bb8b042a2a54b45982da23, type: 3}

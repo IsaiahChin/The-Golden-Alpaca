@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 83458588066282966}
   - component: {fileID: 83458588066282964}
+  - component: {fileID: 83458588066282967}
   m_Layer: 10
-  m_Name: Point Light
+  m_Name: Head Light
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 83458588066282961}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.3, z: -0.25}
+  m_LocalPosition: {x: 0, y: 0.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4902178324375276469}
@@ -42,9 +43,9 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.8117648, g: 0.7411765, b: 0.15686275, a: 1}
-  m_Intensity: 4
-  m_Range: 2
+  m_Color: {r: 0.8117648, g: 0.3137255, b: 0.29411766, a: 1}
+  m_Intensity: 5
+  m_Range: 4
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -92,6 +93,22 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &83458588066282967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83458588066282961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f8b0e02af4ba504d9c19255e9ed7e9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseStart: 1
+  amplitude: 0.1
+  phase: 2
+  frequency: 0.7
 --- !u!1 &83458588729734059
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,7 +172,7 @@ GameObject:
   - component: {fileID: 6544156456896301707}
   - component: {fileID: 2072549734020124243}
   m_Layer: 10
-  m_Name: EnemyBee
+  m_Name: BossRoboBall
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -174,6 +191,7 @@ Transform:
   m_Children:
   - {fileID: 83458588066282966}
   - {fileID: 83458588729734056}
+  - {fileID: 582770655984871500}
   - {fileID: 2382078419535808462}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -218,13 +236,13 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.25
-  m_Speed: 5
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 0
-  m_StoppingDistance: 0.5
+  m_StoppingDistance: 5
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 0
+  m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
   m_BaseOffset: 0.5
@@ -242,13 +260,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3934e8744a24a704b9c1a9e3cc9e2e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropChance: 0
-  health: 0.5
-  speed: 7
+  dropChance: 1
+  health: 10
+  speed: 2
   acceleration: 3
   sightRange: 15
   movementEnabled: 1
-  isBoss: 0
+  isBoss: 1
   targetLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -257,8 +275,10 @@ MonoBehaviour:
     m_Bits: 512
   heartPickup: {fileID: 6783924239118259285, guid: e8e87b96721703d449fca2134163aa47,
     type: 3}
-  enemyBee: {fileID: 0}
-  deathCloudObject: {fileID: 0}
+  enemyBee: {fileID: 4902178324375276467, guid: a4998194a979fab49a00c8c2ddd5c322,
+    type: 3}
+  deathCloudObject: {fileID: 6341281065137407365, guid: 485ec507f7ac0d546af2534085531353,
+    type: 3}
   fireBurst: {fileID: 7109884151088422403, guid: bed8a57e5db4c6246bc25fc4c74e6a89,
     type: 3}
   fireSwirl: {fileID: 7892187816377800912, guid: d12d52c32d340924b9295bab3a941bd8,
@@ -266,15 +286,15 @@ MonoBehaviour:
   swordGFXEnabled: 0
   meleeEnabled: 1
   meleeAttackRate: 0.5
-  meleeAttackDelay: 0
-  meleeAttackRange: 0.5
-  meleeAttackDamage: 0.5
-  rangedEnabled: 0
+  meleeAttackDelay: 0.1
+  meleeAttackRange: 1
+  meleeAttackDamage: 1
+  rangedEnabled: 1
   rangedAttackRate: 0.5
-  rangedAttackDelay: 0.7
-  rangedAttackRange: 8
+  rangedAttackDelay: 0.4
+  rangedAttackRange: 10
   rangedAttackDamage: 0.5
-  rangedAttackProjectileSpeed: 6
+  rangedAttackProjectileSpeed: 10
   rangedAttackPattern: 0
 --- !u!114 &3485253201862655706
 MonoBehaviour:
@@ -312,7 +332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 500e96fa14a39144b9edf6b451a833a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 6706578177715918311, guid: 97349dfba1ae77247afcc7326bad530a,
+  bulletPrefab: {fileID: 6706578177715918311, guid: b52089b219d5e5e4396fbd0d7032f8cb,
     type: 3}
   speed: 10
   damage: 0.5
@@ -359,11 +379,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4971152283949823109}
   m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: 0, y: -0.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4902178324375276469}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
 --- !u!95 &2909958217790774656
 Animator:
@@ -375,7 +395,7 @@ Animator:
   m_GameObject: {fileID: 4971152283949823109}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 553310c0735389d49b4ad2d3cf379a39, type: 2}
+  m_Controller: {fileID: 9100000, guid: cd657a7f821b4ab469ac4c029ce4a1b3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -423,7 +443,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -4656658513182322354, guid: 9983b9e5bd6830f40b50db9e4d925397,
+  m_Sprite: {fileID: -7100839737635878389, guid: d945859938da5214eba0279ac90bdc6e,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -435,6 +455,115 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &8039188828467557056
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 582770655984871500}
+  - component: {fileID: 575017923065721612}
+  - component: {fileID: 1777529175448927119}
+  m_Layer: 10
+  m_Name: Body Light
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &582770655984871500
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8039188828467557056}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.45, z: -0.25000006}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4902178324375276469}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!108 &575017923065721612
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8039188828467557056}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 2
+  m_Shape: 0
+  m_Color: {r: 0.87204766, g: 0.88235295, b: 0.16470589, a: 1}
+  m_Intensity: 4
+  m_Range: 3
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 1
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 0.8
+    m_Bias: 0
+    m_NormalBias: 0.4
+    m_NearPlane: 0.1
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 0
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!114 &1777529175448927119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8039188828467557056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f8b0e02af4ba504d9c19255e9ed7e9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseStart: 1
+  amplitude: 0.1
+  phase: 2
+  frequency: 0.7
 --- !u!1 &8226506280977590508
 GameObject:
   m_ObjectHideFlags: 0
