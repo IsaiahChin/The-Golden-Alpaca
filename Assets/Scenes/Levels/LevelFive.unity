@@ -315,6 +315,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5284627151723384895, guid: e2a7a14f340a4cd4cbc3a1545cbba5e7,
         type: 3}
+    - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
+        type: 3}
+      propertyPath: bossFloor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
+        type: 3}
+      propertyPath: bossPrefab
+      value: 
+      objectReference: {fileID: 1961051431253368337, guid: e0b645bd06dfb354c8cfdf50cff6674f,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29d736b2e4bb8b042a2a54b45982da23, type: 3}
 --- !u!1001 &260375509
