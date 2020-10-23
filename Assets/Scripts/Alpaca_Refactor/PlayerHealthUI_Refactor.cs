@@ -21,7 +21,7 @@ public class PlayerHealthUI_Refactor : MonoBehaviour
     public GameObject fullHeart;
     public GameObject lastHalfHeart;
 
-    [Header("Scripts")]
+    [Header("Script")]
     public PlayerController player;
 
     private void Start()
@@ -65,7 +65,7 @@ public class PlayerHealthUI_Refactor : MonoBehaviour
             {
                 if (currentHealth == i + 1)
                 {
-                    Instantiate(fullHeart, heartStorage.transform);
+                    Instantiate(fullHeart, transform);
                 }
                 else if (currentHealth > i)
                 {
@@ -73,24 +73,23 @@ public class PlayerHealthUI_Refactor : MonoBehaviour
                     {
                         if (currentHealth == 0.5f)
                         {
-                            Instantiate(lastHalfHeart, heartStorage.transform);
+                            Instantiate(lastHalfHeart, transform);
                         }
                         else
                         {
-                            Instantiate(halfHeart, heartStorage.transform);
+                            Instantiate(halfHeart, transform);
                         }
                     }
                     else
                     {
-                        Instantiate(fullHeart, heartStorage.transform);
+                        Instantiate(fullHeart, transform);
                     }
                 }
                 else
                 {
-                    Instantiate(emptyHeart, heartStorage.transform);
+                    Instantiate(emptyHeart, transform);
                 }
             }
-
         }
     }
 

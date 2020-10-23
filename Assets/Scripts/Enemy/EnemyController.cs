@@ -11,11 +11,18 @@ public class EnemyController : MonoBehaviour
     private MeleeWeapon melee;
     private RangedWeapon ranged;
 
+    private BossHealthUI bossHealthScript;
+
     private void Start()
     {
         //MVC linking
         model = GetComponent<EnemyModel>();
         view = GetComponent<EnemyView>();
+
+        if (model.isBoss)
+        {
+            bossHealthScript = GameObject.Find("HealthBarStorage").GetComponent<BossHealthUI>();
+        }
 
         //Setup melee
         if (model.meleeEnabled == true)
@@ -39,11 +46,15 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
-        if (model!=null&&view!=null)
+        if (model != null && view != null)
         {
             //Check Health
             if (model.health <= 0)
             {
+                if (model.isBoss)
+                {
+                    bossHealthScript.UpdateHealthBar();
+                }
                 Die();
             }
 
@@ -54,7 +65,7 @@ public class EnemyController : MonoBehaviour
             }
 
             //If the enemy can attack and has line of sight and has a weapon, then attack
-            if (Time.time >= model.NextAttackTime && PlayerInLineOfSight() && (model.meleeEnabled||model.rangedEnabled))
+            if (Time.time >= model.NextAttackTime && PlayerInLineOfSight() && (model.meleeEnabled || model.rangedEnabled))
             {
                 CalculateAttack();
             }
@@ -112,6 +123,10 @@ public class EnemyController : MonoBehaviour
             } //Check if the player is within range
             else if (Physics.CheckSphere(ranged.attackPoint.position, model.rangedAttackRange, model.targetLayer))
             {
+                if (model.isBoss)
+                {
+                    Instantiate(model.fireBurst, transform);
+                }
                 PerformRangedAttack();
             }
         } //If the enemy has a melee but no ranged attack
@@ -162,13 +177,16 @@ public class EnemyController : MonoBehaviour
 
     private void Die()
     {
-        //Create death cloud particle effect
-        Instantiate(model.deathCloudObject, transform.position, new Quaternion(0, 0, 0, 0));
+        if (model.deathCloudObject != null)
+        {
+            //Create death cloud particle effect
+            Instantiate(model.deathCloudObject, transform.position, new Quaternion(0, 0, 0, 0));
+        }
 
         //Random chance of dropping health
         if (Random.Range(0f, 1f) <= model.dropChance)
         {
-            Instantiate(model.healthObject, transform.position, new Quaternion(0, 0, 0, 0));
+            Instantiate(model.heartPickup, transform.position, new Quaternion(0, 0, 0, 0));
         }
 
         //Decrease enemy counter
@@ -181,9 +199,23 @@ public class EnemyController : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public float GetHealth()
+    {
+        return model.health;
+    }
+
+    public float GetMaxHealth()
+    {
+        return model.maxHealth;
+    }
+
     public void decreaseHealth(float damage)
     {
         model.health -= damage;
         view.animator.SetTrigger("Hit");
+        if (model.isBoss)
+        {
+            bossHealthScript.UpdateHealthBar();
+        }
     }
 }

@@ -14,7 +14,6 @@ public class EnemyModel : MonoBehaviour
     public float WanderTimer { get; set; }
     public float Timer { get; set; }
 
-
     public Vector3 PrevPos { get; set; }
     public Vector3 NewPos { get; set; }
     public Vector3 ObjVelocity { get; set; }
@@ -31,12 +30,17 @@ public class EnemyModel : MonoBehaviour
     [Min(0.5f)]
     public float sightRange;
     public bool movementEnabled = true;
+    public bool isBoss = false;
+    public float maxHealth { get; set; }
     
     public LayerMask targetLayer;
     public LayerMask followLayer;
+    public GameObject heartPickup;
 
+    [Header("Particle Effects")]
     public GameObject deathCloudObject;
-    public GameObject healthObject;
+    public GameObject fireBurst;
+    public GameObject fireSwirl;
 
     [Header("Melee Attack")]
     public bool swordGFXEnabled = true;
@@ -70,7 +74,8 @@ public class EnemyModel : MonoBehaviour
     {
         //MVC setup
         view = GetComponent<EnemyView>();
-        
+        maxHealth = health;
+
         if (swordGFXEnabled==true)
         {
             view.InitiateSword();
