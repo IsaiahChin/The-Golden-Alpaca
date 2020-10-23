@@ -60,7 +60,9 @@ public class AudioManager : MonoBehaviour
         nowPlaying.source.volume = 1;
         nowPlaying.source.pitch = 1;
     }
-    
+    public void StopBGM(){
+        nowPlaying.source.Stop();
+    }
     //Method to play effects audio
     public void Play(string name){
         //Check if name is valid

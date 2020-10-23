@@ -50,7 +50,7 @@ public class PauseMenuController : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
-        AudioManager.nowPlaying.source.volume -= 0.3f;
+        AudioManager.nowPlaying.source.volume -= 0.6f;
         AudioManager.nowPlaying.source.pitch -= 0.1f;
     }
 

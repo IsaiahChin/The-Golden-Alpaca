@@ -27,6 +27,7 @@ public class GameOverController : MonoBehaviour
         Time.timeScale = 0f;
         isGameOver = true;
         gameOverMenu.SetActive(isGameOver);
+        FindObjectOfType<AudioManager>().StopBGM();
     }
 
     /**
