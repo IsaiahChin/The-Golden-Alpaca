@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
+using UnityEngine.SceneManagement;
 
 public class PlayerView : MonoBehaviour
 {
@@ -10,7 +11,8 @@ public class PlayerView : MonoBehaviour
 
     void Start()
     {
-        FindObjectOfType<AudioManager>().PlayBGM("Level 1");
+        string level = SceneManager.GetActiveScene().name;
+        FindObjectOfType<AudioManager>().PlayBGM(level);
         animator = GameObject.Find("AlpacaGFX").GetComponent<Animator>();
         swordAnimator = GameObject.Find("AlpacaSword").GetComponent<Animator>();
     }
