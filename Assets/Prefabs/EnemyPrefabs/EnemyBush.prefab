@@ -259,22 +259,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3934e8744a24a704b9c1a9e3cc9e2e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PrevPos: {x: 0, y: 0, z: 0}
-  NewPos: {x: 0, y: 0, z: 0}
-  ObjVelocity: {x: 0, y: 0, z: 0}
+  dropChance: 0.1
   health: 1
   speed: 3
   acceleration: 3
   sightRange: 10
   movementEnabled: 0
+  isBoss: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 512
   followLayer:
     serializedVersion: 2
     m_Bits: 512
+  heartPickup: {fileID: 6783924239118259285, guid: e8e87b96721703d449fca2134163aa47,
+    type: 3}
   deathCloudObject: {fileID: 6341281065137407365, guid: 485ec507f7ac0d546af2534085531353,
     type: 3}
+  fireBurst: {fileID: 0}
+  fireSwirl: {fileID: 0}
   swordGFXEnabled: 0
   meleeEnabled: 1
   meleeAttackRate: 0.5
@@ -497,7 +500,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 778f1237061b07c4eb36cb9fb5295989, type: 2}
+  - {fileID: 2100000, guid: 935d64e2df3041a43a307e78162b8d5e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

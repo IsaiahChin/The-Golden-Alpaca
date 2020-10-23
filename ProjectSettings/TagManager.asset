@@ -8,6 +8,10 @@ TagManager:
   - Enviroment
   - Prop
   - Bullet
+  - Health
+  - Door
+  - Room
+  - Hallway
   layers:
   - Default
   - TransparentFX
@@ -24,7 +28,7 @@ TagManager:
   - Prop
   - Floor
   - Bullet
-  - 
+  - Health
   - 
   - 
   - 

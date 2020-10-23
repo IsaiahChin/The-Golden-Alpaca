@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
 //Author: MatthewCopeland
 public class CameraFollow : MonoBehaviour
@@ -37,15 +35,5 @@ public class CameraFollow : MonoBehaviour
         Vector3 desiredPosition = target.position + offset;
         Vector3 smoothedPosition = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocity, smoothingSpeed);
         transform.position = smoothedPosition;
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        if (showSceneLabels&&target!=null)
-        {
-            Gizmos.color = Color.white;
-            Gizmos.DrawLine(transform.position, target.position);
-            Handles.Label(target.position,"Follow Target: "+target.name);
-        }
     }
 }

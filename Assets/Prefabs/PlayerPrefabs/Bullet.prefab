@@ -3864,7 +3864,7 @@ ParticleSystem:
       properties: 0
       emitProbability: 1
   LightsModule:
-    enabled: 1
+    enabled: 0
     ratio: 1
     light: {fileID: 7825035178217161472}
     randomDistribution: 0
@@ -4944,7 +4944,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 2.1429e-41, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 17, y: 0, z: 0, w: 1.12e-43}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
