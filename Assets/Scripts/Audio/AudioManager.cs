@@ -20,6 +20,8 @@ public class AudioManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
 
+        
+
         foreach(Sound s in sounds){
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
@@ -27,6 +29,9 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
+            
+            //routes audio source to Audio Mixer
+            s.source.outputAudioMixerGroup = s.group;
         }
     }
   
