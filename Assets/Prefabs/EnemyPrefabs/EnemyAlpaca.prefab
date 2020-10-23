@@ -259,9 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3934e8744a24a704b9c1a9e3cc9e2e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PrevPos: {x: 0, y: 0, z: 0}
-  NewPos: {x: 0, y: 0, z: 0}
-  ObjVelocity: {x: 0, y: 0, z: 0}
+  dropChance: 0
   health: 1
   speed: 3
   acceleration: 3
@@ -273,13 +271,17 @@ MonoBehaviour:
   followLayer:
     serializedVersion: 2
     m_Bits: 512
+  deathCloudObject: {fileID: 0}
+  healthObject: {fileID: 0}
   swordGFXEnabled: 0
   meleeEnabled: 1
   meleeAttackRate: 0.5
+  meleeAttackDelay: 0
   meleeAttackRange: 1
   meleeAttackDamage: 1
   rangedEnabled: 1
   rangedAttackRate: 3
+  rangedAttackDelay: 0
   rangedAttackRange: 8
   rangedAttackDamage: 0.5
   rangedAttackProjectileSpeed: 10
@@ -493,7 +495,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 778f1237061b07c4eb36cb9fb5295989, type: 2}
+  - {fileID: 2100000, guid: 935d64e2df3041a43a307e78162b8d5e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
