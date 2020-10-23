@@ -1,0 +1,172 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9135699372038191914
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6852057440499182987}
+  - component: {fileID: 727239064638573657}
+  m_Layer: 0
+  m_Name: AudioManager 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6852057440499182987
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9135699372038191914}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &727239064638573657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9135699372038191914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08c2ee7503ff487479a29746917bb520, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Theme
+    group: {fileID: 24300002, guid: fd21e1c3e79857f4eac716d8e114a362, type: 2}
+    clip: {fileID: 8300000, guid: c27a1e8cb3fa3814f855953428161485, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: GameScene_Refactor
+    group: {fileID: 24300002, guid: fd21e1c3e79857f4eac716d8e114a362, type: 2}
+    clip: {fileID: 8300000, guid: 66471294270c26e49b84e651fbf5056f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: LevelTwo
+    group: {fileID: 24300002, guid: fd21e1c3e79857f4eac716d8e114a362, type: 2}
+    clip: {fileID: 8300000, guid: cc8b523c2b02c7a4993448f26cb5016b, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: LevelThree
+    group: {fileID: 24300002, guid: fd21e1c3e79857f4eac716d8e114a362, type: 2}
+    clip: {fileID: 8300000, guid: 6c44e71d7fb75b043b63545f3f0b577e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: LevelFour
+    group: {fileID: 24300002, guid: fd21e1c3e79857f4eac716d8e114a362, type: 2}
+    clip: {fileID: 8300000, guid: eab82d68bf6cf394582a122a6437b06c, type: 3}
+    volume: 0.7
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: LevelFive
+    group: {fileID: 24300002, guid: fd21e1c3e79857f4eac716d8e114a362, type: 2}
+    clip: {fileID: 8300000, guid: fb737c0debd295142a0b54847994c331, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Shoot
+    group: {fileID: 24300002, guid: fd21e1c3e79857f4eac716d8e114a362, type: 2}
+    clip: {fileID: 8300000, guid: 5ce3962d415dbc04db2108e33c0ba081, type: 3}
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Melee
+    group: {fileID: 24300002, guid: fd21e1c3e79857f4eac716d8e114a362, type: 2}
+    clip: {fileID: 8300000, guid: abc92b1326fce364da33616322215b58, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Player Hit
+    group: {fileID: 24300002, guid: fd21e1c3e79857f4eac716d8e114a362, type: 2}
+    clip: {fileID: 8300000, guid: abc92b1326fce364da33616322215b58, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Bullet Paree
+    group: {fileID: 24300002, guid: fd21e1c3e79857f4eac716d8e114a362, type: 2}
+    clip: {fileID: 8300000, guid: 5ce3962d415dbc04db2108e33c0ba081, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Player Dead
+    group: {fileID: 24300002, guid: fd21e1c3e79857f4eac716d8e114a362, type: 2}
+    clip: {fileID: 8300000, guid: 8ea21f526f06eae4f91accb06d5fc710, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Health Gained
+    group: {fileID: 24300002, guid: fd21e1c3e79857f4eac716d8e114a362, type: 2}
+    clip: {fileID: 8300000, guid: 57eecaa641ab5f44088ed496e59a3b7d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Enemy Hit
+    group: {fileID: 24300002, guid: fd21e1c3e79857f4eac716d8e114a362, type: 2}
+    clip: {fileID: 8300000, guid: 384971348b79dcb4e8a600ac099d8754, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Enemy Melee
+    group: {fileID: 24300002, guid: fd21e1c3e79857f4eac716d8e114a362, type: 2}
+    clip: {fileID: 8300000, guid: 462b09a8892f91e4fb4a3847ee7340bd, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Enemy Shoot
+    group: {fileID: 24300002, guid: fd21e1c3e79857f4eac716d8e114a362, type: 2}
+    clip: {fileID: 8300000, guid: ad80120d53ebecb45a16879f17eeccb1, type: 3}
+    volume: 1
+    pitch: 0.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Enemy Dead
+    group: {fileID: 24300002, guid: fd21e1c3e79857f4eac716d8e114a362, type: 2}
+    clip: {fileID: 8300000, guid: df0650efb8625f64186ebaa361d70c99, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Button Select
+    group: {fileID: 24300002, guid: fd21e1c3e79857f4eac716d8e114a362, type: 2}
+    clip: {fileID: 8300000, guid: b3062a8b6fadc4049a08291632902706, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Button Click
+    group: {fileID: 24300002, guid: fd21e1c3e79857f4eac716d8e114a362, type: 2}
+    clip: {fileID: 8300000, guid: 194e470629a899240877cb10dd46b9e3, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
