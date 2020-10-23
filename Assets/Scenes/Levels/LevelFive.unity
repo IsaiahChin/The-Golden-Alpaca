@@ -212,7 +212,7 @@ PrefabInstance:
     - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
         type: 3}
       propertyPath: wallProps.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
         type: 3}
@@ -289,13 +289,13 @@ PrefabInstance:
         type: 3}
       propertyPath: wallProps.Array.data[1]
       value: 
-      objectReference: {fileID: 6306831764597530320, guid: e9cb8b6038ac6f84f8e32548f9025a61,
+      objectReference: {fileID: 958506394262525803, guid: e57543847d2e0fb4fb94c48f84ed2230,
         type: 3}
     - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
         type: 3}
       propertyPath: wallProps.Array.data[2]
       value: 
-      objectReference: {fileID: 958506394262525803, guid: e57543847d2e0fb4fb94c48f84ed2230,
+      objectReference: {fileID: 5284627151723384895, guid: e2a7a14f340a4cd4cbc3a1545cbba5e7,
         type: 3}
     - target: {fileID: 8714820308133208739, guid: 29d736b2e4bb8b042a2a54b45982da23,
         type: 3}
