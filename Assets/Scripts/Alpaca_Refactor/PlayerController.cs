@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
         if (pauseMenu.GameIsPaused == false&&view.animator!=null)
         {
             model.newPosition = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+            CheckForDoors();
 
             // Check if player should be dead
             if (model.health <= 0.0f)
@@ -80,18 +81,21 @@ public class PlayerController : MonoBehaviour
      */
     private void HealthPickup()
     {
-        //Get all the coliders within the attack range
-        Collider[] hits = Physics.OverlapSphere(this.transform.position, 0.3f, model.healthLayer);
-
-        //Damage each collider with an enemy layer 
-        foreach (Collider health in hits)
+        if (model.health < model.maxHealth)
         {
-            if (health.CompareTag("Health"))
+            //Get all the coliders within the attack range
+            Collider[] hits = Physics.OverlapSphere(this.transform.position, 0.3f, 1 << LayerMask.NameToLayer("Health"));
+
+            //Damage each collider with an enemy layer 
+            foreach (Collider health in hits)
             {
-                //If the collider is a player, call the player damage script
-                HealPlayer(health.GetComponent<HealthPickupController>().Pickup());
-                health.GetComponent<HealthPickupController>().Destroy();
-            } 
+                if (health.CompareTag("Health"))
+                {
+                    //If the collider is a player, call the player damage script
+                    HealPlayer(health.GetComponent<HealthPickupController>().Pickup());
+                    health.GetComponent<HealthPickupController>().Destroy();
+                }
+            }
         }
     }
 
@@ -126,5 +130,28 @@ public class PlayerController : MonoBehaviour
     public float GetMaxHealth()
     {
         return model.maxHealth;
+    }
+
+    private void CheckForDoors()
+    {
+        Vector3 position = GetComponent<Transform>().position;
+        Collider[] closeEnvironment = Physics.OverlapSphere(position, 0.5f, 1 << LayerMask.NameToLayer("Environment"));
+
+        if (!closeEnvironment.Length.Equals(0))
+        {
+            Collider door = null;
+            foreach (Collider possibleDoor in closeEnvironment)
+            {
+                if (possibleDoor.tag.Equals("Door"))
+                {
+                    door = possibleDoor;
+                }
+            }
+
+            if (door != null)
+            {
+                EventHandeler.ActivateInteraction();
+            }
+        }
     }
 }

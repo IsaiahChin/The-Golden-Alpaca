@@ -9,6 +9,9 @@ TagManager:
   - Prop
   - Bullet
   - Health
+  - Door
+  - Room
+  - Hallway
   layers:
   - Default
   - TransparentFX
