@@ -5083,15 +5083,15 @@ MonoBehaviour:
   healthLayer:
     serializedVersion: 2
     m_Bits: 0
-  maxHealth: 3
+  maxHealth: 5
   maxSpeed: 5
   meleeAttackRate: 2
   meleeAttackRange: 1
   meleeAttackDamage: 1
-  rangedAttackRate: 3
-  rangedAttackDamage: 1
+  rangedAttackRate: 5
+  rangedAttackDamage: 5
   rangedAttackProjectileSpeed: 10
-  rangedAttackPattern: 0
+  rangedAttackPattern: 1
 --- !u!114 &1091197059421077493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10069,7 +10069,7 @@ SpriteRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4754827697336353644}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
