@@ -290,8 +290,8 @@ MonoBehaviour:
   meleeAttackRange: 1
   meleeAttackDamage: 1
   rangedEnabled: 1
-  rangedAttackRate: 0.2
-  rangedAttackDelay: 0.1
+  rangedAttackRate: 0.1
+  rangedAttackDelay: 0.2
   rangedAttackRange: 10
   rangedAttackDamage: 0.5
   rangedAttackProjectileSpeed: 10
