@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!224 &716316076174452450
 RectTransform:
@@ -115,7 +115,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!224 &716316077608473630
 RectTransform:
@@ -185,3 +185,4 @@ MonoBehaviour:
   lastHalfHeart: {fileID: 1304184804011979187, guid: 2f71806234f07894b8081b1d657f4d28,
     type: 3}
   player: {fileID: 0}
+  startHasRun: 0

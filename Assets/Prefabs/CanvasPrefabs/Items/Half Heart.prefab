@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 8342952703702249628}
   - component: {fileID: 1635487172424818435}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Half Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!224 &2646160704222830240
 RectTransform:

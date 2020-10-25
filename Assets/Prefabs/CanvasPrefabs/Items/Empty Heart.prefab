@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 4119967270801098255}
   - component: {fileID: 4119967270801098254}
   m_Layer: 5
-  m_Name: Heart
+  m_Name: Empty Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!224 &4119967270801098289
 RectTransform:
