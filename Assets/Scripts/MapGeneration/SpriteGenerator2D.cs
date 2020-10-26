@@ -4,6 +4,13 @@ using UnityEngine;
 using Random = System.Random;
 using Graphs;
 
+/**
+ * This class is a copy of the 2DGenerator class from the Procedural Generation
+ * code. It is designed to it in with the sprites we are using for our game,
+ * instead if the 3D objects the generator was designed to use originally. It
+ * was also modiffied to fit our design choice of having an open roof plan,
+ * looking down on the player.
+ */
 public class SpriteGenerator2D : MonoBehaviour
 {
     public NavmeshBaker baker;
