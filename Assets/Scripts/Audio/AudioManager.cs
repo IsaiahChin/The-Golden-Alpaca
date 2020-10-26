@@ -52,8 +52,6 @@ public class AudioManager : MonoBehaviour
                 ResetBGM();
             }
         }
-        
-        
     }
     //resets BFM pitch and volume to 1
     public void ResetBGM(){

@@ -10,6 +10,6 @@ public class ReturnToMainMenuButtonScript : MonoBehaviour
      */
     public void ReturnToMainMenu()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 }
