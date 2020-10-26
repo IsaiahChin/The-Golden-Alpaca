@@ -5,24 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class WinScreen : MonoBehaviour
 {
-    // Start is called before the first frame update
-  void Start(){
-      //Play Music
-      FindObjectOfType<AudioManager>().PlayBGM("YouWinScene");
-      StartCoroutine(wait());
-  }
-  IEnumerator wait()
-    {   
-        // wait two seconds otherwise player may immdiately move on the next scene
+    void Start()
+    {
+        //Play Music
+        FindObjectOfType<AudioManager>().PlayBGM("YouWinScene");
+        StartCoroutine(wait());
+    }
+    IEnumerator wait()
+    {
+        // Wait two seconds otherwise player may immdiately move on the next scene
         yield return new WaitForSeconds(2);
     }
 
-      void Update()
+    void Update()
     {
         if (Input.anyKey)
         {
             SceneManager.LoadScene(0);
-        }  
-            
+        }
+
     }
 }
